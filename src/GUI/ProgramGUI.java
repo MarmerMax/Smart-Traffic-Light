@@ -1,13 +1,16 @@
 package GUI;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -16,54 +19,64 @@ public class ProgramGUI {
     private Scene windowHome, windowOptions;
     private Stage window;
 
-    public ProgramGUI(Stage stage){
+    public ProgramGUI(Stage stage) {
         window = stage;
         createUI();
     }
 
-    private void createUI(){
+    private void createUI() {
         createHomeWindow();
         createOptionsWindow();
     }
 
-    private void createHomeWindow(){
-        Label label1 = new Label("Welcome to the home page!!!");
-        Button buttonStart = new Button("Let's start");
-        Button buttonAboutUs = new Button("About us");
+    private void createHomeWindow() {
 
+        Label label = new Label("Welcome to the Smart traffic light!");
+        HBox topMenu = new HBox();
+        topMenu.setMinHeight(80);
+        topMenu.setAlignment(Pos.CENTER);
+        topMenu.getChildren().addAll(label);
+
+        Button buttonStart = new Button("Let's start");
         buttonStart.setOnAction(e -> window.setScene(windowOptions));
+
+        Button buttonAboutUs = new Button("About us");
         buttonAboutUs.setOnAction(e -> createAboutUsAlertWindow());
 
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(label1, buttonStart, buttonAboutUs);
+        VBox leftMenu = new VBox();
+        leftMenu.setPadding(new Insets(50));
+        leftMenu.setSpacing(20);
+        leftMenu.getChildren().addAll(buttonStart, buttonAboutUs);
 
-        windowHome = new Scene(layout1, 600, 400);
+
+        VBox rightMenu = new VBox();
+        Image image = new Image("file:images/others/main-image.jpg");
+        rightMenu.setPrefSize(400, 260);
+        BackgroundImage backgroundimage = new BackgroundImage(image,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundimage);
+        rightMenu.setBackground(background);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.getStylesheets().add("file:src/GUI/style.css");
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+        borderPane.setRight(rightMenu);
+
+        windowHome = new Scene(borderPane, 600, 400);
     }
 
-    private void createAboutUsAlertWindow(){
-        Stage windowAboutUs = new Stage();
-
-        windowAboutUs.initModality(Modality.APPLICATION_MODAL);
-        windowAboutUs.setTitle("About us");
-
-        Label label = new Label();
-        label.setText("Smart Traffic Light\n" +
-                "Version 1.0\n" +
-                "Created by Netanel Davidov and Maxim Marmer");
-        Button button = new Button("Close");
-        button.setOnAction(e -> windowAboutUs.close());
-
-        VBox layout = new VBox(20);
-        layout.getChildren().addAll(label, button);
-        layout.setAlignment(Pos.CENTER);
-
-        Scene scene = new Scene(layout);
-        windowAboutUs.setScene(scene);
-        windowAboutUs.setResizable(false);
-        windowAboutUs.showAndWait();
+    private void createAboutUsAlertWindow() {
+        String title = "About us";
+        String aboutUs = "Smart Traffic Light\nVersion 1.0\n" +
+                "Created by Netanel Davidov and Maxim Marmer";
+        AlertBox.display(title, aboutUs);
     }
 
-    private void createOptionsWindow(){
+    private void createOptionsWindow() {
         Button buttonBackHome = new Button("Back home");
         buttonBackHome.setOnAction(e -> window.setScene(windowHome));
 
@@ -76,7 +89,7 @@ public class ProgramGUI {
         windowOptions = new Scene(layout2, 1000, 660);
     }
 
-    public Scene getScene(){
+    public Scene getScene() {
         return windowHome;
     }
 
