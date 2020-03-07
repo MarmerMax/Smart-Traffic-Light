@@ -32,6 +32,9 @@
     -fx-font-size: 12pt;
     -fx-pref-height: 37px;
 }
+.label-column {
+    -fx-font-size: 14pt;
+}
 .text-field {
     -fx-pref-width: 100px;
 }

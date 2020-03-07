@@ -6,11 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ProgramGUI {
@@ -75,6 +73,7 @@ public class ProgramGUI {
         AlertBox.display(title, aboutUs);
     }
 
+    @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
         HBox topMenu = new HBox();
         Label label = new Label("Choose traffic situation");
@@ -85,111 +84,179 @@ public class ProgramGUI {
         HBox bottomMenu = new HBox(20);
         bottomMenu.setAlignment(Pos.CENTER);
         Button buttonRun = new Button("Run");
-//        buttonRun.setOnAction(e -> window.setScene(windowSimulation));
+        buttonRun.setOnAction(e -> {
+//            window.setScene(windowSimulation)
+        });
         Button buttonBack = new Button("Back");
         buttonBack.setOnAction(e -> {
-            boolean goBack = ConfirmBox.display("Go to previous page", "If you go back all options will reset\nSure you want to go back?");
+            boolean goBack = ConfirmBox.display("Go to previous page",
+                    "If you go back all options will reset\nSure you want to go back?");
             if (goBack) window.setScene(windowClientTypes);
         });
-        bottomMenu.getChildren().addAll(buttonRun, buttonBack);
+        bottomMenu.getChildren().addAll(buttonBack, buttonRun);
+
 
         VBox centerMenu = new VBox(20);
-        centerMenu.setAlignment(Pos.CENTER);
+
+        //1
+        HBox crossroad1 = new HBox();
+        crossroad1.setStyle("-fx-border-width: 3px; -fx-border-color: #fff; -fx-border-radius: 10;");
+        crossroad1.setAlignment(Pos.CENTER);
+        crossroad1.setPrefWidth(900);
+
+        VBox label1 = new VBox(10);
+        label1.setAlignment(Pos.CENTER);
+        label1.setPrefWidth(180);
+        Label nameLabel1 = new Label("Crossroad 1");
+        label1.getChildren().addAll(nameLabel1);
+
+        VBox route1 = new VBox(10);
+        route1.setAlignment(Pos.CENTER);
+        route1.setPrefWidth(180);
+        Label routeLabel1 = new Label("Route");
+        routeLabel1.getStyleClass().add("label-column");
+        Label northText1 = new Label("North");
+        Label southText1 = new Label("South");
+        Label eastText1 = new Label("East");
+        Label westText1 = new Label("West");
+        southText1.getStyleClass().add("label-cars");
+        northText1.getStyleClass().add("label-cars");
+        westText1.getStyleClass().add("label-cars");
+        eastText1.getStyleClass().add("label-cars");
+        route1.getChildren().addAll(routeLabel1, northText1, southText1, eastText1, westText1);
+
+        VBox cars1 = new VBox(10);
+        cars1.setAlignment(Pos.CENTER);
+        cars1.setPrefWidth(180);
+        Label carsLabel1 = new Label("Cars count");
+        carsLabel1.getStyleClass().add("label-column");
+        Spinner<Integer> northCars1 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> southCars1 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> eastCars1 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> westCars1 = new Spinner<>(1, 1000, 25);
+        cars1.getChildren().addAll(carsLabel1, northCars1, southCars1, eastCars1, westCars1);
+
+        VBox speedLimit1 = new VBox(10);
+        speedLimit1.setAlignment(Pos.CENTER);
+        speedLimit1.setPrefWidth(180);
+        Label speedLimitLabel1 = new Label("Speed limit");
+        speedLimitLabel1.getStyleClass().add("label-column");
+        Spinner<Integer> northLimit1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southLimit1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> eastLimit1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> westLimit1 = new Spinner<>(1, 110, 70);
+        speedLimit1.getChildren().addAll(speedLimitLabel1, northLimit1, southLimit1, eastLimit1, westLimit1);
+
+        VBox actualSpeed1 = new VBox(10);
+        actualSpeed1.setAlignment(Pos.CENTER);
+        actualSpeed1.setPrefWidth(180);
+        Label actualSpeedLabel1 = new Label("Actual speed");
+        actualSpeedLabel1.getStyleClass().add("label-column");
+        Spinner<Integer> northActual1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southActual1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> eastActual1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> westActual1 = new Spinner<>(1, 110, 70);
+        actualSpeed1.getChildren().addAll(actualSpeedLabel1, northActual1, southActual1, eastActual1, westActual1);
+
+        crossroad1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
+
+        //2
+        HBox crossroad2 = new HBox();
+
+        crossroad2.setStyle("-fx-border-width: 3px; -fx-border-color: #fff; -fx-border-radius: 10;");
+        crossroad2.setAlignment(Pos.CENTER);
+        crossroad2.setPrefWidth(900);
+
+        VBox label2 = new VBox(10);
+        label2.setAlignment(Pos.CENTER);
+        label2.setPrefWidth(180);
+        Label nameLabel2 = new Label("Crossroad 2");
+        label2.getChildren().addAll(nameLabel2);
+
+        VBox route2 = new VBox(10);
+        route2.setAlignment(Pos.CENTER);
+        route2.setPrefWidth(180);
+        Label routeLabel2 = new Label("Route");
+        routeLabel2.getStyleClass().add("label-column");
+        Label northText2 = new Label("North");
+        Label southText2 = new Label("South");
+        Label eastText2 = new Label("East");
+        Label westText2 = new Label("West");
+        southText2.getStyleClass().add("label-cars");
+        northText2.getStyleClass().add("label-cars");
+        westText2.getStyleClass().add("label-cars");
+        eastText2.getStyleClass().add("label-cars");
+        route2.getChildren().addAll(routeLabel2, northText2, southText2, eastText2, westText2);
+
+        VBox cars2 = new VBox(10);
+        cars2.setAlignment(Pos.CENTER);
+        cars2.setPrefWidth(180);
+        Label carsLabel2 = new Label("Cars count");
+        carsLabel2.getStyleClass().add("label-column");
+        Spinner<Integer> northCars2 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> southCars2 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> eastCars2 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> westCars2 = new Spinner<>(1, 1000, 25);
+        cars2.getChildren().addAll(carsLabel2, northCars2, southCars2, eastCars2, westCars2);
+
+        VBox speedLimit2 = new VBox(10);
+        speedLimit2.setAlignment(Pos.CENTER);
+        speedLimit2.setPrefWidth(180);
+        Label speedLimitLabel2 = new Label("Speed limit");
+        speedLimitLabel2.getStyleClass().add("label-column");
+        Spinner<Integer> northLimit2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southLimit2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> eastLimit2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> westLimit2 = new Spinner<>(1, 110, 70);
+        speedLimit2.getChildren().addAll(speedLimitLabel2, northLimit2, southLimit2, eastLimit2, westLimit2);
+
+        VBox actualSpeed2 = new VBox(10);
+        actualSpeed2.setAlignment(Pos.CENTER);
+        actualSpeed2.setPrefWidth(180);
+        Label actualSpeedLabel2 = new Label("Actual speed");
+        actualSpeedLabel2.getStyleClass().add("label-column");
+        Spinner<Integer> northActual2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southActual2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> eastActual2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> westActual2 = new Spinner<>(1, 110, 70);
+        actualSpeed2.getChildren().addAll(actualSpeedLabel2, northActual2, southActual2, eastActual2, westActual2);
+
+        crossroad2.getChildren().addAll(label2, route2, cars2, speedLimit2, actualSpeed2);
+
+        HBox otherOptions = new HBox(20);
+        otherOptions.setAlignment(Pos.CENTER);
+        otherOptions.setPrefWidth(900);
+        Label label3 = new Label("Other features");
+        label3.setPrefWidth(280);
+        label3.getStyleClass().add("label-column");
         Button buttonDatabase = new Button("Database");
+        buttonDatabase.setPrefWidth(280);
         Button buttonRandom = new Button("Random");
+        buttonRandom.setPrefWidth(280);
         buttonRandom.setOnAction(e -> {
-            //random situation
+            boolean answer = ConfirmBox.display("Random", "Generate random data?");
+            if (answer){
+
+            }
         });
         buttonDatabase.setOnAction(e -> {
             //load from database
         });
-        centerMenu.getChildren().addAll(buttonDatabase, buttonRandom);
+        otherOptions.getChildren().addAll(label3, buttonDatabase, buttonRandom);
 
-
-        VBox leftMenu = new VBox(20);
-        leftMenu.setStyle("-fx-border-width: 2px; -fx-border-color: black;");
-        leftMenu.setAlignment(Pos.CENTER);
-        leftMenu.setPrefWidth(300);
-        Label crossroad1 = new Label("First Crossroad");
-
-        VBox carsNumberLeft = new VBox(5);
-        carsNumberLeft.setAlignment(Pos.CENTER);
-        Text carsNumberTextLeft = new Text("Number of cars that travel");
-
-        HBox carsNumberTravelLeft = new HBox();
-        carsNumberTravelLeft.setAlignment(Pos.CENTER);
-        VBox travelTextLeft = new VBox(5);
-        Label northTextLeft = new Label("North");
-        Label southTextLeft = new Label("South");
-        Label eastTextLeft = new Label("East");
-        Label westTextLeft = new Label("West");
-        northTextLeft.getStyleClass().add("label-cars");
-        southTextLeft.getStyleClass().add("label-cars");
-        eastTextLeft.getStyleClass().add("label-cars");
-        westTextLeft.getStyleClass().add("label-cars");
-        travelTextLeft.getChildren().addAll(northTextLeft, southTextLeft, eastTextLeft, westTextLeft);
-
-        VBox travelInputLeft = new VBox(5);
-        Spinner<Integer> northInputLeft = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> southInputLeft = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> eastInputLeft = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> westInputLeft = new Spinner<>(1, 1000, 25);
-//        westInput.setEditable(true);
-        travelInputLeft.getChildren().addAll(northInputLeft, southInputLeft, eastInputLeft, westInputLeft);
-        carsNumberTravelLeft.getChildren().addAll(travelTextLeft, travelInputLeft);
-        carsNumberLeft.getChildren().addAll(carsNumberTextLeft, carsNumberTravelLeft);
-        leftMenu.getChildren().addAll(crossroad1, carsNumberLeft);
-
-        //------------------------------------------------------------------------
-
-        VBox rightMenu = new VBox(20);
-        rightMenu.setStyle("-fx-border-width: 2px; -fx-border-color: black;");
-        rightMenu.setAlignment(Pos.CENTER);
-        rightMenu.setPrefWidth(300);
-        Label crossroad2 = new Label("Second Crossroad");
-
-        VBox carsNumberRight = new VBox(5);
-        carsNumberRight.setAlignment(Pos.CENTER);
-        Text carsNumberTextRight = new Text("Number of cars that travel");
-
-        HBox carsNumberTravelRight = new HBox();
-        carsNumberTravelRight.setAlignment(Pos.CENTER);
-        VBox travelTextRight = new VBox(5);
-        Label northTextRight = new Label("North");
-        Label southTextRight = new Label("South");
-        Label eastTextRight = new Label("East");
-        Label westTextRight = new Label("West");
-        southTextRight.getStyleClass().add("label-cars");
-        northTextRight.getStyleClass().add("label-cars");
-        westTextRight.getStyleClass().add("label-cars");
-        eastTextRight.getStyleClass().add("label-cars");
-        travelTextRight.getChildren().addAll(northTextRight, southTextRight, eastTextRight, westTextRight);
-
-        VBox travelInputRight = new VBox(5);
-        Spinner<Integer> northInputRight = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> southInputRight = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> eastInputRight = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> westInputRight = new Spinner<>(1, 1000, 25);
-//        westInput.setEditable(true);
-        travelInputRight.getChildren().addAll(northInputRight, southInputRight, eastInputRight, westInputRight);
-        carsNumberTravelRight.getChildren().addAll(travelTextRight, travelInputRight);
-        carsNumberRight.getChildren().addAll(carsNumberTextRight, carsNumberTravelRight);
-        rightMenu.getChildren().addAll(crossroad2, carsNumberRight);
+        centerMenu.getChildren().addAll(crossroad1, crossroad2, otherOptions);
 
         BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(topMenu);
         borderPane.setCenter(centerMenu);
         borderPane.setBottom(bottomMenu);
-        borderPane.setLeft(leftMenu);
-        borderPane.setRight(rightMenu);
-
+//        borderPane.setLeft(leftMenu);
+//        borderPane.setRight(rightMenu);
 //        Button buttonBackHome = new Button("Back home");
 //        buttonBackHome.setOnAction(e -> window.setScene(windowHome));
-//
 //        String imgPath = "file:images/lights/red-s.png";
 //        Image img = new Image(imgPath);
-
 //        StackPane layout2 = new StackPane();
 //        layout2.getChildren().add(buttonBackHome);
 //        layout2.getChildren().add(new ImageView(img));
