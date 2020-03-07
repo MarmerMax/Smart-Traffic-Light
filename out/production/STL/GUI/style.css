@@ -1,5 +1,6 @@
 .root {
-    -fx-background-color: #66d4e1;
+    /*-fx-background-color: #66d4e1;*/
+    -fx-background-color: linear-gradient(#66d4e1, #6634e1);
     -fx-font-size: 12pt;
     -fx-padding: 5pt;
     -fx-focus-color: transparent;
@@ -26,7 +27,11 @@
     -fx-font-size: 20pt;
     -fx-font-weight: BOLD;
 }
-
-#AboutUs {
+.label-cars {
+    -fx-font-weight: none;
     -fx-font-size: 12pt;
+    -fx-pref-height: 37px;
+}
+.text-field {
+    -fx-pref-width: 100px;
 }
