@@ -4,10 +4,11 @@
     -fx-padding: 5pt;
     -fx-focus-color: transparent;
 }
+
 .button {
     -fx-pref-height: 30px;
     -fx-pref-width: 100px;
-    -fx-background-color: #fff ;
+    -fx-background-color: #fff;
     -fx-background-radius: 10;
     -fx-text-fill: #383838;
 }
@@ -18,12 +19,14 @@
     -fx-font-weight: BOLD;
     -fx-text-fill: #383838;
 }
+
 .label {
     -fx-font-family: Calibri;
     -fx-text-fill: #383838;
     -fx-font-size: 20pt;
     -fx-font-weight: BOLD;
 }
-#AboutUs{
+
+#AboutUs {
     -fx-font-size: 12pt;
 }
