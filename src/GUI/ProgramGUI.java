@@ -19,6 +19,7 @@ public class ProgramGUI {
 
     public ProgramGUI(Stage stage) {
         window = stage;
+        window.setResizable(false);
         createUI();
     }
 
@@ -100,34 +101,30 @@ public class ProgramGUI {
 
         //1
         HBox crossroad1 = new HBox();
-        crossroad1.setStyle("-fx-border-width: 3px; -fx-border-color: #fff; -fx-border-radius: 10;");
-        crossroad1.setAlignment(Pos.CENTER);
-        crossroad1.setPrefWidth(900);
+        crossroad1.getStyleClass().add("options-container");
 
         VBox label1 = new VBox(10);
-        label1.setAlignment(Pos.CENTER);
-        label1.setPrefWidth(180);
+        label1.getStyleClass().add("options-column");
         Label nameLabel1 = new Label("Crossroad 1");
+        nameLabel1.getStyleClass().add("label-column");
         label1.getChildren().addAll(nameLabel1);
 
         VBox route1 = new VBox(10);
-        route1.setAlignment(Pos.CENTER);
-        route1.setPrefWidth(180);
+        route1.getStyleClass().add("options-column");
         Label routeLabel1 = new Label("Route");
         routeLabel1.getStyleClass().add("label-column");
         Label northText1 = new Label("North");
         Label southText1 = new Label("South");
         Label eastText1 = new Label("East");
         Label westText1 = new Label("West");
-        southText1.getStyleClass().add("label-cars");
-        northText1.getStyleClass().add("label-cars");
-        westText1.getStyleClass().add("label-cars");
-        eastText1.getStyleClass().add("label-cars");
+        southText1.getStyleClass().add("label-direction");
+        northText1.getStyleClass().add("label-direction");
+        westText1.getStyleClass().add("label-direction");
+        eastText1.getStyleClass().add("label-direction");
         route1.getChildren().addAll(routeLabel1, northText1, southText1, eastText1, westText1);
 
         VBox cars1 = new VBox(10);
-        cars1.setAlignment(Pos.CENTER);
-        cars1.setPrefWidth(180);
+        cars1.getStyleClass().add("options-column");
         Label carsLabel1 = new Label("Cars count");
         carsLabel1.getStyleClass().add("label-column");
         Spinner<Integer> northCars1 = new Spinner<>(1, 1000, 25);
@@ -137,8 +134,7 @@ public class ProgramGUI {
         cars1.getChildren().addAll(carsLabel1, northCars1, southCars1, eastCars1, westCars1);
 
         VBox speedLimit1 = new VBox(10);
-        speedLimit1.setAlignment(Pos.CENTER);
-        speedLimit1.setPrefWidth(180);
+        speedLimit1.getStyleClass().add("options-column");
         Label speedLimitLabel1 = new Label("Speed limit");
         speedLimitLabel1.getStyleClass().add("label-column");
         Spinner<Integer> northLimit1 = new Spinner<>(1, 110, 70);
@@ -148,8 +144,7 @@ public class ProgramGUI {
         speedLimit1.getChildren().addAll(speedLimitLabel1, northLimit1, southLimit1, eastLimit1, westLimit1);
 
         VBox actualSpeed1 = new VBox(10);
-        actualSpeed1.setAlignment(Pos.CENTER);
-        actualSpeed1.setPrefWidth(180);
+        actualSpeed1.getStyleClass().add("options-column");
         Label actualSpeedLabel1 = new Label("Actual speed");
         actualSpeedLabel1.getStyleClass().add("label-column");
         Spinner<Integer> northActual1 = new Spinner<>(1, 110, 70);
@@ -162,35 +157,30 @@ public class ProgramGUI {
 
         //2
         HBox crossroad2 = new HBox();
+        crossroad2.getStyleClass().add("options-container");
 
-        crossroad2.setStyle("-fx-border-width: 3px; -fx-border-color: #fff; -fx-border-radius: 10;");
-        crossroad2.setAlignment(Pos.CENTER);
-        crossroad2.setPrefWidth(900);
-
-        VBox label2 = new VBox(10);
-        label2.setAlignment(Pos.CENTER);
-        label2.setPrefWidth(180);
+        VBox boxLabel2 = new VBox(10);
+        boxLabel2.getStyleClass().add("options-column");
         Label nameLabel2 = new Label("Crossroad 2");
-        label2.getChildren().addAll(nameLabel2);
+        nameLabel2.getStyleClass().add("label-column");
+        boxLabel2.getChildren().addAll(nameLabel2);
 
         VBox route2 = new VBox(10);
-        route2.setAlignment(Pos.CENTER);
-        route2.setPrefWidth(180);
+        route2.getStyleClass().add("options-column");
         Label routeLabel2 = new Label("Route");
         routeLabel2.getStyleClass().add("label-column");
         Label northText2 = new Label("North");
         Label southText2 = new Label("South");
         Label eastText2 = new Label("East");
         Label westText2 = new Label("West");
-        southText2.getStyleClass().add("label-cars");
-        northText2.getStyleClass().add("label-cars");
-        westText2.getStyleClass().add("label-cars");
-        eastText2.getStyleClass().add("label-cars");
+        southText2.getStyleClass().add("label-direction");
+        northText2.getStyleClass().add("label-direction");
+        westText2.getStyleClass().add("label-direction");
+        eastText2.getStyleClass().add("label-direction");
         route2.getChildren().addAll(routeLabel2, northText2, southText2, eastText2, westText2);
 
         VBox cars2 = new VBox(10);
-        cars2.setAlignment(Pos.CENTER);
-        cars2.setPrefWidth(180);
+        cars2.getStyleClass().add("options-column");
         Label carsLabel2 = new Label("Cars count");
         carsLabel2.getStyleClass().add("label-column");
         Spinner<Integer> northCars2 = new Spinner<>(1, 1000, 25);
@@ -200,8 +190,7 @@ public class ProgramGUI {
         cars2.getChildren().addAll(carsLabel2, northCars2, southCars2, eastCars2, westCars2);
 
         VBox speedLimit2 = new VBox(10);
-        speedLimit2.setAlignment(Pos.CENTER);
-        speedLimit2.setPrefWidth(180);
+        speedLimit2.getStyleClass().add("options-column");
         Label speedLimitLabel2 = new Label("Speed limit");
         speedLimitLabel2.getStyleClass().add("label-column");
         Spinner<Integer> northLimit2 = new Spinner<>(1, 110, 70);
@@ -211,8 +200,7 @@ public class ProgramGUI {
         speedLimit2.getChildren().addAll(speedLimitLabel2, northLimit2, southLimit2, eastLimit2, westLimit2);
 
         VBox actualSpeed2 = new VBox(10);
-        actualSpeed2.setAlignment(Pos.CENTER);
-        actualSpeed2.setPrefWidth(180);
+        actualSpeed2.getStyleClass().add("options-column");
         Label actualSpeedLabel2 = new Label("Actual speed");
         actualSpeedLabel2.getStyleClass().add("label-column");
         Spinner<Integer> northActual2 = new Spinner<>(1, 110, 70);
@@ -221,28 +209,57 @@ public class ProgramGUI {
         Spinner<Integer> westActual2 = new Spinner<>(1, 110, 70);
         actualSpeed2.getChildren().addAll(actualSpeedLabel2, northActual2, southActual2, eastActual2, westActual2);
 
-        crossroad2.getChildren().addAll(label2, route2, cars2, speedLimit2, actualSpeed2);
+        crossroad2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
-        HBox otherOptions = new HBox(20);
-        otherOptions.setAlignment(Pos.CENTER);
-        otherOptions.setPrefWidth(900);
-        Label label3 = new Label("Other features");
-        label3.setPrefWidth(280);
-        label3.getStyleClass().add("label-column");
-        Button buttonDatabase = new Button("Database");
-        buttonDatabase.setPrefWidth(280);
+        //3
+        HBox otherOptions = new HBox();
+        otherOptions.getStyleClass().add("options-container");
+
+        VBox boxLabel3 = new VBox(10);
+        boxLabel3.getStyleClass().add("options-column");
+        Label nameLabel3 = new Label("Other features");
+        nameLabel3.getStyleClass().add("label-column");
+        boxLabel3.getChildren().addAll(nameLabel3);
+
+        VBox boxButtonRandom = new VBox(10);
+        boxButtonRandom.getStyleClass().add("options-column");
         Button buttonRandom = new Button("Random");
-        buttonRandom.setPrefWidth(280);
+        boxButtonRandom.getChildren().add(buttonRandom);
+
+        VBox boxButtonDatabase = new VBox(10);
+        boxButtonDatabase.getStyleClass().add("options-column");
+        Button buttonDatabase = new Button("Database");
+        boxButtonDatabase.getChildren().add(buttonDatabase);
+
+        VBox boxButtonReset = new VBox(10);
+        boxButtonReset.getStyleClass().add("options-column");
+        Button buttonReset = new Button("Reset");
+        boxButtonReset.getChildren().add(buttonReset);
+
+        VBox boxButtonInfo = new VBox(10);
+        boxButtonInfo.getStyleClass().add("options-column");
+        Button buttonInfo = new Button("Info");
+        boxButtonInfo.getChildren().add(buttonInfo);
+
         buttonRandom.setOnAction(e -> {
             boolean answer = ConfirmBox.display("Random", "Generate random data?");
-            if (answer){
+            if (answer) {
 
             }
         });
         buttonDatabase.setOnAction(e -> {
             //load from database
         });
-        otherOptions.getChildren().addAll(label3, buttonDatabase, buttonRandom);
+        buttonReset.setOnAction(e -> {
+            boolean answer = ConfirmBox.display("Reset", "Reset all values?");
+            if (answer) {
+                //reset all values
+            }
+        });
+        buttonInfo.setOnAction(e -> {
+            //info
+        });
+        otherOptions.getChildren().addAll(boxLabel3, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
 
         centerMenu.getChildren().addAll(crossroad1, crossroad2, otherOptions);
 

@@ -27,14 +27,26 @@
     -fx-font-size: 20pt;
     -fx-font-weight: BOLD;
 }
-.label-cars {
+.label-direction {
     -fx-font-weight: none;
     -fx-font-size: 12pt;
-    -fx-pref-height: 37px;
+    -fx-pref-height: 30px;
 }
 .label-column {
     -fx-font-size: 14pt;
 }
 .text-field {
     -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+}
+.options-container {
+    -fx-padding: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-alignment: center;
+}
+.options-column {
+    -fx-alignment: center;
+    -fx-pref-width: 180;
 }
