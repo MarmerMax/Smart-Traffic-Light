@@ -5,8 +5,8 @@ import javafx.scene.image.Image;
 
 public class TrafficLight {
 
-    private final State[] STATES = {new GreenState(), new YellowState(), new RedState(), new RedYellowState()};
-    private int actualState = 2;
+    private final State[] STATES = {new RedState(), new RedYellowState(), new GreenState(), new YellowState()};
+    private int actualState = 0;
 
     public TrafficLight() {
     }

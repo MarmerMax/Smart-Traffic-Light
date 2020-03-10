@@ -7,8 +7,8 @@ public class QuadrupleCrossroad {
 
     private final int CROSSROAD_SIZE = 4;
     private Road[] roads;
-    private TrafficLight souhtTrafficLight;
-    private TrafficLight youthTrafficLight;
+    private TrafficLight southTrafficLight;
+    private TrafficLight northTrafficLight;
     private TrafficLight eastTrafficLight;
     private TrafficLight westTrafficLight;
     private int actualState = 0;
@@ -17,17 +17,21 @@ public class QuadrupleCrossroad {
         roads = new Road[CROSSROAD_SIZE];
         TrafficLight tl1 = new TrafficLight();
         TrafficLight tl2 = new TrafficLight();
-        souhtTrafficLight = tl1;
-        youthTrafficLight = tl1;
-        eastTrafficLight = tl2;
-        westTrafficLight = tl2;
+        TrafficLight tl3 = new TrafficLight();
+        TrafficLight tl4 = new TrafficLight();
+        southTrafficLight = tl1;
+        northTrafficLight = tl2;
+        eastTrafficLight = tl3;
+        westTrafficLight = tl4;
     }
 
     public void changeState() {
         if (actualState < 4) {
-            souhtTrafficLight.changeState();
+            southTrafficLight.changeState();
+            northTrafficLight.changeState();
         } else {
             westTrafficLight.changeState();
+            eastTrafficLight.changeState();
         }
         actualState = (actualState + 1) % 8;
     }

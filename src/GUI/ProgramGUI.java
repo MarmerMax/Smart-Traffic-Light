@@ -87,6 +87,10 @@ public class ProgramGUI {
         Button buttonRun = new Button("Run");
         buttonRun.setOnAction(e -> {
 //            window.setScene(windowSimulation)
+            //create crossroadInfo with fields data
+            //check if data correct
+            //continue to next window
+            //else alert box fail!
         });
         Button buttonBack = new Button("Back");
         buttonBack.setOnAction(e -> {
