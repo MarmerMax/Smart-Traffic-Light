@@ -77,7 +77,7 @@ public class ProgramGUI {
     @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
         HBox topMenu = new HBox();
-        Label label = new Label("Choose traffic situation");
+        Label label = new Label("Choose traffic conditions");
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
