@@ -1,11 +1,17 @@
 package Objects.TrafficLight;
 
+import Objects.DrawObject;
 import Objects.TrafficLight.TrafficLightState.*;
 import javafx.scene.image.Image;
 
 public class TrafficLight {
 
-    private final State[] STATES = {new RedState(), new RedYellowState(), new GreenState(), new YellowState()};
+    private final State[] STATES = {
+            new RedState(),
+            new RedYellowState(),
+            new GreenState(),
+            new YellowState()
+    };
     private int actualState = 0;
 
     public TrafficLight() {

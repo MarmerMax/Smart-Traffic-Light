@@ -1,17 +1,23 @@
 package Objects.CrossroadInfo;
 
+import Objects.Crossroad.Crossroad;
+
 public class CrossroadInfo {
 
-    private int crossroadSize;
-    private int [] speedLimit; //speedLimitNorth, speedLimitSouth, speedLimitEast, speedLimitWest;
-    private int [] actualSpeed; //actualSpeedNorth, actualSpeedSouth, actualSpeedEast, actualSpeedWest;
-    private int [] carsCount; //carsCountNorth, carsCountSouth, carsCountEast, carsCountWest;
+    private Crossroad crossroad;
+    private int [] speedLimit; //speedLimitNorth, speedLimitEast, speedLimitSouth, speedLimitWest;
+    private int [] actualSpeed; //actualSpeedNorth, actualSpeedEast, actualSpeedSouth, actualSpeedWest;
+    private int [] carsCount; //carsCountNorth, carsCountEast, carsCountSouth, carsCountWest;
 
-    public CrossroadInfo(int size){
-        crossroadSize = size;
+    public CrossroadInfo(Crossroad crossroad){
+        this.crossroad = crossroad;
         speedLimit = new int[4];
         actualSpeed = new int[4];
         carsCount = new int[4];
+    }
+
+    public Crossroad getCrossroad(){
+        return crossroad;
     }
 
     public boolean setSpeedLimit(String [] data){

@@ -5,14 +5,20 @@ import javafx.scene.image.Image;
 
 public class Car implements DrawObject {
 
-    @Override
-    public Image getImage() {
-        int car = generateRandomCar();
+    private Image image;
+
+    public Car(){
+        int car = generateRandomNumber();
         String path = "file:images/cars/car" + car + ".png";
-        return new Image(path);
+        image = new Image(path);
     }
 
-    private int generateRandomCar(){
+    @Override
+    public Image getImage() {
+        return image;
+    }
+
+    private int generateRandomNumber(){
         int num;
         double random = Math.random();
 

@@ -3,7 +3,7 @@ package Objects.Crossroad;
 import Objects.Road.Road;
 import Objects.TrafficLight.TrafficLight;
 
-public class QuadrupleCrossroad {
+public class Crossroad {
 
     private final int CROSSROAD_SIZE = 4;
     private Road[] roads;
@@ -13,16 +13,16 @@ public class QuadrupleCrossroad {
     private TrafficLight westTrafficLight;
     private int actualState = 0;
 
-    public QuadrupleCrossroad() {
+    public Crossroad() {
         roads = new Road[CROSSROAD_SIZE];
+        TrafficLight tl0 = new TrafficLight();
         TrafficLight tl1 = new TrafficLight();
         TrafficLight tl2 = new TrafficLight();
         TrafficLight tl3 = new TrafficLight();
-        TrafficLight tl4 = new TrafficLight();
-        southTrafficLight = tl1;
-        northTrafficLight = tl2;
-        eastTrafficLight = tl3;
-        westTrafficLight = tl4;
+        northTrafficLight = tl0;
+        eastTrafficLight = tl1;
+        southTrafficLight = tl2;
+        westTrafficLight = tl3;
     }
 
     public void changeState() {
@@ -37,18 +37,18 @@ public class QuadrupleCrossroad {
     }
 
     public void addNorthRoad(Road north) {
-        roads[2] = north;
+        roads[0] = north;
     }
 
     public void addSouthRoad(Road south) {
-        roads[0] = south;
+        roads[2] = south;
     }
 
     public void addWestRoad(Road west) {
-        roads[1] = west;
+        roads[3] = west;
     }
 
     public void addEastRoad(Road east) {
-        roads[3] = east;
+        roads[1] = east;
     }
 }

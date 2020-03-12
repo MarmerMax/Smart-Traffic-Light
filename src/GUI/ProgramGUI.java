@@ -118,44 +118,44 @@ public class ProgramGUI {
         Label routeLabel1 = new Label("Route");
         routeLabel1.getStyleClass().add("label-column");
         Label northText1 = new Label("North");
-        Label southText1 = new Label("South");
         Label eastText1 = new Label("East");
+        Label southText1 = new Label("South");
         Label westText1 = new Label("West");
-        southText1.getStyleClass().add("label-direction");
         northText1.getStyleClass().add("label-direction");
-        westText1.getStyleClass().add("label-direction");
         eastText1.getStyleClass().add("label-direction");
-        route1.getChildren().addAll(routeLabel1, northText1, southText1, eastText1, westText1);
+        southText1.getStyleClass().add("label-direction");
+        westText1.getStyleClass().add("label-direction");
+        route1.getChildren().addAll(routeLabel1, northText1, eastText1, southText1, westText1);
 
         VBox cars1 = new VBox(10);
         cars1.getStyleClass().add("options-column");
         Label carsLabel1 = new Label("Cars count");
         carsLabel1.getStyleClass().add("label-column");
         Spinner<Integer> northCars1 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> southCars1 = new Spinner<>(1, 1000, 25);
         Spinner<Integer> eastCars1 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> southCars1 = new Spinner<>(1, 1000, 25);
         Spinner<Integer> westCars1 = new Spinner<>(1, 1000, 25);
-        cars1.getChildren().addAll(carsLabel1, northCars1, southCars1, eastCars1, westCars1);
+        cars1.getChildren().addAll(carsLabel1, northCars1, eastCars1, southCars1, westCars1);
 
         VBox speedLimit1 = new VBox(10);
         speedLimit1.getStyleClass().add("options-column");
         Label speedLimitLabel1 = new Label("Speed limit");
         speedLimitLabel1.getStyleClass().add("label-column");
         Spinner<Integer> northLimit1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southLimit1 = new Spinner<>(1, 110, 70);
         Spinner<Integer> eastLimit1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southLimit1 = new Spinner<>(1, 110, 70);
         Spinner<Integer> westLimit1 = new Spinner<>(1, 110, 70);
-        speedLimit1.getChildren().addAll(speedLimitLabel1, northLimit1, southLimit1, eastLimit1, westLimit1);
+        speedLimit1.getChildren().addAll(speedLimitLabel1, northLimit1, eastLimit1, southLimit1, westLimit1);
 
         VBox actualSpeed1 = new VBox(10);
         actualSpeed1.getStyleClass().add("options-column");
         Label actualSpeedLabel1 = new Label("Actual speed");
         actualSpeedLabel1.getStyleClass().add("label-column");
         Spinner<Integer> northActual1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southActual1 = new Spinner<>(1, 110, 70);
         Spinner<Integer> eastActual1 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southActual1 = new Spinner<>(1, 110, 70);
         Spinner<Integer> westActual1 = new Spinner<>(1, 110, 70);
-        actualSpeed1.getChildren().addAll(actualSpeedLabel1, northActual1, southActual1, eastActual1, westActual1);
+        actualSpeed1.getChildren().addAll(actualSpeedLabel1, northActual1, eastActual1, southActual1, westActual1);
 
         crossroad1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
 
@@ -174,44 +174,44 @@ public class ProgramGUI {
         Label routeLabel2 = new Label("Route");
         routeLabel2.getStyleClass().add("label-column");
         Label northText2 = new Label("North");
-        Label southText2 = new Label("South");
         Label eastText2 = new Label("East");
+        Label southText2 = new Label("South");
         Label westText2 = new Label("West");
-        southText2.getStyleClass().add("label-direction");
         northText2.getStyleClass().add("label-direction");
-        westText2.getStyleClass().add("label-direction");
         eastText2.getStyleClass().add("label-direction");
-        route2.getChildren().addAll(routeLabel2, northText2, southText2, eastText2, westText2);
+        southText2.getStyleClass().add("label-direction");
+        westText2.getStyleClass().add("label-direction");
+        route2.getChildren().addAll(routeLabel2, northText2, eastText2, southText2, westText2);
 
         VBox cars2 = new VBox(10);
         cars2.getStyleClass().add("options-column");
         Label carsLabel2 = new Label("Cars count");
         carsLabel2.getStyleClass().add("label-column");
         Spinner<Integer> northCars2 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> southCars2 = new Spinner<>(1, 1000, 25);
         Spinner<Integer> eastCars2 = new Spinner<>(1, 1000, 25);
+        Spinner<Integer> southCars2 = new Spinner<>(1, 1000, 25);
         Spinner<Integer> westCars2 = new Spinner<>(1, 1000, 25);
-        cars2.getChildren().addAll(carsLabel2, northCars2, southCars2, eastCars2, westCars2);
+        cars2.getChildren().addAll(carsLabel2, northCars2, eastCars2, southCars2, westCars2);
 
         VBox speedLimit2 = new VBox(10);
         speedLimit2.getStyleClass().add("options-column");
         Label speedLimitLabel2 = new Label("Speed limit");
         speedLimitLabel2.getStyleClass().add("label-column");
         Spinner<Integer> northLimit2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southLimit2 = new Spinner<>(1, 110, 70);
         Spinner<Integer> eastLimit2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southLimit2 = new Spinner<>(1, 110, 70);
         Spinner<Integer> westLimit2 = new Spinner<>(1, 110, 70);
-        speedLimit2.getChildren().addAll(speedLimitLabel2, northLimit2, southLimit2, eastLimit2, westLimit2);
+        speedLimit2.getChildren().addAll(speedLimitLabel2, northLimit2, eastLimit2, southLimit2, westLimit2);
 
         VBox actualSpeed2 = new VBox(10);
         actualSpeed2.getStyleClass().add("options-column");
         Label actualSpeedLabel2 = new Label("Actual speed");
         actualSpeedLabel2.getStyleClass().add("label-column");
         Spinner<Integer> northActual2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southActual2 = new Spinner<>(1, 110, 70);
         Spinner<Integer> eastActual2 = new Spinner<>(1, 110, 70);
+        Spinner<Integer> southActual2 = new Spinner<>(1, 110, 70);
         Spinner<Integer> westActual2 = new Spinner<>(1, 110, 70);
-        actualSpeed2.getChildren().addAll(actualSpeedLabel2, northActual2, southActual2, eastActual2, westActual2);
+        actualSpeed2.getChildren().addAll(actualSpeedLabel2, northActual2, eastActual2, southActual2, westActual2);
 
         crossroad2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
