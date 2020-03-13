@@ -50,3 +50,9 @@
     -fx-alignment: center;
     -fx-pref-width: 180;
 }
+.simulation-container {
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-alignment: center;
+}

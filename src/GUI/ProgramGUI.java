@@ -25,8 +25,9 @@ public class ProgramGUI {
 
     private void createUI() {
         createHomeWindow();
-        createOptionsWindow();
         createClientTypesWindow();
+        createOptionsWindow();
+        createSimulationWindow();
     }
 
     private void createHomeWindow() {
@@ -86,15 +87,15 @@ public class ProgramGUI {
         bottomMenu.setAlignment(Pos.CENTER);
         Button buttonRun = new Button("Run");
         buttonRun.setOnAction(e -> {
-//            window.setScene(windowSimulation)
             //create crossroadInfo with fields data
             //check if data correct
             //continue to next window
             //else alert box fail!
+            window.setScene(windowSimulation);
         });
         Button buttonBack = new Button("Back");
         buttonBack.setOnAction(e -> {
-            boolean goBack = ConfirmBox.display("Go to previous page",
+            boolean goBack = ConfirmBox.display("Go to previous window",
                     "If you go back all options will reset\nSure you want to go back?");
             if (goBack) window.setScene(windowClientTypes);
         });
@@ -323,6 +324,52 @@ public class ProgramGUI {
         borderPane.setRight(rightMenu);
         borderPane.setLeft(leftMenu);
         windowClientTypes = new Scene(borderPane, 600, 400);
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void createSimulationWindow() {
+        HBox topMenu = new HBox();
+        Label label = new Label("Simulation");
+        topMenu.setMinHeight(60);
+        topMenu.setAlignment(Pos.CENTER);
+        topMenu.getChildren().addAll(label);
+
+        HBox bottomMenu = new HBox(20);
+        bottomMenu.setMinHeight(60);
+        bottomMenu.setAlignment(Pos.CENTER);
+        Button buttonSave = new Button("Save");
+        buttonSave.setOnAction(e -> {
+            //Save to database window
+        });
+        Button buttonBack = new Button("Back");
+        buttonBack.setOnAction(e -> {
+            boolean goBack = ConfirmBox.display("Go to previous window",
+                    "Current simulation will be deleted\nSure you want to go back?");
+            if (goBack) window.setScene(windowOptions);
+        });
+        Button buttonStart = new Button("Start");
+        buttonStart.setOnAction(e -> {
+            //Save to database window
+        });
+        bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
+
+        VBox centerMenu = new VBox();
+        centerMenu.getStyleClass().add("simulation-container");
+//        Image imageObserver = new Image("file:images/others/crossroad.jpg");
+//        ImageView imageViewObserver = new ImageView(imageObserver);
+//        imageViewObserver.setFitHeight(500);
+//        imageViewObserver.setFitWidth(900);
+//        imageViewObserver.fitWidthProperty().bind(centerMenu.widthProperty());
+//        imageViewObserver.fitHeightProperty().bind(centerMenu.heightProperty());
+        Label tempLabel = new Label("Coming soon...");
+        centerMenu.getChildren().addAll(tempLabel);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.getStylesheets().add("file:src/GUI/style.css");
+        borderPane.setTop(topMenu);
+        borderPane.setCenter(centerMenu);
+        borderPane.setBottom(bottomMenu);
+        windowSimulation = new Scene(borderPane, 1000, 660);
     }
 
     public Scene getScene() {

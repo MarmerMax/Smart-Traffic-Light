@@ -1,64 +1,69 @@
 package Objects.CrossroadInfo;
 
 import Objects.Crossroad.Crossroad;
+import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 
+@SuppressWarnings("Duplicates")
 public class CrossroadInfo {
 
     private Crossroad crossroad;
-    private int [] speedLimit; //speedLimitNorth, speedLimitEast, speedLimitSouth, speedLimitWest;
-    private int [] actualSpeed; //actualSpeedNorth, actualSpeedEast, actualSpeedSouth, actualSpeedWest;
-    private int [] carsCount; //carsCountNorth, carsCountEast, carsCountSouth, carsCountWest;
+    private DirectionInfo north;
+    private DirectionInfo east;
+    private DirectionInfo south;
+    private DirectionInfo west;
 
-    public CrossroadInfo(Crossroad crossroad){
+
+    public CrossroadInfo(Crossroad crossroad) {
         this.crossroad = crossroad;
-        speedLimit = new int[4];
-        actualSpeed = new int[4];
-        carsCount = new int[4];
     }
 
-    public Crossroad getCrossroad(){
+    public Crossroad getCrossroad() {
         return crossroad;
     }
 
-    public boolean setSpeedLimit(String [] data){
-        for(int i = 0; i < 4; i++){
-            if(isInt(data[i])){
-                speedLimit[i] = Integer.parseInt(data[i]);
-            } else {
+    public boolean setCrossroadInfo(String [] carsCount, String [] speedLimit, String [] actualSpeed){
+        boolean result;
+        result = checkData(carsCount) && checkData(speedLimit) && checkData(actualSpeed);
+        if (result) {
+            north = new DirectionInfo(carsCount[0], speedLimit[0], actualSpeed[0]);
+            east = new DirectionInfo(carsCount[1], speedLimit[1], actualSpeed[1]);
+            south = new DirectionInfo(carsCount[2], speedLimit[2], actualSpeed[2]);
+            west = new DirectionInfo(carsCount[3], speedLimit[3], actualSpeed[3]);
+        }
+        return result;
+    }
+
+    private boolean checkData(String[] data) {
+        for (int i = 0; i < 4; i++) {
+            if (!isInt(data[i])) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean setActualSpeed(String [] data){
-        for(int i = 0; i < 4; i++){
-            if(isInt(data[i])){
-                actualSpeed[i] = Integer.parseInt(data[i]);
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean setCarsCount(String [] data){
-        for(int i = 0; i < 4; i++){
-            if(isInt(data[i])){
-                carsCount[i] = Integer.parseInt(data[i]);
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean isInt(String value){
+    public boolean isInt(String value) {
         try {
             Integer.parseInt(value);
             return true;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public DirectionInfo getNorth() {
+        return north;
+    }
+
+    public DirectionInfo getEast() {
+        return east;
+    }
+
+    public DirectionInfo getSouth() {
+        return south;
+    }
+
+    public DirectionInfo getWest() {
+        return west;
     }
 }
