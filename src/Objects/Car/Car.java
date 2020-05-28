@@ -6,8 +6,10 @@ import javafx.scene.image.Image;
 public class Car implements DrawObject {
 
     private Image image;
+    private double length;
 
     public Car(){
+        length = 4.5;
         int car = generateRandomNumber();
         String path = "file:images/cars/car" + car + ".png";
         image = new Image(path);
@@ -36,5 +38,9 @@ public class Car implements DrawObject {
             num = 6;
         }
         return num;
+    }
+
+    public double getLength(){
+        return length;
     }
 }

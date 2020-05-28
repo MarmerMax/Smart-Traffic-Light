@@ -17,20 +17,23 @@ public class CrossroadInfo {
         this.crossroad = crossroad;
     }
 
+    public CrossroadInfo(CrossroadInfo crossroadInfo) {
+        this.crossroad = new Crossroad();
+        this.east = new DirectionInfo(crossroadInfo.getEast());
+        this.west = new DirectionInfo(crossroadInfo.getWest());
+        this.south = new DirectionInfo(crossroadInfo.getSouth());
+        this.north = new DirectionInfo(crossroadInfo.getNorth());
+    }
+
     public Crossroad getCrossroad() {
         return crossroad;
     }
 
-    public boolean setCrossroadInfo(String [] carsCount, String [] speedLimit, String [] actualSpeed){
-        boolean result;
-        result = checkData(carsCount) && checkData(speedLimit) && checkData(actualSpeed);
-        if (result) {
+    public void setCrossroadInfo(int [] carsCount, int [] speedLimit, int [] actualSpeed){
             north = new DirectionInfo(carsCount[0], speedLimit[0], actualSpeed[0]);
             east = new DirectionInfo(carsCount[1], speedLimit[1], actualSpeed[1]);
             south = new DirectionInfo(carsCount[2], speedLimit[2], actualSpeed[2]);
             west = new DirectionInfo(carsCount[3], speedLimit[3], actualSpeed[3]);
-        }
-        return result;
     }
 
     private boolean checkData(String[] data) {

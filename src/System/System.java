@@ -10,15 +10,16 @@ public class System {
         this.conditions = conditions;
     }
 
-    public void run(){
-
+    public void run() {
+        calculateTimeDistribution();
     }
 
-    public void calculateTimeDistribution(){
-
+    private void calculateTimeDistribution() {
+        Algorithm algo = new Algorithm(conditions);
+        algo.run();
     }
 
-    public double convertKilometersPefHourToMetersPerSecond(int speed){
+    public double convertKilometersPefHourToMetersPerSecond(int speed) {
         return (speed * 1000) / 3600;
     }
 }

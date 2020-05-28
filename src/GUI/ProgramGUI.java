@@ -1,5 +1,10 @@
 package GUI;
 
+import Objects.Crossroad.Crossroad;
+import Objects.CrossroadInfo.CrossroadInfo;
+import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
+import Objects.SystemConditions.Conditions;
+import com.sun.javafx.scene.traversal.Direction;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,11 +16,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class ProgramGUI {
 
     private Scene windowHome, windowClientTypes, windowOptions, windowSimulation;
     private Stage window;
     private boolean analyst;
+    private Conditions conditions;
 
     public ProgramGUI(Stage stage) {
         window = stage;
@@ -77,36 +85,11 @@ public class ProgramGUI {
 
     @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
-        HBox topMenu = new HBox();
-        Label label = new Label("Choose traffic conditions");
-        topMenu.setMinHeight(80);
-        topMenu.setAlignment(Pos.CENTER);
-        topMenu.getChildren().addAll(label);
-
-        HBox bottomMenu = new HBox(20);
-        bottomMenu.setAlignment(Pos.CENTER);
-        Button buttonRun = new Button("Run");
-        buttonRun.setOnAction(e -> {
-            //create crossroadInfo with fields data
-            //check if data correct
-            //continue to next window
-            //else alert box fail!
-            window.setScene(windowSimulation);
-        });
-        Button buttonBack = new Button("Back");
-        buttonBack.setOnAction(e -> {
-            boolean goBack = ConfirmBox.display("Go to previous window",
-                    "If you go back all options will reset\nSure you want to go back?");
-            if (goBack) window.setScene(windowClientTypes);
-        });
-        bottomMenu.getChildren().addAll(buttonBack, buttonRun);
-
-
         VBox centerMenu = new VBox(20);
 
         //1
-        HBox crossroad1 = new HBox();
-        crossroad1.getStyleClass().add("options-container");
+        HBox crossroad_fields_1 = new HBox();
+        crossroad_fields_1.getStyleClass().add("options-container");
 
         VBox label1 = new VBox(10);
         label1.getStyleClass().add("options-column");
@@ -132,37 +115,40 @@ public class ProgramGUI {
         cars1.getStyleClass().add("options-column");
         Label carsLabel1 = new Label("Cars count");
         carsLabel1.getStyleClass().add("label-column");
-        Spinner<Integer> northCars1 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> eastCars1 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> southCars1 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> westCars1 = new Spinner<>(1, 1000, 25);
-        cars1.getChildren().addAll(carsLabel1, northCars1, eastCars1, southCars1, westCars1);
+        ArrayList<Spinner<Integer>> cars_spinners_1 = new ArrayList<>();
+        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
+        cars1.getChildren().addAll(carsLabel1, cars_spinners_1.get(0), cars_spinners_1.get(1), cars_spinners_1.get(2), cars_spinners_1.get(3));
 
         VBox speedLimit1 = new VBox(10);
         speedLimit1.getStyleClass().add("options-column");
         Label speedLimitLabel1 = new Label("Speed limit");
         speedLimitLabel1.getStyleClass().add("label-column");
-        Spinner<Integer> northLimit1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> eastLimit1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southLimit1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> westLimit1 = new Spinner<>(1, 110, 70);
-        speedLimit1.getChildren().addAll(speedLimitLabel1, northLimit1, eastLimit1, southLimit1, westLimit1);
+        ArrayList<Spinner<Integer>> limit_spinners_1 = new ArrayList<>();
+        limit_spinners_1.add(new Spinner<>(50, 110, 70));
+        limit_spinners_1.add(new Spinner<>(50, 110, 70));
+        limit_spinners_1.add(new Spinner<>(50, 110, 70));
+        limit_spinners_1.add(new Spinner<>(50, 110, 70));
+        speedLimit1.getChildren().addAll(speedLimitLabel1, limit_spinners_1.get(0), limit_spinners_1.get(1), limit_spinners_1.get(2), limit_spinners_1.get(3));
 
         VBox actualSpeed1 = new VBox(10);
         actualSpeed1.getStyleClass().add("options-column");
         Label actualSpeedLabel1 = new Label("Actual speed");
         actualSpeedLabel1.getStyleClass().add("label-column");
-        Spinner<Integer> northActual1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> eastActual1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southActual1 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> westActual1 = new Spinner<>(1, 110, 70);
-        actualSpeed1.getChildren().addAll(actualSpeedLabel1, northActual1, eastActual1, southActual1, westActual1);
+        ArrayList<Spinner<Integer>> actual_spinners_1 = new ArrayList<>();
+        actual_spinners_1.add(new Spinner<>(50, 110, 70));
+        actual_spinners_1.add(new Spinner<>(50, 110, 70));
+        actual_spinners_1.add(new Spinner<>(50, 110, 70));
+        actual_spinners_1.add(new Spinner<>(50, 110, 70));
+        actualSpeed1.getChildren().addAll(actualSpeedLabel1, actual_spinners_1.get(0), actual_spinners_1.get(1), actual_spinners_1.get(2), actual_spinners_1.get(3));
 
-        crossroad1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
+        crossroad_fields_1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
 
         //2
-        HBox crossroad2 = new HBox();
-        crossroad2.getStyleClass().add("options-container");
+        HBox crossroad_fields_2 = new HBox();
+        crossroad_fields_2.getStyleClass().add("options-container");
 
         VBox boxLabel2 = new VBox(10);
         boxLabel2.getStyleClass().add("options-column");
@@ -188,33 +174,37 @@ public class ProgramGUI {
         cars2.getStyleClass().add("options-column");
         Label carsLabel2 = new Label("Cars count");
         carsLabel2.getStyleClass().add("label-column");
-        Spinner<Integer> northCars2 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> eastCars2 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> southCars2 = new Spinner<>(1, 1000, 25);
-        Spinner<Integer> westCars2 = new Spinner<>(1, 1000, 25);
-        cars2.getChildren().addAll(carsLabel2, northCars2, eastCars2, southCars2, westCars2);
+        ArrayList<Spinner<Integer>> cars_spinners_2 = new ArrayList<>();
+        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
+        cars2.getChildren().addAll(carsLabel2, cars_spinners_2.get(0), cars_spinners_2.get(1), cars_spinners_2.get(2), cars_spinners_2.get(3));
+
 
         VBox speedLimit2 = new VBox(10);
         speedLimit2.getStyleClass().add("options-column");
         Label speedLimitLabel2 = new Label("Speed limit");
         speedLimitLabel2.getStyleClass().add("label-column");
-        Spinner<Integer> northLimit2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> eastLimit2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southLimit2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> westLimit2 = new Spinner<>(1, 110, 70);
-        speedLimit2.getChildren().addAll(speedLimitLabel2, northLimit2, eastLimit2, southLimit2, westLimit2);
+        ArrayList<Spinner<Integer>> limit_spinners_2 = new ArrayList<>();
+        limit_spinners_2.add(new Spinner<>(50, 110, 70));
+        limit_spinners_2.add(new Spinner<>(50, 110, 70));
+        limit_spinners_2.add(new Spinner<>(50, 110, 70));
+        limit_spinners_2.add(new Spinner<>(50, 110, 70));
+        speedLimit2.getChildren().addAll(speedLimitLabel2, limit_spinners_2.get(0), limit_spinners_2.get(1), limit_spinners_2.get(2), limit_spinners_2.get(3));
 
         VBox actualSpeed2 = new VBox(10);
         actualSpeed2.getStyleClass().add("options-column");
         Label actualSpeedLabel2 = new Label("Actual speed");
         actualSpeedLabel2.getStyleClass().add("label-column");
-        Spinner<Integer> northActual2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> eastActual2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> southActual2 = new Spinner<>(1, 110, 70);
-        Spinner<Integer> westActual2 = new Spinner<>(1, 110, 70);
-        actualSpeed2.getChildren().addAll(actualSpeedLabel2, northActual2, eastActual2, southActual2, westActual2);
+        ArrayList<Spinner<Integer>> actual_spinners_2 = new ArrayList<>();
+        actual_spinners_2.add(new Spinner<>(50, 110, 70));
+        actual_spinners_2.add(new Spinner<>(50, 110, 70));
+        actual_spinners_2.add(new Spinner<>(50, 110, 70));
+        actual_spinners_2.add(new Spinner<>(50, 110, 70));
+        actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
 
-        crossroad2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
+        crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
         //3
         HBox otherOptions = new HBox();
@@ -266,7 +256,50 @@ public class ProgramGUI {
         });
         otherOptions.getChildren().addAll(boxLabel3, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
 
-        centerMenu.getChildren().addAll(crossroad1, crossroad2, otherOptions);
+        centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
+
+        HBox topMenu = new HBox();
+        Label label = new Label("Choose traffic conditions");
+        topMenu.setMinHeight(80);
+        topMenu.setAlignment(Pos.CENTER);
+        topMenu.getChildren().addAll(label);
+
+        HBox bottomMenu = new HBox(20);
+        bottomMenu.setAlignment(Pos.CENTER);
+        Button buttonRun = new Button("Run");
+        buttonRun.setOnAction(e -> {
+            //create crossroadInfo with fields data
+            //check if data correct
+            //continue to next window
+            int [] cars_inputs_1 = {cars_spinners_1.get(0).getValue(), cars_spinners_1.get(1).getValue(), cars_spinners_1.get(2).getValue(), cars_spinners_1.get(3).getValue()};
+            int [] actual_inputs_1 = {actual_spinners_1.get(0).getValue(), actual_spinners_1.get(1).getValue(), actual_spinners_1.get(2).getValue(), actual_spinners_1.get(3).getValue()};
+            int [] limit_inputs_1 = {limit_spinners_1.get(0).getValue(), limit_spinners_1.get(1).getValue(), limit_spinners_1.get(2).getValue(), limit_spinners_1.get(3).getValue()};
+
+            int [] cars_inputs_2 = {cars_spinners_2.get(0).getValue(), cars_spinners_2.get(1).getValue(), cars_spinners_2.get(2).getValue(), cars_spinners_2.get(3).getValue()};
+            int [] actual_inputs_2 = {actual_spinners_2.get(0).getValue(), actual_spinners_2.get(1).getValue(), actual_spinners_2.get(2).getValue(), actual_spinners_2.get(3).getValue()};
+            int [] limit_inputs_2 = {limit_spinners_2.get(0).getValue(), limit_spinners_2.get(1).getValue(), limit_spinners_2.get(2).getValue(), limit_spinners_2.get(3).getValue()};
+
+            //else alert box fail!
+
+            Crossroad crossroad_1 = new Crossroad();
+            Crossroad crossroad_2 = new Crossroad();
+
+            CrossroadInfo crossroad_info_1 = new CrossroadInfo(crossroad_1);
+            CrossroadInfo crossroad_info_2 = new CrossroadInfo(crossroad_2);
+
+            crossroad_info_1.setCrossroadInfo(cars_inputs_1, actual_inputs_1, limit_inputs_1);
+            crossroad_info_2.setCrossroadInfo(cars_inputs_2, actual_inputs_2, limit_inputs_2);
+
+            conditions = new Conditions(crossroad_info_1, crossroad_info_2);
+            window.setScene(windowSimulation);
+        });
+        Button buttonBack = new Button("Back");
+        buttonBack.setOnAction(e -> {
+            boolean goBack = ConfirmBox.display("Go to previous window",
+                    "If you go back all options will reset\nSure you want to go back?");
+            if (goBack) window.setScene(windowClientTypes);
+        });
+        bottomMenu.getChildren().addAll(buttonBack, buttonRun);
 
         BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");

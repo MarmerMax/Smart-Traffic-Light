@@ -6,15 +6,21 @@ public class DirectionInfo {
     private int actualSpeed;
     private int carsCount;
 
-    public DirectionInfo(String carsCount, String speedLimit, String actualSpeed){
-        this.carsCount = parseToInt(carsCount);
-        this.speedLimit = parseToInt(speedLimit);
-        this.actualSpeed = parseToInt(actualSpeed);
+    public DirectionInfo(int carsCount, int speedLimit, int actualSpeed) {
+        this.carsCount = carsCount;
+        this.speedLimit = speedLimit;
+        this.actualSpeed = actualSpeed;
     }
 
-    private int parseToInt(String value){
-        return Integer.parseInt(value);
+    public DirectionInfo(DirectionInfo directionInfo) {
+        this.carsCount = directionInfo.getCarsCount();
+        this.speedLimit = directionInfo.getSpeedLimit();
+        this.actualSpeed = directionInfo.getActualSpeed();
     }
+
+//    private int parseToInt(String value) {
+//        return Integer.parseInt(value);
+//    }
 
     public int getSpeedLimit() {
         return speedLimit;

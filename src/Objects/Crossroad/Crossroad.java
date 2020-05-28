@@ -28,7 +28,7 @@ public class Crossroad {
         westTrafficLight = tl3;
     }
 
-    public void changeState() {
+    public void changeTrafficLightStateOnCrossroad() {
         if (actualState < 4) {
             southTrafficLight.changeState();
             northTrafficLight.changeState();
@@ -55,8 +55,16 @@ public class Crossroad {
         roads[3] = west;
     }
 
-    public void setTimeDistribution(int north_south, int east_west) {
-        timeDistribution.setNorth_south(north_south);
-        timeDistribution.setEast_west(east_west);
+    public void addTimeToEastWestRote(int north_south, int east_west) {
+        timeDistribution.setNorthSouth(north_south);
+        timeDistribution.setEastWest(east_west);
+    }
+
+    public void addTimeToEastWestRoute() {
+        timeDistribution.addTimeToEastWestRoute();
+    }
+
+    public void addTimeToNorthSouthRoute() {
+        timeDistribution.addTimeToNorthSouthRoute();
     }
 }

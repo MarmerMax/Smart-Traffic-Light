@@ -1,4 +1,4 @@
-package Objects.Database;
+package Database;
 
 import Objects.SystemConditions.Conditions;
 

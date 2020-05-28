@@ -12,6 +12,11 @@ public class Conditions {
         crossroadInfo2 = info2;
     }
 
+    public Conditions(Conditions conditions){
+        crossroadInfo1 = new CrossroadInfo(conditions.getCrossroadInfo1());
+        crossroadInfo2 = new CrossroadInfo(conditions.getCrossroadInfo2());
+    }
+
     public CrossroadInfo getCrossroadInfo1() {
         return crossroadInfo1;
     }
