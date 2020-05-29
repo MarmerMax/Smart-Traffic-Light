@@ -6,6 +6,7 @@ import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import Objects.Road.Road;
 import Objects.Road.RoadCreator;
 import Objects.SystemConditions.Conditions;
+import SystemSTL.SystemSTL;
 import com.sun.javafx.scene.traversal.Direction;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -283,8 +284,6 @@ public class ProgramGUI {
 
             //else alert box fail!
 
-
-
             Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
             Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
 
@@ -310,8 +309,6 @@ public class ProgramGUI {
         borderPane.setTop(topMenu);
         borderPane.setCenter(centerMenu);
         borderPane.setBottom(bottomMenu);
-//        borderPane.setLeft(leftMenu);
-//        borderPane.setRight(rightMenu);
 //        Button buttonBackHome = new Button("Back home");
 //        buttonBackHome.setOnAction(e -> window.setScene(windowHome));
 //        String imgPath = "file:images/lights/red-s.png";
@@ -387,6 +384,8 @@ public class ProgramGUI {
         Button buttonStart = new Button("Start");
         buttonStart.setOnAction(e -> {
             //Save to database window
+            SystemSTL systemSTL = new SystemSTL(conditions);
+//            systemSTL.run();
         });
         bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
 

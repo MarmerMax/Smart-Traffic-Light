@@ -10,7 +10,7 @@ public class TimeDistribution {
     public TimeDistribution() {
         north_south = 20;
         east_west = 20;
-        changing_execution_time = 3;
+        changing_execution_time = 2;
     }
 
     public void addTimeToEastWestRoute() {

@@ -16,7 +16,8 @@ public class Crossroad {
     private int actualState = 0;
     private boolean isNorthSouthActive = false;
     private boolean isEastWestActive = false;
-    private boolean isNorthSouthActual = false;
+
+    private boolean isNorthSouthChanging = false;
 
     public Crossroad(Road[] r) {
         roads = r;
@@ -28,26 +29,30 @@ public class Crossroad {
     }
 
     public void changeTrafficLightStateOnCrossroad() {
+
         if (actualState < 4) {
-            isNorthSouthActual = true;
+            isNorthSouthChanging = true;
             southTrafficLight.changeState();
             northTrafficLight.changeState();
+            actualState++;
             if (actualState == 2) {
                 isNorthSouthActive = true;
             } else {
                 isNorthSouthActive = false;
             }
         } else {
-            isNorthSouthActual = false;
+            isNorthSouthChanging = false;
             westTrafficLight.changeState();
             eastTrafficLight.changeState();
+            actualState++;
             if (actualState == 6) {
                 isEastWestActive = true;
             } else {
                 isEastWestActive = false;
             }
         }
-        actualState = (actualState + 1) % 8;
+        actualState %= 8;
+        System.out.println("north-south: " + isNorthSouthActive + ", east-west: " + isEastWestActive);
     }
 
     public Road getNorthRoad() {
@@ -120,6 +125,6 @@ public class Crossroad {
     }
 
     public boolean isNorthSouthActual() {
-        return isNorthSouthActual;
+        return isNorthSouthChanging;
     }
 }

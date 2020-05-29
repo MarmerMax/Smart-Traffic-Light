@@ -1,7 +1,7 @@
 package Database;
 
 import Objects.SystemConditions.Conditions;
-import System.Algorithm;
+import SystemSTL.Algorithm;
 
 public class Database {
 
