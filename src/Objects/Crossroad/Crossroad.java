@@ -2,62 +2,77 @@ package Objects.Crossroad;
 
 import Objects.Road.Road;
 import Objects.TrafficLight.TrafficLight;
+import Objects.TrafficLight.TrafficLightState.State;
 import Objects.TrafficLight.TrafficLightTimeDistribution.TimeDistribution;
 
 public class Crossroad {
 
-    private final int CROSSROAD_SIZE = 4;
     private Road[] roads;
     private TrafficLight southTrafficLight;
     private TrafficLight northTrafficLight;
     private TrafficLight eastTrafficLight;
     private TrafficLight westTrafficLight;
-    private int actualState = 0;
     private TimeDistribution timeDistribution;
+    private int actualState = 0;
+    private boolean isNorthSouthActive = false;
+    private boolean isEastWestActive = false;
+    private boolean isNorthSouthActual = false;
 
-    public Crossroad() {
-        roads = new Road[CROSSROAD_SIZE];
+    public Crossroad(Road[] r) {
+        roads = r;
         timeDistribution = new TimeDistribution();
-        TrafficLight tl0 = new TrafficLight();
-        TrafficLight tl1 = new TrafficLight();
-        TrafficLight tl2 = new TrafficLight();
-        TrafficLight tl3 = new TrafficLight();
-        northTrafficLight = tl0;
-        eastTrafficLight = tl1;
-        southTrafficLight = tl2;
-        westTrafficLight = tl3;
+        northTrafficLight = new TrafficLight();
+        eastTrafficLight = new TrafficLight();
+        southTrafficLight = new TrafficLight();
+        westTrafficLight = new TrafficLight();
     }
 
     public void changeTrafficLightStateOnCrossroad() {
         if (actualState < 4) {
+            isNorthSouthActual = true;
             southTrafficLight.changeState();
             northTrafficLight.changeState();
+            if (actualState == 2) {
+                isNorthSouthActive = true;
+            } else {
+                isNorthSouthActive = false;
+            }
         } else {
+            isNorthSouthActual = false;
             westTrafficLight.changeState();
             eastTrafficLight.changeState();
+            if (actualState == 6) {
+                isEastWestActive = true;
+            } else {
+                isEastWestActive = false;
+            }
         }
         actualState = (actualState + 1) % 8;
     }
 
-    public void addNorthRoad(Road north) {
-        roads[0] = north;
+    public Road getNorthRoad() {
+        return roads[0];
     }
 
-    public void addEastRoad(Road east) {
-        roads[1] = east;
+    public Road getEastRoad() {
+        return roads[1];
     }
 
-    public void addSouthRoad(Road south) {
-        roads[2] = south;
+    public Road getSouthRoad() {
+        return roads[2];
     }
 
-    public void addWestRoad(Road west) {
-        roads[3] = west;
+    public Road getWestRoad() {
+        return roads[3];
     }
 
     public void addTimeToEastWestRote(int north_south, int east_west) {
         timeDistribution.setNorthSouth(north_south);
         timeDistribution.setEastWest(east_west);
+    }
+
+    public TimeDistribution getTimeDistribution() {
+        return timeDistribution;
     }
 
     public void addTimeToEastWestRoute() {
@@ -66,5 +81,45 @@ public class Crossroad {
 
     public void addTimeToNorthSouthRoute() {
         timeDistribution.addTimeToNorthSouthRoute();
+    }
+
+    public TrafficLight getSouthTrafficLight() {
+        return southTrafficLight;
+    }
+
+    public TrafficLight getWestTrafficLight() {
+        return westTrafficLight;
+    }
+
+    public TrafficLight getEastTrafficLight() {
+        return eastTrafficLight;
+    }
+
+    public TrafficLight getNorthTrafficLight() {
+        return northTrafficLight;
+    }
+
+    public boolean isNorthSouthActive() {
+        return isNorthSouthActive;
+    }
+
+    public boolean isEastWestActive() {
+        return isEastWestActive;
+    }
+
+    public TrafficLight[] getActiveTrafficLights() {
+        TrafficLight[] activeTrafficLights = new TrafficLight[2];
+        if (isNorthSouthActive) {
+            activeTrafficLights[0] = southTrafficLight;
+            activeTrafficLights[0] = northTrafficLight;
+        } else {
+            activeTrafficLights[0] = eastTrafficLight;
+            activeTrafficLights[0] = westTrafficLight;
+        }
+        return activeTrafficLights;
+    }
+
+    public boolean isNorthSouthActual() {
+        return isNorthSouthActual;
     }
 }

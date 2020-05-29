@@ -2,6 +2,7 @@ package Main;
 
 import GUI.ConfirmBox;
 import GUI.ProgramGUI;
+import Objects.Car.Car;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import Objects.TrafficLight.TrafficLight;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Main extends Application {
@@ -22,6 +24,9 @@ public class Main extends Application {
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 //        StackPane layout = new StackPane();
 //        Scene scene = new Scene(layout, 700, 300);
+
+
+
         window = primaryStage;
         primaryStage.setOnCloseRequest(e -> {
             e.consume();

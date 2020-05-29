@@ -28,4 +28,8 @@ public class TrafficLight {
     public void changeState() {
         actualState = (actualState + 1) % 4;
     }
+
+    public State getActualState() {
+        return STATES[actualState];
+    }
 }

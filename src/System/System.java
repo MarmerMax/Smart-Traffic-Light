@@ -18,8 +18,4 @@ public class System {
         Algorithm algo = new Algorithm(conditions);
         algo.run();
     }
-
-    public double convertKilometersPefHourToMetersPerSecond(int speed) {
-        return (speed * 1000) / 3600;
-    }
 }

@@ -4,17 +4,19 @@ public class TimeDistribution {
 
     private int north_south;
     private int east_west;
+    private int changing_execution_time;
 
 
     public TimeDistribution() {
         north_south = 20;
         east_west = 20;
+        changing_execution_time = 3;
     }
 
     public void addTimeToEastWestRoute() {
         if (north_south > 10) {
-            north_south++;
-            east_west--;
+            east_west++;
+            north_south--;
         }
     }
 
@@ -39,5 +41,9 @@ public class TimeDistribution {
 
     public int getEastWest() {
         return east_west;
+    }
+
+    public int getChangingExecutionTime() {
+        return changing_execution_time;
     }
 }

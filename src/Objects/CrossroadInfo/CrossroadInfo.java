@@ -2,8 +2,8 @@ package Objects.CrossroadInfo;
 
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
+import Objects.Road.Road;
 
-@SuppressWarnings("Duplicates")
 public class CrossroadInfo {
 
     private Crossroad crossroad;
@@ -18,7 +18,12 @@ public class CrossroadInfo {
     }
 
     public CrossroadInfo(CrossroadInfo crossroadInfo) {
-        this.crossroad = new Crossroad();
+        Road r1 = new Road(crossroadInfo.getCrossroad().getNorthRoad().getId());
+        Road r2 = new Road(crossroadInfo.getCrossroad().getEastRoad().getId());
+        Road r3 = new Road(crossroadInfo.getCrossroad().getSouthRoad().getId());
+        Road r4 = new Road(crossroadInfo.getCrossroad().getWestRoad().getId());
+        Road[] roads = {r1, r2, r3, r4};
+        this.crossroad = new Crossroad(roads);
         this.east = new DirectionInfo(crossroadInfo.getEast());
         this.west = new DirectionInfo(crossroadInfo.getWest());
         this.south = new DirectionInfo(crossroadInfo.getSouth());
@@ -29,11 +34,11 @@ public class CrossroadInfo {
         return crossroad;
     }
 
-    public void setCrossroadInfo(int [] carsCount, int [] speedLimit, int [] actualSpeed){
-            north = new DirectionInfo(carsCount[0], speedLimit[0], actualSpeed[0]);
-            east = new DirectionInfo(carsCount[1], speedLimit[1], actualSpeed[1]);
-            south = new DirectionInfo(carsCount[2], speedLimit[2], actualSpeed[2]);
-            west = new DirectionInfo(carsCount[3], speedLimit[3], actualSpeed[3]);
+    public void setCrossroadInfo(int[] carsCount, int[] speedLimit, int[] actualSpeed) {
+        north = new DirectionInfo(carsCount[0], speedLimit[0], actualSpeed[0]);
+        east = new DirectionInfo(carsCount[1], speedLimit[1], actualSpeed[1]);
+        south = new DirectionInfo(carsCount[2], speedLimit[2], actualSpeed[2]);
+        west = new DirectionInfo(carsCount[3], speedLimit[3], actualSpeed[3]);
     }
 
     private boolean checkData(String[] data) {

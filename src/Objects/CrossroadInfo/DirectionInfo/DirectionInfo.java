@@ -18,10 +18,6 @@ public class DirectionInfo {
         this.actualSpeed = directionInfo.getActualSpeed();
     }
 
-//    private int parseToInt(String value) {
-//        return Integer.parseInt(value);
-//    }
-
     public int getSpeedLimit() {
         return speedLimit;
     }

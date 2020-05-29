@@ -3,6 +3,8 @@ package GUI;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
+import Objects.Road.Road;
+import Objects.Road.RoadCreator;
 import Objects.SystemConditions.Conditions;
 import com.sun.javafx.scene.traversal.Direction;
 import javafx.geometry.Insets;
@@ -117,7 +119,7 @@ public class ProgramGUI {
         carsLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> cars_spinners_1 = new ArrayList<>();
         cars_spinners_1.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_1.add(new Spinner<>(1, 10, 5));
         cars_spinners_1.add(new Spinner<>(1, 1000, 25));
         cars_spinners_1.add(new Spinner<>(1, 1000, 25));
         cars1.getChildren().addAll(carsLabel1, cars_spinners_1.get(0), cars_spinners_1.get(1), cars_spinners_1.get(2), cars_spinners_1.get(3));
@@ -178,7 +180,7 @@ public class ProgramGUI {
         cars_spinners_2.add(new Spinner<>(1, 1000, 25));
         cars_spinners_2.add(new Spinner<>(1, 1000, 25));
         cars_spinners_2.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_2.add(new Spinner<>(1, 10, 5));
         cars2.getChildren().addAll(carsLabel2, cars_spinners_2.get(0), cars_spinners_2.get(1), cars_spinners_2.get(2), cars_spinners_2.get(3));
 
 
@@ -271,18 +273,20 @@ public class ProgramGUI {
             //create crossroadInfo with fields data
             //check if data correct
             //continue to next window
-            int [] cars_inputs_1 = {cars_spinners_1.get(0).getValue(), cars_spinners_1.get(1).getValue(), cars_spinners_1.get(2).getValue(), cars_spinners_1.get(3).getValue()};
-            int [] actual_inputs_1 = {actual_spinners_1.get(0).getValue(), actual_spinners_1.get(1).getValue(), actual_spinners_1.get(2).getValue(), actual_spinners_1.get(3).getValue()};
-            int [] limit_inputs_1 = {limit_spinners_1.get(0).getValue(), limit_spinners_1.get(1).getValue(), limit_spinners_1.get(2).getValue(), limit_spinners_1.get(3).getValue()};
+            int[] cars_inputs_1 = {cars_spinners_1.get(0).getValue(), cars_spinners_1.get(1).getValue(), cars_spinners_1.get(2).getValue(), cars_spinners_1.get(3).getValue()};
+            int[] actual_inputs_1 = {actual_spinners_1.get(0).getValue(), actual_spinners_1.get(1).getValue(), actual_spinners_1.get(2).getValue(), actual_spinners_1.get(3).getValue()};
+            int[] limit_inputs_1 = {limit_spinners_1.get(0).getValue(), limit_spinners_1.get(1).getValue(), limit_spinners_1.get(2).getValue(), limit_spinners_1.get(3).getValue()};
 
-            int [] cars_inputs_2 = {cars_spinners_2.get(0).getValue(), cars_spinners_2.get(1).getValue(), cars_spinners_2.get(2).getValue(), cars_spinners_2.get(3).getValue()};
-            int [] actual_inputs_2 = {actual_spinners_2.get(0).getValue(), actual_spinners_2.get(1).getValue(), actual_spinners_2.get(2).getValue(), actual_spinners_2.get(3).getValue()};
-            int [] limit_inputs_2 = {limit_spinners_2.get(0).getValue(), limit_spinners_2.get(1).getValue(), limit_spinners_2.get(2).getValue(), limit_spinners_2.get(3).getValue()};
+            int[] cars_inputs_2 = {cars_spinners_2.get(0).getValue(), cars_spinners_2.get(1).getValue(), cars_spinners_2.get(2).getValue(), cars_spinners_2.get(3).getValue()};
+            int[] actual_inputs_2 = {actual_spinners_2.get(0).getValue(), actual_spinners_2.get(1).getValue(), actual_spinners_2.get(2).getValue(), actual_spinners_2.get(3).getValue()};
+            int[] limit_inputs_2 = {limit_spinners_2.get(0).getValue(), limit_spinners_2.get(1).getValue(), limit_spinners_2.get(2).getValue(), limit_spinners_2.get(3).getValue()};
 
             //else alert box fail!
 
-            Crossroad crossroad_1 = new Crossroad();
-            Crossroad crossroad_2 = new Crossroad();
+
+
+            Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
+            Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
 
             CrossroadInfo crossroad_info_1 = new CrossroadInfo(crossroad_1);
             CrossroadInfo crossroad_info_2 = new CrossroadInfo(crossroad_2);

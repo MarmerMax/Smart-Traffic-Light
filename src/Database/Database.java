@@ -1,6 +1,7 @@
 package Database;
 
 import Objects.SystemConditions.Conditions;
+import System.Algorithm;
 
 public class Database {
 
@@ -8,7 +9,7 @@ public class Database {
         return null;
     }
 
-    public void putToDatabase(Conditions conditions) {
+    public void putToDatabase(Conditions conditions, Algorithm algorithm) {
         //break conditions into specific objects and save them to tables
         //crossroadInfo: crossroad, north, east, south, west
         //crossroadInfo -> Table conditions.
