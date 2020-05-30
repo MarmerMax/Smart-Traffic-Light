@@ -23,11 +23,11 @@ public class CrossroadInfo {
         Road r3 = new Road(crossroadInfo.getCrossroad().getSouthRoad().getId());
         Road r4 = new Road(crossroadInfo.getCrossroad().getWestRoad().getId());
         Road[] roads = {r1, r2, r3, r4};
-        this.crossroad = new Crossroad(roads);
-        this.east = new DirectionInfo(crossroadInfo.getEast());
-        this.west = new DirectionInfo(crossroadInfo.getWest());
-        this.south = new DirectionInfo(crossroadInfo.getSouth());
-        this.north = new DirectionInfo(crossroadInfo.getNorth());
+        crossroad = new Crossroad(roads);
+        east = new DirectionInfo(crossroadInfo.getEast());
+        west = new DirectionInfo(crossroadInfo.getWest());
+        south = new DirectionInfo(crossroadInfo.getSouth());
+        north = new DirectionInfo(crossroadInfo.getNorth());
     }
 
     public Crossroad getCrossroad() {
@@ -39,24 +39,6 @@ public class CrossroadInfo {
         east = new DirectionInfo(carsCount[1], speedLimit[1], actualSpeed[1]);
         south = new DirectionInfo(carsCount[2], speedLimit[2], actualSpeed[2]);
         west = new DirectionInfo(carsCount[3], speedLimit[3], actualSpeed[3]);
-    }
-
-    private boolean checkData(String[] data) {
-        for (int i = 0; i < 4; i++) {
-            if (!isInt(data[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean isInt(String value) {
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     public DirectionInfo getNorth() {

@@ -2,12 +2,9 @@ package GUI;
 
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
-import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
-import Objects.Road.Road;
 import Objects.Road.RoadCreator;
-import Objects.SystemConditions.Conditions;
+import Objects.Conditions.Conditions;
 import SystemSTL.SystemSTL;
-import com.sun.javafx.scene.traversal.Direction;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

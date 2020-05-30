@@ -1,7 +1,7 @@
 package SystemSTL;
 
 import Objects.Car.Car;
-import Objects.SystemConditions.Conditions;
+import Objects.Conditions.Conditions;
 import Utils.Formulas;
 
 import java.util.ArrayDeque;
@@ -38,7 +38,6 @@ public class Algorithm {
 //        temp_cars_crossroad_1.add(copyQueue(cars_crossroad_1.get(2)));
 //        temp_cars_crossroad_1.add(copyQueue(cars_crossroad_1.get(3)));
 
-        int time_unit = 1;
         Conditions temp_conditions = new Conditions(conditions);
 
         int first_crossroad_total_cars =
@@ -200,8 +199,15 @@ public class Algorithm {
         return cars_passed;
     }
 
-    public void run() {
+    public void findBetterDuration() {
 
+    }
+
+    public boolean isBetterDuration(double duration){
+        if(duration < actual_duration){
+            return true;
+        }
+        return false;
     }
 
     private void createCars() {

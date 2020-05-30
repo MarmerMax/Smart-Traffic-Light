@@ -1,6 +1,5 @@
 package Objects.TrafficLight;
 
-import Objects.DrawObject;
 import Objects.TrafficLight.TrafficLightState.*;
 import javafx.scene.image.Image;
 
@@ -12,9 +11,11 @@ public class TrafficLight {
             new GreenState(),
             new YellowState()
     };
-    private int actualState = 0;
+
+    private int actualState;
 
     public TrafficLight() {
+        actualState = 0;
     }
 
     public Image getTrafficLightImage() {

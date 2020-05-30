@@ -1,4 +1,4 @@
-package Objects.SystemConditions;
+package Objects.Conditions;
 
 import Objects.CrossroadInfo.CrossroadInfo;
 

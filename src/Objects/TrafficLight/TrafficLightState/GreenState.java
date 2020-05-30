@@ -4,10 +4,13 @@ import javafx.scene.image.Image;
 
 public class GreenState extends State {
     private final String NAME = "Green";
-    private final Image image = new Image("file:images/lights/green-s.png");
+    private Image image;
 
     @Override
     public Image getImage() {
+        if (image == null) {
+            image = new Image("file:images/lights/green-s.png");
+        }
         return image;
     }
 

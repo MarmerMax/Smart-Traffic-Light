@@ -7,6 +7,9 @@ public class DirectionInfo {
     private int carsCount;
 
     public DirectionInfo(int carsCount, int speedLimit, int actualSpeed) {
+        if (carsCount < 0 || speedLimit < 0 || actualSpeed < 0) {
+            System.err.println("Bad input arguments on DirectionInfo constructor...");
+        }
         this.carsCount = carsCount;
         this.speedLimit = speedLimit;
         this.actualSpeed = actualSpeed;

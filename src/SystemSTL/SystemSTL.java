@@ -1,6 +1,6 @@
 package SystemSTL;
 
-import Objects.SystemConditions.Conditions;
+import Objects.Conditions.Conditions;
 
 public class SystemSTL {
 

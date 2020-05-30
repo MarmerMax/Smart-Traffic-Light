@@ -7,20 +7,24 @@ public class Car implements DrawObject {
 
     private Image image;
     private double length;
+    private int type;
 
     public Car() {
-        length = 4.5;
-        int car = generateRandomNumber();
-        String path = "file:images/cars/car" + car + ".png";
-        image = new Image(path);
+        type = generateRandomCar();
     }
 
     @Override
     public Image getImage() {
-        return image;
+        if (image != null) {
+            return image;
+        } else {
+            String path = "file:images/cars/car" + type + ".png";
+            image = new Image(path);
+            return image;
+        }
     }
 
-    private int generateRandomNumber() {
+    private int generateRandomCar() {
         int num;
         double random = Math.random();
 
@@ -48,5 +52,9 @@ public class Car implements DrawObject {
 
     public double getLength() {
         return length;
+    }
+
+    public int getType() {
+        return type;
     }
 }
