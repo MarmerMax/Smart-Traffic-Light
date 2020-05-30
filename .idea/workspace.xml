@@ -3,33 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/STL.iml" beforeDir="false" afterPath="$PROJECT_DIR$/STL.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Database/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/SystemConditions/Conditions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Car/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Car/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Road/RoadCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Road/RoadCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/SystemConditions/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/GreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/GreenState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedYellowState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedYellowState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/YellowState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/YellowState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/SystemSTL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/SystemSTL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/TimeDistributionTest.java" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,11 +63,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
-              <caret line="119" column="50" selection-start-line="119" selection-start-column="50" selection-end-line="119" selection-end-column="50" />
+            <state relative-caret-position="7699">
+              <caret line="490" column="5" selection-start-line="490" selection-start-column="5" selection-end-line="490" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#20665#20666#0" expanded="true" />
+                <element signature="e#20699#20700#0" expanded="true" />
+                <element signature="e#20761#20762#0" expanded="true" />
+                <element signature="e#20808#20809#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/ConfirmBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-625">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,57 +103,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
+            <state relative-caret-position="-418">
+              <caret line="32" column="52" lean-forward="true" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#610#611#0" expanded="true" />
                 <element signature="e#655#656#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedYellowState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Tests/TrafficLightTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-              <folding>
-                <element signature="e#346#347#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,8 +122,8 @@
         <option value="Interface" />
         <option value="CSS File" />
         <option value="JUnit4 Test Class" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -192,6 +149,7 @@
       <find>start</find>
       <find>TimeDistri</find>
       <find>= null</find>
+      <find>spinner</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -232,8 +190,6 @@
         <option value="$PROJECT_DIR$/src/System/Algorithm.java" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/SystemSTL.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" />
         <option value="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistributionTest.java" />
         <option value="$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java" />
@@ -256,11 +212,13 @@
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLight.java" />
         <option value="$PROJECT_DIR$/src/Objects/Car/Car.java" />
         <option value="$PROJECT_DIR$/src/Tests/TrafficLightTest.java" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -293,50 +251,7 @@
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
               <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="Car" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="CrossroadInfo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="CrossroadInfo" type="462c0819:PsiDirectoryNode" />
-              <item name="DirectionInfo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="TrafficLight" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="TrafficLight" type="462c0819:PsiDirectoryNode" />
-              <item name="TrafficLightTimeDistribution" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -359,7 +274,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590844587032" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590862998096" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
@@ -402,7 +317,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TrafficLightTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -462,7 +377,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CrossroadInfoTest.getCrossroad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Tests in STL" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="STL" />
       <extension name="coverage">
         <pattern>
@@ -471,9 +386,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.CrossroadInfoTest" />
-      <option name="METHOD_NAME" value="getCrossroad" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
@@ -574,11 +487,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests in STL" />
         <item itemvalue="JUnit.TrafficLightTest" />
         <item itemvalue="JUnit.TrafficLightTest.getTrafficLightStateName" />
         <item itemvalue="JUnit.TrafficLightTest.changeState" />
         <item itemvalue="JUnit.CrossroadInfoTest" />
-        <item itemvalue="JUnit.CrossroadInfoTest.getCrossroad" />
       </list>
     </recent_temporary>
   </component>
@@ -607,27 +520,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ConditionsTest - 2020.05.30 at 15h 58m 07s.xml">
-      <configuration name="ConditionsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CrossroadInfoTest - 2020.05.30 at 15h 58m 16s.xml">
-      <configuration name="CrossroadInfoTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CrossroadInfoTest_getCrossroad - 2020.05.30 at 16h 01m 46s.xml">
-      <configuration name="CrossroadInfoTest.getCrossroad" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CrossroadInfoTest - 2020.05.30 at 16h 01m 58s.xml">
-      <configuration name="CrossroadInfoTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CrossroadInfoTest - 2020.05.30 at 16h 03m 49s.xml">
-      <configuration name="CrossroadInfoTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TrafficLightTest - 2020.05.30 at 16h 07m 09s.xml">
-      <configuration name="TrafficLightTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TrafficLightTest - 2020.05.30 at 16h 08m 06s.xml">
-      <configuration name="TrafficLightTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TrafficLightTest_changeState - 2020.05.30 at 16h 09m 15s.xml">
       <configuration name="TrafficLightTest.changeState" configurationId="JUnit" />
     </history-entry>
@@ -637,9 +529,30 @@
     <history-entry file="TrafficLightTest - 2020.05.30 at 16h 12m 14s.xml">
       <configuration name="TrafficLightTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TrafficLightTest - 2020.05.30 at 16h 14m 40s.xml">
+      <configuration name="TrafficLightTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TrafficLightTest_getTrafficLightStateName - 2020.05.30 at 16h 15m 31s.xml">
+      <configuration name="TrafficLightTest.getTrafficLightStateName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TrafficLightTest - 2020.05.30 at 16h 16m 16s.xml">
+      <configuration name="TrafficLightTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TrafficLightTest - 2020.05.30 at 16h 16m 32s.xml">
+      <configuration name="TrafficLightTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TrafficLightTest - 2020.05.30 at 16h 16m 39s.xml">
+      <configuration name="TrafficLightTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Tests_in_STL - 2020.05.30 at 16h 28m 32s.xml">
+      <configuration name="Tests in STL" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Tests_in_STL - 2020.05.30 at 17h 47m 19s.xml">
+      <configuration name="Tests in STL" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167888000" />
+    <option name="totallyTimeSpent" value="176730000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -654,7 +567,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15733737" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15733737" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" weight="0.32978722" />
       <window_info id="Designer" order="3" />
@@ -744,9 +657,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/images/lights/yellow-s.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/lights/red-s.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -814,16 +724,6 @@
     <entry file="file://$PROJECT_DIR$/src/Test/System/SystemTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Test/Tests/SystemTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Tests/Tests1/SystemTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/GUI/ConfirmBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/SystemTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Objects/DrawObject.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -876,13 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
-          <caret line="119" column="50" selection-start-line="119" selection-start-column="50" selection-end-line="119" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -921,18 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
           <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1011,13 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/GreenState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/RoadCreatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1039,16 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/ConditionsTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1056,13 +920,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1099,6 +956,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/GreenState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedYellowState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1116,12 +980,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1607">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-418">
+          <caret line="32" column="52" lean-forward="true" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/TrafficLightTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="111">
+          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
           <folding>
+            <element signature="e#297#298#0" expanded="true" />
             <element signature="e#346#347#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ConfirmBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-625">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7699">
+          <caret line="490" column="5" selection-start-line="490" selection-start-column="5" selection-end-line="490" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#20665#20666#0" expanded="true" />
+            <element signature="e#20699#20700#0" expanded="true" />
+            <element signature="e#20761#20762#0" expanded="true" />
+            <element signature="e#20808#20809#0" expanded="true" />
           </folding>
         </state>
       </provider>

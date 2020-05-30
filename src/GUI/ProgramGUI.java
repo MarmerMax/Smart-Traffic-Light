@@ -5,16 +5,23 @@ import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
 import SystemSTL.SystemSTL;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+
+import javafx.event.ActionEvent;
 
 import java.util.ArrayList;
 
@@ -116,10 +123,21 @@ public class ProgramGUI {
         Label carsLabel1 = new Label("Cars count");
         carsLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> cars_spinners_1 = new ArrayList<>();
-        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_1.add(new Spinner<>(1, 10, 5));
-        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_1.add(new Spinner<>(1, 1000, 25));
+        cars_spinners_1.add(new Spinner<>(1, 1000, 10));
+        cars_spinners_1.add(new Spinner<>(1, 5, 3));
+        cars_spinners_1.add(new Spinner<>(1, 1000, 10));
+        cars_spinners_1.add(new Spinner<>(1, 1000, 10));
+
+        for (Spinner<Integer> spinner : cars_spinners_1) {
+            if (spinner.getValue() == 10) {
+                upgradeSpinner(spinner, 1, 1000, false);
+
+            } else {
+                upgradeSpinner(spinner, 1, 5, false);
+
+            }
+        }
+
         cars1.getChildren().addAll(carsLabel1, cars_spinners_1.get(0), cars_spinners_1.get(1), cars_spinners_1.get(2), cars_spinners_1.get(3));
 
         VBox speedLimit1 = new VBox(10);
@@ -131,6 +149,8 @@ public class ProgramGUI {
         limit_spinners_1.add(new Spinner<>(50, 110, 70));
         limit_spinners_1.add(new Spinner<>(50, 110, 70));
         limit_spinners_1.add(new Spinner<>(50, 110, 70));
+
+
         speedLimit1.getChildren().addAll(speedLimitLabel1, limit_spinners_1.get(0), limit_spinners_1.get(1), limit_spinners_1.get(2), limit_spinners_1.get(3));
 
         VBox actualSpeed1 = new VBox(10);
@@ -405,8 +425,87 @@ public class ProgramGUI {
         windowSimulation = new Scene(borderPane, 1000, 660);
     }
 
+    private void upgradeSpinner(Spinner<Integer> spinner, int min, int max, boolean limit) {
+        spinner.setEditable(true);
+
+        ArrayList<Integer> arr = new ArrayList<>();
+
+        int speed_limit_step = 1;
+        if (limit) {
+            speed_limit_step = 5;
+        }
+
+        for (int i = min; i < max; i += speed_limit_step) {
+            arr.add(i);
+        }
+
+        // Item List.
+        ObservableList<Integer> items = FXCollections.observableArrayList(arr);
+
+        // Value Factory:
+        SpinnerValueFactory<Integer> valueFactory = //
+                new SpinnerValueFactory.ListSpinnerValueFactory<>(items);
+
+        // The converter to convert between text and item object.
+        InputConverter converter = new InputConverter();
+        valueFactory.setConverter(converter);
+
+        spinner.setValueFactory(valueFactory);
+
+        spinner.getEditor().setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                String text = spinner.getEditor().getText();
+                SpinnerValueFactory.ListSpinnerValueFactory<Integer>//
+                        valueFactory = (SpinnerValueFactory.ListSpinnerValueFactory<Integer>) spinner.getValueFactory();
+
+                StringConverter<Integer> converter = valueFactory.getConverter();
+                Integer enterValue;
+                try{
+                    enterValue = converter.fromString(text);
+                } catch (RuntimeException e){
+                    enterValue = 1;
+                }
+
+
+                // If the list does not contains 'enterValue'.
+                if (!valueFactory.getItems().contains(enterValue)) {
+                    // Add new item to list
+                    valueFactory.getItems().add(enterValue);
+                    // Set to current
+                    valueFactory.setValue(enterValue);
+
+                    if (enterValue > max) {
+                        enterValue = max;
+                    } else {
+                        enterValue = min;
+                    }
+
+                    spinner.getValueFactory().setValue(enterValue);
+                    System.out.println(spinner.getValueFactory().getValue());
+
+                }
+            }
+        });
+    }
+
     public Scene getScene() {
         return windowHome;
+    }
+
+}
+
+class InputConverter extends StringConverter<Integer> {
+
+    @Override
+    public String toString(Integer object) {
+        return object + "";
+    }
+
+    @Override
+    public Integer fromString(String string) {
+        return Integer.parseInt(string);
     }
 
 }
