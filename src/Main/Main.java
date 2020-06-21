@@ -1,5 +1,6 @@
 package Main;
 
+import Database.Database;
 import GUI.ConfirmBox;
 import GUI.ProgramGUI;
 import Objects.Car.Car;
@@ -49,6 +50,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+//        Database database = Database.getInstance();
+//        database.test();
         launch(args);
     }
 }

@@ -264,6 +264,8 @@ public class ProgramGUI {
         });
         buttonDatabase.setOnAction(e -> {
             //load from database
+            String query_name = DatabaseBox.display();
+            System.out.println(query_name);
         });
         buttonReset.setOnAction(e -> {
             boolean answer = ConfirmBox.display("Reset", "Reset all values?");

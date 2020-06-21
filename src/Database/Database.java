@@ -2,8 +2,46 @@ package Database;
 
 import Objects.Conditions.Conditions;
 import SystemSTL.Algorithm;
+import java.sql.*;
 
 public class Database {
+
+    private static final String url = "jdbc:mysql://localhost:3306/stl";
+    private static final String user = "root";
+    private static final String password = "root";
+    private static final String driver = "com.mysql.jdbc.Driver";
+
+    private static volatile Database instance;
+
+    public static Database getInstance() {
+        Database localInstance = instance;
+        if (localInstance == null) {
+            synchronized (Database.class) {
+                localInstance = instance;
+                if (localInstance == null) {
+                    instance = localInstance = new Database();
+                }
+            }
+        }
+        return localInstance;
+    }
+
+    public void test() {
+        try {
+            Class.forName(driver);
+            Connection myConn = DriverManager.getConnection(url, user, password);
+
+            Statement statement = myConn.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from conditions");
+            while (resultSet.next()) {
+                System.out.println(
+                        resultSet.getString("crossroad_info_1_id") + ", " +
+                                resultSet.getString("crossroad_info_2_id"));
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+    }
 
     public Conditions getFromDatabase(String id) {
         return null;
