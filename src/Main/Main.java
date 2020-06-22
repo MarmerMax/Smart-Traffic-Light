@@ -4,6 +4,7 @@ import Database.Database;
 import GUI.ConfirmBox;
 import GUI.ProgramGUI;
 import Objects.Car.Car;
+import Utils.Constants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,27 +32,20 @@ public class Main extends Application {
         window = primaryStage;
         primaryStage.setOnCloseRequest(e -> {
             e.consume();
-            closeProgram();
+            boolean answer = ConfirmBox.display(Constants.exit_window_label, Constants.exit_text_label);
+            if (answer) {
+                window.close();
+            }
         });
 
         Scene scene = new ProgramGUI(window).getScene();
         scene.getStylesheets().add("file:src/Main/style.css");
-
-        primaryStage.setTitle("Smart Traffic Light");
+        primaryStage.setTitle(Constants.window_label);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public void closeProgram() {
-        boolean answer = ConfirmBox.display("Exit", "Sure you want to exit?");
-        if (answer) {
-            window.close();
-        }
-    }
-
     public static void main(String[] args) {
-//        Database database = Database.getInstance();
-//        database.test();
         launch(args);
     }
 }

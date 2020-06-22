@@ -5,6 +5,7 @@ import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
 import SystemSTL.SystemSTL;
+import Utils.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -46,17 +47,17 @@ public class ProgramGUI {
     }
 
     private void createHomeWindow() {
-        Label label = new Label("Welcome to the Smart traffic light!");
+        Label label = new Label(Constants.home_page_window_label);
         HBox topMenu = new HBox();
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
-        Button buttonStart = new Button("Let's start");
+        Button buttonStart = new Button(Constants.lets_start_button_label);
         buttonStart.setOnAction(e -> window.setScene(windowClientTypes));
 
-        Button buttonAboutUs = new Button("About us");
-        buttonAboutUs.setOnAction(e -> createAboutUsAlertWindow());
+        Button buttonAboutUs = new Button(Constants.about_us_button_label);
+        buttonAboutUs.setOnAction(e -> AlertBox.display(Constants.about_us_window_label, Constants.about_us_text));
 
         VBox leftMenu = new VBox();
         leftMenu.setPadding(new Insets(50));
@@ -83,13 +84,6 @@ public class ProgramGUI {
         windowHome = new Scene(borderPane, 600, 400);
     }
 
-    private void createAboutUsAlertWindow() {
-        String title = "About us";
-        String aboutUs = "Smart Traffic Light\nVersion 1.0\n" +
-                "Created by Netanel Davidov and Maxim Marmer";
-        AlertBox.display(title, aboutUs);
-    }
-
     @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
         VBox centerMenu = new VBox(20);
@@ -100,18 +94,18 @@ public class ProgramGUI {
 
         VBox label1 = new VBox(10);
         label1.getStyleClass().add("options-column");
-        Label nameLabel1 = new Label("Crossroad 1");
+        Label nameLabel1 = new Label(Constants.crossroad_1_label);
         nameLabel1.getStyleClass().add("label-column");
         label1.getChildren().addAll(nameLabel1);
 
         VBox route1 = new VBox(10);
         route1.getStyleClass().add("options-column");
-        Label routeLabel1 = new Label("Route");
+        Label routeLabel1 = new Label(Constants.route_label);
         routeLabel1.getStyleClass().add("label-column");
-        Label northText1 = new Label("North");
-        Label eastText1 = new Label("East");
-        Label southText1 = new Label("South");
-        Label westText1 = new Label("West");
+        Label northText1 = new Label(Constants.north_label);
+        Label eastText1 = new Label(Constants.east_label);
+        Label southText1 = new Label(Constants.south_label);
+        Label westText1 = new Label(Constants.west_label);
         northText1.getStyleClass().add("label-direction");
         eastText1.getStyleClass().add("label-direction");
         southText1.getStyleClass().add("label-direction");
@@ -120,7 +114,7 @@ public class ProgramGUI {
 
         VBox cars1 = new VBox(10);
         cars1.getStyleClass().add("options-column");
-        Label carsLabel1 = new Label("Cars count");
+        Label carsLabel1 = new Label(Constants.cars_count_label);
         carsLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> cars_spinners_1 = new ArrayList<>();
         cars_spinners_1.add(new Spinner<>(1, 1000, 10));
@@ -128,21 +122,21 @@ public class ProgramGUI {
         cars_spinners_1.add(new Spinner<>(1, 1000, 10));
         cars_spinners_1.add(new Spinner<>(1, 1000, 10));
 
-        for (Spinner<Integer> spinner : cars_spinners_1) {
-            if (spinner.getValue() == 10) {
-                upgradeSpinner(spinner, 1, 1000, false);
-
-            } else {
-                upgradeSpinner(spinner, 1, 5, false);
-
-            }
-        }
+//        for (Spinner<Integer> spinner : cars_spinners_1) {
+//            if (spinner.getValue() == 10) {
+//                upgradeSpinner(spinner, 1, 1000, false);
+//
+//            } else {
+//                upgradeSpinner(spinner, 1, 5, false);
+//
+//            }
+//        }
 
         cars1.getChildren().addAll(carsLabel1, cars_spinners_1.get(0), cars_spinners_1.get(1), cars_spinners_1.get(2), cars_spinners_1.get(3));
 
         VBox speedLimit1 = new VBox(10);
         speedLimit1.getStyleClass().add("options-column");
-        Label speedLimitLabel1 = new Label("Speed limit");
+        Label speedLimitLabel1 = new Label(Constants.speed_limit_label);
         speedLimitLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> limit_spinners_1 = new ArrayList<>();
         limit_spinners_1.add(new Spinner<>(50, 110, 70));
@@ -155,7 +149,7 @@ public class ProgramGUI {
 
         VBox actualSpeed1 = new VBox(10);
         actualSpeed1.getStyleClass().add("options-column");
-        Label actualSpeedLabel1 = new Label("Actual speed");
+        Label actualSpeedLabel1 = new Label(Constants.actual_speed_label);
         actualSpeedLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> actual_spinners_1 = new ArrayList<>();
         actual_spinners_1.add(new Spinner<>(50, 110, 70));
@@ -172,18 +166,18 @@ public class ProgramGUI {
 
         VBox boxLabel2 = new VBox(10);
         boxLabel2.getStyleClass().add("options-column");
-        Label nameLabel2 = new Label("Crossroad 2");
+        Label nameLabel2 = new Label(Constants.crossroad_2_label);
         nameLabel2.getStyleClass().add("label-column");
         boxLabel2.getChildren().addAll(nameLabel2);
 
         VBox route2 = new VBox(10);
         route2.getStyleClass().add("options-column");
-        Label routeLabel2 = new Label("Route");
+        Label routeLabel2 = new Label(Constants.route_label);
         routeLabel2.getStyleClass().add("label-column");
-        Label northText2 = new Label("North");
-        Label eastText2 = new Label("East");
-        Label southText2 = new Label("South");
-        Label westText2 = new Label("West");
+        Label northText2 = new Label(Constants.north_label);
+        Label eastText2 = new Label(Constants.east_label);
+        Label southText2 = new Label(Constants.south_label);
+        Label westText2 = new Label(Constants.west_label);
         northText2.getStyleClass().add("label-direction");
         eastText2.getStyleClass().add("label-direction");
         southText2.getStyleClass().add("label-direction");
@@ -192,7 +186,7 @@ public class ProgramGUI {
 
         VBox cars2 = new VBox(10);
         cars2.getStyleClass().add("options-column");
-        Label carsLabel2 = new Label("Cars count");
+        Label carsLabel2 = new Label(Constants.cars_count_label);
         carsLabel2.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> cars_spinners_2 = new ArrayList<>();
         cars_spinners_2.add(new Spinner<>(1, 1000, 25));
@@ -204,7 +198,7 @@ public class ProgramGUI {
 
         VBox speedLimit2 = new VBox(10);
         speedLimit2.getStyleClass().add("options-column");
-        Label speedLimitLabel2 = new Label("Speed limit");
+        Label speedLimitLabel2 = new Label(Constants.speed_limit_label);
         speedLimitLabel2.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> limit_spinners_2 = new ArrayList<>();
         limit_spinners_2.add(new Spinner<>(50, 110, 70));
@@ -215,7 +209,7 @@ public class ProgramGUI {
 
         VBox actualSpeed2 = new VBox(10);
         actualSpeed2.getStyleClass().add("options-column");
-        Label actualSpeedLabel2 = new Label("Actual speed");
+        Label actualSpeedLabel2 = new Label(Constants.actual_speed_label);
         actualSpeedLabel2.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> actual_spinners_2 = new ArrayList<>();
         actual_spinners_2.add(new Spinner<>(50, 110, 70));
@@ -232,32 +226,32 @@ public class ProgramGUI {
 
         VBox boxLabel3 = new VBox(10);
         boxLabel3.getStyleClass().add("options-column");
-        Label nameLabel3 = new Label("Other features");
+        Label nameLabel3 = new Label(Constants.other_features_label);
         nameLabel3.getStyleClass().add("label-column");
         boxLabel3.getChildren().addAll(nameLabel3);
 
         VBox boxButtonRandom = new VBox(10);
         boxButtonRandom.getStyleClass().add("options-column");
-        Button buttonRandom = new Button("Random");
+        Button buttonRandom = new Button(Constants.random_button_label);
         boxButtonRandom.getChildren().add(buttonRandom);
 
         VBox boxButtonDatabase = new VBox(10);
         boxButtonDatabase.getStyleClass().add("options-column");
-        Button buttonDatabase = new Button("Database");
+        Button buttonDatabase = new Button(Constants.database_button_label);
         boxButtonDatabase.getChildren().add(buttonDatabase);
 
         VBox boxButtonReset = new VBox(10);
         boxButtonReset.getStyleClass().add("options-column");
-        Button buttonReset = new Button("Reset");
+        Button buttonReset = new Button(Constants.reset_button_label);
         boxButtonReset.getChildren().add(buttonReset);
 
         VBox boxButtonInfo = new VBox(10);
         boxButtonInfo.getStyleClass().add("options-column");
-        Button buttonInfo = new Button("Info");
+        Button buttonInfo = new Button(Constants.info_button_label);
         boxButtonInfo.getChildren().add(buttonInfo);
 
         buttonRandom.setOnAction(e -> {
-            boolean answer = ConfirmBox.display("Random", "Generate random data?");
+            boolean answer = ConfirmBox.display(Constants.random_window_label, Constants.generate_random_data_label);
             if (answer) {
 
             }
@@ -267,8 +261,9 @@ public class ProgramGUI {
             String query_name = DatabaseBox.display();
             System.out.println(query_name);
         });
+
         buttonReset.setOnAction(e -> {
-            boolean answer = ConfirmBox.display("Reset", "Reset all values?");
+            boolean answer = ConfirmBox.display(Constants.reset_button_label, Constants.reset_conditions_label);
             if (answer) {
                 //reset all values
             }
@@ -281,14 +276,14 @@ public class ProgramGUI {
         centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
 
         HBox topMenu = new HBox();
-        Label label = new Label("Choose traffic conditions");
+        Label label = new Label(Constants.traffic_conditions_window_label);
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
         HBox bottomMenu = new HBox(20);
         bottomMenu.setAlignment(Pos.CENTER);
-        Button buttonRun = new Button("Run");
+        Button buttonRun = new Button(Constants.run_button_label);
         buttonRun.setOnAction(e -> {
             //create crossroadInfo with fields data
             //check if data correct
@@ -315,10 +310,10 @@ public class ProgramGUI {
             conditions = new Conditions(crossroad_info_1, crossroad_info_2);
             window.setScene(windowSimulation);
         });
-        Button buttonBack = new Button("Back");
+        Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
-            boolean goBack = ConfirmBox.display("Go to previous window",
-                    "If you go back all options will reset\nSure you want to go back?");
+            boolean goBack = ConfirmBox.display(Constants.go_to_previous_page_window_label,
+                    Constants.go_to_previous_page_from_conditions_text);
             if (goBack) window.setScene(windowClientTypes);
         });
         bottomMenu.getChildren().addAll(buttonBack, buttonRun);
@@ -339,14 +334,14 @@ public class ProgramGUI {
     }
 
     private void createClientTypesWindow() {
-        Label label = new Label("Choose your occupation");
+        Label label = new Label(Constants.client_type_window_label);
         HBox topMenu = new HBox();
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
         VBox leftMenu = new VBox(20);
-        Button buttonAnalyst = new Button("Analyst");
+        Button buttonAnalyst = new Button(Constants.analyst_button_label);
         buttonAnalyst.setOnAction(e -> {
             analyst = true;
             window.setScene(windowOptions);
@@ -359,7 +354,7 @@ public class ProgramGUI {
         leftMenu.getChildren().addAll(imageViewAnalyst, buttonAnalyst);
 
         VBox rightMenu = new VBox(20);
-        Button buttonObserver = new Button("Observer");
+        Button buttonObserver = new Button(Constants.observer_button_label);
         buttonObserver.setOnAction(e -> {
             analyst = false;
             window.setScene(windowOptions);
@@ -382,7 +377,7 @@ public class ProgramGUI {
     @SuppressWarnings("Duplicates")
     private void createSimulationWindow() {
         HBox topMenu = new HBox();
-        Label label = new Label("Simulation");
+        Label label = new Label(Constants.simulation_window_label);
         topMenu.setMinHeight(60);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
@@ -390,17 +385,17 @@ public class ProgramGUI {
         HBox bottomMenu = new HBox(20);
         bottomMenu.setMinHeight(60);
         bottomMenu.setAlignment(Pos.CENTER);
-        Button buttonSave = new Button("Save");
+        Button buttonSave = new Button(Constants.save_button_label);
         buttonSave.setOnAction(e -> {
             //Save to database window
         });
-        Button buttonBack = new Button("Back");
+        Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
-            boolean goBack = ConfirmBox.display("Go to previous window",
-                    "Current simulation will be deleted\nSure you want to go back?");
+            boolean goBack = ConfirmBox.display(Constants.go_to_previous_page_window_label,
+                    Constants.go_to_previous_page_from_simulation_text);
             if (goBack) window.setScene(windowOptions);
         });
-        Button buttonStart = new Button("Start");
+        Button buttonStart = new Button(Constants.start_button_label);
         buttonStart.setOnAction(e -> {
             //Save to database window
             SystemSTL systemSTL = new SystemSTL(conditions);
@@ -464,9 +459,9 @@ public class ProgramGUI {
 
                 StringConverter<Integer> converter = valueFactory.getConverter();
                 Integer enterValue;
-                try{
+                try {
                     enterValue = converter.fromString(text);
-                } catch (RuntimeException e){
+                } catch (RuntimeException e) {
                     enterValue = 1;
                 }
 

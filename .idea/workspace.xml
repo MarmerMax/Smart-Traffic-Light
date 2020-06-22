@@ -2,44 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/STL.iml" beforeDir="false" afterPath="$PROJECT_DIR$/STL.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Database/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/AlertBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/AlertBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ConfirmBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ConfirmBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/InputConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/InputConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/META-INF/STL.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Main/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Conditions/Conditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Conditions/Conditions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Crossroad/Crossroad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Crossroad/Crossroad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/DrawObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/DrawObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Road/Road.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Road/Road.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Road/RoadCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Road/RoadCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/GreenState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/GreenState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedYellowState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedYellowState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/YellowState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/YellowState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/CarTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/CarTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/ConditionsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/ConditionsTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/CrossroadInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/CrossroadInfoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/DirectionInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/DirectionInfoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/RoadCreatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/RoadCreatorTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TrafficLightTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/TrafficLightTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/Utils/Formulas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Utils/Formulas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AlertBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/ConfirmBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ConfirmBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/DatabaseBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DatabaseBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
@@ -105,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="267" column="22" selection-start-line="267" selection-start-column="22" selection-end-line="267" selection-end-column="22" />
+            <state relative-caret-position="-188">
+              <caret line="289" column="29" selection-start-line="289" selection-start-column="29" selection-end-line="289" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+            <state relative-caret-position="164">
+              <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#997#1005#0" expanded="true" />
@@ -128,10 +93,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="57" column="67" selection-start-line="57" selection-start-column="67" selection-end-line="57" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ConfirmBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="21" selection-start-line="21" selection-end-line="60" selection-end-column="5" />
+            <state relative-caret-position="-198">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -152,19 +126,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Database/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            <state relative-caret-position="409">
+              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,13 +137,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+            <state relative-caret-position="387">
+              <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1351#1352#0" expanded="true" />
+                <element signature="e#1379#1380#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -199,17 +166,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>font</find>
-      <find>page</find>
-      <find>clie</find>
-      <find>conditio</find>
-      <find>setCo</find>
-      <find>TimeDistribution</find>
-      <find>changeState</find>
-      <find>setEast</find>
       <find>condi</find>
       <find>r</find>
-      <find>run</find>
       <find>crossroad1</find>
       <find>carsLabel1</find>
       <find>Crossroad</find>
@@ -222,6 +180,22 @@
       <find>spinner</find>
       <find>bord</find>
       <find>Conf</find>
+      <find>confirm</find>
+      <find>reset</find>
+      <find>choose</find>
+      <find>ana</find>
+      <find>database_b</find>
+      <find>run</find>
+      <find>Aler</find>
+      <find>alert</find>
+      <find>confir</find>
+      <find>go_to</find>
+      <find>actual_speed</find>
+      <find>Route</find>
+      <find>can</find>
+      <find>cancel</find>
+      <find>exi</find>
+      <find>exit</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -235,14 +209,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Objects/TrafficLight/ChangeState.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficObject.java" />
         <option value="$PROJECT_DIR$/src/GUI/DrawObjects.java" />
         <option value="$PROJECT_DIR$/src/Objects/DrawObject.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/State.java" />
         <option value="$PROJECT_DIR$/src/Main/style.css" />
-        <option value="$PROJECT_DIR$/src/GUI/AlertBox.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ConfirmBox.java" />
         <option value="$PROJECT_DIR$/src/Objects/Road/Road.java" />
         <option value="$PROJECT_DIR$/src/Objects/Crossroad/QuadrupleCrossroad.java" />
         <option value="$PROJECT_DIR$/src/GUI/style.css" />
@@ -283,9 +254,12 @@
         <option value="$PROJECT_DIR$/src/Tests/TrafficLightTest.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" />
         <option value="$PROJECT_DIR$/src/Database/Database.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
-        <option value="$PROJECT_DIR$/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/src/GUI/AlertBox.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ConfirmBox.java" />
         <option value="$PROJECT_DIR$/src/GUI/DatabaseBox.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
+        <option value="$PROJECT_DIR$/src/Utils/Constants.java" />
+        <option value="$PROJECT_DIR$/src/Main/Main.java" />
       </list>
     </option>
   </component>
@@ -322,13 +296,13 @@
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
               <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
               <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Main" type="462c0819:PsiDirectoryNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
@@ -598,7 +572,7 @@
       <workItem from="1590675575689" duration="11650000" />
       <workItem from="1590740943481" duration="10941000" />
       <workItem from="1590763680204" duration="11230000" />
-      <workItem from="1592732705262" duration="7584000" />
+      <workItem from="1592732705262" duration="17228000" />
     </task>
     <servers />
   </component>
@@ -635,7 +609,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184314000" />
+    <option name="totallyTimeSpent" value="193958000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -689,32 +663,32 @@
       <window_info anchor="right" id="Theme Preview" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.1588146" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.15957446" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" weight="0.32978722" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="UI Designer" order="6" />
-      <window_info anchor="bottom" id="Thumbnails" order="0" weight="0.3289689" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.39934534" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.3289689" />
-      <window_info anchor="bottom" id="Application Servers" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Problems" order="10" />
-      <window_info anchor="bottom" id="Changes" order="11" />
-      <window_info anchor="bottom" id="Profiler" order="12" />
-      <window_info anchor="bottom" id="Event Log" order="13" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.32733223" />
-      <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="16" />
-      <window_info anchor="bottom" id="Terminal" order="17" weight="0.6415712" />
-      <window_info anchor="bottom" id="Duplicate detector" order="18" weight="0.32733223" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32569557" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41080198" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32569557" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="15" />
+      <window_info anchor="bottom" id="Terminal" order="16" weight="0.6415712" />
+      <window_info anchor="bottom" id="Duplicate detector" order="17" weight="0.32733223" />
+      <window_info anchor="bottom" id="Thumbnails" order="18" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -740,9 +714,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/images/lights/red-s.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.graphics.jar!/javafx/stage/Stage.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6011">
@@ -786,16 +757,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/images/cars/car1.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/style.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1044,13 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1065,13 +1019,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ConfirmBox.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/AlertBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="21" selection-start-line="21" selection-end-line="60" selection-end-column="5" />
+        <state relative-caret-position="396">
+          <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ConfirmBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-198">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1087,28 +1058,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Database/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="267" column="22" selection-start-line="267" selection-start-column="22" selection-end-line="267" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+        <state relative-caret-position="409">
+          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1117,11 +1068,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+        <state relative-caret-position="164">
+          <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#997#1005#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-188">
+          <caret line="289" column="29" selection-start-line="289" selection-start-column="29" selection-end-line="289" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="57" column="67" selection-start-line="57" selection-start-column="67" selection-end-line="57" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1351#1352#0" expanded="true" />
+            <element signature="e#1379#1380#0" expanded="true" />
           </folding>
         </state>
       </provider>
