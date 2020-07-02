@@ -5,11 +5,14 @@ import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
 import Objects.TrafficLight.TrafficLightState.GreenState;
+import Objects.TrafficLight.TrafficLightState.RedState;
 import SystemSTL.SystemSTL;
 import Tools.Constants;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,6 +29,8 @@ import javafx.util.StringConverter;
 
 import javafx.event.ActionEvent;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ProgramGUI {
@@ -34,6 +39,7 @@ public class ProgramGUI {
     private Stage window;
     private boolean analyst;
     private Conditions conditions;
+    private Pane simulation;
 
     private CrossroadInfo crossroad_info_1;
     private CrossroadInfo crossroad_info_2;
@@ -401,46 +407,71 @@ public class ProgramGUI {
             if (goBack) window.setScene(windowOptions);
         });
 
-        Pane centerMenu = new Pane();
-        centerMenu.getStyleClass().add("simulation-container");
+        simulation = new Pane();
+        updateSimulation();
+
+        BorderPane borderPane = new BorderPane();
+
+        Button buttonStart = new Button(Constants.start_button_label);
+        buttonStart.setOnAction(e -> {
+            SystemSTL systemSTL = new SystemSTL(conditions);
+            Thread run_system = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    systemSTL.run();
+                }
+            });
+            run_system.start();
+
+            Thread update_simulation = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!systemSTL.isFinished()) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateSimulation();
+                            }
+                        });
+                    }
+                }
+            });
+            update_simulation.start();
+        });
+        bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
+
+        borderPane.getStylesheets().add("file:src/GUI/style.css");
+        borderPane.setTop(topMenu);
+        borderPane.setCenter(simulation);
+        borderPane.setBottom(bottomMenu);
+
+        windowSimulation = new Scene(borderPane, 1000, 660);
+    }
+
+
+    private synchronized void updateSimulation() {
+        simulation.getChildren().clear();
+        simulation.getStyleClass().add("simulation-container");
         Image imageRoad = new Image("file:images/others/road.png");
         ImageView imageViewRoad = new ImageView(imageRoad);
         imageViewRoad.setFitHeight(530);
         imageViewRoad.setFitWidth(990);
 
-
         ImageView[] traffic_lights_crossroad_1 = createTrafficLights(1);
         ImageView[] traffic_lights_crossroad_2 = createTrafficLights(2);
 
-        centerMenu.getChildren().addAll(imageViewRoad);
-        centerMenu.getChildren().addAll(
-                traffic_lights_crossroad_1[0],
-                traffic_lights_crossroad_1[1],
-                traffic_lights_crossroad_1[2],
-                traffic_lights_crossroad_1[3]);
+        simulation.getChildren().addAll(imageViewRoad);
+        addTrafficLights(traffic_lights_crossroad_1);
+        addTrafficLights(traffic_lights_crossroad_2);
+    }
 
-        centerMenu.getChildren().addAll(
-                traffic_lights_crossroad_2[0],
-                traffic_lights_crossroad_2[1],
-                traffic_lights_crossroad_2[2],
-                traffic_lights_crossroad_2[3]);
-
-
-
-        Button buttonStart = new Button(Constants.start_button_label);
-        buttonStart.setOnAction(e -> {
-            SystemSTL systemSTL = new SystemSTL(conditions);
-            systemSTL.run();
-        });
-        bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
-
-        BorderPane borderPane = new BorderPane();
-        borderPane.getStylesheets().add("file:src/GUI/style.css");
-        borderPane.setTop(topMenu);
-        borderPane.setCenter(centerMenu);
-        borderPane.setBottom(bottomMenu);
-
-        windowSimulation = new Scene(borderPane, 1000, 660);
+    private void addTrafficLights(ImageView[] images) {
+        simulation.getChildren().addAll(images[0], images[1], images[2], images[3]);
     }
 
     private ImageView[] createTrafficLights(int crossroad_number) {
@@ -469,6 +500,10 @@ public class ProgramGUI {
                 crossroad_info.getCrossroad().getWestTrafficLight().getTrafficLightImage());
 
         return views;
+    }
+
+    private void updateImage() {
+
     }
 
     private ImageView createTrafficLight(int x, int y, int rotate, Image image) {

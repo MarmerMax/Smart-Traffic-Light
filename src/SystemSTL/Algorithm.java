@@ -18,6 +18,7 @@ public class Algorithm {
 
     private double initial_duration;
     private double actual_duration;
+    private boolean is_finished;
 
 //    private ArrayList<Queue<Car>> cars_crossroad_1;
 //    private ArrayList<Queue<Car>> cars_crossroad_2;
@@ -28,6 +29,7 @@ public class Algorithm {
 
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
+        is_finished = false;
         createCars();
         checkInitialStateDuration();
     }
@@ -117,6 +119,7 @@ public class Algorithm {
                 }
             }
         }
+        is_finished = true;
     }
 
 //    private void checkInitialStateDuration() {
@@ -428,5 +431,9 @@ public class Algorithm {
 
     public double getActualDuration() {
         return actual_duration;
+    }
+
+    public boolean getIsFinished() {
+        return is_finished;
     }
 }

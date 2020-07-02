@@ -7,11 +7,11 @@ public class SystemSTL {
 
     private Conditions conditions;
     private Algorithm algorithm;
-    private boolean isFinished;
+    private boolean is_finished;
 
     public SystemSTL(Conditions conditions) {
         algorithm = new Algorithm(conditions);
-        isFinished = false;
+        is_finished = false;
     }
 
     public void run() {
@@ -23,6 +23,6 @@ public class SystemSTL {
     }
 
     public boolean isFinished() {
-        return isFinished;
+        return algorithm.getIsFinished();
     }
 }

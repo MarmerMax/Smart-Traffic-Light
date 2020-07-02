@@ -23,7 +23,8 @@ public class Main extends Application {
             e.consume();
             boolean answer = ConfirmBox.display(Constants.exit_window_label, Constants.exit_text_label);
             if (answer) {
-                window.close();
+//                window.close();
+                System.exit(1);
             }
         });
 
