@@ -2,7 +2,11 @@ package SystemSTL;
 
 import Objects.Car.Car;
 import Objects.Conditions.Conditions;
+import Objects.CrossroadInfo.CrossroadInfo;
 import Tools.Constants;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -36,7 +40,7 @@ public class Algorithm {
         for (LaneInfo lane_info : cars_crossroad_1) {
             lane_computation = new LaneComputation(lane_info);
 
-            if(max_time < lane_computation.getInitialTime()){
+            if (max_time < lane_computation.getInitialTime()) {
                 max_time = lane_computation.getInitialTime();
             }
         }
@@ -44,13 +48,13 @@ public class Algorithm {
         for (LaneInfo lane_info : cars_crossroad_2) {
             lane_computation = new LaneComputation(lane_info);
 
-            if(max_time < lane_computation.getInitialTime()){
+            if (max_time < lane_computation.getInitialTime()) {
                 max_time = lane_computation.getInitialTime();
             }
         }
 
         //add phases for opposite lanes
-        int phase_amount = (int)(max_time / (Constants.CROSSROAD_PHASE_TIME / 2)) + 1;
+        int phase_amount = (int) (max_time / (Constants.CROSSROAD_PHASE_TIME / 2)) + 1;
 
         initial_duration = max_time + (phase_amount * (Constants.CROSSROAD_PHASE_TIME / 2));
         System.out.println("initial time for passed all cars: " + initial_duration);
@@ -58,6 +62,61 @@ public class Algorithm {
 
     public void start() {
         System.err.println("[START]");
+
+        double time = 0;
+        double changing_time = 0;
+
+        //must to be in thread
+        while (!isAllCarsPassed()) {
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            //main road active
+            if (conditions.getCrossroadInfo1().getCrossroad().isEastWestActive()
+                    || conditions.getCrossroadInfo2().getCrossroad().isEastWestActive()) {
+
+                System.out.println("EAST AND WEST ACTIVE");
+
+                if (conditions.getCrossroadInfo1().getCrossroad().getTimeDistribution().getEastWest() < time
+                        || conditions.getCrossroadInfo2().getCrossroad().getTimeDistribution().getEastWest() < time) {
+                    conditions.getCrossroadInfo1().getCrossroad().changeTrafficLightStateOnCrossroad();
+                    conditions.getCrossroadInfo2().getCrossroad().changeTrafficLightStateOnCrossroad();
+                }
+                time++;
+            }
+
+            //others road active
+            else if (conditions.getCrossroadInfo1().getCrossroad().isNorthSouthActive()
+                    || conditions.getCrossroadInfo2().getCrossroad().isNorthSouthActive()) {
+
+                System.out.println("NORTH AND SOUTH ACTIVE");
+
+                if (conditions.getCrossroadInfo1().getCrossroad().getTimeDistribution().getNorthSouth() < time
+                        || conditions.getCrossroadInfo2().getCrossroad().getTimeDistribution().getNorthSouth() < time) {
+                    conditions.getCrossroadInfo1().getCrossroad().changeTrafficLightStateOnCrossroad();
+                    conditions.getCrossroadInfo2().getCrossroad().changeTrafficLightStateOnCrossroad();
+                }
+                time++;
+
+            }
+
+            //all road are stop
+            else {
+                time = 0;
+                System.out.println("ALL STOPS");
+                if (changing_time < 2) {
+                    changing_time++;
+                } else {
+                    changing_time = 0;
+                    conditions.getCrossroadInfo1().getCrossroad().changeTrafficLightStateOnCrossroad();
+                    conditions.getCrossroadInfo2().getCrossroad().changeTrafficLightStateOnCrossroad();
+                }
+            }
+        }
     }
 
 //    private void checkInitialStateDuration() {
@@ -232,6 +291,20 @@ public class Algorithm {
 
     public void findBetterDuration() {
 
+    }
+
+    private boolean isAllCarsPassed() {
+        for (LaneInfo lane_info : cars_crossroad_1) {
+            if (lane_info.getCarsInLane().size() > 0) {
+                return false;
+            }
+        }
+        for (LaneInfo lane_info : cars_crossroad_2) {
+            if (lane_info.getCarsInLane().size() > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

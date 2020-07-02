@@ -4,8 +4,10 @@ import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
+import Objects.TrafficLight.TrafficLightState.GreenState;
 import SystemSTL.SystemSTL;
 import Tools.Constants;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -33,6 +35,9 @@ public class ProgramGUI {
     private boolean analyst;
     private Conditions conditions;
 
+    private CrossroadInfo crossroad_info_1;
+    private CrossroadInfo crossroad_info_2;
+
     public ProgramGUI(Stage stage) {
         window = stage;
         window.setResizable(false);
@@ -40,6 +45,11 @@ public class ProgramGUI {
     }
 
     private void createUI() {
+        Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
+        Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
+        crossroad_info_1 = new CrossroadInfo(crossroad_1);
+        crossroad_info_2 = new CrossroadInfo(crossroad_2);
+
         createHomeWindow();
         createClientTypesWindow();
         createOptionsWindow();
@@ -298,12 +308,6 @@ public class ProgramGUI {
 
             //else alert box fail!
 
-            Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
-            Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
-
-            CrossroadInfo crossroad_info_1 = new CrossroadInfo(crossroad_1);
-            CrossroadInfo crossroad_info_2 = new CrossroadInfo(crossroad_2);
-
             crossroad_info_1.setCrossroadInfo(cars_inputs_1, actual_inputs_1, limit_inputs_1);
             crossroad_info_2.setCrossroadInfo(cars_inputs_2, actual_inputs_2, limit_inputs_2);
 
@@ -389,37 +393,92 @@ public class ProgramGUI {
         buttonSave.setOnAction(e -> {
             //Save to database window
         });
+
         Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
             boolean goBack = ConfirmBox.display(Constants.go_to_previous_page_window_label,
                     Constants.go_to_previous_page_from_simulation_text);
             if (goBack) window.setScene(windowOptions);
         });
+
+        Pane centerMenu = new Pane();
+        centerMenu.getStyleClass().add("simulation-container");
+        Image imageRoad = new Image("file:images/others/road.png");
+        ImageView imageViewRoad = new ImageView(imageRoad);
+        imageViewRoad.setFitHeight(530);
+        imageViewRoad.setFitWidth(990);
+
+
+        ImageView[] traffic_lights_crossroad_1 = createTrafficLights(1);
+        ImageView[] traffic_lights_crossroad_2 = createTrafficLights(2);
+
+        centerMenu.getChildren().addAll(imageViewRoad);
+        centerMenu.getChildren().addAll(
+                traffic_lights_crossroad_1[0],
+                traffic_lights_crossroad_1[1],
+                traffic_lights_crossroad_1[2],
+                traffic_lights_crossroad_1[3]);
+
+        centerMenu.getChildren().addAll(
+                traffic_lights_crossroad_2[0],
+                traffic_lights_crossroad_2[1],
+                traffic_lights_crossroad_2[2],
+                traffic_lights_crossroad_2[3]);
+
+
+
         Button buttonStart = new Button(Constants.start_button_label);
         buttonStart.setOnAction(e -> {
-            //Save to database window
             SystemSTL systemSTL = new SystemSTL(conditions);
-//            systemSTL.run();
+            systemSTL.run();
         });
         bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
-
-        VBox centerMenu = new VBox();
-        centerMenu.getStyleClass().add("simulation-container");
-//        Image imageObserver = new Image("file:images/others/crossroad.jpg");
-//        ImageView imageViewObserver = new ImageView(imageObserver);
-//        imageViewObserver.setFitHeight(500);
-//        imageViewObserver.setFitWidth(900);
-//        imageViewObserver.fitWidthProperty().bind(centerMenu.widthProperty());
-//        imageViewObserver.fitHeightProperty().bind(centerMenu.heightProperty());
-        Label tempLabel = new Label("Coming soon...");
-        centerMenu.getChildren().addAll(tempLabel);
 
         BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(topMenu);
         borderPane.setCenter(centerMenu);
         borderPane.setBottom(bottomMenu);
+
         windowSimulation = new Scene(borderPane, 1000, 660);
+    }
+
+    private ImageView[] createTrafficLights(int crossroad_number) {
+        ImageView[] views = new ImageView[4];
+        CrossroadInfo crossroad_info = null;
+        int x = 0, y = 170;
+
+        if (crossroad_number == 1) {
+            x = 150;
+            crossroad_info = crossroad_info_1;
+        } else if (crossroad_number == 2) {
+            x = 675;
+            crossroad_info = crossroad_info_2;
+        }
+
+        views[0] = createTrafficLight(x, y, 180,
+                crossroad_info.getCrossroad().getNorthTrafficLight().getTrafficLightImage());
+
+        views[1] = createTrafficLight(x + 140, y + 10, 270,
+                crossroad_info.getCrossroad().getEastTrafficLight().getTrafficLightImage());
+
+        views[2] = createTrafficLight(x + 140, y + 150, 0,
+                crossroad_info.getCrossroad().getSouthTrafficLight().getTrafficLightImage());
+
+        views[3] = createTrafficLight(x - 10, y + 150, 90,
+                crossroad_info.getCrossroad().getWestTrafficLight().getTrafficLightImage());
+
+        return views;
+    }
+
+    private ImageView createTrafficLight(int x, int y, int rotate, Image image) {
+        ImageView image_view = new ImageView(image);
+        image_view.setX(x);
+        image_view.setY(y);
+        image_view.setFitHeight(30);
+        image_view.setFitWidth(15);
+        image_view.setRotate(rotate);
+        return image_view;
     }
 
     private void upgradeSpinner(Spinner<Integer> spinner, int min, int max, boolean limit) {
