@@ -3,58 +3,39 @@ package Objects.Car;
 import Objects.DrawObject;
 import javafx.scene.image.Image;
 
-public class Car implements DrawObject {
+public abstract class Car implements DrawObject {
 
-    private Image image;
-    private double length;
-    private int type;
-
-    public Car() {
-        type = generateRandomCar();
-    }
+    protected Image image;
+    protected double length;
+    protected double acceleration;
+    protected double deceleration;
+    protected double max_speed;
+    protected double car_type;
 
     @Override
     public Image getImage() {
         if (image != null) {
             return image;
         } else {
-            String path = "file:images/cars/car" + type + ".png";
+            String path = "file:images/cars/car" + car_type + ".png";
             image = new Image(path);
             return image;
         }
-    }
-
-    private int generateRandomCar() {
-        int num;
-        double random = Math.random();
-
-        if (random < 0.05) {
-            num = 1;
-            length = 4.7;
-        } else if (0.05 <= random && random < 0.1) {
-            num = 2;
-            length = 4.7;
-        } else if (0.1 < random && random < 0.2) {
-            num = 3;
-            length = 5.2;
-        } else if (0.2 <= random && random < 0.5) {
-            num = 4;
-            length = 4.6;
-        } else if (0.5 < random && random < 0.8) {
-            num = 5;
-            length = 4.8;
-        } else {
-            num = 6;
-            length = 5.4;
-        }
-        return num;
     }
 
     public double getLength() {
         return length;
     }
 
-    public int getType() {
-        return type;
+    public double getDeceleration() {
+        return deceleration;
+    }
+
+    public double getMaxSpeed() {
+        return max_speed;
+    }
+
+    public double getAcceleration() {
+        return acceleration;
     }
 }

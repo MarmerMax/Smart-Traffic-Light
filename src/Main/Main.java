@@ -1,21 +1,11 @@
 package Main;
 
-import Database.Database;
 import GUI.ConfirmBox;
 import GUI.ProgramGUI;
-import Objects.Car.Car;
-import Utils.Constants;
+import Tools.Constants;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import Objects.TrafficLight.TrafficLight;
-
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Main extends Application {
 
@@ -26,7 +16,6 @@ public class Main extends Application {
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 //        StackPane layout = new StackPane();
 //        Scene scene = new Scene(layout, 700, 300);
-
 
 
         window = primaryStage;
@@ -48,4 +37,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
 }

@@ -1,4 +1,4 @@
-package Utils;
+package Tools;
 
 public class Constants {
 
@@ -61,5 +61,17 @@ public class Constants {
     public static final String generate_random_data_label = "Generate random data?";
     public static final String reset_conditions_label = "Reset all values?";
     public static final String exit_text_label = "Sure you want to exit?";
+
+
+
+    public static final double POLICE_MAX_SPEED = 70;
+    public static final double AMBULANCE_MAX_SPEED = 70;
+    public static final double TAXI_MAX_SPEED = 70;
+    public static final double USUAL_MAX_SPEED = 70;
+    public static final double TRACK_MAX_SPEED = 70;
+
+
+    public static final double CROSSROAD_PHASE_TIME = 60;
+
 
 }

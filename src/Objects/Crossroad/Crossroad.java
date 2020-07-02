@@ -2,8 +2,8 @@ package Objects.Crossroad;
 
 import Objects.Road.Road;
 import Objects.TrafficLight.TrafficLight;
-import Objects.TrafficLight.TrafficLightState.State;
 import Objects.TrafficLight.TrafficLightTimeDistribution.TimeDistribution;
+import Tools.Constants;
 
 public class Crossroad {
 
@@ -21,7 +21,7 @@ public class Crossroad {
 
     public Crossroad(Road[] r) {
         roads = r;
-        timeDistribution = new TimeDistribution(40);
+        timeDistribution = new TimeDistribution(Constants.CROSSROAD_PHASE_TIME);
         northTrafficLight = new TrafficLight();
         eastTrafficLight = new TrafficLight();
         southTrafficLight = new TrafficLight();

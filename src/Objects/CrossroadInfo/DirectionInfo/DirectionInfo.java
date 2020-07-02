@@ -2,8 +2,8 @@ package Objects.CrossroadInfo.DirectionInfo;
 
 public class DirectionInfo {
 
-    private int speedLimit;
-    private int actualSpeed;
+    private double speedLimit;
+    private double actualSpeed;
     private int carsCount;
 
     public DirectionInfo(int carsCount, int speedLimit, int actualSpeed) {
@@ -21,11 +21,11 @@ public class DirectionInfo {
         this.actualSpeed = directionInfo.getActualSpeed();
     }
 
-    public int getSpeedLimit() {
+    public double getSpeedLimit() {
         return speedLimit;
     }
 
-    public int getActualSpeed() {
+    public double getActualSpeed() {
         return actualSpeed;
     }
 

@@ -1,7 +1,7 @@
 package GUI;
 
 import Database.Database;
-import Utils.Constants;
+import Tools.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
