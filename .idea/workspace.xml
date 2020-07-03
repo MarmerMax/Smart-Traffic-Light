@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/InputConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/InputConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/SystemSTL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/SystemSTL.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,13 +72,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="430" selection-start-line="430" selection-end-line="430" />
+            <state relative-caret-position="418">
+              <caret line="450" column="48" lean-forward="true" selection-start-line="450" selection-start-column="48" selection-end-line="450" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#19071#19072#0" expanded="true" />
                 <element signature="e#19126#19127#0" expanded="true" />
-                <element signature="e#25030#25031#0" expanded="true" />
+                <element signature="e#19462#19463#0" expanded="true" />
+                <element signature="e#19544#19545#0" expanded="true" />
+                <element signature="e#25122#25123#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,7 +144,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
+            <state relative-caret-position="453">
               <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -589,7 +595,7 @@
       <workItem from="1590740943481" duration="10941000" />
       <workItem from="1590763680204" duration="11230000" />
       <workItem from="1592732705262" duration="20218000" />
-      <workItem from="1593678531935" duration="39197000" />
+      <workItem from="1593678531935" duration="41222000" />
     </task>
     <servers />
   </component>
@@ -626,7 +632,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236145000" />
+    <option name="totallyTimeSpent" value="238170000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -650,7 +656,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32569557" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31587562" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31587562" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1080,14 +1086,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/SystemSTL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+        <state relative-caret-position="418">
+          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#884#885#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#499#500#0" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1115,9 +1123,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#919#920#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
+        <state relative-caret-position="453">
           <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1127,29 +1147,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/SystemSTL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#499#500#0" expanded="true" />
-            <element signature="e#530#531#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="430" selection-start-line="430" selection-end-line="430" />
+        <state relative-caret-position="418">
+          <caret line="450" column="48" lean-forward="true" selection-start-line="450" selection-start-column="48" selection-end-line="450" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#19071#19072#0" expanded="true" />
             <element signature="e#19126#19127#0" expanded="true" />
-            <element signature="e#25030#25031#0" expanded="true" />
+            <element signature="e#19462#19463#0" expanded="true" />
+            <element signature="e#19544#19545#0" expanded="true" />
+            <element signature="e#25122#25123#0" expanded="true" />
           </folding>
         </state>
       </provider>

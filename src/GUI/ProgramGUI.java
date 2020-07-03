@@ -32,6 +32,8 @@ import javafx.event.ActionEvent;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ProgramGUI {
 
@@ -386,6 +388,8 @@ public class ProgramGUI {
 
     @SuppressWarnings("Duplicates")
     private void createSimulationWindow() {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
         HBox topMenu = new HBox();
         Label label = new Label(Constants.simulation_window_label);
         topMenu.setMinHeight(60);
@@ -404,7 +408,11 @@ public class ProgramGUI {
         buttonBack.setOnAction(e -> {
             boolean goBack = ConfirmBox.display(Constants.go_to_previous_page_window_label,
                     Constants.go_to_previous_page_from_simulation_text);
-            if (goBack) window.setScene(windowOptions);
+
+            if (goBack) {
+//                executor.shutdownNow();
+                window.setScene(windowOptions);
+            }
         });
 
         simulation = new Pane();
@@ -421,7 +429,7 @@ public class ProgramGUI {
                     systemSTL.run();
                 }
             });
-            run_system.start();
+//            run_system.start();
 
             Thread update_simulation = new Thread(new Runnable() {
                 @Override
@@ -441,7 +449,10 @@ public class ProgramGUI {
                     }
                 }
             });
-            update_simulation.start();
+//            update_simulation.start();
+
+            executor.execute(run_system);
+            executor.execute(update_simulation);
         });
         bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
 
