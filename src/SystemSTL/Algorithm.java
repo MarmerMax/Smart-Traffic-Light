@@ -49,7 +49,7 @@ public class Algorithm {
         while (!isAllCarsPassed()) {
 
             checkPriority();
-            updateTrafficLightsTimeDistributions();
+            updateTrafficLightsTimeDistributions();//wrong place
 
             try {
                 Thread.sleep(100);
@@ -237,17 +237,14 @@ public class Algorithm {
     private synchronized void updateTrafficLightsTimeDistributions() {
         if (is_north_south_high_priority) {
             for (int i = 0; i < cars_ratio; i++) {
-                conditions.getCrossroadInfo1().getCrossroad().getTimeDistribution().addTimeToNorthSouthRoute();
-                conditions.getCrossroadInfo2().getCrossroad().getTimeDistribution().addTimeToNorthSouthRoute();
+                conditions.addTimeToNorthSouthRoute();
             }
         } else if (is_east_west_high_priority) {
             for (int i = 0; i < cars_ratio; i++) {
-                conditions.getCrossroadInfo1().getCrossroad().getTimeDistribution().addTimeToEastWestRoute();
-                conditions.getCrossroadInfo2().getCrossroad().getTimeDistribution().addTimeToEastWestRoute();
+                conditions.addTimeToEastWestRoure();
             }
         } else {
-            conditions.getCrossroadInfo1().getCrossroad().getTimeDistribution().setDefaultDistribution();
-            conditions.getCrossroadInfo2().getCrossroad().getTimeDistribution().setDefaultDistribution();
+            conditions.setDefaultTimeDistribution();
         }
     }
 

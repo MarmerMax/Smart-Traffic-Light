@@ -33,7 +33,7 @@ public class Conditions {
     public double getNorthSouthTimeDistribution() {
         if (crossroad_info_1.getCrossroad().getTimeDistribution().getNorthSouth() !=
                 crossroad_info_2.getCrossroad().getTimeDistribution().getNorthSouth()) {
-            throw new RuntimeException("Bad time distribution");
+            throw new RuntimeException("Bad time distribution...");
         }
         return crossroad_info_1.getCrossroad().getTimeDistribution().getNorthSouth();
     }
@@ -41,13 +41,28 @@ public class Conditions {
     public double getEastWestTimeDistribution() {
         if (crossroad_info_1.getCrossroad().getTimeDistribution().getEastWest() !=
                 crossroad_info_2.getCrossroad().getTimeDistribution().getEastWest()) {
-            throw new RuntimeException("Bad time distribution");
+            throw new RuntimeException("Bad time distribution...");
         }
         return crossroad_info_1.getCrossroad().getTimeDistribution().getEastWest();
     }
 
     public double getChangingLightsTime(){
         return crossroad_info_1.getCrossroad().getTimeDistribution().getChangingExecutionTime();
+    }
+
+    public void addTimeToEastWestRoure(){
+        crossroad_info_1.getCrossroad().getTimeDistribution().addTimeToEastWestRoute();
+        crossroad_info_2.getCrossroad().getTimeDistribution().addTimeToEastWestRoute();
+    }
+
+    public void addTimeToNorthSouthRoute(){
+        crossroad_info_1.getCrossroad().getTimeDistribution().addTimeToNorthSouthRoute();
+        crossroad_info_2.getCrossroad().getTimeDistribution().addTimeToNorthSouthRoute();
+    }
+
+    public void setDefaultTimeDistribution(){
+        crossroad_info_1.getCrossroad().getTimeDistribution().setDefaultDistribution();
+        crossroad_info_2.getCrossroad().getTimeDistribution().setDefaultDistribution();
     }
 
     public CrossroadInfo getCrossroadInfo1() {

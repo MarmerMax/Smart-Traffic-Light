@@ -51,76 +51,23 @@ public class LaneComputation extends Thread {
         while (part_of_time < time) {
             part_of_time += add;
 
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             CarComputation car_computation;
 
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
 
                 car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
+                car_computation.movingMode(add, lane_info.getSpeedLimit());
 
-                if (i == 0) {
-
-                    car_computation.movingMode(add, lane_info.getSpeedLimit());
-
-                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < 0) {
-                        //add car info of lane_info.getCarsInLane().get(i) to structure with passed cars
-
-                        lane_info.getCarsInLane().remove(i);
-                        i--;
-                    }
-
-                } else if (i == lane_info.getCarsInLane().size() - 1) {//last
-
-                    //check if his prev car is already start moving
-
-
-                } else {
-
-                    //check if his prev car is already start moving
-
-                }
             }
         }
 
     }
-
-//    private void runLane(double time) {
-//
-//        ArrayList<CarInfo> cars_to_compute = new ArrayList<>();
-//        ArrayList<CarInfo> passed_cars = new ArrayList<>();
-//
-//        int t = 0;
-//        double next_car = 0;
-//        while (t < time) {
-//
-//            try {
-//                Thread.sleep(10);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if (next_car % 1 == 0) {
-//                //add next car to cars to compute by index (next_car is index)
-//                cars_to_compute.add(lane_info.getCarsInLane().peek()); //is wrong
-//            }
-//
-//            CarComputation car_computation;
-//            for (CarInfo car_info : cars_to_compute) {
-//
-//                car_computation = new CarComputation(car_info);
-//                car_computation.computeChanges(t);
-//
-//                if (car_info.getDistance() < 0) {
-//                    passed_cars.add(car_info);
-//                    lane_info.getCarsInLane().poll();
-//                }
-//            }
-//
-//            next_car += 0.01;
-//            t += 0.01;
-//        }
-//
-//    }
-
 
     public double getInitialTime() {
         return initial_time;

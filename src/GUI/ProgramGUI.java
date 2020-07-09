@@ -23,9 +23,12 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import javafx.scene.shape.Rectangle;
 
 import javafx.event.ActionEvent;
 
@@ -417,6 +420,7 @@ public class ProgramGUI {
         });
 
         simulation = new Pane();
+        simulation.setPrefSize(990, 530);
         updateSimulation();
 
         BorderPane borderPane = new BorderPane();
@@ -457,6 +461,9 @@ public class ProgramGUI {
         });
         bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
 
+
+
+
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(topMenu);
         borderPane.setCenter(simulation);
@@ -465,19 +472,45 @@ public class ProgramGUI {
         windowSimulation = new Scene(borderPane, 1000, 660);
     }
 
-
     private synchronized void updateSimulation() {
         simulation.getChildren().clear();
         simulation.getStyleClass().add("simulation-container");
-        Image imageRoad = new Image("file:images/others/road.png");
-        ImageView imageViewRoad = new ImageView(imageRoad);
+
+        Image image_road = new Image("file:images/others/road.png");
+
+        ImageView imageViewRoad = new ImageView(image_road);
         imageViewRoad.setFitHeight(530);
         imageViewRoad.setFitWidth(990);
+        simulation.getChildren().addAll(imageViewRoad);
 
+        updateCars();
+        updateTrafficLights();
+    }
+
+    private synchronized void updateCars(){
+
+        Rectangle outputClip = new Rectangle(990, 530);
+        simulation.setClip(outputClip);
+
+        simulation.layoutBoundsProperty().addListener((ov, oldValue, newValue) -> {
+            outputClip.setWidth(newValue.getWidth());
+            outputClip.setHeight(newValue.getHeight());
+        });
+
+
+        Image image = new Image("file:images/cars/car1.png");
+        ImageView image_view = new ImageView(image);
+        image_view.setX(758);
+        image_view.setY(500);
+        image_view.setFitHeight(60);
+        image_view.setFitWidth(40);
+        simulation.getChildren().add(image_view);
+    }
+
+    private synchronized void updateTrafficLights(){
         ImageView[] traffic_lights_crossroad_1 = createTrafficLights(1);
         ImageView[] traffic_lights_crossroad_2 = createTrafficLights(2);
 
-        simulation.getChildren().addAll(imageViewRoad);
         addTrafficLights(traffic_lights_crossroad_1);
         addTrafficLights(traffic_lights_crossroad_2);
     }

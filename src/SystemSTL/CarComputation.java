@@ -31,8 +31,6 @@ public class CarComputation {
         double distance = car_info.getCurrentSpeed() * time;
         double updated_distance = car_info.getDistanceFromCrossroad() - distance;
 
-//        System.out.println("speed: " + speed + ", distance: " + distance);
-
         car_info.setDistanceFromCrossroad(updated_distance);
     }
 
