@@ -8,24 +8,42 @@ public class CarComputation {
         this.car_info = car_info;
     }
 
-
-    public void computeChanges(double time) {
-        double speed_limit = 70;
-
-        double speed = car_info.getCar().getAcceleration() * time;
-
-        if (speed > car_info.getCar().getMaxSpeed()) {
-            speed = car_info.getCar().getMaxSpeed();
-            if (speed > speed_limit) {
-                speed = speed_limit;
-            }
+    private void speedUp(double time, double speed_limit) {
+        double new_speed = car_info.getCurrentSpeed() + car_info.getCar().getAcceleration() * time;
+        if (new_speed > speed_limit) {
+            car_info.setCurrentSpeed(car_info.getCar().getMaxSpeed());
         }
+        car_info.setCurrentSpeed(new_speed);
+    }
 
-        double distance = speed * 1;
-        double updated_distance = car_info.getDistance() - distance;
+    private void speedDown(double time) {
+        double new_speed = car_info.getCurrentSpeed() - car_info.getCar().getDeceleration() * time;
+        if (new_speed < 0) {
+            car_info.setCurrentSpeed(0);
+        }
+        car_info.setCurrentSpeed(new_speed);
+    }
 
-        car_info.setDistance(updated_distance);
+    public void movingMode(double time, double speed_limit) {
 
-        System.out.println("speed: " + speed + ", distance: " + distance);
+        speedUp(time, speed_limit);
+
+        double distance = car_info.getCurrentSpeed() * time;
+        double updated_distance = car_info.getDistanceFromCrossroad() - distance;
+
+//        System.out.println("speed: " + speed + ", distance: " + distance);
+
+        car_info.setDistanceFromCrossroad(updated_distance);
+    }
+
+    public void stopingMode(double time) {
+
+        speedDown(time);
+
+        double distance = car_info.getCurrentSpeed() * time;
+        double updated_distance = car_info.getDistanceFromCrossroad() - distance;
+
+        car_info.setDistanceFromCrossroad(updated_distance);
+
     }
 }

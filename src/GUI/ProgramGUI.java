@@ -399,6 +399,7 @@ public class ProgramGUI {
         HBox bottomMenu = new HBox(20);
         bottomMenu.setMinHeight(60);
         bottomMenu.setAlignment(Pos.CENTER);
+
         Button buttonSave = new Button(Constants.save_button_label);
         buttonSave.setOnAction(e -> {
             //Save to database window
@@ -501,7 +502,7 @@ public class ProgramGUI {
         views[0] = createTrafficLight(x, y, 180,
                 crossroad_info.getCrossroad().getNorthTrafficLight().getTrafficLightImage());
 
-        views[1] = createTrafficLight(x + 140, y + 10, 270,
+        views[1] = createTrafficLight(x + 150, y + 10, 270,
                 crossroad_info.getCrossroad().getEastTrafficLight().getTrafficLightImage());
 
         views[2] = createTrafficLight(x + 140, y + 150, 0,
@@ -513,15 +514,11 @@ public class ProgramGUI {
         return views;
     }
 
-    private void updateImage() {
-
-    }
-
     private ImageView createTrafficLight(int x, int y, int rotate, Image image) {
         ImageView image_view = new ImageView(image);
         image_view.setX(x);
         image_view.setY(y);
-        image_view.setFitHeight(30);
+        image_view.setFitHeight(40);
         image_view.setFitWidth(15);
         image_view.setRotate(rotate);
         return image_view;

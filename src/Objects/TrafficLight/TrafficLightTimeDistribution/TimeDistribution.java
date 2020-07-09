@@ -12,8 +12,7 @@ public class TimeDistribution {
     public TimeDistribution(double time) {
         round_time = time;
         min_time = 10;
-        north_south = round_time / 2;
-        east_west = round_time / 2;
+        setDefaultDistribution();
         changing_execution_time = 2;
     }
 
@@ -47,6 +46,11 @@ public class TimeDistribution {
             north_south = time;
             east_west = round_time - north_south;
         }
+    }
+
+    public void setDefaultDistribution() {
+        east_west = round_time / 2;
+        north_south = round_time / 2;
     }
 
     public double getNorthSouth() {

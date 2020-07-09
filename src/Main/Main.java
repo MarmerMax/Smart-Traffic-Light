@@ -3,9 +3,12 @@ package Main;
 import GUI.ConfirmBox;
 import GUI.ProgramGUI;
 import Tools.Constants;
+import Tools.Utils;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.Random;
 
 public class Main extends Application {
 
@@ -37,6 +40,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+
+//        System.out.println(Utils.createRandomDistance());
+//        System.out.println(Utils.findRatio(2.432, 10.345));
     }
 
 

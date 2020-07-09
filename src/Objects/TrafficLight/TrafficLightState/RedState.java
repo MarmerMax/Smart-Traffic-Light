@@ -9,7 +9,7 @@ public class RedState extends State {
     @Override
     public Image getImage() {
         if (image == null) {
-            image = new Image("file:images/lights/red-s.png");
+            image = new Image("file:images/lights/long/red-s.png");
         }
         return image;
     }
