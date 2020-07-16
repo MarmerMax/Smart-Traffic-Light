@@ -55,6 +55,14 @@ public class ProgramGUI {
         createUI();
     }
 
+    /**
+     * This function create:
+     * 2 crossroads and their information,
+     * Home Window,
+     * Client Types Window,
+     * Options Window,
+     * SimulationWindow 
+     */
     private void createUI() {
         Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
         Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
@@ -67,16 +75,24 @@ public class ProgramGUI {
         createSimulationWindow();
     }
 
+    /**
+     * This function create Home Window contains:
+     * Let's start button - go to window that allow to choose client types.
+     * About us button
+     */
     private void createHomeWindow() {
+    	//Title
         Label label = new Label(Constants.home_page_window_label);
         HBox topMenu = new HBox();
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
+        //Let's start button
         Button buttonStart = new Button(Constants.lets_start_button_label);
         buttonStart.setOnAction(e -> window.setScene(windowClientTypes));
 
+        //About us button
         Button buttonAboutUs = new Button(Constants.about_us_button_label);
         buttonAboutUs.setOnAction(e -> AlertBox.display(Constants.about_us_window_label, Constants.about_us_text));
 
@@ -105,11 +121,14 @@ public class ProgramGUI {
         windowHome = new Scene(borderPane, 600, 400);
     }
 
+    /**
+     * 
+     */
     @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
         VBox centerMenu = new VBox(20);
 
-        //1
+        //Crossroad 1
         HBox crossroad_fields_1 = new HBox();
         crossroad_fields_1.getStyleClass().add("options-container");
 
@@ -181,7 +200,8 @@ public class ProgramGUI {
 
         crossroad_fields_1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
 
-        //2
+        
+        //Crossroad 2
         HBox crossroad_fields_2 = new HBox();
         crossroad_fields_2.getStyleClass().add("options-container");
 
@@ -241,7 +261,8 @@ public class ProgramGUI {
 
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
-        //3
+        
+        //Other options
         HBox otherOptions = new HBox();
         otherOptions.getStyleClass().add("options-container");
 
@@ -255,53 +276,55 @@ public class ProgramGUI {
         boxButtonRandom.getStyleClass().add("options-column");
         Button buttonRandom = new Button(Constants.random_button_label);
         boxButtonRandom.getChildren().add(buttonRandom);
-
-        VBox boxButtonDatabase = new VBox(10);
-        boxButtonDatabase.getStyleClass().add("options-column");
-        Button buttonDatabase = new Button(Constants.database_button_label);
-        boxButtonDatabase.getChildren().add(buttonDatabase);
-
-        VBox boxButtonReset = new VBox(10);
-        boxButtonReset.getStyleClass().add("options-column");
-        Button buttonReset = new Button(Constants.reset_button_label);
-        boxButtonReset.getChildren().add(buttonReset);
-
-        VBox boxButtonInfo = new VBox(10);
-        boxButtonInfo.getStyleClass().add("options-column");
-        Button buttonInfo = new Button(Constants.info_button_label);
-        boxButtonInfo.getChildren().add(buttonInfo);
-
         buttonRandom.setOnAction(e -> {
             boolean answer = ConfirmBox.display(Constants.random_window_label, Constants.generate_random_data_label);
             if (answer) {
 
             }
         });
+
+        VBox boxButtonDatabase = new VBox(10);
+        boxButtonDatabase.getStyleClass().add("options-column");
+        Button buttonDatabase = new Button(Constants.database_button_label);
+        boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
             //load from database
             String query_name = DatabaseBox.display();
             System.out.println(query_name);
         });
 
+        VBox boxButtonReset = new VBox(10);
+        boxButtonReset.getStyleClass().add("options-column");
+        Button buttonReset = new Button(Constants.reset_button_label);
+        boxButtonReset.getChildren().add(buttonReset);
         buttonReset.setOnAction(e -> {
             boolean answer = ConfirmBox.display(Constants.reset_button_label, Constants.reset_conditions_label);
             if (answer) {
                 //reset all values
             }
         });
+
+        VBox boxButtonInfo = new VBox(10);
+        boxButtonInfo.getStyleClass().add("options-column");
+        Button buttonInfo = new Button(Constants.info_button_label);
+        boxButtonInfo.getChildren().add(buttonInfo);
         buttonInfo.setOnAction(e -> {
             //info
         });
+        
         otherOptions.getChildren().addAll(boxLabel3, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
 
         centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
 
+        //Title
         HBox topMenu = new HBox();
         Label label = new Label(Constants.traffic_conditions_window_label);
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
+        
+        //Run
         HBox bottomMenu = new HBox(20);
         bottomMenu.setAlignment(Pos.CENTER);
         Button buttonRun = new Button(Constants.run_button_label);
@@ -325,6 +348,9 @@ public class ProgramGUI {
             conditions = new Conditions(crossroad_info_1, crossroad_info_2);
             window.setScene(windowSimulation);
         });
+        
+        
+        //Back
         Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
             boolean goBack = ConfirmBox.display(Constants.go_to_previous_page_window_label,
@@ -348,13 +374,21 @@ public class ProgramGUI {
         windowOptions = new Scene(borderPane, 1000, 660);
     }
 
+    /**
+     * This function allow to user choose his client type - Analyst/Observer.
+     * Analyst - go to window with all options.
+     * Observer - go to window with limited options.  
+     */
     private void createClientTypesWindow() {
+    	//Title
         Label label = new Label(Constants.client_type_window_label);
         HBox topMenu = new HBox();
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
+        
+        //Analyst button
         VBox leftMenu = new VBox(20);
         Button buttonAnalyst = new Button(Constants.analyst_button_label);
         buttonAnalyst.setOnAction(e -> {
@@ -368,6 +402,8 @@ public class ProgramGUI {
         imageViewAnalyst.setFitWidth(250);
         leftMenu.getChildren().addAll(imageViewAnalyst, buttonAnalyst);
 
+        
+        //Observer button
         VBox rightMenu = new VBox(20);
         Button buttonObserver = new Button(Constants.observer_button_label);
         buttonObserver.setOnAction(e -> {
@@ -381,6 +417,7 @@ public class ProgramGUI {
         imageViewObserver.setFitWidth(250);
         rightMenu.getChildren().addAll(imageViewObserver, buttonObserver);
 
+        
         BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(topMenu);
