@@ -5,16 +5,30 @@ import SystemSTL.Algorithm;
 import Tools.Constants;
 
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
 
 public class Database {
 
-    private static final String url = "jdbc:mysql://localhost:3306/stl";
-    private static final String user = "root";
-    private static final String password = "root";
+    private static String url = "jdbc:mysql://localhost:3306/stl";
+    private static String user = "root";
+    private static String password = "root";
     private static final String driver = "com.mysql.jdbc.Driver";
 
+    private Connection con;
 
     private static volatile Database instance;
+    
+//    private Database(String url, String user, String password, String driver) {
+//    	this.url = url;
+//    	this.user = user;
+//    	this.password = password;
+//    	this.driver = driver;
+//    }
 
     public static Database getInstance() {
         Database localInstance = instance;
@@ -28,13 +42,26 @@ public class Database {
         }
         return localInstance;
     }
+    
+    public boolean connect(String url, String user, String password) {
+    	try {
+    		Class.forName(driver);
+            con = DriverManager.getConnection(url, user, password);
+//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "olololol1998");
+    	} catch (Exception e) {
+    		System.err.println("ERROR: connection fail!");
+    		return false;
+    	}
+    	System.out.println("Connection success!");
+    	return true;
+    }
 
     public void test() {
         try {
-            Class.forName(driver);
-            Connection myConn = DriverManager.getConnection(url, user, password);
+//            Class.forName(driver);
+//            Connection myConn = DriverManager.getConnection(url, user, password);
 
-            Statement statement = myConn.createStatement();
+            Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from conditions");
             while (resultSet.next()) {
                 System.out.println(

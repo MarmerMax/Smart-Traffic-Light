@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,6 +23,85 @@ public class DatabaseBox {
 
     private static String query = "";
 
+    /**
+     * The function allows the user to connect to his database.
+     * 
+     * Login details:
+     * url - jdbc:mysql://hostname/databaseName.
+     * user - Username to connect to the MySql system.
+     * password -
+     * 
+     * Buttons:
+     * Connect - This button performs the connection to the database according to the data entered.
+     *           If the connection fails the user is not moved to the next window until he enters correct data.
+     *           If the connection success the user moved to conditions list.
+     * Create database - 
+     */
+    public static void login() {
+    	Stage window = new Stage();
+    	window.setTitle(Constants.database_connect_window_label);
+    	
+    	
+    	HBox centerMenu = new HBox(5);
+    	centerMenu.getStyleClass().add("options-container");
+    	
+    	//login labels
+    	VBox boxLabel1 = new VBox(13);
+        boxLabel1.getStyleClass().add("options-column");
+    	Label urlLabel = new Label(Constants.url_label);
+    	urlLabel.getStyleClass().add("label-direction");
+    	Label userLabel = new Label(Constants.user_label);
+    	userLabel.getStyleClass().add("label-direction");
+    	Label passwordLabel = new Label(Constants.password_label);
+    	passwordLabel.getStyleClass().add("label-direction");
+    	
+    	//login fields
+    	VBox boxLabel2 = new VBox(5);
+        boxLabel2.getStyleClass().add("options-column");
+        TextField urlField = new TextField();
+        urlField.getStyleClass().add("label-direction");
+        TextField userField = new TextField();
+        userField.getStyleClass().add("label-direction");
+        TextField passwordField = new TextField();
+        passwordField.getStyleClass().add("label-direction");
+        
+        //Connect button
+        Button buttonConnect = new Button(Constants.connect_button);
+        buttonConnect.setMaxWidth(500);
+        buttonConnect.getStyleClass().add("label-direction");
+        buttonConnect.setAlignment(Pos.BOTTOM_LEFT);
+        buttonConnect.setOnAction(e -> {
+        	Database database = Database.getInstance();
+        	if(database.connect(urlField.getText(), userField.getText(), passwordField.getText()))
+        		DatabaseBox.display();
+        });
+        
+        //Create database button
+        Button buttonCreate = new Button(Constants.create_database_button);
+        buttonCreate.setMaxWidth(500);
+        buttonCreate.getStyleClass().add("label-direction");
+        buttonCreate.setOnAction(e -> {
+        	
+        });
+        
+    	boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel, buttonCreate);
+    	boxLabel2.getChildren().addAll(urlField, userField, passwordField, buttonConnect);
+    	    	
+    	centerMenu.getChildren().addAll(boxLabel1, boxLabel2);
+    	
+
+    	
+    	BorderPane borderPane = new BorderPane();
+        borderPane.getStylesheets().add("file:src/GUI/style.css");
+        borderPane.setTop(centerMenu);
+        
+    	Scene scene = new Scene(borderPane, 500, 200);
+        window.setScene(scene);
+        window.setResizable(false);
+        window.showAndWait();
+    }
+    
+    
     public static String display() {
         query = "";
 

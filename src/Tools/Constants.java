@@ -13,6 +13,7 @@ public class Constants {
     public static final String simulation_window_label = "Simulation";
     public static final String about_us_window_label = "About us";
     public static final String database_window_label = "Database";
+    public static final String database_connect_window_label = "Connect to Database";
     public static final String random_window_label = "Random";
     public static final String go_to_previous_page_window_label = "Go to previous window";
     public static final String exit_window_label = "Exit";
@@ -56,6 +57,12 @@ public class Constants {
     public static final String actual_speed_label = "Actual speed";
     public static final String speed_limit_label = "Speed limit";
     public static final String window_label = "Smart Traffic Light";
+    
+    public static final String url_label = "url: ";
+    public static final String user_label = "user: ";
+    public static final String password_label = "password: ";
+    public static final String connect_button = "Connect";
+    public static final String create_database_button = "Create database";
 
     public static final String choose_file_from_database_label = "Choose conditions file";
     public static final String generate_random_data_label = "Generate random data?";

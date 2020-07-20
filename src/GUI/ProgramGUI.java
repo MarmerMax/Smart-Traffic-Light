@@ -34,6 +34,7 @@ import javafx.event.ActionEvent;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -48,6 +49,7 @@ public class ProgramGUI {
 
     private CrossroadInfo crossroad_info_1;
     private CrossroadInfo crossroad_info_2;
+    
 
     public ProgramGUI(Stage stage) {
         window = stage;
@@ -122,7 +124,8 @@ public class ProgramGUI {
     }
 
     /**
-     * 
+     * Random - 
+     * Database - user need to connect first to his local database, after that the user can choose which condition he want to run.  
      */
     @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
@@ -283,14 +286,17 @@ public class ProgramGUI {
             }
         });
 
+        //Database
         VBox boxButtonDatabase = new VBox(10);
         boxButtonDatabase.getStyleClass().add("options-column");
         Button buttonDatabase = new Button(Constants.database_button_label);
         boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
+        	DatabaseBox.login();
+//        	DatabaseBox.display();
             //load from database
-            String query_name = DatabaseBox.display();
-            System.out.println(query_name);
+            //String query_name = DatabaseBox.display();
+            //System.out.println(query_name);
         });
 
         VBox boxButtonReset = new VBox(10);
