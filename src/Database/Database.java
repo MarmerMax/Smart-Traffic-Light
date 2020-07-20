@@ -22,13 +22,6 @@ public class Database {
     private Connection con;
 
     private static volatile Database instance;
-    
-//    private Database(String url, String user, String password, String driver) {
-//    	this.url = url;
-//    	this.user = user;
-//    	this.password = password;
-//    	this.driver = driver;
-//    }
 
     public static Database getInstance() {
         Database localInstance = instance;
@@ -47,7 +40,6 @@ public class Database {
     	try {
     		Class.forName(driver);
             con = DriverManager.getConnection(url, user, password);
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "olololol1998");
     	} catch (Exception e) {
     		System.err.println("ERROR: connection fail!");
     		return false;
