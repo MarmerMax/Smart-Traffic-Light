@@ -59,11 +59,17 @@ public class DatabaseBox {
     	VBox boxLabel2 = new VBox(5);
         boxLabel2.getStyleClass().add("options-column");
         TextField urlField = new TextField();
+        urlField.setText("jdbc:mysql://localhost:3306/stl");
         urlField.getStyleClass().add("label-direction");
         TextField userField = new TextField();
+        userField.setText("root");
         userField.getStyleClass().add("label-direction");
         TextField passwordField = new TextField();
         passwordField.getStyleClass().add("label-direction");
+        
+        //Error log
+        Label logLabel = new Label("");
+        logLabel.getStyleClass().add("label-direction");
         
         //Connect button
         Button buttonConnect = new Button(Constants.connect_button);
@@ -74,6 +80,8 @@ public class DatabaseBox {
         	Database database = Database.getInstance();
         	if(database.connect(urlField.getText(), userField.getText(), passwordField.getText()))
         		DatabaseBox.display();
+        	else
+        		logLabel.setText(Constants.connection_fail);
         });
         
         //Create database button
@@ -81,11 +89,17 @@ public class DatabaseBox {
         buttonCreate.setMaxWidth(500);
         buttonCreate.getStyleClass().add("label-direction");
         buttonCreate.setOnAction(e -> {
-        	
+        	Database database = Database.getInstance();
+        	if(database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText()))
+        		DatabaseBox.display();
+        	else
+        		logLabel.setText(Constants.create_database_fail);
         });
         
+        
+        
     	boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel, buttonCreate);
-    	boxLabel2.getChildren().addAll(urlField, userField, passwordField, buttonConnect);
+    	boxLabel2.getChildren().addAll(urlField, userField, passwordField, buttonConnect, logLabel);
     	    	
     	centerMenu.getChildren().addAll(boxLabel1, boxLabel2);
     	
@@ -95,7 +109,7 @@ public class DatabaseBox {
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(centerMenu);
         
-    	Scene scene = new Scene(borderPane, 500, 200);
+    	Scene scene = new Scene(borderPane, 550, 300);
         window.setScene(scene);
         window.setResizable(false);
         window.showAndWait();

@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Database {
 
@@ -23,6 +25,7 @@ public class Database {
 
     private static volatile Database instance;
 
+    
     public static Database getInstance() {
         Database localInstance = instance;
         if (localInstance == null) {
@@ -36,15 +39,48 @@ public class Database {
         return localInstance;
     }
     
+    /**
+     * 
+     * @param url
+     * @param user
+     * @param password
+     * @return
+     */
     public boolean connect(String url, String user, String password) {
     	try {
     		Class.forName(driver);
             con = DriverManager.getConnection(url, user, password);
+            this.url = url;
+            this.user = user;
+            this.password = password;
     	} catch (Exception e) {
-    		System.err.println("ERROR: connection fail!");
+    		System.err.println(Constants.connection_fail);
     		return false;
     	}
     	System.out.println("Connection success!");
+    	return true;
+    }
+    
+    /**
+     * 
+     * @param url
+     * @param user
+     * @param password
+     * @return
+     */
+    public boolean createLocalDatabase(String url, String user, String password) {
+    	try {
+    		String new_url = extractLocalhostAndPort(url);
+    		connect(new_url, user, password);
+//    		String query = Constants.create_database_query;
+        	PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
+        	create_database_query.execute();
+        	PreparedStatement create_conditions_table_query = con.prepareStatement(Constants.create_conditions_table_query);
+        	create_conditions_table_query.execute();
+    	} catch(Exception e) {
+    		System.err.println(Constants.create_database_fail);
+    		return false;
+    	}
     	return true;
     }
 
@@ -69,16 +105,13 @@ public class Database {
         String result = "";
 
         try {
-            Class.forName(driver);
-            Connection myConn = DriverManager.getConnection(url, user, password);
-
-            Statement statement = myConn.createStatement();
+            Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(Constants.select_conditions_names_query);
             while (resultSet.next()) {
                 result += resultSet.getString(Constants.conditions_names) + "\n";
             }
         } catch (Exception e) {
-            System.out.println("ERROR");
+            System.err.println("ERROR");
         }
 
         return result;
@@ -97,7 +130,16 @@ public class Database {
         //north, east, south, west -> Table directionInfo
     }
 
-
+    private String extractLocalhostAndPort(String url) {
+    	String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
+    	Pattern r = Pattern.compile(pattern);
+    	Matcher m = r.matcher(url);
+    	if(m.find( )) {
+    		return m.group(0);
+    	}
+    	return null;
+    }
+    
     private String createQuery(String... query_part) {
         String full_query = "";
         for (String query : query_part) {
