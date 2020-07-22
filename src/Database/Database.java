@@ -72,11 +72,25 @@ public class Database {
     	try {
     		String new_url = extractLocalhostAndPort(url);
     		connect(new_url, user, password);
-//    		String query = Constants.create_database_query;
-        	PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
+        	
+    		System.out.println("creating database: ");
+    		
+    		PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
         	create_database_query.execute();
+        	System.out.println("creating database success!");
+        	
         	PreparedStatement create_conditions_table_query = con.prepareStatement(Constants.create_conditions_table_query);
         	create_conditions_table_query.execute();
+        	System.out.println("creating conditions table success!");
+        	
+        	PreparedStatement create_crossroadInfo_table_query = con.prepareStatement(Constants.create_crossroadInfo_table_query);
+        	create_crossroadInfo_table_query.execute();
+        	System.out.println("creating crossroadInfo table success!");
+        	
+        	PreparedStatement create_directionInfo_table_query = con.prepareStatement(Constants.create_directionInfo_table_query);
+        	create_directionInfo_table_query.execute();
+        	System.out.println("creating directionInfo table success!");
+        	
     	} catch(Exception e) {
     		System.err.println(Constants.create_database_fail);
     		return false;

@@ -2,11 +2,19 @@ package Tools;
 
 public class Constants {
 
-    //database queries
+    /////////////////////database queries///////////////////////
+	//Creates
 	public static final String create_database_query = "create database if not exists stl";
-	public static final String create_conditions_table_query = "create table Conditions `conditions_id` int not null, `conditions_name` varchar(20) not null, `crossroad_info_1_id` int not null, `crossroad_info_2_id` int not null, `start_result` int not null, `finih_result` int not null, CONSTRAINT `PK_conditions_id` PRIMARY KEY (`conditions_id`))";
+	public static final String create_conditions_table_query = "create table if not exists stl.Conditions (`conditions_id` int not null, `conditions_name` varchar(20) not null, `crossroad_info_1_id` int not null, `crossroad_info_2_id` int not null, `start_result` int not null, `finih_result` int not null, CONSTRAINT `PK_conditions_id` PRIMARY KEY (`conditions_id`))";
+	//need to fix
+	public static final String create_crossroadInfo_table_query = "create table if not exists stl.CrossroadInfo(`crossrod_info_id` int not null, `north_direction_info` int not null, `east_direction_info` int not null, `south_direction_info` int not null, `west_direction_info` int not null, CONSTRAINT `PK_crossrod_info_id` PRIMARY KEY (`crossrod_info_id`))";
+	//need to fix
+	public static final String create_directionInfo_table_query = "create table if not exists stl.DirectionInfo (`direction_info_id` int not null auto_increment, `cars_amount` int not null, `average_speed` int not null, `limit_speed` int not null, CONSTRAINT `PK_direction_info_id` PRIMARY KEY (`direction_info_id`))";
+
+	//Selects
     public static final String select_conditions_names_query = "select conditions_name from Conditions";
     public static final String conditions_names = "conditions_name";
+    ///////////////////////////////////////////////////////////
     
     //log messages
     public static final String connection_fail = "ERROR: connection fail!";
