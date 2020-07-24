@@ -70,10 +70,10 @@ public class Database {
      */
     public boolean createLocalDatabase(String url, String user, String password) {
     	try {
-    		String new_url = extractLocalhostAndPort(url);
+    		String new_url = extractHostAndPort(url);
     		connect(new_url, user, password);
         	
-    		System.out.println("creating database: ");
+    		System.out.println("creating database and tables: ");
     		
     		PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
         	create_database_query.execute();
@@ -83,13 +83,25 @@ public class Database {
         	create_conditions_table_query.execute();
         	System.out.println("creating conditions table success!");
         	
-        	PreparedStatement create_crossroadInfo_table_query = con.prepareStatement(Constants.create_crossroadInfo_table_query);
-        	create_crossroadInfo_table_query.execute();
-        	System.out.println("creating crossroadInfo table success!");
+        	PreparedStatement create_directionsInfo_table_query = con.prepareStatement(Constants.create_directionsInfo_table_query);
+        	create_directionsInfo_table_query.execute();
+        	System.out.println("creating directionsInfo table success!");
         	
-        	PreparedStatement create_directionInfo_table_query = con.prepareStatement(Constants.create_directionInfo_table_query);
-        	create_directionInfo_table_query.execute();
-        	System.out.println("creating directionInfo table success!");
+        	PreparedStatement create_traffic_lights_table_query = con.prepareStatement(Constants.create_traffic_lights_table_query);
+        	create_traffic_lights_table_query.execute();
+        	System.out.println("creating trafficLights table success!");
+        	
+        	PreparedStatement create_cars_table_query = con.prepareStatement(Constants.create_cars_table_query);
+        	create_cars_table_query.execute();
+        	System.out.println("creating cars table success!");
+        	
+        	PreparedStatement create_crossroadsInfo_table_query = con.prepareStatement(Constants.create_crossroadsInfo_table_query);
+        	create_crossroadsInfo_table_query.execute();
+        	System.out.println("creating crossroadsInfo table success!");
+        	
+        	PreparedStatement create_crossroads_table_query = con.prepareStatement(Constants.create_crossroads_table_query);
+        	create_crossroads_table_query.execute();
+        	System.out.println("creating crossroads table success!");
         	
     	} catch(Exception e) {
     		System.err.println(Constants.create_database_fail);
@@ -144,7 +156,7 @@ public class Database {
         //north, east, south, west -> Table directionInfo
     }
 
-    private String extractLocalhostAndPort(String url) {
+    private String extractHostAndPort(String url) {
     	String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
     	Pattern r = Pattern.compile(pattern);
     	Matcher m = r.matcher(url);
