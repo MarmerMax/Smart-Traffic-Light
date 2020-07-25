@@ -8,17 +8,30 @@ import java.util.ArrayList;
 
 
 //information includes the queue with cars and the queue with distances from each car to the intersection in one lane
+
+/**
+ * This class keep information that includes cars and speed limit of specific direction on road.
+ */
 public class LaneInfo {
 
     private ArrayList<CarInfo> cars_in_lane;
     private double speed_limit;
 
+    /**
+     * Constructor.
+     * @param cars_count - count of cars in to create
+     * @param sl - speed limit of the direction
+     */
     public LaneInfo(int cars_count, double sl) {
         speed_limit = sl;
-        addCarsToQueue(cars_count);
+        addCarsToList(cars_count);
     }
 
-    private void addCarsToQueue(int carsCount) {
+    /**
+     * This function creates cars, calculates their distance to the intersection and adds them to the list.
+     * @param carsCount
+     */
+    private void addCarsToList(int carsCount) {
         cars_in_lane = new ArrayList<>();
         int iteration = 0;
 

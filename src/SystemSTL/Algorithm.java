@@ -7,6 +7,10 @@ import Tools.Utils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This class is heard of simulation.
+ * Here, the calculations of the movement of vehicles and the change of traffic lights take place.
+ */
 public class Algorithm {
 
     private Conditions conditions;
@@ -20,12 +24,19 @@ public class Algorithm {
 
     private int cars_ratio;
 
+    /**
+     * Algorithm constructor. Calculates the initial travel times for cars without a smart algorithm.
+     * @param conditions - conditions of actual roads.
+     */
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
         is_finished = false;
         checkInitialStateDuration();
     }
 
+    /**
+     * This function is responsible for calculating the change in the position of all vehicles and working traffic lights.
+     */
     public void start() {
         System.err.println("[START]");
 
@@ -110,11 +121,19 @@ public class Algorithm {
     }
 
 
+    /**
+     *
+     * @param moving_mode
+     */
     private void updateNorthSouthLaneInfo(boolean moving_mode) {
 
     }
 
 
+    /**
+     *
+     * @param moving_mode
+     */
     private void updateEastWestLaneInfo(boolean moving_mode) {
 
         LaneComputation lane_computation_first_north = new LaneComputation(conditions.getCarsInFirstCrossroad().get(0));
@@ -158,6 +177,10 @@ public class Algorithm {
 //        }
     }
 
+    /**
+     * This function calculates the duration of the baseline without using an intelligent algorithm.
+     * The duration tells how long it will take for all vehicles to pass the intersection.
+     */
     private void checkInitialStateDuration() {
 
         double max_time = 0;
@@ -186,6 +209,10 @@ public class Algorithm {
         System.out.println("initial time for passed all cars: " + initial_duration);
     }
 
+    /**
+     * This function checks if all vehicles have passed these intersections.
+     * @return true or false
+     */
     private boolean isAllCarsPassed() {
         for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
             if (lane_info.getCarsInLane().size() > 0) {
@@ -200,7 +227,10 @@ public class Algorithm {
         return true;
     }
 
-    //find priority direction
+    /**
+     *This function check priority for traffic lights distributions.
+     * Where there are more cars, the higher the priority.
+     */
     private void checkPriority() {
         double north_south_count = calculateCarsInRoutes(0, 2);
         double east_west_count = calculateCarsInRoutes(1, 3);
@@ -219,7 +249,9 @@ public class Algorithm {
         }
     }
 
-    //add time to priorities directions
+    /**
+     * This function adds time to the priority direction depending on the ratio.
+     */
     private synchronized void updateTrafficLightsTimeDistributions() {
         if (is_north_south_high_priority) {
             for (int i = 0; i < cars_ratio; i++) {
@@ -227,13 +259,19 @@ public class Algorithm {
             }
         } else if (is_east_west_high_priority) {
             for (int i = 0; i < cars_ratio; i++) {
-                conditions.addTimeToEastWestRoure();
+                conditions.addTimeToEastWestRoute();
             }
         } else {
             conditions.setDefaultTimeDistribution();
         }
     }
 
+    /**
+     * This function calculate count of two specific directions.
+     * @param ind_1 - direction 1
+     * @param ind_2 - direction 2
+     * @return count of cars in both direction
+     */
     private double calculateCarsInRoutes(int ind_1, int ind_2) {
 
         int first_crossroad_amount = conditions.getCarsInFirstCrossroad().get(ind_1).getCarsInLane().size() +
@@ -245,14 +283,26 @@ public class Algorithm {
         return first_crossroad_amount + second_crossroad_amount;
     }
 
+    /**
+     * This function return duration of initial state without smart algorithm.
+     * @return initial duration
+     */
     public double getInitialDuration() {
         return initial_duration;
     }
 
+    /**
+     * This function return duration of actual state with smart algorithm.
+     * @return actual duration
+     */
     public double getActualDuration() {
         return actual_duration;
     }
 
+    /**
+     * This function returns true if the algorithm has been completed.
+     * @return
+     */
     public boolean getIsFinished() {
         return is_finished;
     }

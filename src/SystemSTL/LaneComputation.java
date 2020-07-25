@@ -2,6 +2,9 @@ package SystemSTL;
 
 import Tools.Formulas;
 
+/**
+ * This class calculates information about vehicles such as current speed and distance from an intersection.
+ */
 public class LaneComputation extends Thread {
 
     private LaneInfo lane_info;
