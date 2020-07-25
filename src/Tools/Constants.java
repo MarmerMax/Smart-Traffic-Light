@@ -6,9 +6,9 @@ public class Constants {
 	//Creates
 	public static final String create_database_query = "create database if not exists stl";
 	public static final String create_conditions_table_query = "create table if not exists stl.Conditions (\n" + 
-			"	`condition_id` int not null,\n" + 
+			"	`condition_id` int not null auto_increment,\n" + 
 			"    `condition_name` varchar(20) not null,\n" + 
-			"    `Date` datetime,\n" + 
+			"    `Date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n" + 
 			"    PRIMARY KEY (`condition_id`)\n" + 
 			")";
 	public static final String create_directionsInfo_table_query = "create table if not exists stl.DirectionsInfo (\n" + 
@@ -19,12 +19,12 @@ public class Constants {
 			"	PRIMARY KEY (`direction_info_id`)\n" + 
 			")";
 	public static final String create_traffic_lights_table_query = "create table if not exists stl.TrafficLights (\n" + 
-			"    `traffic_light_id` int not null,\n" + 
+			"    `traffic_light_id` int not null auto_increment,\n" + 
 			"    `actual_state` int not null,\n" + 
 			"    primary key(`traffic_light_id`)\n" + 
 			")";
 	public static final String create_cars_table_query = "create table if not exists stl.Cars (\n" + 
-			"    `car_id` int not null,\n" + 
+			"    `car_id` int not null auto_increment,\n" + 
 			"    `direction_info_id` int not null,\n" + 
 			"    `car_type` varchar(25),\n" + 
 			"    `length` int not null,\n" + 
@@ -33,7 +33,7 @@ public class Constants {
 			"    foreign key(`direction_info_id`) references DirectionsInfo(`direction_info_id`)\n" + 
 			")";
 	public static final String create_crossroadsInfo_table_query = "create table if not exists stl.CrossroadsInfo(\n" + 
-			"	`crossroad_info_id` int not null,\n" + 
+			"	`crossroad_info_id` int not null auto_increment,\n" + 
 			"    `condition_id` int not null,\n" + 
 			"    `north_direction_info_id` int,\n" + 
 			"	`east_direction_info_id` int,\n" + 
@@ -47,7 +47,7 @@ public class Constants {
 			"    foreign key(`west_direction_info_id`) references DirectionsInfo(`direction_info_id`)\n" + 
 			")";
 	public static final String create_crossroads_table_query = "create table if not exists stl.Crossroads(\n" + 
-			"	`crossroad_id` int not null,\n" + 
+			"	`crossroad_id` int not null auto_increment,\n" + 
 			"    `crossroad_info_id` int not null,\n" + 
 			"    `north_traffic_light_id` int,\n" + 
 			"    `east_traffic_light_id` int,\n" + 
@@ -62,7 +62,8 @@ public class Constants {
 			"    foreign key(`west_traffic_light_id`) references TrafficLights(`traffic_light_id`)\n" + 
 			")";
 	
-	
+	//Saves
+	public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name) values(?)";
 	
 
 	//Selects

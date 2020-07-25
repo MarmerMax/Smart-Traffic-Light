@@ -1,15 +1,12 @@
 package Database;
 
 import Objects.Conditions.Conditions;
+import Objects.CrossroadInfo.CrossroadInfo;
 import SystemSTL.Algorithm;
 import Tools.Constants;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +36,12 @@ public class Database {
         return localInstance;
     }
     
+    public Connection getConnection() {
+    	return con;
+    }
+    
     /**
+     * This function performs a connection to the database.
      * 
      * @param url
      * @param user
@@ -48,6 +50,7 @@ public class Database {
      */
     public boolean connect(String url, String user, String password) {
     	try {
+    		con = null;
     		Class.forName(driver);
             con = DriverManager.getConnection(url, user, password);
             this.url = url;
@@ -62,18 +65,19 @@ public class Database {
     }
     
     /**
+     * This function creates the entire database by executing SQL commands.
      * 
      * @param url
      * @param user
      * @param password
-     * @return
+     * @return true - if all executes success, otherwise return false.
      */
     public boolean createLocalDatabase(String url, String user, String password) {
     	try {
     		String new_url = extractHostAndPort(url);
     		connect(new_url, user, password);
         	
-    		System.out.println("creating database and tables: ");
+    		System.out.println("Creating database and tables: ");
     		
     		PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
         	create_database_query.execute();
@@ -165,6 +169,37 @@ public class Database {
     	}
     	return null;
     }
+    
+    
+    /**
+     * This function should take the crossroads data and store it in the database.
+     * 
+     * @param conditions
+     */
+    public void save(Conditions conditions) {
+    	try {
+			PreparedStatement pstmt = con.prepareStatement(Constants.insert_conditions_statment, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setNString(1, "test2");
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+    	
+    	CrossroadInfo ci1 = conditions.getCrossroadInfo1();
+    	CrossroadInfo ci2 = conditions.getCrossroadInfo2();
+    }
+    
+    
+    /**
+     * This function should take the algorithm results data and store them in the database.
+     * 
+     * @param results
+     */
+    public static void save(Algorithm results) {
+    	
+    }
+    
     
     private String createQuery(String... query_part) {
         String full_query = "";

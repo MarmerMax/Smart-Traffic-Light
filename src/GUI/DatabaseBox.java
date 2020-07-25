@@ -1,6 +1,8 @@
 package GUI;
 
 import Database.Database;
+import Objects.Conditions.Conditions;
+import SystemSTL.Algorithm;
 import Tools.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +23,9 @@ import javafx.stage.Stage;
 
 public class DatabaseBox {
 
+	public enum login_states{no_state, login_failed, login_succeeded};
+	
+	public static login_states login_state =  login_states.no_state;
     private static String query = "";
 
     /**
@@ -78,10 +83,15 @@ public class DatabaseBox {
         buttonConnect.setAlignment(Pos.BOTTOM_LEFT);
         buttonConnect.setOnAction(e -> {
         	Database database = Database.getInstance();
-        	if(database.connect(urlField.getText(), userField.getText(), passwordField.getText()))
-        		DatabaseBox.display();
-        	else
+        	if(database.connect(urlField.getText(), userField.getText(), passwordField.getText())) 
+        	{
+        		login_state = login_states.login_succeeded;
+        		window.close();
+        	}
+        	else {
         		logLabel.setText(Constants.connection_fail);
+        		login_state = login_states.login_failed;
+        	}
         });
         
         //Create database button
@@ -91,19 +101,21 @@ public class DatabaseBox {
         buttonCreate.setOnAction(e -> {
         	Database database = Database.getInstance();
         	if(database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText()))
-        		DatabaseBox.display();
-        	else
+        	{
+        		login_state = login_states.login_succeeded;
+        		window.close();
+        	}
+        	else {
         		logLabel.setText(Constants.create_database_fail);
+        		login_state = login_states.login_failed;
+        	}        		
         });
         
         
         
     	boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel, buttonCreate);
-    	boxLabel2.getChildren().addAll(urlField, userField, passwordField, buttonConnect, logLabel);
-    	    	
+    	boxLabel2.getChildren().addAll(urlField, userField, passwordField, buttonConnect, logLabel);   	
     	centerMenu.getChildren().addAll(boxLabel1, boxLabel2);
-    	
-
     	
     	BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
@@ -119,65 +131,72 @@ public class DatabaseBox {
     public static String display() {
         query = "";
 
+        login();
+        
         Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(Constants.database_window_label);
+        if(login_state == login_states.login_succeeded) {
+        	login_state = login_states.no_state;
+        	
+        	window.initModality(Modality.APPLICATION_MODAL);
+            window.setTitle(Constants.database_window_label);
 
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            query = "";
-            window.close();
-        });
+            window.setOnCloseRequest(e -> {
+                e.consume();
+                query = "";
+                window.close();
+            });
 
-        VBox topMenu = new VBox(10);
-        Label label = new Label();
-        label.setText(Constants.choose_file_from_database_label);
-        label.setStyle("-fx-font-size: 14pt");
-        topMenu.setAlignment(Pos.CENTER);
-        topMenu.getChildren().addAll(label);
+            VBox topMenu = new VBox(10);
+            Label label = new Label();
+            label.setText(Constants.choose_file_from_database_label);
+            label.setStyle("-fx-font-size: 14pt");
+            topMenu.setAlignment(Pos.CENTER);
+            topMenu.getChildren().addAll(label);
 
-        //load all file names from database and add them to list
-        //String [] arr = {"Java", "JavaScript", "C#", "Python"};
-        String[] arr = Database.getInstance().getConditionsNames().split("\n");
+            //load all file names from database and add them to list
+            //String [] arr = {"Java", "JavaScript", "C#", "Python"};
+            String[] arr = Database.getInstance().getConditionsNames().split("\n");
 
-        ObservableList<String> langs = FXCollections.observableArrayList(arr);
-        ListView<String> langsListView = new ListView<String>(langs);
-        MultipleSelectionModel<String> langsSelectionModel = langsListView.getSelectionModel();
-        langsSelectionModel.selectedItemProperty().addListener(new ChangeListener<String>() {
+            ObservableList<String> langs = FXCollections.observableArrayList(arr);
+            ListView<String> langsListView = new ListView<String>(langs);
+            MultipleSelectionModel<String> langsSelectionModel = langsListView.getSelectionModel();
+            langsSelectionModel.selectedItemProperty().addListener(new ChangeListener<String>() {
 
-            public void changed(ObservableValue<? extends String> changed, String oldValue, String newValue) {
-                query = newValue;
+                public void changed(ObservableValue<? extends String> changed, String oldValue, String newValue) {
+                    query = newValue;
+                }
+
+            });
+
+            Button yesButton = new Button(Constants.confirm_button_database);
+            yesButton.setOnAction(e -> {
+                window.close();
+            });
+
+            Button noButton = new Button(Constants.cancel_button);
+            noButton.setOnAction(e -> {
+                query = "";
+                window.close();
+            });
+
+            HBox bottomMenu = new HBox(10);
+            bottomMenu.getChildren().addAll(yesButton, noButton);
+            bottomMenu.setAlignment(Pos.CENTER);
+
+            BorderPane borderPane = new BorderPane();
+            borderPane.getStylesheets().add("file:src/GUI/style.css");
+            borderPane.setTop(topMenu);
+            borderPane.setCenter(langsListView);
+            borderPane.setBottom(bottomMenu);
+
+            Scene scene = new Scene(borderPane, 300, 300);
+            window.setScene(scene);
+            window.setResizable(false);
+            window.showAndWait();
+
+            return query;
             }
-
-        });
-
-        Button yesButton = new Button(Constants.confirm_button_database);
-        yesButton.setOnAction(e -> {
-            window.close();
-        });
-
-        Button noButton = new Button(Constants.cancel_button);
-        noButton.setOnAction(e -> {
-            query = "";
-            window.close();
-        });
-
-        HBox bottomMenu = new HBox(10);
-        bottomMenu.getChildren().addAll(yesButton, noButton);
-        bottomMenu.setAlignment(Pos.CENTER);
-
-        BorderPane borderPane = new BorderPane();
-        borderPane.getStylesheets().add("file:src/GUI/style.css");
-        borderPane.setTop(topMenu);
-        borderPane.setCenter(langsListView);
-        borderPane.setBottom(bottomMenu);
-
-        Scene scene = new Scene(borderPane, 300, 300);
-        window.setScene(scene);
-        window.setResizable(false);
-        window.showAndWait();
-
-        return query;
-    }
+        return null;
+        }
 
 }

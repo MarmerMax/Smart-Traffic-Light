@@ -31,11 +31,15 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.scene.shape.Rectangle;
 import SystemSTL.LaneInfo;
+import SystemSTL.Algorithm;
 import SystemSTL.CarInfo;
 
 import javafx.event.ActionEvent;
 
 import javax.swing.*;
+
+import Database.Database;
+
 import java.awt.*;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -295,8 +299,8 @@ public class ProgramGUI {
         Button buttonDatabase = new Button(Constants.database_button_label);
         boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
-            DatabaseBox.login();
-//        	DatabaseBox.display();
+            DatabaseBox.display();
+
             //load from database
             //String query_name = DatabaseBox.display();
             //System.out.println(query_name);
@@ -451,7 +455,15 @@ public class ProgramGUI {
 
         Button buttonSave = new Button(Constants.save_button_label);
         buttonSave.setOnAction(e -> {
-            //Save to database window
+        	//Login before saving
+        	if(Database.getInstance().getConnection() == null) {
+        		DatabaseBox.login();
+        		//Save to database window
+            	Database.getInstance().save(conditions);
+        	} else {
+        		//Save to database window
+            	Database.getInstance().save(conditions);
+        	}
         });
 
         Button buttonBack = new Button(Constants.back_button_label);
@@ -779,3 +791,4 @@ class InputConverter extends StringConverter<Integer> {
     }
 
 }
+
