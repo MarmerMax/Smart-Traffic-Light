@@ -148,5 +148,10 @@ public class Constants {
 
     public static final double CROSSROAD_PHASE_TIME = 60;
 
+    //sizes
+    public static final double TRAFFIC_LIGHT_HEIGHT = 40;
+    public static final double TRAFFIC_LIGHT_WIDTH = 15;
 
+    public static final double CAR_HEIGHT = 60;
+    public static final double CAR_WIDTH = 40;
 }

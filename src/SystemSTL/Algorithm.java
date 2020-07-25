@@ -1,14 +1,9 @@
 package SystemSTL;
 
-import Objects.Car.Car;
 import Objects.Conditions.Conditions;
-import Objects.CrossroadInfo.CrossroadInfo;
 import Tools.Constants;
 import Tools.Utils;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,18 +17,12 @@ public class Algorithm {
 
     private boolean is_east_west_high_priority;
     private boolean is_north_south_high_priority;
+
     private int cars_ratio;
-
-    private ArrayList<LaneInfo> cars_crossroad_1;
-    private ArrayList<LaneInfo> cars_crossroad_2;
-
-    private ArrayList<CarInfo> passed_cars_first_crossroad_south;
-
 
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
         is_finished = false;
-        createLanesInfo();
         checkInitialStateDuration();
     }
 
@@ -42,6 +31,7 @@ public class Algorithm {
 
         double time = 0;
         double changing_time = 0;
+        boolean start_mooving = false;
 
         //function to choose first active direction by priority
 
@@ -63,11 +53,15 @@ public class Algorithm {
                 System.out.println("EAST AND WEST ACTIVE");
 
                 //start moving
-                updateEastWestLaneInfo(true);
+                if (!start_mooving) {
+                    start_mooving = true;
+                    updateEastWestLaneInfo(true);
+                }
 
                 if (conditions.getEastWestTimeDistribution() < time) {
                     //stop moving
                     updateEastWestLaneInfo(false);
+                    start_mooving = false;
 
                     conditions.changeTrafficLightState();
                 }
@@ -80,11 +74,15 @@ public class Algorithm {
                 System.out.println("NORTH AND SOUTH ACTIVE");
 
                 //start moving
-                updateNorthSouthLaneInfo(true);
+                if (!start_mooving) {
+                    start_mooving = true;
+                    updateNorthSouthLaneInfo(true);
+                }
 
                 if (conditions.getNorthSouthTimeDistribution() < time) {
                     //stop moving
                     updateNorthSouthLaneInfo(false);
+                    start_mooving = false;
 
                     conditions.changeTrafficLightState();
                 }
@@ -119,10 +117,17 @@ public class Algorithm {
 
     private void updateEastWestLaneInfo(boolean moving_mode) {
 
-//        LaneComputation lane_computation_first_north = new LaneComputation(cars_crossroad_1.get(0));
-//        lane_computation_first_north.setMovingMode(moving_mode);
-//
-//        lane_computation_first_north.start();
+        LaneComputation lane_computation_first_north = new LaneComputation(conditions.getCarsInFirstCrossroad().get(0));
+        lane_computation_first_north.setMovingMode(moving_mode);
+
+        lane_computation_first_north.start();
+
+        try {
+            lane_computation_first_north.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 //
 //        try {
 //            lane_computation_first_north.join();
@@ -158,7 +163,7 @@ public class Algorithm {
         double max_time = 0;
         LaneComputation lane_computation;
 
-        for (LaneInfo lane_info : cars_crossroad_1) {
+        for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
             lane_computation = new LaneComputation(lane_info);
 
             if (max_time < lane_computation.getInitialTime()) {
@@ -166,7 +171,7 @@ public class Algorithm {
             }
         }
 
-        for (LaneInfo lane_info : cars_crossroad_2) {
+        for (LaneInfo lane_info : conditions.getCarsInSecondCrossroad()) {
             lane_computation = new LaneComputation(lane_info);
 
             if (max_time < lane_computation.getInitialTime()) {
@@ -182,36 +187,17 @@ public class Algorithm {
     }
 
     private boolean isAllCarsPassed() {
-        for (LaneInfo lane_info : cars_crossroad_1) {
+        for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
             if (lane_info.getCarsInLane().size() > 0) {
                 return false;
             }
         }
-        for (LaneInfo lane_info : cars_crossroad_2) {
+        for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
             if (lane_info.getCarsInLane().size() > 0) {
                 return false;
             }
         }
         return true;
-    }
-
-    private void createLanesInfo() {
-        cars_crossroad_1 = new ArrayList<>();
-        CrossroadInfo first_crossroad = conditions.getCrossroadInfo1();
-        createLanesPerCrossroad(cars_crossroad_1, first_crossroad);
-
-        cars_crossroad_2 = new ArrayList<>();
-        CrossroadInfo second_crossroad = conditions.getCrossroadInfo2();
-        createLanesPerCrossroad(cars_crossroad_2, second_crossroad);
-
-        checkPriority();
-    }
-
-    private void createLanesPerCrossroad(ArrayList<LaneInfo> cars, CrossroadInfo actual_crossroad) {
-        cars.add(new LaneInfo(actual_crossroad.getNorth().getCarsCount(), actual_crossroad.getNorth().getSpeedLimit()));
-        cars.add(new LaneInfo(actual_crossroad.getEast().getCarsCount(), actual_crossroad.getEast().getSpeedLimit()));
-        cars.add(new LaneInfo(actual_crossroad.getSouth().getCarsCount(), actual_crossroad.getSouth().getSpeedLimit()));
-        cars.add(new LaneInfo(actual_crossroad.getWest().getCarsCount(), actual_crossroad.getWest().getSpeedLimit()));
     }
 
     //find priority direction
@@ -249,49 +235,14 @@ public class Algorithm {
     }
 
     private double calculateCarsInRoutes(int ind_1, int ind_2) {
-        int first_crossroad_amount = cars_crossroad_1.get(ind_1).getCarsInLane().size() +
-                cars_crossroad_1.get(ind_2).getCarsInLane().size();
 
-        int second_crossroad_amount = cars_crossroad_2.get(ind_1).getCarsInLane().size() +
-                cars_crossroad_2.get(ind_2).getCarsInLane().size();
+        int first_crossroad_amount = conditions.getCarsInFirstCrossroad().get(ind_1).getCarsInLane().size() +
+                conditions.getCarsInFirstCrossroad().get(ind_2).getCarsInLane().size();
+
+        int second_crossroad_amount = conditions.getCarsInSecondCrossroad().get(ind_1).getCarsInLane().size() +
+                conditions.getCarsInSecondCrossroad().get(ind_2).getCarsInLane().size();
 
         return first_crossroad_amount + second_crossroad_amount;
-    }
-
-    private Queue<Car> copyQueue(Queue<Car> cars) {
-        return new ArrayDeque<>(cars);
-    }
-
-    public LaneInfo getCarsCountNorthCrossroad_1() {
-        return cars_crossroad_1.get(0);
-    }
-
-    public LaneInfo getCarsCountEastCrossroad_1() {
-        return cars_crossroad_1.get(1);
-    }
-
-    public LaneInfo getCarsCountSouthCrossroad_1() {
-        return cars_crossroad_1.get(2);
-    }
-
-    public LaneInfo getCarsCountWestCrossroad_1() {
-        return cars_crossroad_1.get(3);
-    }
-
-    public LaneInfo getCarsCountNorthCrossroad_2() {
-        return cars_crossroad_2.get(0);
-    }
-
-    public LaneInfo getCarsCountEastCrossroad_2() {
-        return cars_crossroad_2.get(1);
-    }
-
-    public LaneInfo getCarsCountSouthCrossroad_2() {
-        return cars_crossroad_2.get(2);
-    }
-
-    public LaneInfo getCarsCountWestCrossroad_2() {
-        return cars_crossroad_2.get(3);
     }
 
     public double getInitialDuration() {

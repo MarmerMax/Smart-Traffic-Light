@@ -2,8 +2,6 @@ package SystemSTL;
 
 import Tools.Formulas;
 
-import java.util.ArrayList;
-
 public class LaneComputation extends Thread {
 
     private LaneInfo lane_info;
@@ -31,15 +29,10 @@ public class LaneComputation extends Thread {
 
     @Override
     public void run() {
-
-        if (moving_mode) {
-            runLane(1);
-        } else {
-            stopLane();
-        }
+        runLane(1);
     }
 
-    private void stopLane() {
+    private void stopLane(double time) {
 
     }
 
@@ -61,19 +54,44 @@ public class LaneComputation extends Thread {
 
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
 
-                car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
-                car_computation.movingMode(add, lane_info.getSpeedLimit());
-
+                //ride
+                if (moving_mode) {
+                    //no need to compute
+                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -500) {
+                        i--;
+                        lane_info.getCarsInLane().remove(i);
+                    } else {
+                        car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
+                        car_computation.movingMode(add, lane_info.getSpeedLimit());
+                    }
+                }
+                //stop
+                else {
+                    //if car is far from intersection then remove it from array
+                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -500) {
+                        i--;
+                        lane_info.getCarsInLane().remove(i);
+                    } else {
+                        //if car passed the intersection line then continue it's computation
+                        if (lane_info.getCarsInLane().get(i).getCurrentSpeed() > 0 &&
+                                lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < 0) {
+                            car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
+                            car_computation.movingMode(add, lane_info.getSpeedLimit());
+                        } else {
+                            car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
+                            car_computation.stoppingMode(add);
+                        }
+                    }
+                }
             }
         }
-
     }
 
     public double getInitialTime() {
         return initial_time;
     }
 
-    public boolean isMovingMode() {
+    public boolean getMovingMode() {
         return moving_mode;
     }
 

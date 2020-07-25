@@ -3,11 +3,65 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Database/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/AlertBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/AlertBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ConfirmBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ConfirmBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/InputConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/InputConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/META-INF/STL.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Main/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/AmbulanceCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/AmbulanceCar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarTypes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/PoliceCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/PoliceCar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/TaxiCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/TaxiCar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/TrackCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/TrackCar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/UsualCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Car/UsualCar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Conditions/Conditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Conditions/Conditions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Crossroad/Crossroad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Crossroad/Crossroad.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/DrawObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/DrawObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Road/Road.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Road/Road.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Road/RoadCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/Road/RoadCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/GreenState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/GreenState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedYellowState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedYellowState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/YellowState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/YellowState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/CarComputation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/CarComputation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/CarInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/CarInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/LaneComputation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/LaneComputation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/LaneInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/LaneInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/CarTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/CarTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/ConditionsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/ConditionsTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/CrossroadInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/CrossroadInfoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/DirectionInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/DirectionInfoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/RoadCreatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/RoadCreatorTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TrafficLightTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tests/TrafficLightTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tools/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/Formulas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tools/Formulas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/Tools/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/CarComputation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/CarComputation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/LaneComputation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/LaneComputation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SystemSTL/LaneInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/LaneInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tools/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Constants.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,17 +124,43 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2170">
-              <caret line="506" column="21" lean-forward="true" selection-start-line="506" selection-start-column="21" selection-end-line="506" selection-end-column="21" />
+            <state relative-caret-position="242">
+              <caret line="546" lean-forward="true" selection-start-line="546" selection-end-line="546" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#19422#19423#0" expanded="true" />
-                <element signature="e#19477#19478#0" expanded="true" />
-                <element signature="e#20068#20069#0" expanded="true" />
-                <element signature="e#20150#20151#0" expanded="true" />
-                <element signature="e#25152#25153#0" expanded="true" />
-                <element signature="e#25185#25186#0" expanded="true" />
+                <element signature="e#20583#20584#0" expanded="true" />
+                <element signature="e#20638#20639#0" expanded="true" />
+                <element signature="e#21229#21230#0" expanded="true" />
+                <element signature="e#21311#21312#0" expanded="true" />
+                <element signature="e#30663#30664#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Objects/Car/CarFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Objects/Car/CarTypes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="155" column="44" selection-start-line="155" selection-start-column="44" selection-end-line="155" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -88,21 +168,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="95" selection-start-line="95" selection-end-line="99" selection-end-column="19" />
+            <state relative-caret-position="5007">
+              <caret line="245" column="5" selection-start-line="245" selection-start-column="5" selection-end-line="245" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8844#8845#0" expanded="true" />
-                <element signature="e#8944#8945#0" expanded="true" />
-                <element signature="e#9043#9044#0" expanded="true" />
-                <element signature="e#9143#9144#0" expanded="true" />
-                <element signature="e#9242#9243#0" expanded="true" />
-                <element signature="e#9342#9343#0" expanded="true" />
-                <element signature="e#9441#9442#0" expanded="true" />
-                <element signature="e#9541#9542#0" expanded="true" />
-                <element signature="e#9640#9641#0" expanded="true" />
+                <element signature="e#9682#9683#0" expanded="true" />
                 <element signature="e#9721#9722#0" expanded="true" />
+                <element signature="e#9762#9763#0" expanded="true" />
                 <element signature="e#9800#9801#0" expanded="true" />
+                <element signature="e#9838#9839#0" expanded="true" />
                 <element signature="e#9872#9873#0" expanded="true" />
               </folding>
             </state>
@@ -110,15 +184,44 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SystemSTL/CarInfo.java">
+        <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            <state relative-caret-position="-1131">
+              <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
               <folding>
-                <element signature="e#511#512#0" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#605#606#0" expanded="true" />
-                <element signature="e#655#656#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#649#650#0" expanded="true" />
+                <element signature="e#670#671#0" expanded="true" />
+                <element signature="e#739#740#0" expanded="true" />
+                <element signature="e#778#779#0" expanded="true" />
+                <element signature="e#4191#4192#0" expanded="true" />
+                <element signature="e#4237#4238#0" expanded="true" />
+                <element signature="e#4290#4291#0" expanded="true" />
+                <element signature="e#4336#4337#0" expanded="true" />
+                <element signature="e#4390#4391#0" expanded="true" />
+                <element signature="e#4436#4437#0" expanded="true" />
+                <element signature="e#4489#4490#0" expanded="true" />
+                <element signature="e#4535#4536#0" expanded="true" />
+                <element signature="e#4589#4590#0" expanded="true" />
+                <element signature="e#4635#4636#0" expanded="true" />
+                <element signature="e#4688#4689#0" expanded="true" />
+                <element signature="e#4734#4735#0" expanded="true" />
+                <element signature="e#4788#4789#0" expanded="true" />
+                <element signature="e#4834#4835#0" expanded="true" />
+                <element signature="e#4887#4888#0" expanded="true" />
+                <element signature="e#4933#4934#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-396">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,14 +230,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="43" column="53" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
+            <state relative-caret-position="-605">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1282#1283#0" expanded="true" />
-                <element signature="e#1317#1318#0" expanded="true" />
-                <element signature="e#1481#1482#0" expanded="true" />
-                <element signature="e#1515#1516#0" expanded="true" />
+                <element signature="e#1102#1103#0" expanded="true" />
+                <element signature="e#1137#1138#0" expanded="true" />
+                <element signature="e#1321#1322#0" expanded="true" />
+                <element signature="e#1412#1413#0" expanded="true" />
+                <element signature="e#1505#1506#0" expanded="true" />
+                <element signature="e#1536#1537#0" expanded="true" />
+                <element signature="e#1411#1412#0" expanded="true" />
+                <element signature="e#1445#1446#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,7 +251,7 @@
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/CarComputation.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#126#127#0" expanded="true" />
                 <element signature="e#166#167#0" expanded="true" />
@@ -156,13 +263,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+            <state relative-caret-position="-462">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1818#1819#0" expanded="true" />
-                <element signature="e#1889#1890#0" expanded="true" />
-                <element signature="e#1989#1990#0" expanded="true" />
+                <element signature="e#957#958#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
+                <element signature="e#3150#3151#0" expanded="true" />
+                <element signature="e#3222#3223#0" expanded="true" />
+                <element signature="e#3322#3323#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -184,10 +292,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>convertKilometersPefHourToMetersPerSecond</find>
-      <find>createCa</find>
-      <find>calculatePassedCars</find>
-      <find>copyQueue</find>
       <find>getCar</find>
       <find>60</find>
       <find>TimeDistribution</find>
@@ -214,6 +318,10 @@
       <find>simula</find>
       <find>rec</find>
       <find>rectan</find>
+      <find>return cars_</find>
+      <find>checkP</find>
+      <find>array</find>
+      <find>cons</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -227,7 +335,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Objects/SystemConditions/Conditions.java" />
         <option value="$PROJECT_DIR$/src/System/System.java" />
         <option value="$PROJECT_DIR$/src/System/SystemSTL.java" />
         <option value="$PROJECT_DIR$/src/System/Algorithm.java" />
@@ -267,16 +374,17 @@
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/Tools/Utils.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/LaneInfo.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/CarInfo.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/GreenState.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedState.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/RedYellowState.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightState/YellowState.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/CarComputation.java" />
         <option value="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/CarComputation.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/LaneComputation.java" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/LaneInfo.java" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm.java" />
+        <option value="$PROJECT_DIR$/src/Tools/Constants.java" />
         <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
       </list>
     </option>
@@ -297,7 +405,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -308,7 +415,20 @@
             <path>
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
               <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Objects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Objects" type="462c0819:PsiDirectoryNode" />
+              <item name="Car" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
@@ -318,6 +438,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -336,14 +457,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590862998096" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1595645524631" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/Tests" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Database/mysql-connector-java-5.1.49-bin.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -581,6 +702,7 @@
       <workItem from="1592732705262" duration="20218000" />
       <workItem from="1593678531935" duration="42416000" />
       <workItem from="1594280668123" duration="31156000" />
+      <workItem from="1595636118162" duration="9326000" />
     </task>
     <servers />
   </component>
@@ -617,7 +739,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270520000" />
+    <option name="totallyTimeSpent" value="279846000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -629,11 +751,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.15957446" />
-      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.15885022" />
+      <window_info id="Structure" order="1" weight="0.24962178" />
       <window_info id="Favorites" order="2" weight="0.32978722" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
@@ -780,13 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Car/CarTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Objects/Car/AmbulanceCar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -826,13 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="542">
           <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="73" column="51" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -888,13 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Car/CarFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemSTL/SystemSTL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -903,16 +1004,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#499#500#0" expanded="true" />
             <element signature="e#547#548#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -986,17 +1077,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
+    <entry file="file://$PROJECT_DIR$/images/cars/car4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/cars/small cars/car1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/CarInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-462">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#957#958#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#3150#3151#0" expanded="true" />
+            <element signature="e#3222#3223#0" expanded="true" />
+            <element signature="e#3322#3323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/Car/CarFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/Car/CarTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="155" column="44" selection-start-line="155" selection-start-column="44" selection-end-line="155" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-605">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1321#1322#0" expanded="true" />
+            <element signature="e#1412#1413#0" expanded="true" />
+            <element signature="e#1505#1506#0" expanded="true" />
+            <element signature="e#1536#1537#0" expanded="true" />
+            <element signature="e#1411#1412#0" expanded="true" />
+            <element signature="e#1445#1446#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemSTL/CarComputation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="e#126#127#0" expanded="true" />
             <element signature="e#166#167#0" expanded="true" />
@@ -1004,86 +1164,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/CarInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding>
-            <element signature="e#511#512#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="43" column="53" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
+        <state relative-caret-position="-1131">
+          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="e#1317#1318#0" expanded="true" />
-            <element signature="e#1481#1482#0" expanded="true" />
-            <element signature="e#1515#1516#0" expanded="true" />
+            <element signature="e#649#650#0" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
+            <element signature="e#739#740#0" expanded="true" />
+            <element signature="e#778#779#0" expanded="true" />
+            <element signature="e#4191#4192#0" expanded="true" />
+            <element signature="e#4237#4238#0" expanded="true" />
+            <element signature="e#4290#4291#0" expanded="true" />
+            <element signature="e#4336#4337#0" expanded="true" />
+            <element signature="e#4390#4391#0" expanded="true" />
+            <element signature="e#4436#4437#0" expanded="true" />
+            <element signature="e#4489#4490#0" expanded="true" />
+            <element signature="e#4535#4536#0" expanded="true" />
+            <element signature="e#4589#4590#0" expanded="true" />
+            <element signature="e#4635#4636#0" expanded="true" />
+            <element signature="e#4688#4689#0" expanded="true" />
+            <element signature="e#4734#4735#0" expanded="true" />
+            <element signature="e#4788#4789#0" expanded="true" />
+            <element signature="e#4834#4835#0" expanded="true" />
+            <element signature="e#4887#4888#0" expanded="true" />
+            <element signature="e#4933#4934#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/cars/car4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/cars/small cars/car1.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="95" selection-start-line="95" selection-end-line="99" selection-end-column="19" />
+        <state relative-caret-position="5007">
+          <caret line="245" column="5" selection-start-line="245" selection-start-column="5" selection-end-line="245" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8844#8845#0" expanded="true" />
-            <element signature="e#8944#8945#0" expanded="true" />
-            <element signature="e#9043#9044#0" expanded="true" />
-            <element signature="e#9143#9144#0" expanded="true" />
-            <element signature="e#9242#9243#0" expanded="true" />
-            <element signature="e#9342#9343#0" expanded="true" />
-            <element signature="e#9441#9442#0" expanded="true" />
-            <element signature="e#9541#9542#0" expanded="true" />
-            <element signature="e#9640#9641#0" expanded="true" />
+            <element signature="e#9682#9683#0" expanded="true" />
             <element signature="e#9721#9722#0" expanded="true" />
+            <element signature="e#9762#9763#0" expanded="true" />
             <element signature="e#9800#9801#0" expanded="true" />
+            <element signature="e#9838#9839#0" expanded="true" />
             <element signature="e#9872#9873#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1818#1819#0" expanded="true" />
-            <element signature="e#1889#1890#0" expanded="true" />
-            <element signature="e#1989#1990#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2170">
-          <caret line="506" column="21" lean-forward="true" selection-start-line="506" selection-start-column="21" selection-end-line="506" selection-end-column="21" />
+        <state relative-caret-position="242">
+          <caret line="546" lean-forward="true" selection-start-line="546" selection-end-line="546" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#19422#19423#0" expanded="true" />
-            <element signature="e#19477#19478#0" expanded="true" />
-            <element signature="e#20068#20069#0" expanded="true" />
-            <element signature="e#20150#20151#0" expanded="true" />
-            <element signature="e#25152#25153#0" expanded="true" />
-            <element signature="e#25185#25186#0" expanded="true" />
+            <element signature="e#20583#20584#0" expanded="true" />
+            <element signature="e#20638#20639#0" expanded="true" />
+            <element signature="e#21229#21230#0" expanded="true" />
+            <element signature="e#21311#21312#0" expanded="true" />
+            <element signature="e#30663#30664#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,5 +1,6 @@
 package GUI;
 
+import Objects.Car.Car;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
@@ -29,6 +30,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.scene.shape.Rectangle;
+import SystemSTL.LaneInfo;
+import SystemSTL.CarInfo;
 
 import javafx.event.ActionEvent;
 
@@ -49,7 +52,7 @@ public class ProgramGUI {
 
     private CrossroadInfo crossroad_info_1;
     private CrossroadInfo crossroad_info_2;
-    
+
 
     public ProgramGUI(Stage stage) {
         window = stage;
@@ -63,7 +66,7 @@ public class ProgramGUI {
      * Home Window,
      * Client Types Window,
      * Options Window,
-     * SimulationWindow 
+     * SimulationWindow
      */
     private void createUI() {
         Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
@@ -83,7 +86,7 @@ public class ProgramGUI {
      * About us button
      */
     private void createHomeWindow() {
-    	//Title
+        //Title
         Label label = new Label(Constants.home_page_window_label);
         HBox topMenu = new HBox();
         topMenu.setMinHeight(80);
@@ -124,8 +127,8 @@ public class ProgramGUI {
     }
 
     /**
-     * Random - 
-     * Database - user need to connect first to his local database, after that the user can choose which condition he want to run.  
+     * Random -
+     * Database - user need to connect first to his local database, after that the user can choose which condition he want to run.
      */
     @SuppressWarnings("Duplicates")
     private void createOptionsWindow() {
@@ -203,7 +206,7 @@ public class ProgramGUI {
 
         crossroad_fields_1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
 
-        
+
         //Crossroad 2
         HBox crossroad_fields_2 = new HBox();
         crossroad_fields_2.getStyleClass().add("options-container");
@@ -264,7 +267,7 @@ public class ProgramGUI {
 
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
-        
+
         //Other options
         HBox otherOptions = new HBox();
         otherOptions.getStyleClass().add("options-container");
@@ -292,7 +295,7 @@ public class ProgramGUI {
         Button buttonDatabase = new Button(Constants.database_button_label);
         boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
-        	DatabaseBox.login();
+            DatabaseBox.login();
 //        	DatabaseBox.display();
             //load from database
             //String query_name = DatabaseBox.display();
@@ -317,7 +320,7 @@ public class ProgramGUI {
         buttonInfo.setOnAction(e -> {
             //info
         });
-        
+
         otherOptions.getChildren().addAll(boxLabel3, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
 
         centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
@@ -329,7 +332,7 @@ public class ProgramGUI {
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
-        
+
         //Run
         HBox bottomMenu = new HBox(20);
         bottomMenu.setAlignment(Pos.CENTER);
@@ -354,8 +357,8 @@ public class ProgramGUI {
             conditions = new Conditions(crossroad_info_1, crossroad_info_2);
             window.setScene(windowSimulation);
         });
-        
-        
+
+
         //Back
         Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
@@ -383,17 +386,17 @@ public class ProgramGUI {
     /**
      * This function allow to user choose his client type - Analyst/Observer.
      * Analyst - go to window with all options.
-     * Observer - go to window with limited options.  
+     * Observer - go to window with limited options.
      */
     private void createClientTypesWindow() {
-    	//Title
+        //Title
         Label label = new Label(Constants.client_type_window_label);
         HBox topMenu = new HBox();
         topMenu.setMinHeight(80);
         topMenu.setAlignment(Pos.CENTER);
         topMenu.getChildren().addAll(label);
 
-        
+
         //Analyst button
         VBox leftMenu = new VBox(20);
         Button buttonAnalyst = new Button(Constants.analyst_button_label);
@@ -408,7 +411,7 @@ public class ProgramGUI {
         imageViewAnalyst.setFitWidth(250);
         leftMenu.getChildren().addAll(imageViewAnalyst, buttonAnalyst);
 
-        
+
         //Observer button
         VBox rightMenu = new VBox(20);
         Button buttonObserver = new Button(Constants.observer_button_label);
@@ -423,7 +426,7 @@ public class ProgramGUI {
         imageViewObserver.setFitWidth(250);
         rightMenu.getChildren().addAll(imageViewObserver, buttonObserver);
 
-        
+
         BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(topMenu);
@@ -505,8 +508,6 @@ public class ProgramGUI {
         bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
 
 
-
-
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(topMenu);
         borderPane.setCenter(simulation);
@@ -530,7 +531,7 @@ public class ProgramGUI {
         updateTrafficLights();
     }
 
-    private synchronized void updateCars(){
+    private synchronized void updateCars() {
 
         Rectangle outputClip = new Rectangle(990, 530);
         simulation.setClip(outputClip);
@@ -541,16 +542,110 @@ public class ProgramGUI {
         });
 
 
+//        updateNorthSouthCars();
+//        updateWestEastCars();
+
         Image image = new Image("file:images/cars/car1.png");
-        ImageView image_view = new ImageView(image);
-        image_view.setX(758);
-        image_view.setY(500);
-        image_view.setFitHeight(60);
-        image_view.setFitWidth(40);
+        ImageView image_view = createCar(758, 500, 0, image);
         simulation.getChildren().add(image_view);
     }
 
-    private synchronized void updateTrafficLights(){
+    private void updateWestEastCars() {
+        ArrayList<ImageView> east_crossroad_1 =
+                createCars(1, 1, conditions.getCarsInFirstCrossroad().get(1));
+        ArrayList<ImageView> east_crossroad_2 =
+                createCars(2, 1, conditions.getCarsInSecondCrossroad().get(1));
+        ArrayList<ImageView> west_crossroad_1 =
+                createCars(1, 3, conditions.getCarsInFirstCrossroad().get(3));
+        ArrayList<ImageView> west_crossroad_2 =
+                createCars(2, 3, conditions.getCarsInSecondCrossroad().get(3));
+
+        addCars(east_crossroad_1);
+        addCars(east_crossroad_2);
+        addCars(west_crossroad_1);
+        addCars(west_crossroad_2);
+    }
+
+    private void updateNorthSouthCars() {
+        ArrayList<ImageView> north_crossroad_1 =
+                createCars(1, 0, conditions.getCarsInFirstCrossroad().get(0));
+        ArrayList<ImageView> north_crossroad_2 =
+                createCars(2, 0, conditions.getCarsInSecondCrossroad().get(0));
+        ArrayList<ImageView> south_crossroad_1 =
+                createCars(1, 2, conditions.getCarsInFirstCrossroad().get(2));
+        ArrayList<ImageView> south_crossroad_2 =
+                createCars(2, 2, conditions.getCarsInSecondCrossroad().get(2));
+
+        addCars(north_crossroad_1);
+        addCars(north_crossroad_2);
+        addCars(south_crossroad_1);
+        addCars(south_crossroad_2);
+    }
+
+    private void addCars(ArrayList<ImageView> cars) {
+        for (ImageView image_view : cars) {
+            simulation.getChildren().add(image_view);
+        }
+    }
+
+    private ArrayList<ImageView> createCars(int crossroad, int direction, LaneInfo lane_info) {
+        ArrayList<ImageView> cars = new ArrayList<>();
+
+        for (CarInfo car_info : lane_info.getCarsInLane()) {
+            if (car_info.getDistanceFromCrossroad() < 300 && car_info.getDistanceFromCrossroad() > -300) {
+                createCarOnMapByPlace(1, 0, car_info);
+            }
+        }
+
+        return cars;
+    }
+
+    //TODO: fix initial place for x and y
+    private ImageView createCarOnMapByPlace(int crossroad_number, int direction, CarInfo car) {
+        int[] place;
+
+        if (crossroad_number == 1) {
+            place = generatePlace(300, 300, direction, car.getDistanceFromCrossroad());
+        } else {
+            place = generatePlace(600, 300, direction, car.getDistanceFromCrossroad());
+        }
+
+        return createCar(place[0], place[1], getRotateByDirection(direction), car.getCar().getImage());
+    }
+
+    //TODO: calculate right place for cars
+    private int[] generatePlace(int x, int y, int direction, double distance_from_crossroad) {
+        int[] place = new int[2];
+
+        return place;
+    }
+
+    private ImageView createCar(int x, int y, int rotate, Image image) {
+        ImageView image_view = new ImageView(image);
+        image_view.setX(x);
+        image_view.setY(y);
+        image_view.setFitHeight(Constants.CAR_HEIGHT);
+        image_view.setFitWidth(Constants.CAR_WIDTH);
+        image_view.setRotate(rotate);
+        return image_view;
+    }
+
+    private int getRotateByDirection(int direction) {
+        switch (direction) {
+            case 0:
+                return 0;
+            case 1:
+                return 90;
+            case 2:
+                return 180;
+            case 3:
+                return 270;
+            default:
+                throw new RuntimeException("Bad direction for car...");
+        }
+    }
+
+    private synchronized void updateTrafficLights() {
         ImageView[] traffic_lights_crossroad_1 = createTrafficLights(1);
         ImageView[] traffic_lights_crossroad_2 = createTrafficLights(2);
 
@@ -594,8 +689,8 @@ public class ProgramGUI {
         ImageView image_view = new ImageView(image);
         image_view.setX(x);
         image_view.setY(y);
-        image_view.setFitHeight(40);
-        image_view.setFitWidth(15);
+        image_view.setFitHeight(Constants.TRAFFIC_LIGHT_HEIGHT);
+        image_view.setFitWidth(Constants.TRAFFIC_LIGHT_WIDTH);
         image_view.setRotate(rotate);
         return image_view;
     }

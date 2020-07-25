@@ -34,7 +34,7 @@ public class CarComputation {
         car_info.setDistanceFromCrossroad(updated_distance);
     }
 
-    public void stopingMode(double time) {
+    public void stoppingMode(double time) {
 
         speedDown(time);
 
