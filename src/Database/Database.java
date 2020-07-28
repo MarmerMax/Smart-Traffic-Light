@@ -209,6 +209,7 @@ public class Database {
     	
     }
     
+    
     private PreparedStatement saveCrossroadInfo(CrossroadInfo ci, int current_conditions_id) {
     	try {
     		PreparedStatement pstmt;
