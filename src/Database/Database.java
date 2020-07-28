@@ -2,6 +2,7 @@ package Database;
 
 import Objects.Conditions.Conditions;
 import Objects.CrossroadInfo.CrossroadInfo;
+import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import SystemSTL.Algorithm;
 import Tools.Constants;
 
@@ -107,7 +108,7 @@ public class Database {
         	create_crossroads_table_query.execute();
         	System.out.println("creating crossroads table success!");
         	
-    	} catch(Exception e) {
+    	} catch(SQLException e) {
     		System.err.println(Constants.create_database_fail);
     		return false;
     	}
@@ -178,16 +179,24 @@ public class Database {
      */
     public void save(Conditions conditions) {
     	try {
+    		//Save conditions
 			PreparedStatement pstmt = con.prepareStatement(Constants.insert_conditions_statment, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setNString(1, "test2");
+			pstmt.setNString(1, "name"); //need to replace to name of conditions
 			pstmt.executeUpdate();
+			
+			//Extract conditions_id from ResultSet
+			int current_conditions_id = getId(pstmt, 1);
+			
+			//Save crossroadsInfo
+	    	CrossroadInfo ci1 = conditions.getCrossroadInfo1();
+	    	CrossroadInfo ci2 = conditions.getCrossroadInfo2();
+	    	saveCrossroadInfo(ci1, current_conditions_id);
+	    	saveCrossroadInfo(ci2, current_conditions_id);
+	    	
+	    	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-    	
-    	CrossroadInfo ci1 = conditions.getCrossroadInfo1();
-    	CrossroadInfo ci2 = conditions.getCrossroadInfo2();
     }
     
     
@@ -200,6 +209,76 @@ public class Database {
     	
     }
     
+    private PreparedStatement saveCrossroadInfo(CrossroadInfo ci, int current_conditions_id) {
+    	try {
+    		PreparedStatement pstmt;
+        	
+        	//Save directionsInfo(north)
+        	int id1 = 0;
+    		DirectionInfo north_di = ci.getNorth();
+    		pstmt = saveDirectionInfo(north_di, "north");
+    		id1 = getId(pstmt, 1);
+    		
+    		//Save directionsInfo(east)
+    		int id2 = 0;
+    		DirectionInfo east_di = ci.getEast();
+    		pstmt = saveDirectionInfo(east_di, "east");
+    		id2 = getId(pstmt, 1);
+    		
+    		//Save directionsInfo(south)
+    		int id3 = 0;
+    		DirectionInfo south_di = ci.getSouth();
+    		pstmt = saveDirectionInfo(south_di, "south");
+    		id3 = getId(pstmt, 1);
+    		
+    		//Save directionsInfo(west)
+    		int id4 = 0;
+    		DirectionInfo west_di = ci.getWest();
+    		pstmt = saveDirectionInfo(west_di, "west");
+    		id4 = getId(pstmt, 1);
+    		
+    		pstmt = con.prepareStatement(Constants.insert_crossroadsInfo_statment, Statement.RETURN_GENERATED_KEYS);
+    		pstmt.setInt(1, current_conditions_id);
+    		pstmt.setInt(2, id1);
+    		pstmt.setInt(3, id2);
+    		pstmt.setInt(4, id3);
+    		pstmt.setInt(5, id4);
+			pstmt.executeUpdate();
+			return pstmt;
+    	} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+    }
+    
+    private PreparedStatement saveDirectionInfo(DirectionInfo di, String type) {
+		try {
+	    	PreparedStatement pstmt;
+			pstmt = con.prepareStatement(Constants.insert_directionsInfo_statment, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, di.getCarsCount());
+			pstmt.setDouble(2, di.getActualSpeed());
+			pstmt.setDouble(3, di.getSpeedLimit());
+			pstmt.setString(4, type);
+			pstmt.executeUpdate();
+			return pstmt;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+    }
+    
+    private int getId(PreparedStatement pstmt, int index) {
+    	//Extract id from ResultSet
+		try {
+			ResultSet rs = pstmt.getGeneratedKeys();
+			int id = 0;
+			while(rs.next()){ id = rs.getInt(index); }
+			return id;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+    }
     
     private String createQuery(String... query_part) {
         String full_query = "";

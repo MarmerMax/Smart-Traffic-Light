@@ -15,7 +15,8 @@ public class Constants {
 			"	`direction_info_id` int not null auto_increment, \n" + 
 			"	`cars_amount` int not null,\n" + 
 			"	`average_speed` int not null,\n" + 
-			"	`limit_speed` int not null,\n" + 
+			"	`limit_speed` int not null,\n" +
+			"	`type` varchar(20) not null,\n" +
 			"	PRIMARY KEY (`direction_info_id`)\n" + 
 			")";
 	public static final String create_traffic_lights_table_query = "create table if not exists stl.TrafficLights (\n" + 
@@ -64,7 +65,12 @@ public class Constants {
 	
 	//Saves
 	public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name) values(?)";
-	
+	public static final String insert_directionsInfo_statment = "insert into "
+			+ "stl.DirectionsInfo(cars_amount, average_speed, limit_speed, type)"
+			+ " values(?,?,?,?)";
+	public static final String insert_crossroadsInfo_statment = "insert into "
+			+ "stl.CrossroadsInfo(condition_id, north_direction_info_id, east_direction_info_id, south_direction_info_id, west_direction_info_id)"
+			+ " values(?,?,?,?,?)";
 
 	//Selects
     public static final String select_conditions_names_query = "select conditions_name from Conditions";
