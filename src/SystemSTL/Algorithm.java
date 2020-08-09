@@ -26,6 +26,7 @@ public class Algorithm {
 
     /**
      * Algorithm constructor. Calculates the initial travel times for cars without a smart algorithm.
+     *
      * @param conditions - conditions of actual roads.
      */
     public Algorithm(Conditions conditions) {
@@ -42,7 +43,7 @@ public class Algorithm {
 
         double time = 0;
         double changing_time = 0;
-        boolean start_mooving = false;
+//        boolean start_moving = false;
 
         //function to choose first active direction by priority
 
@@ -52,27 +53,28 @@ public class Algorithm {
             checkPriority();
             updateTrafficLightsTimeDistributions();//wrong place
 
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
             //main road active
             if (conditions.isEastWestActive()) {
 
-                System.out.println("EAST AND WEST ACTIVE");
+//                System.out.println("EAST AND WEST ACTIVE");
 
                 //start moving
-                if (!start_mooving) {
-                    start_mooving = true;
-                    updateEastWestLaneInfo(true);
-                }
+//                if (!start_moving) {
+//                    start_moving = true;
+//                }
+
+                updateEastWestLaneInfo(true);
 
                 if (conditions.getEastWestTimeDistribution() < time) {
                     //stop moving
                     updateEastWestLaneInfo(false);
-                    start_mooving = false;
+//                    start_moving = false;
 
                     conditions.changeTrafficLightState();
                 }
@@ -82,18 +84,19 @@ public class Algorithm {
             //others road active
             else if (conditions.isNorthSouthActive()) {
 
-                System.out.println("NORTH AND SOUTH ACTIVE");
+//                System.out.println("NORTH AND SOUTH ACTIVE");
 
                 //start moving
-                if (!start_mooving) {
-                    start_mooving = true;
-                    updateNorthSouthLaneInfo(true);
-                }
+//                if (!start_moving) {
+//                    start_moving = true;
+//                }
+
+                updateNorthSouthLaneInfo(true);
 
                 if (conditions.getNorthSouthTimeDistribution() < time) {
                     //stop moving
                     updateNorthSouthLaneInfo(false);
-                    start_mooving = false;
+//                    start_moving = false;
 
                     conditions.changeTrafficLightState();
                 }
@@ -102,13 +105,13 @@ public class Algorithm {
 
             //all road are stop
             else {
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 time = 0;
-                System.out.println("ALL STOPS");
+//                System.out.println("ALL STOPS");
                 if (changing_time < conditions.getChangingLightsTime()) {
                     changing_time++;
                 } else {
@@ -122,16 +125,19 @@ public class Algorithm {
 
 
     /**
-     *
      * @param moving_mode
      */
     private void updateNorthSouthLaneInfo(boolean moving_mode) {
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        System.out.println("north-south");
     }
 
 
     /**
-     *
      * @param moving_mode
      */
     private void updateEastWestLaneInfo(boolean moving_mode) {
@@ -211,6 +217,7 @@ public class Algorithm {
 
     /**
      * This function checks if all vehicles have passed these intersections.
+     *
      * @return true or false
      */
     private boolean isAllCarsPassed() {
@@ -228,7 +235,7 @@ public class Algorithm {
     }
 
     /**
-     *This function check priority for traffic lights distributions.
+     * This function check priority for traffic lights distributions.
      * Where there are more cars, the higher the priority.
      */
     private void checkPriority() {
@@ -268,6 +275,7 @@ public class Algorithm {
 
     /**
      * This function calculate count of two specific directions.
+     *
      * @param ind_1 - direction 1
      * @param ind_2 - direction 2
      * @return count of cars in both direction
@@ -285,6 +293,7 @@ public class Algorithm {
 
     /**
      * This function return duration of initial state without smart algorithm.
+     *
      * @return initial duration
      */
     public double getInitialDuration() {
@@ -293,6 +302,7 @@ public class Algorithm {
 
     /**
      * This function return duration of actual state with smart algorithm.
+     *
      * @return actual duration
      */
     public double getActualDuration() {
@@ -301,6 +311,7 @@ public class Algorithm {
 
     /**
      * This function returns true if the algorithm has been completed.
+     *
      * @return
      */
     public boolean getIsFinished() {

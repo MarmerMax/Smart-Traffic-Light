@@ -52,7 +52,7 @@ public class Crossroad {
             }
         }
         actualState %= 8;
-        System.out.println("north-south: " + isNorthSouthActive + ", east-west: " + isEastWestActive);
+//        System.out.println("north-south: " + isNorthSouthActive + ", east-west: " + isEastWestActive);
     }
 
     public Road getNorthRoad() {

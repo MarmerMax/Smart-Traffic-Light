@@ -15,6 +15,8 @@ public class Conditions {
     private ArrayList<LaneInfo> cars_crossroad_1;
     private ArrayList<LaneInfo> cars_crossroad_2;
 
+    private boolean is_created = false;
+
 //    private ArrayList<CarInfo> passed_cars_first_crossroad_south;
 //    private ArrayList<CarInfo> passed_cars_first_crossroad_south;
 
@@ -131,6 +133,7 @@ public class Conditions {
         cars_crossroad_2 = new ArrayList<>();
         createLanesPerCrossroad(cars_crossroad_2, crossroad_info_2);
 
+        is_created = true;
     }
 
     /**
@@ -191,5 +194,9 @@ public class Conditions {
 
     public LaneInfo getCarsCountWestCrossroad_2() {
         return cars_crossroad_2.get(3);
+    }
+
+    public boolean getIsCreated() {
+        return is_created;
     }
 }

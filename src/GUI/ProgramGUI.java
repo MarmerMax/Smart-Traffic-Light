@@ -9,6 +9,7 @@ import Objects.TrafficLight.TrafficLightState.GreenState;
 import Objects.TrafficLight.TrafficLightState.RedState;
 import SystemSTL.SystemSTL;
 import Tools.Constants;
+import Tools.Utils;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +34,7 @@ import javafx.scene.shape.Rectangle;
 import SystemSTL.LaneInfo;
 import SystemSTL.Algorithm;
 import SystemSTL.CarInfo;
+//import Tools.Constants.*;
 
 import javafx.event.ActionEvent;
 
@@ -43,6 +45,7 @@ import Database.Database;
 import java.awt.*;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -77,6 +80,8 @@ public class ProgramGUI {
         Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
         crossroad_info_1 = new CrossroadInfo(crossroad_1);
         crossroad_info_2 = new CrossroadInfo(crossroad_2);
+
+        conditions = Utils.createStartConditions();
 
         createHomeWindow();
         createClientTypesWindow();
@@ -455,15 +460,15 @@ public class ProgramGUI {
 
         Button buttonSave = new Button(Constants.save_button_label);
         buttonSave.setOnAction(e -> {
-        	//Login before saving
-        	if(Database.getInstance().getConnection() == null) {
-        		DatabaseBox.login();
-        		//Save to database window
-            	Database.getInstance().save(conditions);
-        	} else {
-        		//Save to database window
-            	Database.getInstance().save(conditions);
-        	}
+            //Login before saving
+            if (Database.getInstance().getConnection() == null) {
+                DatabaseBox.login();
+                //Save to database window
+                Database.getInstance().save(conditions);
+            } else {
+                //Save to database window
+                Database.getInstance().save(conditions);
+            }
         });
 
         Button buttonBack = new Button(Constants.back_button_label);
@@ -539,8 +544,8 @@ public class ProgramGUI {
         imageViewRoad.setFitWidth(990);
         simulation.getChildren().addAll(imageViewRoad);
 
-        updateCars();
         updateTrafficLights();
+        updateCars();
     }
 
     private synchronized void updateCars() {
@@ -554,12 +559,12 @@ public class ProgramGUI {
         });
 
 
-//        updateNorthSouthCars();
-//        updateWestEastCars();
+        updateNorthSouthCars();
+        updateWestEastCars();
 
-        Image image = new Image("file:images/cars/car1.png");
-        ImageView image_view = createCar(758, 500, 0, image);
-        simulation.getChildren().add(image_view);
+//        Image image = new Image("file:images/cars/car1.png");
+//        ImageView image_view = createCar(758, 500, 0, image);
+//        simulation.getChildren().add(image_view);
     }
 
     private void updateWestEastCars() {
@@ -594,67 +599,92 @@ public class ProgramGUI {
         addCars(south_crossroad_2);
     }
 
-    private void addCars(ArrayList<ImageView> cars) {
-        for (ImageView image_view : cars) {
-            simulation.getChildren().add(image_view);
-        }
-    }
-
     private ArrayList<ImageView> createCars(int crossroad, int direction, LaneInfo lane_info) {
         ArrayList<ImageView> cars = new ArrayList<>();
 
         for (CarInfo car_info : lane_info.getCarsInLane()) {
-            if (car_info.getDistanceFromCrossroad() < 300 && car_info.getDistanceFromCrossroad() > -300) {
-                createCarOnMapByPlace(1, 0, car_info);
+            if (-40 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 40) {
+                cars.add(createCarOnMapByPlace(crossroad, direction, car_info));
             }
         }
 
         return cars;
     }
 
-    //TODO: fix initial place for x and y
     private ImageView createCarOnMapByPlace(int crossroad_number, int direction, CarInfo car) {
-        int[] place;
-
-        if (crossroad_number == 1) {
-            place = generatePlace(300, 300, direction, car.getDistanceFromCrossroad());
-        } else {
-            place = generatePlace(600, 300, direction, car.getDistanceFromCrossroad());
-        }
-
-        return createCar(place[0], place[1], getRotateByDirection(direction), car.getCar().getImage());
+        int[] place = generatePlace(crossroad_number, direction, car.getDistanceFromCrossroad());
+        //TODO: create cars with correct image
+        Image image = new Image("file:images/cars/car1.png");
+//        return createCar(place[0], place[1], getRotateByDirection(direction), car.getCar().getImage());
+        return createCar(place[0], place[1], getRotateByDirection(direction), image);
     }
 
-    //TODO: calculate right place for cars
-    private int[] generatePlace(int x, int y, int direction, double distance_from_crossroad) {
-        int[] place = new int[2];
+    private int[] generatePlace(int crossroad_number, int direction, double distance_from_crossroad) {
+        int x = 0;
+        int y = 0;
 
+        distance_from_crossroad /= 0.12;
+
+        if (direction == 0) {
+            x += 180;
+            y += 150;
+
+            y -= distance_from_crossroad;
+        } else if (direction == 1) {
+            x += 290;
+            y += 210;
+
+            x += distance_from_crossroad;
+        } else if (direction == 2) {
+            x += 230;
+            y += 320;
+
+            y += distance_from_crossroad;
+        } else if (direction == 3) {
+            x += 120;
+            y += 255;
+
+            x -= distance_from_crossroad;
+        }
+
+        if (crossroad_number == 2) {
+            x += 528;
+        }
+
+        int[] place = {x, y};
+
+        System.out.println(Arrays.toString(place));
         return place;
+    }
+
+    private int getRotateByDirection(int direction) {
+        switch (direction) {
+            case 0:
+                return 180;
+            case 1:
+                return 270;
+            case 2:
+                return 0;
+            case 3:
+                return 90;
+            default:
+                throw new RuntimeException("Bad direction for car...");
+        }
     }
 
     private ImageView createCar(int x, int y, int rotate, Image image) {
         ImageView image_view = new ImageView(image);
         image_view.setX(x);
         image_view.setY(y);
+        //TODO: cars sizes by correct size
         image_view.setFitHeight(Constants.CAR_HEIGHT);
         image_view.setFitWidth(Constants.CAR_WIDTH);
         image_view.setRotate(rotate);
         return image_view;
     }
 
-    private int getRotateByDirection(int direction) {
-        switch (direction) {
-            case 0:
-                return 0;
-            case 1:
-                return 90;
-            case 2:
-                return 180;
-            case 3:
-                return 270;
-            default:
-                throw new RuntimeException("Bad direction for car...");
-        }
+    private void addCars(ArrayList<ImageView> cars) {
+        simulation.getChildren().addAll(cars);
     }
 
     private synchronized void updateTrafficLights() {
@@ -663,10 +693,6 @@ public class ProgramGUI {
 
         addTrafficLights(traffic_lights_crossroad_1);
         addTrafficLights(traffic_lights_crossroad_2);
-    }
-
-    private void addTrafficLights(ImageView[] images) {
-        simulation.getChildren().addAll(images[0], images[1], images[2], images[3]);
     }
 
     private ImageView[] createTrafficLights(int crossroad_number) {
@@ -705,6 +731,11 @@ public class ProgramGUI {
         image_view.setFitWidth(Constants.TRAFFIC_LIGHT_WIDTH);
         image_view.setRotate(rotate);
         return image_view;
+    }
+
+    private void addTrafficLights(ImageView[] images) {
+//        simulation.getChildren().addAll(images[0], images[1], images[2], images[3]);
+        simulation.getChildren().addAll(images);
     }
 
     private void upgradeSpinner(Spinner<Integer> spinner, int min, int max, boolean limit) {

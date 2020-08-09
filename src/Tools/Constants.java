@@ -3,80 +3,80 @@ package Tools;
 public class Constants {
 
     /////////////////////database queries///////////////////////
-	//Creates
-	public static final String create_database_query = "create database if not exists stl";
-	public static final String create_conditions_table_query = "create table if not exists stl.Conditions (\n" + 
-			"	`condition_id` int not null auto_increment,\n" + 
-			"    `condition_name` varchar(20) not null,\n" + 
-			"    `Date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n" + 
-			"    PRIMARY KEY (`condition_id`)\n" + 
-			")";
-	public static final String create_directionsInfo_table_query = "create table if not exists stl.DirectionsInfo (\n" + 
-			"	`direction_info_id` int not null auto_increment, \n" + 
-			"	`cars_amount` int not null,\n" + 
-			"	`average_speed` int not null,\n" + 
-			"	`limit_speed` int not null,\n" +
-			"	`type` varchar(20) not null,\n" +
-			"	PRIMARY KEY (`direction_info_id`)\n" + 
-			")";
-	public static final String create_traffic_lights_table_query = "create table if not exists stl.TrafficLights (\n" + 
-			"    `traffic_light_id` int not null auto_increment,\n" + 
-			"    `actual_state` int not null,\n" + 
-			"    primary key(`traffic_light_id`)\n" + 
-			")";
-	public static final String create_cars_table_query = "create table if not exists stl.Cars (\n" + 
-			"    `car_id` int not null auto_increment,\n" + 
-			"    `direction_info_id` int not null,\n" + 
-			"    `car_type` varchar(25),\n" + 
-			"    `length` int not null,\n" + 
-			"    `speed` int not null,\n" + 
-			"    primary key(`car_id`),\n" + 
-			"    foreign key(`direction_info_id`) references DirectionsInfo(`direction_info_id`)\n" + 
-			")";
-	public static final String create_crossroadsInfo_table_query = "create table if not exists stl.CrossroadsInfo(\n" + 
-			"	`crossroad_info_id` int not null auto_increment,\n" + 
-			"    `condition_id` int not null,\n" + 
-			"    `north_direction_info_id` int,\n" + 
-			"	`east_direction_info_id` int,\n" + 
-			"    `south_direction_info_id` int,\n" + 
-			"    `west_direction_info_id` int,\n" + 
-			"	PRIMARY KEY (`crossroad_info_id`),\n" + 
-			"    foreign key(`condition_id`) references Conditions(`condition_id`),\n" + 
-			"    foreign key(`north_direction_info_id`) references DirectionsInfo(`direction_info_id`),\n" + 
-			"    foreign key(`east_direction_info_id`) references DirectionsInfo(`direction_info_id`),\n" + 
-			"    foreign key(`south_direction_info_id`) references DirectionsInfo(`direction_info_id`),\n" + 
-			"    foreign key(`west_direction_info_id`) references DirectionsInfo(`direction_info_id`)\n" + 
-			")";
-	public static final String create_crossroads_table_query = "create table if not exists stl.Crossroads(\n" + 
-			"	`crossroad_id` int not null auto_increment,\n" + 
-			"    `crossroad_info_id` int not null,\n" + 
-			"    `north_traffic_light_id` int,\n" + 
-			"    `east_traffic_light_id` int,\n" + 
-			"    `south_traffic_light_id` int,\n" + 
-			"    `west_traffic_light_id` int,\n" + 
-			"    `actual_state` int not null,\n" + 
-			"    primary key(`crossroad_id`),\n" + 
-			"    foreign key(`crossroad_info_id`) references CrossroadsInfo(`crossroad_info_id`),\n" + 
-			"    foreign key(`north_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" + 
-			"    foreign key(`east_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" + 
-			"    foreign key(`south_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" + 
-			"    foreign key(`west_traffic_light_id`) references TrafficLights(`traffic_light_id`)\n" + 
-			")";
-	
-	//Saves
-	public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name) values(?)";
-	public static final String insert_directionsInfo_statment = "insert into "
-			+ "stl.DirectionsInfo(cars_amount, average_speed, limit_speed, type)"
-			+ " values(?,?,?,?)";
-	public static final String insert_crossroadsInfo_statment = "insert into "
-			+ "stl.CrossroadsInfo(condition_id, north_direction_info_id, east_direction_info_id, south_direction_info_id, west_direction_info_id)"
-			+ " values(?,?,?,?,?)";
+    //Creates
+    public static final String create_database_query = "create database if not exists stl";
+    public static final String create_conditions_table_query = "create table if not exists stl.Conditions (\n" +
+            "	`condition_id` int not null auto_increment,\n" +
+            "    `condition_name` varchar(20) not null,\n" +
+            "    `Date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n" +
+            "    PRIMARY KEY (`condition_id`)\n" +
+            ")";
+    public static final String create_directionsInfo_table_query = "create table if not exists stl.DirectionsInfo (\n" +
+            "	`direction_info_id` int not null auto_increment, \n" +
+            "	`cars_amount` int not null,\n" +
+            "	`average_speed` int not null,\n" +
+            "	`limit_speed` int not null,\n" +
+            "	`type` varchar(20) not null,\n" +
+            "	PRIMARY KEY (`direction_info_id`)\n" +
+            ")";
+    public static final String create_traffic_lights_table_query = "create table if not exists stl.TrafficLights (\n" +
+            "    `traffic_light_id` int not null auto_increment,\n" +
+            "    `actual_state` int not null,\n" +
+            "    primary key(`traffic_light_id`)\n" +
+            ")";
+    public static final String create_cars_table_query = "create table if not exists stl.Cars (\n" +
+            "    `car_id` int not null auto_increment,\n" +
+            "    `direction_info_id` int not null,\n" +
+            "    `car_type` varchar(25),\n" +
+            "    `length` int not null,\n" +
+            "    `speed` int not null,\n" +
+            "    primary key(`car_id`),\n" +
+            "    foreign key(`direction_info_id`) references DirectionsInfo(`direction_info_id`)\n" +
+            ")";
+    public static final String create_crossroadsInfo_table_query = "create table if not exists stl.CrossroadsInfo(\n" +
+            "	`crossroad_info_id` int not null auto_increment,\n" +
+            "    `condition_id` int not null,\n" +
+            "    `north_direction_info_id` int,\n" +
+            "	`east_direction_info_id` int,\n" +
+            "    `south_direction_info_id` int,\n" +
+            "    `west_direction_info_id` int,\n" +
+            "	PRIMARY KEY (`crossroad_info_id`),\n" +
+            "    foreign key(`condition_id`) references Conditions(`condition_id`),\n" +
+            "    foreign key(`north_direction_info_id`) references DirectionsInfo(`direction_info_id`),\n" +
+            "    foreign key(`east_direction_info_id`) references DirectionsInfo(`direction_info_id`),\n" +
+            "    foreign key(`south_direction_info_id`) references DirectionsInfo(`direction_info_id`),\n" +
+            "    foreign key(`west_direction_info_id`) references DirectionsInfo(`direction_info_id`)\n" +
+            ")";
+    public static final String create_crossroads_table_query = "create table if not exists stl.Crossroads(\n" +
+            "	`crossroad_id` int not null auto_increment,\n" +
+            "    `crossroad_info_id` int not null,\n" +
+            "    `north_traffic_light_id` int,\n" +
+            "    `east_traffic_light_id` int,\n" +
+            "    `south_traffic_light_id` int,\n" +
+            "    `west_traffic_light_id` int,\n" +
+            "    `actual_state` int not null,\n" +
+            "    primary key(`crossroad_id`),\n" +
+            "    foreign key(`crossroad_info_id`) references CrossroadsInfo(`crossroad_info_id`),\n" +
+            "    foreign key(`north_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" +
+            "    foreign key(`east_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" +
+            "    foreign key(`south_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" +
+            "    foreign key(`west_traffic_light_id`) references TrafficLights(`traffic_light_id`)\n" +
+            ")";
 
-	//Selects
+    //Saves
+    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name) values(?)";
+    public static final String insert_directionsInfo_statment = "insert into "
+            + "stl.DirectionsInfo(cars_amount, average_speed, limit_speed, type)"
+            + " values(?,?,?,?)";
+    public static final String insert_crossroadsInfo_statment = "insert into "
+            + "stl.CrossroadsInfo(condition_id, north_direction_info_id, east_direction_info_id, south_direction_info_id, west_direction_info_id)"
+            + " values(?,?,?,?,?)";
+
+    //Selects
     public static final String select_conditions_names_query = "select conditions_name from Conditions";
     public static final String conditions_names = "conditions_name";
     ///////////////////////////////////////////////////////////
-    
+
     //log messages
     public static final String connection_fail = "ERROR: connection fail!";
     public static final String create_database_fail = "ERROR: create local database fail!";
@@ -132,7 +132,7 @@ public class Constants {
     public static final String actual_speed_label = "Actual speed";
     public static final String speed_limit_label = "Speed limit";
     public static final String window_label = "Smart Traffic Light";
-    
+
     public static final String url_label = "url: ";
     public static final String user_label = "user: ";
     public static final String password_label = "password: ";
@@ -143,7 +143,6 @@ public class Constants {
     public static final String generate_random_data_label = "Generate random data?";
     public static final String reset_conditions_label = "Reset all values?";
     public static final String exit_text_label = "Sure you want to exit?";
-
 
 
     public static final double POLICE_MAX_SPEED = 70;
@@ -161,4 +160,11 @@ public class Constants {
 
     public static final double CAR_HEIGHT = 60;
     public static final double CAR_WIDTH = 40;
+
+
+    // directions
+    public static final int NORTH_DIRECTION = 0;
+    public static final int EAST_DIRECTION = 1;
+    public static final int SOUTH_DIRECTION = 2;
+    public static final int WEST_DIRECTION = 3;
 }

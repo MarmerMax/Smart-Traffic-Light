@@ -52,17 +52,20 @@ public class LaneComputation extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+//            System.out.println(part_of_time);
 
             CarComputation car_computation;
 
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
 
+//                lane_info.getCarsInLane().get(0).print();
+
                 //ride
                 if (moving_mode) {
                     //no need to compute
                     if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -500) {
-                        i--;
                         lane_info.getCarsInLane().remove(i);
+                        i--;
                     } else {
                         car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
                         car_computation.movingMode(add, lane_info.getSpeedLimit());
@@ -72,8 +75,8 @@ public class LaneComputation extends Thread {
                 else {
                     //if car is far from intersection then remove it from array
                     if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -500) {
-                        i--;
                         lane_info.getCarsInLane().remove(i);
+                        i--;
                     } else {
                         //if car passed the intersection line then continue it's computation
                         if (lane_info.getCarsInLane().get(i).getCurrentSpeed() > 0 &&

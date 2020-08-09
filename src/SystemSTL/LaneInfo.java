@@ -48,7 +48,8 @@ public class LaneInfo {
 
             cars_in_lane.add(new CarInfo(car, distance));
 
-            next_car_distance = car.getLength() + Utils.createRandomDistanceInRange(2, 5);
+//            next_car_distance = car.getLength() + Utils.createRandomDistanceInRange(2, 5);
+            next_car_distance = car.getLength() + 3;
 
             iteration++;
         }

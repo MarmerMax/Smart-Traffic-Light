@@ -1,6 +1,10 @@
 package Tools;
 
 import Objects.Car.CarTypes;
+import Objects.Conditions.Conditions;
+import Objects.Crossroad.Crossroad;
+import Objects.CrossroadInfo.CrossroadInfo;
+import Objects.Road.RoadCreator;
 
 import java.util.Random;
 
@@ -46,10 +50,29 @@ public class Utils {
         return coefficient;
     }
 
-    public static double createRandomDistanceInRange(double min, double max){
+    public static double createRandomDistanceInRange(double min, double max) {
         Random r = new Random();
         double randomValue = min + (max - min) * r.nextDouble();
 
         return round(randomValue, 2);
+    }
+
+    public static Conditions createStartConditions() {
+        Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
+        Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
+
+        CrossroadInfo crossroad_info_1 = new CrossroadInfo(crossroad_1);
+        CrossroadInfo crossroad_info_2 = new CrossroadInfo(crossroad_2);
+
+        int[] cars_start = {3, 3, 3, 3};
+        int[] actual_start = {70, 70, 70, 70};
+        int[] limit_start = {70, 70, 70, 70};
+
+        crossroad_info_1.setCrossroadInfo(cars_start, actual_start, limit_start);
+        crossroad_info_2.setCrossroadInfo(cars_start, actual_start, limit_start);
+
+        Conditions conditions = new Conditions(crossroad_info_1, crossroad_info_2);
+
+        return conditions;
     }
 }
