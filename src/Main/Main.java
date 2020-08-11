@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
 
@@ -38,14 +41,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         launch(args);
 
 
 //        System.out.println(Utils.createRandomDistance());
 //        System.out.println(Utils.findRatio(2.432, 10.345));
     }
-
-
-
 }

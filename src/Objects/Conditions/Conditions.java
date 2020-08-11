@@ -2,6 +2,7 @@ package Objects.Conditions;
 
 import Objects.CrossroadInfo.CrossroadInfo;
 import SystemSTL.LaneInfo;
+
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,7 @@ public class Conditions {
     /**
      * Constructor.
      * The constructor receives information from the intersection and creates a suitable structure for the calculation algorithm.
+     *
      * @param info1 - crossroad 1
      * @param info2 - crossroad 2
      */
@@ -34,6 +36,7 @@ public class Conditions {
 
     /**
      * Copy constructor.
+     *
      * @param conditions
      */
     public Conditions(Conditions conditions) {
@@ -51,7 +54,27 @@ public class Conditions {
     }
 
     /**
+     * This function checks if all vehicles have passed these intersections.
+     *
+     * @return true or false
+     */
+    public boolean isAllCarsPassed() {
+        for (LaneInfo lane_info : cars_crossroad_1) {
+            if (lane_info.getCarsInLane().size() > 0) {
+                return false;
+            }
+        }
+        for (LaneInfo lane_info : cars_crossroad_2) {
+            if (lane_info.getCarsInLane().size() > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * This function returns true if the east-west direction is currently active.
+     *
      * @return
      */
     public boolean isEastWestActive() {
@@ -60,6 +83,7 @@ public class Conditions {
 
     /**
      * This function returns true if the north-south direction is currently active.
+     *
      * @return
      */
     public boolean isNorthSouthActive() {
@@ -68,6 +92,7 @@ public class Conditions {
 
     /**
      * This function returns the duration of an north-south traffic light.
+     *
      * @return
      */
     public double getNorthSouthTimeDistribution() {
@@ -80,6 +105,7 @@ public class Conditions {
 
     /**
      * This function returns the duration of an east-west traffic light.
+     *
      * @return
      */
     public double getEastWestTimeDistribution() {
@@ -93,6 +119,7 @@ public class Conditions {
     /**
      * This function returns the change time of the traffic light.
      * Color change is the time when the traffic light needs to switch between the following colors.
+     *
      * @return time of changing
      */
     public double getChangingLightsTime() {
@@ -138,7 +165,8 @@ public class Conditions {
 
     /**
      * This function generates information for the crossroad about its vehicles.
-     * @param cars - count of cars
+     *
+     * @param cars             - count of cars
      * @param actual_crossroad - specific crossroad
      */
     private void createLanesPerCrossroad(ArrayList<LaneInfo> cars, CrossroadInfo actual_crossroad) {
@@ -156,43 +184,43 @@ public class Conditions {
         return crossroad_info_2;
     }
 
-    public ArrayList<LaneInfo> getCarsInFirstCrossroad() {
+    public ArrayList<LaneInfo> getCarsInfoFirstCrossroad() {
         return cars_crossroad_1;
     }
 
-    public ArrayList<LaneInfo> getCarsInSecondCrossroad() {
+    public ArrayList<LaneInfo> getCarsInfoSecondCrossroad() {
         return cars_crossroad_2;
     }
 
-    public LaneInfo getCarsCountNorthCrossroad_1() {
+    public LaneInfo getCarsInfoNorthCrossroad_1() {
         return cars_crossroad_1.get(0);
     }
 
-    public LaneInfo getCarsCountEastCrossroad_1() {
+    public LaneInfo getCarsInfoEastCrossroad_1() {
         return cars_crossroad_1.get(1);
     }
 
-    public LaneInfo getCarsCountSouthCrossroad_1() {
+    public LaneInfo getCarsInfoSouthCrossroad_1() {
         return cars_crossroad_1.get(2);
     }
 
-    public LaneInfo getCarsCountWestCrossroad_1() {
+    public LaneInfo getCarsInfoWestCrossroad_1() {
         return cars_crossroad_1.get(3);
     }
 
-    public LaneInfo getCarsCountNorthCrossroad_2() {
+    public LaneInfo getCarsInfoNorthCrossroad_2() {
         return cars_crossroad_2.get(0);
     }
 
-    public LaneInfo getCarsCountEastCrossroad_2() {
+    public LaneInfo getCarsInfoEastCrossroad_2() {
         return cars_crossroad_2.get(1);
     }
 
-    public LaneInfo getCarsCountSouthCrossroad_2() {
+    public LaneInfo getCarsInfoSouthCrossroad_2() {
         return cars_crossroad_2.get(2);
     }
 
-    public LaneInfo getCarsCountWestCrossroad_2() {
+    public LaneInfo getCarsInfoWestCrossroad_2() {
         return cars_crossroad_2.get(3);
     }
 

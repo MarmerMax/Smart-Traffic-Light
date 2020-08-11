@@ -11,13 +11,9 @@ import java.util.concurrent.Executors;
  * This class is heard of simulation.
  * Here, the calculations of the movement of vehicles and the change of traffic lights take place.
  */
-public class Algorithm {
+public class Algorithm extends Thread{
 
     private Conditions conditions;
-
-    private double initial_duration;
-    private double actual_duration;
-    private boolean is_finished;
 
     private boolean is_east_west_high_priority;
     private boolean is_north_south_high_priority;
@@ -31,207 +27,32 @@ public class Algorithm {
      */
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
-        is_finished = false;
-        checkInitialStateDuration();
+    }
+
+    @Override
+    public void run() {
+        updateTrafficLightsTimeDistributions();
     }
 
     /**
-     * This function is responsible for calculating the change in the position of all vehicles and working traffic lights.
+     * This function adds time to the priority direction depending on the ratio.
      */
-    public void start() {
-        System.err.println("[START]");
-
-        double time = 0;
-        double changing_time = 0;
-//        boolean start_moving = false;
-
-        //function to choose first active direction by priority
-
-        //must to be in thread
-        while (!isAllCarsPassed()) {
-
+    public void updateTrafficLightsTimeDistributions() {
+        while(!conditions.isAllCarsPassed()){
             checkPriority();
-            updateTrafficLightsTimeDistributions();//wrong place
 
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-
-            //main road active
-            if (conditions.isEastWestActive()) {
-
-//                System.out.println("EAST AND WEST ACTIVE");
-
-                //start moving
-//                if (!start_moving) {
-//                    start_moving = true;
-//                }
-
-                updateEastWestLaneInfo(true);
-
-                if (conditions.getEastWestTimeDistribution() < time) {
-                    //stop moving
-                    updateEastWestLaneInfo(false);
-//                    start_moving = false;
-
-                    conditions.changeTrafficLightState();
+            if (is_north_south_high_priority) {
+                for (int i = 0; i < cars_ratio; i++) {
+                    conditions.addTimeToNorthSouthRoute();
                 }
-                time++;
-            }
-
-            //others road active
-            else if (conditions.isNorthSouthActive()) {
-
-//                System.out.println("NORTH AND SOUTH ACTIVE");
-
-                //start moving
-//                if (!start_moving) {
-//                    start_moving = true;
-//                }
-
-                updateNorthSouthLaneInfo(true);
-
-                if (conditions.getNorthSouthTimeDistribution() < time) {
-                    //stop moving
-                    updateNorthSouthLaneInfo(false);
-//                    start_moving = false;
-
-                    conditions.changeTrafficLightState();
+            } else if (is_east_west_high_priority) {
+                for (int i = 0; i < cars_ratio; i++) {
+                    conditions.addTimeToEastWestRoute();
                 }
-                time++;
-            }
-
-            //all road are stop
-            else {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                time = 0;
-//                System.out.println("ALL STOPS");
-                if (changing_time < conditions.getChangingLightsTime()) {
-                    changing_time++;
-                } else {
-                    changing_time = 0;
-                    conditions.changeTrafficLightState();
-                }
+            } else {
+                conditions.setDefaultTimeDistribution();
             }
         }
-        is_finished = true;
-    }
-
-
-    /**
-     * @param moving_mode
-     */
-    private void updateNorthSouthLaneInfo(boolean moving_mode) {
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//        System.out.println("north-south");
-    }
-
-
-    /**
-     * @param moving_mode
-     */
-    private void updateEastWestLaneInfo(boolean moving_mode) {
-
-        LaneComputation lane_computation_first_north = new LaneComputation(conditions.getCarsInFirstCrossroad().get(0));
-        lane_computation_first_north.setMovingMode(moving_mode);
-
-        lane_computation_first_north.start();
-
-        try {
-            lane_computation_first_north.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-//
-//        try {
-//            lane_computation_first_north.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-//        ExecutorService executor = Executors.newFixedThreadPool(4);
-//        double time = 0;
-//        LaneComputation lane_computation_first_north = new LaneComputation(cars_crossroad_1.get(0));
-//        LaneComputation lane_computation_first_south = new LaneComputation(cars_crossroad_1.get(2));
-//        LaneComputation lane_computation_second_north = new LaneComputation(cars_crossroad_2.get(0));
-//        LaneComputation lane_computation_second_south = new LaneComputation(cars_crossroad_2.get(2));
-//
-//        while (time < 1000) {
-//            time += 10;
-//
-//            executor.execute(lane_computation_first_north);
-//            executor.execute(lane_computation_first_south);
-//            executor.execute(lane_computation_second_north);
-//            executor.execute(lane_computation_second_south);
-//
-//            try {
-//                Thread.sleep(10);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-    }
-
-    /**
-     * This function calculates the duration of the baseline without using an intelligent algorithm.
-     * The duration tells how long it will take for all vehicles to pass the intersection.
-     */
-    private void checkInitialStateDuration() {
-
-        double max_time = 0;
-        LaneComputation lane_computation;
-
-        for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
-            lane_computation = new LaneComputation(lane_info);
-
-            if (max_time < lane_computation.getInitialTime()) {
-                max_time = lane_computation.getInitialTime();
-            }
-        }
-
-        for (LaneInfo lane_info : conditions.getCarsInSecondCrossroad()) {
-            lane_computation = new LaneComputation(lane_info);
-
-            if (max_time < lane_computation.getInitialTime()) {
-                max_time = lane_computation.getInitialTime();
-            }
-        }
-
-        //add phases for opposite lanes
-        int phase_amount = (int) (max_time / (Constants.CROSSROAD_PHASE_TIME / 2)) + 1;
-
-        initial_duration = max_time + (phase_amount * (Constants.CROSSROAD_PHASE_TIME / 2));
-        System.out.println("initial time for passed all cars: " + initial_duration);
-    }
-
-    /**
-     * This function checks if all vehicles have passed these intersections.
-     *
-     * @return true or false
-     */
-    private boolean isAllCarsPassed() {
-        for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
-            if (lane_info.getCarsInLane().size() > 0) {
-                return false;
-            }
-        }
-        for (LaneInfo lane_info : conditions.getCarsInFirstCrossroad()) {
-            if (lane_info.getCarsInLane().size() > 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**
@@ -257,23 +78,6 @@ public class Algorithm {
     }
 
     /**
-     * This function adds time to the priority direction depending on the ratio.
-     */
-    private synchronized void updateTrafficLightsTimeDistributions() {
-        if (is_north_south_high_priority) {
-            for (int i = 0; i < cars_ratio; i++) {
-                conditions.addTimeToNorthSouthRoute();
-            }
-        } else if (is_east_west_high_priority) {
-            for (int i = 0; i < cars_ratio; i++) {
-                conditions.addTimeToEastWestRoute();
-            }
-        } else {
-            conditions.setDefaultTimeDistribution();
-        }
-    }
-
-    /**
      * This function calculate count of two specific directions.
      *
      * @param ind_1 - direction 1
@@ -282,39 +86,12 @@ public class Algorithm {
      */
     private double calculateCarsInRoutes(int ind_1, int ind_2) {
 
-        int first_crossroad_amount = conditions.getCarsInFirstCrossroad().get(ind_1).getCarsInLane().size() +
-                conditions.getCarsInFirstCrossroad().get(ind_2).getCarsInLane().size();
+        int first_crossroad_amount = conditions.getCarsInfoFirstCrossroad().get(ind_1).getCarsInLane().size() +
+                conditions.getCarsInfoFirstCrossroad().get(ind_2).getCarsInLane().size();
 
-        int second_crossroad_amount = conditions.getCarsInSecondCrossroad().get(ind_1).getCarsInLane().size() +
-                conditions.getCarsInSecondCrossroad().get(ind_2).getCarsInLane().size();
+        int second_crossroad_amount = conditions.getCarsInfoSecondCrossroad().get(ind_1).getCarsInLane().size() +
+                conditions.getCarsInfoSecondCrossroad().get(ind_2).getCarsInLane().size();
 
         return first_crossroad_amount + second_crossroad_amount;
-    }
-
-    /**
-     * This function return duration of initial state without smart algorithm.
-     *
-     * @return initial duration
-     */
-    public double getInitialDuration() {
-        return initial_duration;
-    }
-
-    /**
-     * This function return duration of actual state with smart algorithm.
-     *
-     * @return actual duration
-     */
-    public double getActualDuration() {
-        return actual_duration;
-    }
-
-    /**
-     * This function returns true if the algorithm has been completed.
-     *
-     * @return
-     */
-    public boolean getIsFinished() {
-        return is_finished;
     }
 }

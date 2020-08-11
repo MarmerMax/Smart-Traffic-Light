@@ -1,69 +1,50 @@
 package SystemSTL;
 
-import Tools.Formulas;
-
 /**
  * This class calculates information about vehicles such as current speed and distance from an intersection.
  */
 public class LaneComputation extends Thread {
 
     private LaneInfo lane_info;
-    private double initial_time;
     private boolean moving_mode;
+    private boolean stop_computation;
 
     public LaneComputation(LaneInfo lane_info) {
         this.lane_info = lane_info;
-        initial_time = computeInitialTime();
-    }
-
-
-    //https://www.diva-portal.org/smash/get/diva2:1214166/FULLTEXT01.pdf
-    private double computeInitialTime() {
-        double t_start = Formulas.T_start(lane_info.getCarsInLane().size());
-        double t_move = Formulas.T_move(lane_info.getLastCar().getMaxSpeed(),
-                lane_info.getLastCar().getAcceleration(),
-                lane_info.getLastCarDistance());
-
-        //This is 0 if the opposite vehicle is not going left.
-        double t_opposite = Formulas.T_opossite(0);
-
-        return Formulas.T_common(t_start, t_move, t_opposite);
+        stop_computation = false;
     }
 
     @Override
     public void run() {
-        runLane(1);
+//        double time = 100;
+//        computeLane(0.1);
+        computeLane();
     }
 
-    private void stopLane(double time) {
+//    private void computeLane(double time) {
+    private void computeLane() {
+//        double part_of_time = 0;
 
-    }
+        double add = 0.1;
 
-    private void runLane(double time) {
-        double part_of_time = 0;
-
-        double add = 0.01;
-
-        while (part_of_time < time) {
-            part_of_time += add;
+//        while (part_of_time < time) {
+        while (!stop_computation) {
+//            part_of_time += add;
 
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
-//            System.out.println(part_of_time);
 
             CarComputation car_computation;
 
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
 
-//                lane_info.getCarsInLane().get(0).print();
-
-                //ride
+                //moving
                 if (moving_mode) {
                     //no need to compute
-                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -500) {
+                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -100) {
                         lane_info.getCarsInLane().remove(i);
                         i--;
                     } else {
@@ -71,10 +52,10 @@ public class LaneComputation extends Thread {
                         car_computation.movingMode(add, lane_info.getSpeedLimit());
                     }
                 }
-                //stop
+                //stopping
                 else {
                     //if car is far from intersection then remove it from array
-                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -500) {
+                    if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -100) {
                         lane_info.getCarsInLane().remove(i);
                         i--;
                     } else {
@@ -91,10 +72,11 @@ public class LaneComputation extends Thread {
                 }
             }
         }
+        System.out.println("lane finish");
     }
 
-    public double getInitialTime() {
-        return initial_time;
+    public void stopComputation(){
+        stop_computation = true;
     }
 
     public boolean getMovingMode() {
