@@ -72,7 +72,6 @@ public class LaneComputation extends Thread {
                 }
             }
         }
-        System.out.println("lane finish");
     }
 
     public void stopComputation(){
