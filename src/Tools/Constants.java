@@ -162,9 +162,22 @@ public class Constants {
     public static final double CAR_WIDTH = 40;
 
 
+    //times
+    public static final int TRAFFIC_LIGHT_CHANGING_TIME = 3;
+    public static final int TRAFFIC_LIGHT_MIN_DISTRIBUTION = 10;
+
     // directions
     public static final int NORTH_DIRECTION = 0;
     public static final int EAST_DIRECTION = 1;
     public static final int SOUTH_DIRECTION = 2;
     public static final int WEST_DIRECTION = 3;
+
+    // names
+    public static final String DIRECTION_NAME_EAST_WEST = "east-west";
+    public static final String DIRECTION_NAME_NORTH_SOUTH = "north-south";
+
+    //Units
+    public static final double PIXEL_TO_METER = 0.12;
+
+
 }

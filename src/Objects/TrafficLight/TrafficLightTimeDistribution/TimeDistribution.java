@@ -1,5 +1,7 @@
 package Objects.TrafficLight.TrafficLightTimeDistribution;
 
+import Tools.Constants;
+
 public class TimeDistribution {
 
     private double north_south;
@@ -11,9 +13,9 @@ public class TimeDistribution {
 
     public TimeDistribution(double time) {
         round_time = time;
-        min_time = 10;
+        min_time = Constants.TRAFFIC_LIGHT_MIN_DISTRIBUTION;
         setDefaultDistribution();
-        changing_execution_time = 2;
+        changing_execution_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME;
     }
 
     public void addTimeToEastWestRoute() {

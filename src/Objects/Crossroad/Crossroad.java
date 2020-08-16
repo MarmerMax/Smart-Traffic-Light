@@ -56,24 +56,19 @@ public class Crossroad {
     }
 
     public Road getNorthRoad() {
-        return roads[0];
+        return roads[Constants.NORTH_DIRECTION];
     }
 
     public Road getEastRoad() {
-        return roads[1];
+        return roads[Constants.EAST_DIRECTION];
     }
 
     public Road getSouthRoad() {
-        return roads[2];
+        return roads[Constants.SOUTH_DIRECTION];
     }
 
     public Road getWestRoad() {
-        return roads[3];
-    }
-
-    public void addTimeToEastWestRote(int north_south, int east_west) {
-        timeDistribution.setNorthSouth(north_south);
-        timeDistribution.setEastWest(east_west);
+        return roads[Constants.WEST_DIRECTION];
     }
 
     public TimeDistribution getTimeDistribution() {

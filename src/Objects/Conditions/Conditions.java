@@ -2,6 +2,7 @@ package Objects.Conditions;
 
 import Objects.CrossroadInfo.CrossroadInfo;
 import SystemSTL.LaneInfo;
+import Tools.Constants;
 
 import java.util.ArrayList;
 
@@ -130,16 +131,16 @@ public class Conditions {
      * This function add working time to east-west direction.
      */
     public void addTimeToEastWestRoute() {
-        crossroad_info_1.getCrossroad().getTimeDistribution().addTimeToEastWestRoute();
-        crossroad_info_2.getCrossroad().getTimeDistribution().addTimeToEastWestRoute();
+        crossroad_info_1.getCrossroad().addTimeToEastWestRoute();
+        crossroad_info_2.getCrossroad().addTimeToEastWestRoute();
     }
 
     /**
      * This function add working time to north-south direction.
      */
     public void addTimeToNorthSouthRoute() {
-        crossroad_info_1.getCrossroad().getTimeDistribution().addTimeToNorthSouthRoute();
-        crossroad_info_2.getCrossroad().getTimeDistribution().addTimeToNorthSouthRoute();
+        crossroad_info_1.getCrossroad().addTimeToNorthSouthRoute();
+        crossroad_info_2.getCrossroad().addTimeToNorthSouthRoute();
     }
 
     /**
@@ -176,6 +177,20 @@ public class Conditions {
         cars.add(new LaneInfo(actual_crossroad.getWest().getCarsCount(), actual_crossroad.getWest().getSpeedLimit()));
     }
 
+    public int getCarsCount() {
+        int count = 0;
+
+        for (LaneInfo info : cars_crossroad_1) {
+            count += info.getCarsInLane().size();
+        }
+
+        for (LaneInfo info : cars_crossroad_2) {
+            count += info.getCarsInLane().size();
+        }
+
+        return count;
+    }
+
     public CrossroadInfo getCrossroadInfo1() {
         return crossroad_info_1;
     }
@@ -193,35 +208,33 @@ public class Conditions {
     }
 
     public LaneInfo getCarsInfoNorthCrossroad_1() {
-        return cars_crossroad_1.get(0);
+        return cars_crossroad_1.get(Constants.NORTH_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoEastCrossroad_1() {
-        return cars_crossroad_1.get(1);
-    }
+    public LaneInfo getCarsInfoEastCrossroad_1() { return cars_crossroad_1.get(Constants.EAST_DIRECTION); }
 
     public LaneInfo getCarsInfoSouthCrossroad_1() {
-        return cars_crossroad_1.get(2);
+        return cars_crossroad_1.get(Constants.WEST_DIRECTION);
     }
 
     public LaneInfo getCarsInfoWestCrossroad_1() {
-        return cars_crossroad_1.get(3);
+        return cars_crossroad_1.get(Constants.WEST_DIRECTION);
     }
 
     public LaneInfo getCarsInfoNorthCrossroad_2() {
-        return cars_crossroad_2.get(0);
+        return cars_crossroad_2.get(Constants.NORTH_DIRECTION);
     }
 
     public LaneInfo getCarsInfoEastCrossroad_2() {
-        return cars_crossroad_2.get(1);
+        return cars_crossroad_2.get(Constants.EAST_DIRECTION);
     }
 
     public LaneInfo getCarsInfoSouthCrossroad_2() {
-        return cars_crossroad_2.get(2);
+        return cars_crossroad_2.get(Constants.WEST_DIRECTION);
     }
 
     public LaneInfo getCarsInfoWestCrossroad_2() {
-        return cars_crossroad_2.get(3);
+        return cars_crossroad_2.get(Constants.WEST_DIRECTION);
     }
 
     public boolean getIsCreated() {

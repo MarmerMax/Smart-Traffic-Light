@@ -31,12 +31,12 @@ public class SystemSTL {
     }
 
     public void run() {
-        executor.execute(algorithm);
+//        executor.execute(algorithm);
         executor.execute(traffic_computation);
         executor.execute(traffic_lights_computation);
 
         executor.shutdown();
-        actual_duration = traffic_lights_computation.getTrafficLightsWorkingTime();
+//        actual_duration = traffic_lights_computation.getTrafficLightsWorkingTime();
     }
 
     public void stop() {

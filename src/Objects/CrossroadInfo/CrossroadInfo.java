@@ -3,6 +3,7 @@ package Objects.CrossroadInfo;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import Objects.Road.Road;
+import Tools.Constants;
 
 public class CrossroadInfo {
 
@@ -35,10 +36,16 @@ public class CrossroadInfo {
     }
 
     public void setCrossroadInfo(int[] carsCount, int[] speedLimit, int[] actualSpeed) {
-        north = new DirectionInfo(carsCount[0], speedLimit[0], actualSpeed[0]);
-        east = new DirectionInfo(carsCount[1], speedLimit[1], actualSpeed[1]);
-        south = new DirectionInfo(carsCount[2], speedLimit[2], actualSpeed[2]);
-        west = new DirectionInfo(carsCount[3], speedLimit[3], actualSpeed[3]);
+
+        int north_dir = Constants.NORTH_DIRECTION;
+        int east_dir = Constants.EAST_DIRECTION;
+        int south_dir = Constants.SOUTH_DIRECTION;
+        int west_dir = Constants.WEST_DIRECTION;
+
+        north = new DirectionInfo(carsCount[north_dir], speedLimit[north_dir], actualSpeed[north_dir]);
+        east = new DirectionInfo(carsCount[east_dir], speedLimit[east_dir], actualSpeed[east_dir]);
+        south = new DirectionInfo(carsCount[south_dir], speedLimit[south_dir], actualSpeed[south_dir]);
+        west = new DirectionInfo(carsCount[west_dir], speedLimit[west_dir], actualSpeed[west_dir]);
     }
 
     public DirectionInfo getNorth() {

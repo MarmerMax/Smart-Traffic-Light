@@ -504,7 +504,7 @@ public class ProgramGUI {
                 public void run() {
                     while (!systemSTL.isFinished()) {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(20);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
@@ -545,7 +545,7 @@ public class ProgramGUI {
         simulation.getChildren().addAll(imageViewRoad);
 
         updateTrafficLights();
-//        updateCars();
+        updateCars();
     }
 
     private synchronized void updateCars() {
@@ -559,6 +559,14 @@ public class ProgramGUI {
         });
 
 
+//        Thread thread1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//            }
+//        });
+//        thread1.start();
+
+
         updateNorthSouthCars();
         updateWestEastCars();
 
@@ -569,29 +577,29 @@ public class ProgramGUI {
 
     private void updateWestEastCars() {
 //        ArrayList<ImageView> east_crossroad_1 =
-//                createCars(1, 1, conditions.getCarsInFirstCrossroad().get(1));
+//                createCars(1, 1, conditions.getCarsInfoFirstCrossroad().get(1));
 //        ArrayList<ImageView> east_crossroad_2 =
-//                createCars(2, 1, conditions.getCarsInSecondCrossroad().get(1));
-//        ArrayList<ImageView> west_crossroad_1 =
-//                createCars(1, 3, conditions.getCarsInFirstCrossroad().get(3));
+//                createCars(2, 1, conditions.getCarsInfoFirstCrossroad().get(1));
+        ArrayList<ImageView> west_crossroad_1 =
+                createCars(1, 3, conditions.getCarsInfoFirstCrossroad().get(3));
 //        ArrayList<ImageView> west_crossroad_2 =
-//                createCars(2, 3, conditions.getCarsInSecondCrossroad().get(3));
-//
+//                createCars(2, 3, conditions.getCarsInfoFirstCrossroad().get(3));
+
 //        addCars(east_crossroad_1);
 //        addCars(east_crossroad_2);
-//        addCars(west_crossroad_1);
+        addCars(west_crossroad_1);
 //        addCars(west_crossroad_2);
     }
 
-    private void updateNorthSouthCars() {
+    private synchronized void updateNorthSouthCars() {
         ArrayList<ImageView> north_crossroad_1 =
                 createCars(1, 0, conditions.getCarsInfoFirstCrossroad().get(0));
 //        ArrayList<ImageView> north_crossroad_2 =
-//                createCars(2, 0, conditions.getCarsInSecondCrossroad().get(0));
+//                createCars(2, 0, conditions.getCarsInfoFirstCrossroad().get(0));
 //        ArrayList<ImageView> south_crossroad_1 =
-//                createCars(1, 2, conditions.getCarsInFirstCrossroad().get(2));
+//                createCars(1, 2, conditions.getCarsInfoFirstCrossroad().get(2));
 //        ArrayList<ImageView> south_crossroad_2 =
-//                createCars(2, 2, conditions.getCarsInSecondCrossroad().get(2));
+//                createCars(2, 2, conditions.getCarsInfoFirstCrossroad().get(2));
 //
         addCars(north_crossroad_1);
 //        addCars(north_crossroad_2);
@@ -599,11 +607,14 @@ public class ProgramGUI {
 //        addCars(south_crossroad_2);
     }
 
-    private ArrayList<ImageView> createCars(int crossroad, int direction, LaneInfo lane_info) {
+    private synchronized ArrayList<ImageView> createCars(int crossroad, int direction, LaneInfo lane_info) {
         ArrayList<ImageView> cars = new ArrayList<>();
 
         for (CarInfo car_info : lane_info.getCarsInLane()) {
-            if (-40 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 40) {
+            if (lane_info.getCarsInLane().size() == 0) {
+                break;
+            }
+            if (-50 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 50) {
                 cars.add(createCarOnMapByPlace(crossroad, direction, car_info));
             }
         }
@@ -623,7 +634,7 @@ public class ProgramGUI {
         int x = 0;
         int y = 0;
 
-        distance_from_crossroad /= 0.12;
+        distance_from_crossroad /= Constants.PIXEL_TO_METER;
 
         if (direction == 0) {
             x += 180;

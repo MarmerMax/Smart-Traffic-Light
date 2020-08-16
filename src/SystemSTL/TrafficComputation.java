@@ -5,19 +5,24 @@ import Tools.Constants;
 import Tools.Formulas;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
-
+/**
+ * This class creates and start the traffic executors for both crossroads and all directions.
+ */
 public class TrafficComputation extends Thread {
 
     private Conditions conditions;
     private double initial_duration;
-    private boolean is_finished;
+
+    private TrafficExecutor east_west_executor;
+    private TrafficExecutor north_south_executor;
 
     public TrafficComputation(Conditions conditions) {
         this.conditions = conditions;
+
+        createEastWestExecutor();
+        createNorthSouthExecutor();
+
         initial_duration = calculateInitialStateDuration();
     }
 
@@ -26,130 +31,60 @@ public class TrafficComputation extends Thread {
         updateTrafficState();
     }
 
+    /**
+     * This function is responsible for starting executors.
+     */
     public void updateTrafficState() {
 
-        while (!conditions.isAllCarsPassed()) {
+        east_west_executor.start();
+        north_south_executor.start();
 
-            if (conditions.isEastWestActive()) {
-
-                updateEastWestLaneInfo(true);
-
-            } else if (conditions.isNorthSouthActive()) {
-
-                updateNorthSouthLaneInfo(true);
-
-            } else {
-
-                updateEastWestLaneInfo(false);
-                updateNorthSouthLaneInfo(false);
-                System.out.println("ALL STOPS");
-
-            }
+        try {
+            east_west_executor.join();
+            north_south_executor.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        System.out.println("ALL CARS IS PASSED");
     }
 
     /**
-     * This function update the lanes information of North-South direction on two crossroads. (Update traffic)
-     *
-     * @param moving_mode - start/stop mode
+     * This function creates an East-West traffic executor at both intersections.
      */
-    private void updateNorthSouthLaneInfo(boolean moving_mode) {
-
-        if (moving_mode) {
-//            System.out.println("north-south moving");
-        }
-
-        LaneInfo first_north = conditions.getCarsInfoNorthCrossroad_1();
-        LaneInfo first_south = conditions.getCarsInfoSouthCrossroad_1();
-        LaneInfo second_north = conditions.getCarsInfoNorthCrossroad_2();
-        LaneInfo second_south = conditions.getCarsInfoSouthCrossroad_2();
-
-        computeTraffic(moving_mode, first_north, first_south, second_north, second_south);
-
-    }
-
-    /**
-     * This function update the lanes information of East-West direction on two crossroads. (Update traffic)
-     *
-     * @param moving_mode - start/stop mode
-     */
-    private void updateEastWestLaneInfo(boolean moving_mode) {
-
-        if (moving_mode) {
-//            System.out.println("east-west moving");
-        }
+    private void createEastWestExecutor() {
 
         LaneInfo first_east = conditions.getCarsInfoEastCrossroad_1();
         LaneInfo first_west = conditions.getCarsInfoWestCrossroad_1();
         LaneInfo second_east = conditions.getCarsInfoEastCrossroad_2();
         LaneInfo second_west = conditions.getCarsInfoWestCrossroad_2();
 
-        computeTraffic(moving_mode, first_east, first_west, second_east, second_west);
+        east_west_executor = new TrafficExecutor(first_east, first_west, second_east, second_west);
+        east_west_executor.setExecutorName(Constants.DIRECTION_NAME_EAST_WEST);
+        east_west_executor.setConditions(conditions);
     }
 
     /**
-     * This function calculate changes of vehicles on selected directions.
-     *
-     * @param moving_mode  - start/stop mode
-     * @param first_dir_1  - first crossroad direction 1
-     * @param first_dir_2  - first crossroad direction 2
-     * @param second_dir_1 - second crossroad direction 1
-     * @param second_dir_2 - second crossroad direction 2
+     * This function creates an North-South traffic executor at both intersections.
      */
-    private void computeTraffic(
-            boolean moving_mode,
-            LaneInfo first_dir_1,
-            LaneInfo first_dir_2,
-            LaneInfo second_dir_1,
-            LaneInfo second_dir_2) {
+    private void createNorthSouthExecutor() {
 
-        LaneComputation lane_computation_first_dir_1 = new LaneComputation(first_dir_1);
-        LaneComputation lane_computation_first_dir_2 = new LaneComputation(first_dir_2);
-        LaneComputation lane_computation_second_dir_1 = new LaneComputation(second_dir_1);
-        LaneComputation lane_computation_second_dir_2 = new LaneComputation(second_dir_2);
+        LaneInfo first_north = conditions.getCarsInfoNorthCrossroad_1();
+        LaneInfo first_south = conditions.getCarsInfoSouthCrossroad_1();
+        LaneInfo second_north = conditions.getCarsInfoNorthCrossroad_2();
+        LaneInfo second_south = conditions.getCarsInfoSouthCrossroad_2();
 
-        lane_computation_first_dir_1.setMovingMode(moving_mode);
-        lane_computation_first_dir_2.setMovingMode(moving_mode);
-        lane_computation_second_dir_1.setMovingMode(moving_mode);
-        lane_computation_second_dir_2.setMovingMode(moving_mode);
-
-        ExecutorService executor = Executors.newFixedThreadPool(4);
-
-        executor.execute(lane_computation_first_dir_1);
-        executor.execute(lane_computation_first_dir_2);
-        executor.execute(lane_computation_second_dir_1);
-        executor.execute(lane_computation_second_dir_2);
-
-//        executor.shutdown();
-//        executor.shutdownNow();
-//        Thread.currentThread().interrupt();
-
-        //needed for stopping executor manually
-        if (moving_mode) {
-            try {
-                executor.awaitTermination(100, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            lane_computation_first_dir_1.stopComputation();
-            lane_computation_first_dir_2.stopComputation();
-            lane_computation_second_dir_1.stopComputation();
-            lane_computation_second_dir_2.stopComputation();
-
-            executor.shutdownNow();
-        } else {
-            executor.shutdown();
-        }
-
-
+        north_south_executor = new TrafficExecutor(first_north, first_south, second_north, second_south);
+        north_south_executor.setExecutorName(Constants.DIRECTION_NAME_NORTH_SOUTH);
+        north_south_executor.setConditions(conditions);
     }
 
     /**
-     * This function calculates the duration of the baseline without using an intelligent algorithm.
+     * This function calculates the duration of the baseline without using an smart algorithm.
      * The duration tells how long it will take for all vehicles to pass the intersection.
      */
     private double calculateInitialStateDuration() {
-        double max_time = 0;
+        double max_time;
 
         double max_crossroad_1 = getMaxInitialTimeOfCrossroad(conditions.getCarsInfoFirstCrossroad());
         double max_crossroad_2 = getMaxInitialTimeOfCrossroad(conditions.getCarsInfoSecondCrossroad());
@@ -162,7 +97,10 @@ public class TrafficComputation extends Thread {
         return max_time + (phase_amount * (Constants.CROSSROAD_PHASE_TIME / 2));
     }
 
-
+    /**
+     * @param crossroad_info
+     * @return
+     */
     private double getMaxInitialTimeOfCrossroad(ArrayList<LaneInfo> crossroad_info) {
         double temp_max = 0;
         for (LaneInfo lane_info : crossroad_info) {
@@ -182,7 +120,7 @@ public class TrafficComputation extends Thread {
      * @param lane_info - lane to check
      * @return required moving time
      */
-    //https://www.diva-portal.org/smash/get/diva2:1214166/FULLTEXT01.pdf
+    // https://www.diva-portal.org/smash/get/diva2:1214166/FULLTEXT01.pdf
     private double computeInitialTime(LaneInfo lane_info) {
         double t_start = Formulas.T_start(lane_info.getCarsInLane().size());
         double t_move = Formulas.T_move(lane_info.getLastCar().getMaxSpeed(),

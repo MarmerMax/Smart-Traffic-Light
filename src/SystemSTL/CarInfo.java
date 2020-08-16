@@ -1,7 +1,6 @@
 package SystemSTL;
 
 import Objects.Car.Car;
-import Tools.Utils;
 
 public class CarInfo {
 
@@ -33,9 +32,5 @@ public class CarInfo {
 
     public void setCurrentSpeed(double cs) {
         current_speed = cs;
-    }
-
-    public void print() {
-        System.out.println("dist: " + Utils.round(distance_from_crossroad, 2) + ", sp: " + Utils.round(current_speed, 2));
     }
 }

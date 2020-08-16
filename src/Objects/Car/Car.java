@@ -7,9 +7,9 @@ public abstract class Car implements DrawObject {
 
     protected Image image;
     protected double length;
-    protected double acceleration;
-    protected double deceleration;
-    protected double max_speed;
+    protected double acceleration; // m/s
+    protected double deceleration; // m/s
+    protected double max_speed; // km/h
     protected double car_type;
 
     @Override

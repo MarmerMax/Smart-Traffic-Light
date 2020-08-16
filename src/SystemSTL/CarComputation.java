@@ -1,5 +1,7 @@
 package SystemSTL;
 
+import Tools.Constants;
+
 /**
  * This class performs calculations for the vehicle such that speed changing, distance changing.
  */
@@ -9,6 +11,7 @@ public class CarComputation {
 
     /**
      * The constructor receives the vehicle for the following calculations.
+     *
      * @param car_info
      */
     public CarComputation(CarInfo car_info) {
@@ -17,31 +20,36 @@ public class CarComputation {
 
     /**
      * This function increases speed of the vehicle.
+     *
      * @param time
      * @param speed_limit
      */
     private void speedUp(double time, double speed_limit) {
-        double new_speed = car_info.getCurrentSpeed() + car_info.getCar().getAcceleration() * time;
-        if (new_speed > speed_limit) {
+        double new_speed = car_info.getCurrentSpeed() + car_info.getCar().getAcceleration() * time * Constants.PIXEL_TO_METER;
+        if (new_speed > speed_limit * Constants.PIXEL_TO_METER) {
             car_info.setCurrentSpeed(car_info.getCar().getMaxSpeed());
+            return;
         }
         car_info.setCurrentSpeed(new_speed);
     }
 
     /**
      * This function decreases speed of the vehicle.
+     *
      * @param time
      */
     private void speedDown(double time) {
-        double new_speed = car_info.getCurrentSpeed() - car_info.getCar().getDeceleration() * time;
+        double new_speed = car_info.getCurrentSpeed() - car_info.getCar().getDeceleration() * time * Constants.PIXEL_TO_METER;
         if (new_speed < 0) {
             car_info.setCurrentSpeed(0);
+            return;
         }
         car_info.setCurrentSpeed(new_speed);
     }
 
     /**
      * This function calculate distance changing in moving mode.
+     *
      * @param time
      * @param speed_limit
      */
@@ -57,6 +65,7 @@ public class CarComputation {
 
     /**
      * This function calculate distance changing in stopping mode.
+     *
      * @param time
      */
     public void stoppingMode(double time) {
