@@ -601,7 +601,7 @@ public class ProgramGUI {
 //        ArrayList<ImageView> south_crossroad_2 =
 //                createCars(2, 2, conditions.getCarsInfoFirstCrossroad().get(2));
 //
-        addCars(north_crossroad_1);
+//        addCars(north_crossroad_1);
 //        addCars(north_crossroad_2);
 //        addCars(south_crossroad_1);
 //        addCars(south_crossroad_2);

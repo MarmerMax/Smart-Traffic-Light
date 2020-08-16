@@ -214,7 +214,7 @@ public class Conditions {
     public LaneInfo getCarsInfoEastCrossroad_1() { return cars_crossroad_1.get(Constants.EAST_DIRECTION); }
 
     public LaneInfo getCarsInfoSouthCrossroad_1() {
-        return cars_crossroad_1.get(Constants.WEST_DIRECTION);
+        return cars_crossroad_1.get(Constants.SOUTH_DIRECTION);
     }
 
     public LaneInfo getCarsInfoWestCrossroad_1() {
@@ -230,7 +230,7 @@ public class Conditions {
     }
 
     public LaneInfo getCarsInfoSouthCrossroad_2() {
-        return cars_crossroad_2.get(Constants.WEST_DIRECTION);
+        return cars_crossroad_2.get(Constants.SOUTH_DIRECTION);
     }
 
     public LaneInfo getCarsInfoWestCrossroad_2() {
