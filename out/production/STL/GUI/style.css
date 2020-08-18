@@ -8,7 +8,8 @@
 
 .button {
     -fx-pref-height: 30px;
-    -fx-pref-width: 100px;
+    /*-fx-pref-width: 100px;*/
+    -fx-min-width: 100px;
     -fx-background-color: #fff;
     -fx-background-radius: 10;
     -fx-text-fill: #383838;
@@ -18,7 +19,6 @@
     /*-fx-background-color: #d8d8d8;*/
     -fx-background-radius: 10;
     -fx-font-weight: BOLD;
-    -fx-text-fill: #383838;
 }
 
 .label {
@@ -39,6 +39,12 @@
     -fx-pref-width: 100px;
     -fx-pref-height: 30px;
 }
+
+.info-text {
+    -fx-max-width: 300px;
+
+}
+
 .options-container {
     -fx-padding: 10px;
     -fx-border-radius: 10px;
@@ -56,3 +62,22 @@
     -fx-border-color: white;
     -fx-alignment: center;
 }
+
+.button-info {
+    -fx-min-width: 120px;
+    -fx-background-color: #fff;
+    -fx-background-radius: 10;
+    -fx-text-fill: #383838;
+}
+
+.button-info:hover {
+    /*-fx-background-color: #d8d8d8;*/
+    -fx-background-radius: 10;
+    -fx-font-weight: BOLD;
+}
+
+.main-color {
+    /*-fx-background-color: #66d4e1;*/
+    -fx-background-color: #45cede;
+}
+

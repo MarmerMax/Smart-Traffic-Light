@@ -1,6 +1,7 @@
 package Main;
 
 import GUI.ConfirmBox;
+import GUI.InformationBox;
 import GUI.ProgramGUI;
 import Tools.Constants;
 import Tools.Utils;
@@ -23,7 +24,6 @@ public class Main extends Application {
 //        StackPane layout = new StackPane();
 //        Scene scene = new Scene(layout, 700, 300);
 
-
         window = primaryStage;
         primaryStage.setOnCloseRequest(e -> {
             e.consume();
@@ -42,6 +42,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
         launch(args);
 
 

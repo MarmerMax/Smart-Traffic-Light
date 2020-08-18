@@ -198,10 +198,27 @@ public class Constants {
 
 
     //info text
-    public static final String INFO = "Main information";
-    public static final String INFO_DIRECTIONS = " Directions DirectionsDirections Directions Directions Directions Directions Directions Directions information";
-    public static final String INFO_TRAFFIC_LIGHTS = "Traffic lights information";
-    public static final String INFO_CARS_COUNT = "Cars count information";
-    public static final String INFO_SPEED_LIMIT = "Speed limit information";
-    public static final String INFO_ACTUAL_SPEED = "Actual speed information";
+    public static final String INFO_LABEL = "Main information";
+    public static final String INFO_DIRECTIONS_LABEL = "Directions information";
+    public static final String INFO_TRAFFIC_LIGHTS_LABEL = "Traffic lights information";
+    public static final String INFO_CARS_COUNT_LABEL = "Cars count information";
+    public static final String INFO_SPEED_LIMIT_LABEL = "Speed limit information";
+    public static final String INFO_ACTUAL_SPEED_LABEL = "Actual speed information";
+
+    public static final String INFO_TEXT = "Before starting the application, you must select the conditions that the algorithm will try to solve." +
+            "\n\nConditions include cars and speed for two intersections." +
+            "\n\nThe user can set this data manually, load it from the database by clicking on the 'Database' button, or select it by random clicking 'Random' button." +
+            "\n\nTo reset all selected settings, press the 'Reset' button.";
+    public static final String INFO_DIRECTIONS_TEXT = "Each intersection has four roads." +
+            "\n\nFor a better understanding of the movement of the vehicle, the picture on the left shows the order with the names of the sides and it is in this order that the lanes and directions of movement will be called.";
+    public static final String INFO_TRAFFIC_LIGHTS_TEXT = "Each lane is regulated by a traffic light. In the figure, the arrow from the traffic light indicates the lane that will depend on the particular traffic light." +
+            "\n\nEach traffic light has 4 states: green, yellow, red, red-yellow." +
+            "\n\nGreen - traffic allowed." +
+            "\nYellow - stop moving." +
+            "\nRed - cars are waiting for green." +
+            "\nRed-yellow - mice are ready to go." +
+            "\n\nIt takes 3 seconds to switch the state of traffic light colors.";
+    public static final String INFO_CARS_COUNT_TEXT = "The number of cars indicates how many cars must pass the intersection from the selected side.";
+    public static final String INFO_SPEED_LIMIT_TEXT = "Speed limit indicates the speed limit for the selected road.";
+    public static final String INFO_ACTUAL_SPEED_TEXT = "The actual speed indicates the speed at which the movement is taking place in real time.";
 }
