@@ -61,6 +61,8 @@ public class TrafficExecutor extends Thread {
 
         executor.shutdown();
 
+
+        //this thread sets moving mode for each executor
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

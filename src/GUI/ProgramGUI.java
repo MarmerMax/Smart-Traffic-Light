@@ -10,6 +10,7 @@ import Objects.TrafficLight.TrafficLightState.RedState;
 import SystemSTL.SystemSTL;
 import Tools.Constants;
 import Tools.Utils;
+import com.sun.webkit.network.Util;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -172,10 +173,14 @@ public class ProgramGUI {
         Label carsLabel1 = new Label(Constants.cars_count_label);
         carsLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> cars_spinners_1 = new ArrayList<>();
-        cars_spinners_1.add(new Spinner<>(1, 1000, 10));
-        cars_spinners_1.add(new Spinner<>(1, 5, 3));
-        cars_spinners_1.add(new Spinner<>(1, 1000, 10));
-        cars_spinners_1.add(new Spinner<>(1, 1000, 10));
+
+        for (int i = 0; i < 4; i++) {
+            if (i != 1) {
+                cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_LONG_ROAD_MAX, Constants.CARS_COUNT_LONG_ROAD));
+            } else {
+                cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD));
+            }
+        }
 
 //        for (Spinner<Integer> spinner : cars_spinners_1) {
 //            if (spinner.getValue() == 10) {
@@ -183,7 +188,6 @@ public class ProgramGUI {
 //
 //            } else {
 //                upgradeSpinner(spinner, 1, 5, false);
-//
 //            }
 //        }
 
@@ -194,11 +198,10 @@ public class ProgramGUI {
         Label speedLimitLabel1 = new Label(Constants.speed_limit_label);
         speedLimitLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> limit_spinners_1 = new ArrayList<>();
-        limit_spinners_1.add(new Spinner<>(50, 110, 70));
-        limit_spinners_1.add(new Spinner<>(50, 110, 70));
-        limit_spinners_1.add(new Spinner<>(50, 110, 70));
-        limit_spinners_1.add(new Spinner<>(50, 110, 70));
 
+        for (int i = 0; i < 4; i++) {
+            limit_spinners_1.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT));
+        }
 
         speedLimit1.getChildren().addAll(speedLimitLabel1, limit_spinners_1.get(0), limit_spinners_1.get(1), limit_spinners_1.get(2), limit_spinners_1.get(3));
 
@@ -207,10 +210,11 @@ public class ProgramGUI {
         Label actualSpeedLabel1 = new Label(Constants.actual_speed_label);
         actualSpeedLabel1.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> actual_spinners_1 = new ArrayList<>();
-        actual_spinners_1.add(new Spinner<>(50, 110, 70));
-        actual_spinners_1.add(new Spinner<>(50, 110, 70));
-        actual_spinners_1.add(new Spinner<>(50, 110, 70));
-        actual_spinners_1.add(new Spinner<>(50, 110, 70));
+
+        for (int i = 0; i < 4; i++) {
+            actual_spinners_1.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
+        }
+
         actualSpeed1.getChildren().addAll(actualSpeedLabel1, actual_spinners_1.get(0), actual_spinners_1.get(1), actual_spinners_1.get(2), actual_spinners_1.get(3));
 
         crossroad_fields_1.getChildren().addAll(label1, route1, cars1, speedLimit1, actualSpeed1);
@@ -245,10 +249,15 @@ public class ProgramGUI {
         Label carsLabel2 = new Label(Constants.cars_count_label);
         carsLabel2.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> cars_spinners_2 = new ArrayList<>();
-        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_2.add(new Spinner<>(1, 1000, 25));
-        cars_spinners_2.add(new Spinner<>(1, 10, 5));
+
+        for (int i = 0; i < 4; i++) {
+            if (i != 3) {
+                cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_LONG_ROAD_MAX, Constants.CARS_COUNT_LONG_ROAD));
+            } else {
+                cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD));
+            }
+        }
+
         cars2.getChildren().addAll(carsLabel2, cars_spinners_2.get(0), cars_spinners_2.get(1), cars_spinners_2.get(2), cars_spinners_2.get(3));
 
 
@@ -257,10 +266,12 @@ public class ProgramGUI {
         Label speedLimitLabel2 = new Label(Constants.speed_limit_label);
         speedLimitLabel2.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> limit_spinners_2 = new ArrayList<>();
-        limit_spinners_2.add(new Spinner<>(50, 110, 70));
-        limit_spinners_2.add(new Spinner<>(50, 110, 70));
-        limit_spinners_2.add(new Spinner<>(50, 110, 70));
-        limit_spinners_2.add(new Spinner<>(50, 110, 70));
+
+
+        for (int i = 0; i < 4; i++) {
+            limit_spinners_2.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT));
+        }
+
         speedLimit2.getChildren().addAll(speedLimitLabel2, limit_spinners_2.get(0), limit_spinners_2.get(1), limit_spinners_2.get(2), limit_spinners_2.get(3));
 
         VBox actualSpeed2 = new VBox(10);
@@ -268,12 +279,12 @@ public class ProgramGUI {
         Label actualSpeedLabel2 = new Label(Constants.actual_speed_label);
         actualSpeedLabel2.getStyleClass().add("label-column");
         ArrayList<Spinner<Integer>> actual_spinners_2 = new ArrayList<>();
-        actual_spinners_2.add(new Spinner<>(50, 110, 70));
-        actual_spinners_2.add(new Spinner<>(50, 110, 70));
-        actual_spinners_2.add(new Spinner<>(50, 110, 70));
-        actual_spinners_2.add(new Spinner<>(50, 110, 70));
-        actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
 
+        for (int i = 0; i < 4; i++) {
+            actual_spinners_2.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
+        }
+
+        actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
 
@@ -294,7 +305,15 @@ public class ProgramGUI {
         buttonRandom.setOnAction(e -> {
             boolean answer = ConfirmBox.display(Constants.random_window_label, Constants.generate_random_data_label);
             if (answer) {
+                //1
+                Utils.createRandomCarsCount(cars_spinners_1, 1);
+                Utils.createRandomSpeedLimit(limit_spinners_1);
+                Utils.createRandomActualSpeed(actual_spinners_1);
 
+                //2
+                Utils.createRandomCarsCount(cars_spinners_2, 3);
+                Utils.createRandomSpeedLimit(limit_spinners_2);
+                Utils.createRandomActualSpeed(actual_spinners_2);
             }
         });
 
@@ -318,7 +337,15 @@ public class ProgramGUI {
         buttonReset.setOnAction(e -> {
             boolean answer = ConfirmBox.display(Constants.reset_button_label, Constants.reset_conditions_label);
             if (answer) {
-                //reset all values
+                //1
+                Utils.resetCarsCount(cars_spinners_1, 1);
+                Utils.resetSpeedLimit(limit_spinners_1);
+                Utils.resetActualSpeed(actual_spinners_1);
+
+                //2
+                Utils.resetCarsCount(cars_spinners_2, 3);
+                Utils.resetSpeedLimit(limit_spinners_2);
+                Utils.resetActualSpeed(actual_spinners_2);
             }
         });
 
@@ -327,7 +354,7 @@ public class ProgramGUI {
         Button buttonInfo = new Button(Constants.info_button_label);
         boxButtonInfo.getChildren().add(buttonInfo);
         buttonInfo.setOnAction(e -> {
-            //info
+            InformationBox.display("Information");
         });
 
         otherOptions.getChildren().addAll(boxLabel3, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
@@ -576,30 +603,30 @@ public class ProgramGUI {
     }
 
     private void updateWestEastCars() {
-//        ArrayList<ImageView> east_crossroad_1 =
-//                createCars(1, 1, conditions.getCarsInfoFirstCrossroad().get(1));
-//        ArrayList<ImageView> east_crossroad_2 =
-//                createCars(2, 1, conditions.getCarsInfoFirstCrossroad().get(1));
+        ArrayList<ImageView> east_crossroad_1 =
+                createCars(1, 1, conditions.getCarsInfoFirstCrossroad().get(1));
+        ArrayList<ImageView> east_crossroad_2 =
+                createCars(2, 1, conditions.getCarsInfoFirstCrossroad().get(1));
         ArrayList<ImageView> west_crossroad_1 =
                 createCars(1, 3, conditions.getCarsInfoFirstCrossroad().get(3));
-//        ArrayList<ImageView> west_crossroad_2 =
-//                createCars(2, 3, conditions.getCarsInfoFirstCrossroad().get(3));
+        ArrayList<ImageView> west_crossroad_2 =
+                createCars(2, 3, conditions.getCarsInfoFirstCrossroad().get(3));
 
 //        addCars(east_crossroad_1);
 //        addCars(east_crossroad_2);
-        addCars(west_crossroad_1);
+//        addCars(west_crossroad_1);
 //        addCars(west_crossroad_2);
     }
 
     private synchronized void updateNorthSouthCars() {
         ArrayList<ImageView> north_crossroad_1 =
                 createCars(1, 0, conditions.getCarsInfoFirstCrossroad().get(0));
-//        ArrayList<ImageView> north_crossroad_2 =
-//                createCars(2, 0, conditions.getCarsInfoFirstCrossroad().get(0));
-//        ArrayList<ImageView> south_crossroad_1 =
-//                createCars(1, 2, conditions.getCarsInfoFirstCrossroad().get(2));
-//        ArrayList<ImageView> south_crossroad_2 =
-//                createCars(2, 2, conditions.getCarsInfoFirstCrossroad().get(2));
+        ArrayList<ImageView> north_crossroad_2 =
+                createCars(2, 0, conditions.getCarsInfoFirstCrossroad().get(0));
+        ArrayList<ImageView> south_crossroad_1 =
+                createCars(1, 2, conditions.getCarsInfoFirstCrossroad().get(2));
+        ArrayList<ImageView> south_crossroad_2 =
+                createCars(2, 2, conditions.getCarsInfoFirstCrossroad().get(2));
 //
 //        addCars(north_crossroad_1);
 //        addCars(north_crossroad_2);
@@ -625,7 +652,7 @@ public class ProgramGUI {
     private ImageView createCarOnMapByPlace(int crossroad_number, int direction, CarInfo car) {
         int[] place = generatePlace(crossroad_number, direction, car.getDistanceFromCrossroad());
         //TODO: create cars with correct image
-        Image image = new Image("file:images/cars/car1.png");
+        Image image = new Image("file:images/cars/car5.png");
 //        return createCar(place[0], place[1], getRotateByDirection(direction), car.getCar().getImage());
         return createCar(place[0], place[1], getRotateByDirection(direction), image);
     }
@@ -664,7 +691,6 @@ public class ProgramGUI {
 
         int[] place = {x, y};
 
-//        System.out.println(Arrays.toString(place));
         return place;
     }
 
@@ -755,6 +781,7 @@ public class ProgramGUI {
         ArrayList<Integer> arr = new ArrayList<>();
 
         int speed_limit_step = 1;
+
         if (limit) {
             speed_limit_step = 5;
         }

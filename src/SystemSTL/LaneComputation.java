@@ -1,5 +1,7 @@
 package SystemSTL;
 
+import Tools.Constants;
+
 /**
  * This class calculates information about vehicles such as current speed and distance from an intersection.
  */
@@ -28,9 +30,7 @@ public class LaneComputation extends Thread {
 
             CarComputation car_computation;
 
-//            for (int i = 0; i < lane_info.getCarsInLane().size() && !stop_computation; i++) {
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
-//                System.out.println(this.getName() + ": " + lane_info.getCarsInLane().size());
 
                 car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
 
@@ -48,23 +48,35 @@ public class LaneComputation extends Thread {
                 }
 
                 if (moving_mode) {
-//                    System.out.println(this.getName() + " moving");
 
-                    car_computation.movingMode(add, lane_info.getSpeedLimit());
-                } else {
-//                    System.out.println(this.getName() + " stopping");
-                    //if car passed the intersection line then continue it's computation
-                    if (lane_info.getCarsInLane().get(i).getCurrentSpeed() > 0 &&
-                            lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < 0) {
-
+                    //if this is first car in lane
+                    if (i == 0) {
                         car_computation.movingMode(add, lane_info.getSpeedLimit());
                     } else {
+                        //if distance from the front car is correct for moving then start
+                        CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
+                        CarInfo current_car = lane_info.getCarsInLane().get(i);
+                        double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+                        dist = Math.abs(dist);
+                        if (dist > Constants.SAFETY_DISTANCE) {
+                            car_computation.movingMode(add, lane_info.getSpeedLimit());
+                        }
+                    }
 
+                } else {
+                    //if traffic light state is red but car passed the intersection line then continue car's computation
+                    if (lane_info.getCarsInLane().get(i).getCurrentSpeed() > 0 &&
+                            lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < 0) {
+                        car_computation.movingMode(add, lane_info.getSpeedLimit());
+                    }
+                    //TODO: else if - stopping mode but current car has distance to move until the crossroad or the next car
+                    else {
                         car_computation.stoppingMode(add);
                     }
                 }
             }
 
+            //if all cars of this lane have passed the intersection then stop this lane computation
             if (lane_info.getCarsInLane().size() == 0) {
                 stop_computation = true;
             }
@@ -74,9 +86,5 @@ public class LaneComputation extends Thread {
 
     public void setMovingMode(boolean moving_mode) {
         this.moving_mode = moving_mode;
-    }
-
-    public boolean getMovingMode() {
-        return moving_mode;
     }
 }

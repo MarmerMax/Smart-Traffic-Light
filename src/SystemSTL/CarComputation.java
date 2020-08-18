@@ -76,6 +76,5 @@ public class CarComputation {
         double updated_distance = car_info.getDistanceFromCrossroad() - distance;
 
         car_info.setDistanceFromCrossroad(updated_distance);
-
     }
 }

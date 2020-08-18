@@ -71,6 +71,7 @@ public class TrafficLightsComputation extends Thread {
             }
         }
         System.out.println("ALL CARS IS PASSED");
+        System.out.println(traffic_lights_working_time);
     }
 
     /**

@@ -178,6 +178,30 @@ public class Constants {
 
     //Units
     public static final double PIXEL_TO_METER = 0.12;
+    public static final double SAFETY_DISTANCE = 5;
 
 
+    //Start values
+    public static final int CARS_COUNT_SHORT_ROAD = 3;
+    public static final int CARS_COUNT_LONG_ROAD = 10;
+    public static final int CARS_COUNT_LONG_ROAD_MAX = 100;
+    public static final int CARS_COUNT_SHORT_ROAD_MAX = 5;
+    public static final int CARS_COUNT_MIN = 1;
+
+    public static final int SPEED_LIMIT = 70;
+    public static final int SPEED_LIMIT_MAX = 110;
+    public static final int SPEED_LIMIT_MIN = 50;
+
+    public static final int ACTUAL_LIMIT = 70;
+    public static final int ACTUAL_LIMIT_MAX = 110;
+    public static final int ACTUAL_LIMIT_MIN = 50;
+
+
+    //info text
+    public static final String INFO = "Main information";
+    public static final String INFO_DIRECTIONS = " Directions DirectionsDirections Directions Directions Directions Directions Directions Directions information";
+    public static final String INFO_TRAFFIC_LIGHTS = "Traffic lights information";
+    public static final String INFO_CARS_COUNT = "Cars count information";
+    public static final String INFO_SPEED_LIMIT = "Speed limit information";
+    public static final String INFO_ACTUAL_SPEED = "Actual speed information";
 }
