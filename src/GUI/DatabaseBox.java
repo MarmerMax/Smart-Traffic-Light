@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,9 +18,12 @@ import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.PipedOutputStream;
 
 public class DatabaseBox {
 
@@ -45,13 +49,12 @@ public class DatabaseBox {
     public static void login() {
     	Stage window = new Stage();
     	window.setTitle(Constants.database_connect_window_label);
-    	
-    	
-    	HBox centerMenu = new HBox(5);
+
+    	HBox centerMenu = new HBox(10);
     	centerMenu.getStyleClass().add("options-container");
     	
     	//login labels
-    	VBox boxLabel1 = new VBox(13);
+    	VBox boxLabel1 = new VBox(10);
         boxLabel1.getStyleClass().add("options-column");
     	Label urlLabel = new Label(Constants.url_label);
     	urlLabel.getStyleClass().add("label-direction");
@@ -61,7 +64,7 @@ public class DatabaseBox {
     	passwordLabel.getStyleClass().add("label-direction");
     	
     	//login fields
-    	VBox boxLabel2 = new VBox(5);
+    	VBox boxLabel2 = new VBox(10);
         boxLabel2.getStyleClass().add("options-column");
         TextField urlField = new TextField();
         urlField.setText("jdbc:mysql://localhost:3306/stl");
@@ -73,9 +76,13 @@ public class DatabaseBox {
         passwordField.getStyleClass().add("label-direction");
         
         //Error log
+        HBox top = new HBox();
+        top.setAlignment(Pos.CENTER);
+        top.getStyleClass().add("label-database");
+
         Label logLabel = new Label("");
-        logLabel.getStyleClass().add("label-direction");
-        
+        top.getChildren().add(logLabel);
+
         //Connect button
         Button buttonConnect = new Button(Constants.connect_button);
         buttonConnect.setMaxWidth(500);
@@ -110,16 +117,21 @@ public class DatabaseBox {
         		login_state = login_states.login_failed;
         	}        		
         });
+
+        HBox bottomMenu = new HBox(10);
+        bottomMenu.setPadding(new Insets(10));
+        bottomMenu.setAlignment(Pos.CENTER);
+        bottomMenu.getChildren().addAll(buttonCreate, buttonConnect);
         
-        
-        
-    	boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel, buttonCreate);
-    	boxLabel2.getChildren().addAll(urlField, userField, passwordField, buttonConnect, logLabel);   	
+    	boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel);
+    	boxLabel2.getChildren().addAll(urlField, userField, passwordField);
     	centerMenu.getChildren().addAll(boxLabel1, boxLabel2);
     	
     	BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
-        borderPane.setTop(centerMenu);
+        borderPane.setTop(top);
+        borderPane.setCenter(centerMenu);
+        borderPane.setBottom(bottomMenu);
         
     	Scene scene = new Scene(borderPane, 550, 300);
         window.setScene(scene);

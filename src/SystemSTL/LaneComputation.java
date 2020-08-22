@@ -1,6 +1,8 @@
 package SystemSTL;
 
 import Tools.Constants;
+import Tools.Utils;
+import com.sun.webkit.network.Util;
 
 /**
  * This class calculates information about vehicles such as current speed and distance from an intersection.
@@ -24,24 +26,22 @@ public class LaneComputation extends Thread {
 
     private void computeLane() {
 //        System.out.println(this.getName() + " start lane computation");
-        double add = 0.1;
+        double add = 0.1; // =100ms
+
+        int part = 0;
 
         while (!stop_computation) {
 
             CarComputation car_computation;
 
+            int start_size = lane_info.getCarsInLane().size();
+
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
 
                 car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
 
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
                 //if the car passed the intersection and placed out of the inspected area then remove this car
-                if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -50) {
+                if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -30) {
                     lane_info.getCarsInLane().remove(i);
                     i--;
                     continue;
@@ -57,8 +57,9 @@ public class LaneComputation extends Thread {
                         CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
                         CarInfo current_car = lane_info.getCarsInLane().get(i);
                         double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+
                         dist = Math.abs(dist);
-                        if (dist > Constants.SAFETY_DISTANCE) {
+                        if (dist > Constants.SAFETY_DISTANCE + 1) {
                             car_computation.movingMode(add, lane_info.getSpeedLimit());
                         }
                     }
@@ -68,9 +69,31 @@ public class LaneComputation extends Thread {
                     if (lane_info.getCarsInLane().get(i).getCurrentSpeed() > 0 &&
                             lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < 0) {
                         car_computation.movingMode(add, lane_info.getSpeedLimit());
-                    }
-                    //TODO: else if - stopping mode but current car has distance to move until the crossroad or the next car
-                    else {
+                    } else if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() > 10) {
+                        if (i == 0) {
+                            car_computation.movingMode(add, lane_info.getSpeedLimit() / 5);
+                        } else {
+                            CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
+                            CarInfo current_car = lane_info.getCarsInLane().get(i);
+                            double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+                            dist = Math.abs(dist);
+                            if (dist > Constants.SAFETY_DISTANCE - 1) {
+                                car_computation.movingMode(add, lane_info.getSpeedLimit() / 5);
+                            }
+                        }
+                    } else if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() > 1) {
+                        if (i == 0) {
+                            car_computation.movingMode(add, lane_info.getSpeedLimit() / 7);
+                        } else {
+                            CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
+                            CarInfo current_car = lane_info.getCarsInLane().get(i);
+                            double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+                            dist = Math.abs(dist);
+                            if (dist > Constants.SAFETY_DISTANCE - 1) {
+                                car_computation.movingMode(add, lane_info.getSpeedLimit() / 7);
+                            }
+                        }
+                    } else {
                         car_computation.stoppingMode(add);
                     }
                 }
@@ -80,6 +103,38 @@ public class LaneComputation extends Thread {
             if (lane_info.getCarsInLane().size() == 0) {
                 stop_computation = true;
             }
+
+
+            //TODO calculate sleep time more smart than now
+            try {
+//                if (start_size < 30) {
+//                    start_size *= 2;
+//                } else {
+//                    start_size *= 1.5;
+//                }
+//
+//                if (start_size >= 100) {
+//                    start_size = 50;
+//                }
+
+                if (start_size < 10) {
+                    start_size = 10 * 5;
+                } else if (start_size < 20) {
+                    start_size = 10 * 4;
+                } else if (start_size < 30) {
+                    start_size = 10 * 3;
+                } else if (start_size < 40) {
+                    start_size = 10 * 2;
+                } else {
+                    start_size = 10;
+                }
+
+                Thread.sleep(100 - start_size);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
         }
         System.out.println(this.getName() + " finished lane computation");
     }

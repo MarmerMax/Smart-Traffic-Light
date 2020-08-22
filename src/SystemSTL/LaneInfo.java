@@ -2,6 +2,7 @@ package SystemSTL;
 
 import Objects.Car.Car;
 import Objects.Car.CarFactory;
+import Tools.Constants;
 import Tools.Utils;
 
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ public class LaneInfo {
 
     /**
      * Constructor.
+     *
      * @param cars_count - count of cars in to create
-     * @param sl - speed limit of the direction
+     * @param sl         - speed limit of the direction
      */
     public LaneInfo(int cars_count, double sl) {
         speed_limit = sl;
@@ -29,6 +31,7 @@ public class LaneInfo {
 
     /**
      * This function creates cars, calculates their distance to the intersection and adds them to the list.
+     *
      * @param carsCount
      */
     private void addCarsToList(int carsCount) {
@@ -50,7 +53,7 @@ public class LaneInfo {
 
             //random distance between two cars
 //            next_car_distance = car.getLength() + Utils.createRandomInRange(2, 5);
-            next_car_distance = car.getLength() + 3;
+            next_car_distance = car.getLength() + Constants.START_DISTANCE_BETWEEN;
 
             iteration++;
         }

@@ -25,9 +25,9 @@ public class CarComputation {
      * @param speed_limit
      */
     private void speedUp(double time, double speed_limit) {
-        double new_speed = car_info.getCurrentSpeed() + car_info.getCar().getAcceleration() * time * Constants.PIXEL_TO_METER;
-        if (new_speed > speed_limit * Constants.PIXEL_TO_METER) {
-            car_info.setCurrentSpeed(car_info.getCar().getMaxSpeed());
+        double new_speed = car_info.getCurrentSpeed() + car_info.getCar().getAcceleration() * time;
+        if (new_speed > speed_limit / Constants.METER_TO_PIXEL) {
+            car_info.setCurrentSpeed(speed_limit / Constants.METER_TO_PIXEL);
             return;
         }
         car_info.setCurrentSpeed(new_speed);
@@ -39,7 +39,7 @@ public class CarComputation {
      * @param time
      */
     private void speedDown(double time) {
-        double new_speed = car_info.getCurrentSpeed() - car_info.getCar().getDeceleration() * time * Constants.PIXEL_TO_METER;
+        double new_speed = car_info.getCurrentSpeed() - car_info.getCar().getDeceleration() * time;
         if (new_speed < 0) {
             car_info.setCurrentSpeed(0);
             return;

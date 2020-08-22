@@ -152,7 +152,6 @@ public class Constants {
     public static final double TRACK_MAX_SPEED = 70;
 
 
-    public static final double CROSSROAD_PHASE_TIME = 60;
 
     //sizes
     public static final double TRAFFIC_LIGHT_HEIGHT = 40;
@@ -164,7 +163,9 @@ public class Constants {
 
     //times
     public static final int TRAFFIC_LIGHT_CHANGING_TIME = 3;
-    public static final int TRAFFIC_LIGHT_MIN_DISTRIBUTION = 10;
+    public static final int TRAFFIC_LIGHT_MIN_DISTRIBUTION = 5;
+    public static final double CROSSROAD_PHASE_TIME = 40;
+
 
     // directions
     public static final int NORTH_DIRECTION = 0;
@@ -178,7 +179,10 @@ public class Constants {
 
     //Units
     public static final double PIXEL_TO_METER = 0.12;
-    public static final double SAFETY_DISTANCE = 5;
+
+    public static final double METER_TO_PIXEL = 12.5;
+    public static final double SAFETY_DISTANCE = 3;
+    public static final double START_DISTANCE_BETWEEN = 2;
 
 
     //Start values

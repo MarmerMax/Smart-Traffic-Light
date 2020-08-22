@@ -58,7 +58,7 @@ public class TrafficExecutor extends Thread {
         executor.execute(lane_computation_first_dir_2);
         executor.execute(lane_computation_second_dir_1);
         executor.execute(lane_computation_second_dir_2);
-
+//
         executor.shutdown();
 
 

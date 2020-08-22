@@ -47,6 +47,7 @@ import java.awt.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -531,7 +532,7 @@ public class ProgramGUI {
                 public void run() {
                     while (!systemSTL.isFinished()) {
                         try {
-                            Thread.sleep(20);
+                            Thread.sleep(30);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
@@ -585,15 +586,6 @@ public class ProgramGUI {
             outputClip.setHeight(newValue.getHeight());
         });
 
-
-//        Thread thread1 = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//            }
-//        });
-//        thread1.start();
-
-
         updateNorthSouthCars();
         updateWestEastCars();
 
@@ -604,47 +596,54 @@ public class ProgramGUI {
 
     private void updateWestEastCars() {
         ArrayList<ImageView> east_crossroad_1 =
-                createCars(1, 1, conditions.getCarsInfoFirstCrossroad().get(1));
+                createCars(1, Constants.EAST_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(1));
         ArrayList<ImageView> east_crossroad_2 =
-                createCars(2, 1, conditions.getCarsInfoFirstCrossroad().get(1));
+                createCars(2, Constants.EAST_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(1));
         ArrayList<ImageView> west_crossroad_1 =
-                createCars(1, 3, conditions.getCarsInfoFirstCrossroad().get(3));
+                createCars(1, Constants.WEST_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(3));
         ArrayList<ImageView> west_crossroad_2 =
-                createCars(2, 3, conditions.getCarsInfoFirstCrossroad().get(3));
+                createCars(2, Constants.WEST_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(3));
 
-//        addCars(east_crossroad_1);
-//        addCars(east_crossroad_2);
-//        addCars(west_crossroad_1);
-//        addCars(west_crossroad_2);
+        addCars(east_crossroad_1);
+        addCars(east_crossroad_2);
+        addCars(west_crossroad_1);
+        addCars(west_crossroad_2);
     }
 
     private synchronized void updateNorthSouthCars() {
         ArrayList<ImageView> north_crossroad_1 =
-                createCars(1, 0, conditions.getCarsInfoFirstCrossroad().get(0));
+                createCars(1, Constants.NORTH_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(0));
         ArrayList<ImageView> north_crossroad_2 =
-                createCars(2, 0, conditions.getCarsInfoFirstCrossroad().get(0));
+                createCars(2, Constants.NORTH_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(0));
         ArrayList<ImageView> south_crossroad_1 =
-                createCars(1, 2, conditions.getCarsInfoFirstCrossroad().get(2));
+                createCars(1, Constants.SOUTH_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(2));
         ArrayList<ImageView> south_crossroad_2 =
-                createCars(2, 2, conditions.getCarsInfoFirstCrossroad().get(2));
-//
-//        addCars(north_crossroad_1);
-//        addCars(north_crossroad_2);
-//        addCars(south_crossroad_1);
-//        addCars(south_crossroad_2);
+                createCars(2, Constants.SOUTH_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(2));
+
+        addCars(north_crossroad_1);
+        addCars(north_crossroad_2);
+        addCars(south_crossroad_1);
+        addCars(south_crossroad_2);
     }
 
     private synchronized ArrayList<ImageView> createCars(int crossroad, int direction, LaneInfo lane_info) {
         ArrayList<ImageView> cars = new ArrayList<>();
 
-        for (CarInfo car_info : lane_info.getCarsInLane()) {
-            if (lane_info.getCarsInLane().size() == 0) {
-                break;
+        try {
+
+            for (CarInfo car_info : lane_info.getCarsInLane()) {
+                if (lane_info.getCarsInLane().size() == 0) {
+                    break;
+                }
+                if (-30 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 30) {
+                    cars.add(createCarOnMapByPlace(crossroad, direction, car_info));
+                }
             }
-            if (-50 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 50) {
-                cars.add(createCarOnMapByPlace(crossroad, direction, car_info));
-            }
+
+        } catch (ConcurrentModificationException e) {
+
         }
+
 
         return cars;
     }
@@ -661,24 +660,26 @@ public class ProgramGUI {
         int x = 0;
         int y = 0;
 
-        distance_from_crossroad /= Constants.PIXEL_TO_METER;
+//        distance_from_crossroad /= Constants.PIXEL_TO_METER;
+        distance_from_crossroad *= Constants.METER_TO_PIXEL;
 
-        if (direction == 0) {
+        if (direction == Constants.NORTH_DIRECTION) {
             x += 180;
             y += 150;
 
             y -= distance_from_crossroad;
-        } else if (direction == 1) {
+        } else if (direction == Constants.EAST_DIRECTION) {
             x += 290;
             y += 210;
 
             x += distance_from_crossroad;
-        } else if (direction == 2) {
+        } else if (direction == Constants.SOUTH_DIRECTION) {
             x += 230;
             y += 320;
 
             y += distance_from_crossroad;
-        } else if (direction == 3) {
+
+        } else if (direction == Constants.WEST_DIRECTION) {
             x += 120;
             y += 255;
 
