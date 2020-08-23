@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java" line="120" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -67,11 +65,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-620">
-              <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
+            <state relative-caret-position="39">
+              <caret line="87" column="27" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#24408#24409#0" expanded="true" />
@@ -79,22 +77,13 @@
                 <element signature="e#25054#25055#0" expanded="true" />
                 <element signature="e#25136#25137#0" expanded="true" />
                 <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
-                <element signature="e#31318#31319#0" expanded="true" />
+                <element signature="e#31254#31255#0" expanded="true" />
                 <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
                 <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
                 <element signature="method#createTrafficLight#0;class#ProgramGUI#0" />
                 <element signature="method#addTrafficLights#0;class#ProgramGUI#0" />
-                <element signature="e#35609#35610#0" expanded="true" />
+                <element signature="e#35545#35546#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.controls.jar!/javafx/scene/control/Spinner.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="117" column="127" selection-start-line="117" selection-start-column="120" selection-end-line="117" selection-end-column="127" />
             </state>
           </provider>
         </entry>
@@ -111,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1404">
-              <caret line="156" column="36" lean-forward="true" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
+            <state relative-caret-position="414">
+              <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7258#7259#0" expanded="true" />
@@ -587,7 +576,7 @@
       <workItem from="1595636118162" duration="9777000" />
       <workItem from="1595685754978" duration="5060000" />
       <workItem from="1597483182020" duration="35418000" />
-      <workItem from="1598094922615" duration="32745000" />
+      <workItem from="1598094922615" duration="33417000" />
     </task>
     <servers />
   </component>
@@ -624,7 +613,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="416217000" />
+    <option name="totallyTimeSpent" value="416889000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -648,7 +637,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32569557" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.400982" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.400982" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5057283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1103,6 +1092,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.controls.jar!/javafx/scene/control/Spinner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="117" column="127" selection-start-line="117" selection-start-column="120" selection-end-line="117" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="87" column="27" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#24408#24409#0" expanded="true" />
+            <element signature="e#24463#24464#0" expanded="true" />
+            <element signature="e#25054#25055#0" expanded="true" />
+            <element signature="e#25136#25137#0" expanded="true" />
+            <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
+            <element signature="e#31254#31255#0" expanded="true" />
+            <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
+            <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
+            <element signature="method#createTrafficLight#0;class#ProgramGUI#0" />
+            <element signature="method#addTrafficLights#0;class#ProgramGUI#0" />
+            <element signature="e#35545#35546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1113,43 +1130,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.controls.jar!/javafx/scene/control/Spinner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="117" column="127" selection-start-line="117" selection-start-column="120" selection-end-line="117" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemSTL/LaneComputation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="156" column="36" lean-forward="true" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
+        <state relative-caret-position="414">
+          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7258#7259#0" expanded="true" />
             <element signature="e#7304#7305#0" expanded="true" />
             <marker date="1598178989832" expanded="true" signature="2679:2762" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-620">
-          <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#24408#24409#0" expanded="true" />
-            <element signature="e#24463#24464#0" expanded="true" />
-            <element signature="e#25054#25055#0" expanded="true" />
-            <element signature="e#25136#25137#0" expanded="true" />
-            <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
-            <element signature="e#31318#31319#0" expanded="true" />
-            <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
-            <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
-            <element signature="method#createTrafficLight#0;class#ProgramGUI#0" />
-            <element signature="method#addTrafficLights#0;class#ProgramGUI#0" />
-            <element signature="e#35609#35610#0" expanded="true" />
           </folding>
         </state>
       </provider>

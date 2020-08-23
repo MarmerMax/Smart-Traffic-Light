@@ -1,8 +1,6 @@
 package SystemSTL;
 
 import Tools.Constants;
-import Tools.Utils;
-import com.sun.webkit.network.Util;
 
 /**
  * This class calculates information about vehicles such as current speed and distance from an intersection.

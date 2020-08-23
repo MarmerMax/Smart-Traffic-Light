@@ -88,8 +88,6 @@ public class TrafficExecutor extends Thread {
             e.printStackTrace();
         }
 
-        System.out.println("ALL CARS PASSED");
-
 
 //        executor.shutdown();
 //        if (moving_mode) {

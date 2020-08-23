@@ -1,21 +1,15 @@
 package GUI;
 
-import Objects.Car.Car;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
-import Objects.TrafficLight.TrafficLightState.GreenState;
-import Objects.TrafficLight.TrafficLightState.RedState;
 import SystemSTL.SystemSTL;
 import Tools.Constants;
 import Tools.Utils;
-import com.sun.webkit.network.Util;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,27 +20,18 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.scene.shape.Rectangle;
 import SystemSTL.LaneInfo;
-import SystemSTL.Algorithm;
 import SystemSTL.CarInfo;
-//import Tools.Constants.*;
 
 import javafx.event.ActionEvent;
 
-import javax.swing.*;
-
 import Database.Database;
 
-import java.awt.*;
-import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

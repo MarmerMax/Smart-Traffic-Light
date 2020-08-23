@@ -1,8 +1,6 @@
 package GUI;
 
 import Database.Database;
-import Objects.Conditions.Conditions;
-import SystemSTL.Algorithm;
 import Tools.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,12 +16,10 @@ import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.PipedOutputStream;
 
 public class DatabaseBox {
 
