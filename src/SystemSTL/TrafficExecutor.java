@@ -42,6 +42,10 @@ public class TrafficExecutor extends Thread {
 
     public void setConditions(Conditions conditions) {
         this.conditions = conditions;
+        if (this.getName().toLowerCase().equals(Constants.DIRECTION_NAME_EAST_WEST.toLowerCase())) {
+            lane_computation_first_dir_2.setNextLaneInfo(conditions.getCarsInfoWestCrossroad_2());
+            lane_computation_second_dir_1.setNextLaneInfo(conditions.getCarsInfoEastCrossroad_1());
+        }
     }
 
     @Override
@@ -119,16 +123,19 @@ public class TrafficExecutor extends Thread {
     }
 
     private void createLabels() {
+        String first = Constants.CROSSROAD_NAME_FIRST;
+        String second = Constants.CROSSROAD_NAME_SECOND;
+
         if (this.getName().toLowerCase().equals(Constants.DIRECTION_NAME_EAST_WEST.toLowerCase())) {
-            lane_computation_first_dir_1.setName("east-west first dir 1");
-            lane_computation_first_dir_2.setName("east-west first dir 2");
-            lane_computation_second_dir_1.setName("east-west second dir 1");
-            lane_computation_second_dir_2.setName("east-west second dir 2");
+            lane_computation_first_dir_1.setName(first + " " + Constants.DIRECTION_NAME_EAST);
+            lane_computation_first_dir_2.setName(first + " " + Constants.DIRECTION_NAME_WEST);
+            lane_computation_second_dir_1.setName(second + " " + Constants.DIRECTION_NAME_EAST);
+            lane_computation_second_dir_2.setName(second + " " + Constants.DIRECTION_NAME_WEST);
         } else {
-            lane_computation_first_dir_1.setName("north-south first dir 1");
-            lane_computation_first_dir_2.setName("north-south first dir 2");
-            lane_computation_second_dir_1.setName("north-south second dir 1");
-            lane_computation_second_dir_2.setName("north-south second dir 2");
+            lane_computation_first_dir_1.setName(first + " " + Constants.DIRECTION_NAME_NORTH);
+            lane_computation_first_dir_2.setName(first + " " + Constants.DIRECTION_NAME_SOUTH);
+            lane_computation_second_dir_1.setName(second + " " + Constants.DIRECTION_NAME_NORTH);
+            lane_computation_second_dir_2.setName(second + " " + Constants.DIRECTION_NAME_SOUTH);
         }
     }
 }

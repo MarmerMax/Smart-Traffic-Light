@@ -7,6 +7,7 @@ public abstract class Car implements DrawObject {
 
     protected Image image;
     protected double length;
+    protected double width;
     protected double acceleration; // m/s
     protected double deceleration; // m/s
     protected double max_speed; // km/h
@@ -17,7 +18,7 @@ public abstract class Car implements DrawObject {
         if (image != null) {
             return image;
         } else {
-            String path = "file:images/cars/car" + car_type + ".png";
+            String path = "file:images/cars/car" + (int)car_type + ".png";
             image = new Image(path);
             return image;
         }
@@ -25,6 +26,10 @@ public abstract class Car implements DrawObject {
 
     public double getLength() {
         return length;
+    }
+
+    public double getWidth() {
+        return width;
     }
 
     public double getDeceleration() {

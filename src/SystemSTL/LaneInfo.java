@@ -59,6 +59,12 @@ public class LaneInfo {
         }
     }
 
+    public void addCarFromPreviousCrossroad(CarInfo car){
+        car.setDistanceFromCrossroad(29.5);
+
+        cars_in_lane.add(car);
+    }
+
     public ArrayList<CarInfo> getCarsInLane() {
         return cars_in_lane;
     }

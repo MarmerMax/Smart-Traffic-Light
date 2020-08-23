@@ -588,10 +588,6 @@ public class ProgramGUI {
 
         updateNorthSouthCars();
         updateWestEastCars();
-
-//        Image image = new Image("file:images/cars/car1.png");
-//        ImageView image_view = createCar(758, 500, 0, image);
-//        simulation.getChildren().add(image_view);
     }
 
     private void updateWestEastCars() {
@@ -635,7 +631,7 @@ public class ProgramGUI {
                 if (lane_info.getCarsInLane().size() == 0) {
                     break;
                 }
-                if (-30 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 30) {
+                if (-40 < car_info.getDistanceFromCrossroad() && car_info.getDistanceFromCrossroad() < 40) {
                     cars.add(createCarOnMapByPlace(crossroad, direction, car_info));
                 }
             }
@@ -644,44 +640,51 @@ public class ProgramGUI {
 
         }
 
-
         return cars;
     }
 
     private ImageView createCarOnMapByPlace(int crossroad_number, int direction, CarInfo car) {
         int[] place = generatePlace(crossroad_number, direction, car.getDistanceFromCrossroad());
-        //TODO: create cars with correct image
-        Image image = new Image("file:images/cars/car5.png");
-//        return createCar(place[0], place[1], getRotateByDirection(direction), car.getCar().getImage());
-        return createCar(place[0], place[1], getRotateByDirection(direction), image);
+        return createCar(place[0], place[1], getRotateByDirection(direction), car);
     }
 
     private int[] generatePlace(int crossroad_number, int direction, double distance_from_crossroad) {
         int x = 0;
         int y = 0;
 
-//        distance_from_crossroad /= Constants.PIXEL_TO_METER;
         distance_from_crossroad *= Constants.METER_TO_PIXEL;
 
         if (direction == Constants.NORTH_DIRECTION) {
-            x += 180;
-            y += 150;
+//            x += 180;
+//            y += 150;
+
+            x += 187;
+            y += 130;
 
             y -= distance_from_crossroad;
         } else if (direction == Constants.EAST_DIRECTION) {
-            x += 290;
-            y += 210;
+//            x += 290;
+//            y += 210;
+
+            x += 305;
+            y += 204;
 
             x += distance_from_crossroad;
         } else if (direction == Constants.SOUTH_DIRECTION) {
-            x += 230;
-            y += 320;
+//            x += 230;
+//            y += 320;
+
+            x += 237;
+            y += 315;
 
             y += distance_from_crossroad;
 
         } else if (direction == Constants.WEST_DIRECTION) {
-            x += 120;
-            y += 255;
+//            x += 120;
+//            y += 255;
+
+            x += 118;
+            y += 250;
 
             x -= distance_from_crossroad;
         }
@@ -710,13 +713,12 @@ public class ProgramGUI {
         }
     }
 
-    private ImageView createCar(int x, int y, int rotate, Image image) {
-        ImageView image_view = new ImageView(image);
+    private ImageView createCar(int x, int y, int rotate, CarInfo car) {
+        ImageView image_view = new ImageView(car.getCar().getImage());
         image_view.setX(x);
         image_view.setY(y);
-        //TODO: cars sizes by correct size
-        image_view.setFitHeight(Constants.CAR_HEIGHT);
-        image_view.setFitWidth(Constants.CAR_WIDTH);
+        image_view.setFitHeight(car.getCar().getLength() * Constants.METER_TO_PIXEL);
+        image_view.setFitWidth(car.getCar().getWidth() * Constants.METER_TO_PIXEL);
         image_view.setRotate(rotate);
         return image_view;
     }

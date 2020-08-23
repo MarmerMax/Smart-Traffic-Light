@@ -22,11 +22,11 @@ public class Utils {
         } else if (0.1 <= random && random < 0.5) {
             type = CarTypes.Taxi;
         }
-//        else if (0.5 <= random && random < 0.6) {
-//            type = CarTypes.Track;
-//        } else if (0.6 <= random && random < 0.7) {
-//            type = CarTypes.Ambulance;
-//        }
+        else if (0.5 <= random && random < 0.6) {
+            type = CarTypes.Track;
+        } else if (0.6 <= random && random < 0.7) {
+            type = CarTypes.Ambulance;
+        }
         else {
             type = CarTypes.Usual;
         }

@@ -152,7 +152,6 @@ public class Constants {
     public static final double TRACK_MAX_SPEED = 70;
 
 
-
     //sizes
     public static final double TRAFFIC_LIGHT_HEIGHT = 40;
     public static final double TRAFFIC_LIGHT_WIDTH = 15;
@@ -164,7 +163,7 @@ public class Constants {
     //times
     public static final int TRAFFIC_LIGHT_CHANGING_TIME = 3;
     public static final int TRAFFIC_LIGHT_MIN_DISTRIBUTION = 5;
-    public static final double CROSSROAD_PHASE_TIME = 40;
+    public static final double CROSSROAD_PHASE_TIME = 20;
 
 
     // directions
@@ -176,11 +175,17 @@ public class Constants {
     // names
     public static final String DIRECTION_NAME_EAST_WEST = "east-west";
     public static final String DIRECTION_NAME_NORTH_SOUTH = "north-south";
+    public static final String DIRECTION_NAME_EAST = "east";
+    public static final String DIRECTION_NAME_WEST = "west";
+    public static final String DIRECTION_NAME_NORTH = "north";
+    public static final String DIRECTION_NAME_SOUTH = "south";
+    public static final String CROSSROAD_NAME_FIRST = "first";
+    public static final String CROSSROAD_NAME_SECOND = "second";
 
     //Units
     public static final double PIXEL_TO_METER = 0.12;
 
-    public static final double METER_TO_PIXEL = 12.5;
+    public static final double METER_TO_PIXEL = 15;
     public static final double SAFETY_DISTANCE = 3;
     public static final double START_DISTANCE_BETWEEN = 2;
 
@@ -189,7 +194,7 @@ public class Constants {
     public static final int CARS_COUNT_SHORT_ROAD = 3;
     public static final int CARS_COUNT_LONG_ROAD = 10;
     public static final int CARS_COUNT_LONG_ROAD_MAX = 100;
-    public static final int CARS_COUNT_SHORT_ROAD_MAX = 5;
+    public static final int CARS_COUNT_SHORT_ROAD_MAX = 4;
     public static final int CARS_COUNT_MIN = 1;
 
     public static final int SPEED_LIMIT = 70;
