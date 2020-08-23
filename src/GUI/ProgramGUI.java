@@ -201,7 +201,7 @@ public class ProgramGUI {
         ArrayList<Spinner<Integer>> limit_spinners_1 = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            limit_spinners_1.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT));
+            limit_spinners_1.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT, 10));
         }
 
         speedLimit1.getChildren().addAll(speedLimitLabel1, limit_spinners_1.get(0), limit_spinners_1.get(1), limit_spinners_1.get(2), limit_spinners_1.get(3));
@@ -270,7 +270,7 @@ public class ProgramGUI {
 
 
         for (int i = 0; i < 4; i++) {
-            limit_spinners_2.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT));
+            limit_spinners_2.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT, 10));
         }
 
         speedLimit2.getChildren().addAll(speedLimitLabel2, limit_spinners_2.get(0), limit_spinners_2.get(1), limit_spinners_2.get(2), limit_spinners_2.get(3));
@@ -284,6 +284,23 @@ public class ProgramGUI {
         for (int i = 0; i < 4; i++) {
             actual_spinners_2.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
         }
+
+
+        //listener
+        limit_spinners_1.get(1).valueProperty().addListener((obs, oldValue, newValue) -> {
+            limit_spinners_2.get(1).getValueFactory().setValue(newValue);
+        });
+
+        limit_spinners_2.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
+                limit_spinners_1.get(1).getValueFactory().setValue(newValue));
+
+
+        limit_spinners_1.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
+                limit_spinners_2.get(3).getValueFactory().setValue(newValue));
+
+        limit_spinners_2.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
+                limit_spinners_1.get(3).getValueFactory().setValue(newValue));
+
 
         actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
@@ -315,6 +332,10 @@ public class ProgramGUI {
                 Utils.createRandomCarsCount(cars_spinners_2, 3);
                 Utils.createRandomSpeedLimit(limit_spinners_2);
                 Utils.createRandomActualSpeed(actual_spinners_2);
+
+                limit_spinners_1.get(1).getValueFactory().setValue(limit_spinners_2.get(1).getValue());
+                limit_spinners_1.get(3).getValueFactory().setValue(limit_spinners_2.get(3).getValue());
+
             }
         });
 
