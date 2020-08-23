@@ -55,7 +55,7 @@ public class ProgramGUI {
 
     private Scene windowHome, windowClientTypes, windowOptions, windowSimulation;
     private Stage window;
-    private boolean analyst;
+    private static boolean analyst;
     private Conditions conditions;
     private Pane simulation;
 
@@ -86,9 +86,6 @@ public class ProgramGUI {
         conditions = Utils.createStartConditions();
 
         createHomeWindow();
-        createClientTypesWindow();
-        createOptionsWindow();
-        createSimulationWindow();
     }
 
     /**
@@ -106,7 +103,10 @@ public class ProgramGUI {
 
         //Let's start button
         Button buttonStart = new Button(Constants.lets_start_button_label);
-        buttonStart.setOnAction(e -> window.setScene(windowClientTypes));
+        buttonStart.setOnAction(e -> {
+            createClientTypesWindow();
+            window.setScene(windowClientTypes);
+        });
 
         //About us button
         Button buttonAboutUs = new Button(Constants.about_us_button_label);
@@ -142,7 +142,7 @@ public class ProgramGUI {
      * Database - user need to connect first to his local database, after that the user can choose which condition he want to run.
      */
     @SuppressWarnings("Duplicates")
-    private void createOptionsWindow() {
+    private void createOptionsWindow(boolean analyst) {
         VBox centerMenu = new VBox(20);
 
         //Crossroad 1
@@ -181,6 +181,12 @@ public class ProgramGUI {
             } else {
                 cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD));
             }
+
+            if (!analyst) {
+                cars_spinners_1.get(i).setDisable(true);
+            } else {
+                cars_spinners_1.get(i).setDisable(false);
+            }
         }
 
 //        for (Spinner<Integer> spinner : cars_spinners_1) {
@@ -202,6 +208,12 @@ public class ProgramGUI {
 
         for (int i = 0; i < 4; i++) {
             limit_spinners_1.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT, 10));
+
+            if (!analyst) {
+                limit_spinners_1.get(i).setDisable(true);
+            } else {
+                limit_spinners_1.get(i).setDisable(false);
+            }
         }
 
         speedLimit1.getChildren().addAll(speedLimitLabel1, limit_spinners_1.get(0), limit_spinners_1.get(1), limit_spinners_1.get(2), limit_spinners_1.get(3));
@@ -214,6 +226,12 @@ public class ProgramGUI {
 
         for (int i = 0; i < 4; i++) {
             actual_spinners_1.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
+
+            if (!analyst) {
+                actual_spinners_1.get(i).setDisable(true);
+            } else {
+                actual_spinners_1.get(i).setDisable(false);
+            }
         }
 
         actualSpeed1.getChildren().addAll(actualSpeedLabel1, actual_spinners_1.get(0), actual_spinners_1.get(1), actual_spinners_1.get(2), actual_spinners_1.get(3));
@@ -257,6 +275,12 @@ public class ProgramGUI {
             } else {
                 cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD));
             }
+
+            if (!analyst) {
+                cars_spinners_2.get(i).setDisable(true);
+            } else {
+                cars_spinners_2.get(i).setDisable(false);
+            }
         }
 
         cars2.getChildren().addAll(carsLabel2, cars_spinners_2.get(0), cars_spinners_2.get(1), cars_spinners_2.get(2), cars_spinners_2.get(3));
@@ -271,6 +295,12 @@ public class ProgramGUI {
 
         for (int i = 0; i < 4; i++) {
             limit_spinners_2.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT, 10));
+
+            if (!analyst) {
+                limit_spinners_2.get(i).setDisable(true);
+            } else {
+                limit_spinners_2.get(i).setDisable(false);
+            }
         }
 
         speedLimit2.getChildren().addAll(speedLimitLabel2, limit_spinners_2.get(0), limit_spinners_2.get(1), limit_spinners_2.get(2), limit_spinners_2.get(3));
@@ -283,6 +313,12 @@ public class ProgramGUI {
 
         for (int i = 0; i < 4; i++) {
             actual_spinners_2.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
+
+            if (!analyst) {
+                actual_spinners_2.get(i).setDisable(true);
+            } else {
+                actual_spinners_2.get(i).setDisable(false);
+            }
         }
 
 
@@ -321,21 +357,25 @@ public class ProgramGUI {
         Button buttonRandom = new Button(Constants.random_button_label);
         boxButtonRandom.getChildren().add(buttonRandom);
         buttonRandom.setOnAction(e -> {
-            boolean answer = ConfirmBox.display(Constants.random_window_label, Constants.generate_random_data_label);
-            if (answer) {
-                //1
-                Utils.createRandomCarsCount(cars_spinners_1, 1);
-                Utils.createRandomSpeedLimit(limit_spinners_1);
-                Utils.createRandomActualSpeed(actual_spinners_1);
+            if (!analyst) {
+                AlertBox.display("Fail", "Observer does not have this permissions.");
+            } else {
+                boolean answer = ConfirmBox.display(Constants.random_window_label, Constants.generate_random_data_label);
+                if (answer) {
+                    //1
+                    Utils.createRandomCarsCount(cars_spinners_1, 1);
+                    Utils.createRandomSpeedLimit(limit_spinners_1);
+                    Utils.createRandomActualSpeed(actual_spinners_1);
 
-                //2
-                Utils.createRandomCarsCount(cars_spinners_2, 3);
-                Utils.createRandomSpeedLimit(limit_spinners_2);
-                Utils.createRandomActualSpeed(actual_spinners_2);
+                    //2
+                    Utils.createRandomCarsCount(cars_spinners_2, 3);
+                    Utils.createRandomSpeedLimit(limit_spinners_2);
+                    Utils.createRandomActualSpeed(actual_spinners_2);
 
-                limit_spinners_1.get(1).getValueFactory().setValue(limit_spinners_2.get(1).getValue());
-                limit_spinners_1.get(3).getValueFactory().setValue(limit_spinners_2.get(3).getValue());
+                    limit_spinners_1.get(1).getValueFactory().setValue(limit_spinners_2.get(1).getValue());
+                    limit_spinners_1.get(3).getValueFactory().setValue(limit_spinners_2.get(3).getValue());
 
+                }
             }
         });
 
@@ -413,6 +453,7 @@ public class ProgramGUI {
             crossroad_info_2.setCrossroadInfo(cars_inputs_2, actual_inputs_2, limit_inputs_2);
 
             conditions = new Conditions(crossroad_info_1, crossroad_info_2);
+            createSimulationWindow();
             window.setScene(windowSimulation);
         });
 
@@ -460,6 +501,7 @@ public class ProgramGUI {
         Button buttonAnalyst = new Button(Constants.analyst_button_label);
         buttonAnalyst.setOnAction(e -> {
             analyst = true;
+            createOptionsWindow(analyst);
             window.setScene(windowOptions);
         });
         leftMenu.setAlignment(Pos.CENTER);
@@ -475,6 +517,7 @@ public class ProgramGUI {
         Button buttonObserver = new Button(Constants.observer_button_label);
         buttonObserver.setOnAction(e -> {
             analyst = false;
+            createOptionsWindow(analyst);
             window.setScene(windowOptions);
         });
         rightMenu.setAlignment(Pos.CENTER);
