@@ -11,11 +11,11 @@ import java.util.ArrayList;
  */
 public class Conditions {
 
-    private CrossroadInfo crossroad_info_1;
-    private CrossroadInfo crossroad_info_2;
+    private CrossroadInfo first_crossroad_info;
+    private CrossroadInfo second_crossroad_info;
 
-    private ArrayList<LaneInfo> cars_crossroad_1;
-    private ArrayList<LaneInfo> cars_crossroad_2;
+    private ArrayList<LaneInfo> lanes_info_first_crossroad;
+    private ArrayList<LaneInfo> lanes_info_second_crossroad;
 
     private boolean is_created = false;
 
@@ -30,8 +30,8 @@ public class Conditions {
      * @param info2 - crossroad 2
      */
     public Conditions(CrossroadInfo info1, CrossroadInfo info2) {
-        crossroad_info_1 = info1;
-        crossroad_info_2 = info2;
+        first_crossroad_info = info1;
+        second_crossroad_info = info2;
         createLanesInfo();
     }
 
@@ -41,8 +41,8 @@ public class Conditions {
      * @param conditions
      */
     public Conditions(Conditions conditions) {
-        crossroad_info_1 = new CrossroadInfo(conditions.getCrossroadInfo1());
-        crossroad_info_2 = new CrossroadInfo(conditions.getCrossroadInfo2());
+        first_crossroad_info = new CrossroadInfo(conditions.getFirstCrossroadInfo());
+        second_crossroad_info = new CrossroadInfo(conditions.getSecondCrossroadInfo());
         createLanesInfo();
     }
 
@@ -50,8 +50,8 @@ public class Conditions {
      * This function change state of traffic lights. Changes appears in two crossroads.
      */
     public void changeTrafficLightState() {
-        crossroad_info_1.getCrossroad().changeTrafficLightStateOnCrossroad();
-        crossroad_info_2.getCrossroad().changeTrafficLightStateOnCrossroad();
+        first_crossroad_info.getCrossroad().changeTrafficLightStateOnCrossroad();
+        second_crossroad_info.getCrossroad().changeTrafficLightStateOnCrossroad();
     }
 
     /**
@@ -60,12 +60,12 @@ public class Conditions {
      * @return true or false
      */
     public boolean isAllCarsPassed() {
-        for (LaneInfo lane_info : cars_crossroad_1) {
+        for (LaneInfo lane_info : lanes_info_first_crossroad) {
             if (lane_info.getCarsInLane().size() > 0) {
                 return false;
             }
         }
-        for (LaneInfo lane_info : cars_crossroad_2) {
+        for (LaneInfo lane_info : lanes_info_second_crossroad) {
             if (lane_info.getCarsInLane().size() > 0) {
                 return false;
             }
@@ -79,7 +79,7 @@ public class Conditions {
      * @return
      */
     public boolean isEastWestActive() {
-        return crossroad_info_1.getCrossroad().isEastWestActive() && crossroad_info_2.getCrossroad().isEastWestActive();
+        return first_crossroad_info.getCrossroad().isEastWestActive() && second_crossroad_info.getCrossroad().isEastWestActive();
     }
 
     /**
@@ -88,7 +88,7 @@ public class Conditions {
      * @return
      */
     public boolean isNorthSouthActive() {
-        return crossroad_info_1.getCrossroad().isNorthSouthActive() && crossroad_info_2.getCrossroad().isNorthSouthActive();
+        return first_crossroad_info.getCrossroad().isNorthSouthActive() && second_crossroad_info.getCrossroad().isNorthSouthActive();
     }
 
     /**
@@ -97,11 +97,11 @@ public class Conditions {
      * @return
      */
     public double getNorthSouthTimeDistribution() {
-        if (crossroad_info_1.getCrossroad().getTimeDistribution().getNorthSouth() !=
-                crossroad_info_2.getCrossroad().getTimeDistribution().getNorthSouth()) {
+        if (first_crossroad_info.getCrossroad().getTimeDistribution().getNorthSouth() !=
+                second_crossroad_info.getCrossroad().getTimeDistribution().getNorthSouth()) {
             throw new RuntimeException("Bad time distribution...");
         }
-        return crossroad_info_1.getCrossroad().getTimeDistribution().getNorthSouth();
+        return first_crossroad_info.getCrossroad().getTimeDistribution().getNorthSouth();
     }
 
     /**
@@ -110,11 +110,11 @@ public class Conditions {
      * @return
      */
     public double getEastWestTimeDistribution() {
-        if (crossroad_info_1.getCrossroad().getTimeDistribution().getEastWest() !=
-                crossroad_info_2.getCrossroad().getTimeDistribution().getEastWest()) {
+        if (first_crossroad_info.getCrossroad().getTimeDistribution().getEastWest() !=
+                second_crossroad_info.getCrossroad().getTimeDistribution().getEastWest()) {
             throw new RuntimeException("Bad time distribution...");
         }
-        return crossroad_info_1.getCrossroad().getTimeDistribution().getEastWest();
+        return first_crossroad_info.getCrossroad().getTimeDistribution().getEastWest();
     }
 
     /**
@@ -124,42 +124,42 @@ public class Conditions {
      * @return time of changing
      */
     public double getChangingLightsTime() {
-        return crossroad_info_1.getCrossroad().getTimeDistribution().getChangingExecutionTime();
+        return first_crossroad_info.getCrossroad().getTimeDistribution().getChangingExecutionTime();
     }
 
     /**
      * This function add working time to east-west direction.
      */
     public void addTimeToEastWestRoute() {
-        crossroad_info_1.getCrossroad().addTimeToEastWestRoute();
-        crossroad_info_2.getCrossroad().addTimeToEastWestRoute();
+        first_crossroad_info.getCrossroad().addTimeToEastWestRoute();
+        second_crossroad_info.getCrossroad().addTimeToEastWestRoute();
     }
 
     /**
      * This function add working time to north-south direction.
      */
     public void addTimeToNorthSouthRoute() {
-        crossroad_info_1.getCrossroad().addTimeToNorthSouthRoute();
-        crossroad_info_2.getCrossroad().addTimeToNorthSouthRoute();
+        first_crossroad_info.getCrossroad().addTimeToNorthSouthRoute();
+        second_crossroad_info.getCrossroad().addTimeToNorthSouthRoute();
     }
 
     /**
      * This function set default time distribution on the crossroads.
      */
     public void setDefaultTimeDistribution() {
-        crossroad_info_1.getCrossroad().getTimeDistribution().setDefaultDistribution();
-        crossroad_info_2.getCrossroad().getTimeDistribution().setDefaultDistribution();
+        first_crossroad_info.getCrossroad().getTimeDistribution().setDefaultDistribution();
+        second_crossroad_info.getCrossroad().getTimeDistribution().setDefaultDistribution();
     }
 
     /**
      * This function generate information of crossroads for algorithm calculation.
      */
     private void createLanesInfo() {
-        cars_crossroad_1 = new ArrayList<>();
-        createLanesPerCrossroad(cars_crossroad_1, crossroad_info_1);
+        lanes_info_first_crossroad = new ArrayList<>();
+        createLanesPerCrossroad(lanes_info_first_crossroad, first_crossroad_info);
 
-        cars_crossroad_2 = new ArrayList<>();
-        createLanesPerCrossroad(cars_crossroad_2, crossroad_info_2);
+        lanes_info_second_crossroad = new ArrayList<>();
+        createLanesPerCrossroad(lanes_info_second_crossroad, second_crossroad_info);
 
         is_created = true;
     }
@@ -180,61 +180,91 @@ public class Conditions {
     public int getCarsCount() {
         int count = 0;
 
-        for (LaneInfo info : cars_crossroad_1) {
+        for (LaneInfo info : lanes_info_first_crossroad) {
             count += info.getCarsInLane().size();
         }
 
-        for (LaneInfo info : cars_crossroad_2) {
+        for (LaneInfo info : lanes_info_second_crossroad) {
             count += info.getCarsInLane().size();
         }
 
         return count;
     }
 
-    public CrossroadInfo getCrossroadInfo1() {
-        return crossroad_info_1;
+    public CrossroadInfo getFirstCrossroadInfo() {
+        return first_crossroad_info;
     }
 
-    public CrossroadInfo getCrossroadInfo2() {
-        return crossroad_info_2;
+    public CrossroadInfo getSecondCrossroadInfo() {
+        return second_crossroad_info;
     }
 
-    public ArrayList<LaneInfo> getCarsInfoFirstCrossroad() {
-        return cars_crossroad_1;
+    public ArrayList<LaneInfo> getLanesInfoFirstCrossroad() {
+        return lanes_info_first_crossroad;
     }
 
-    public ArrayList<LaneInfo> getCarsInfoSecondCrossroad() {
-        return cars_crossroad_2;
+    public ArrayList<LaneInfo> getLanesInfoSecondCrossroad() {
+        return lanes_info_second_crossroad;
     }
 
-    public LaneInfo getCarsInfoNorthCrossroad_1() {
-        return cars_crossroad_1.get(Constants.NORTH_DIRECTION);
+    public LaneInfo getLaneInfoNorthFirstCrossroad() {
+        return lanes_info_first_crossroad.get(Constants.NORTH_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoEastCrossroad_1() { return cars_crossroad_1.get(Constants.EAST_DIRECTION); }
-
-    public LaneInfo getCarsInfoSouthCrossroad_1() {
-        return cars_crossroad_1.get(Constants.SOUTH_DIRECTION);
+    public LaneInfo getLaneInfoEastFirstCrossroad() {
+        return lanes_info_first_crossroad.get(Constants.EAST_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoWestCrossroad_1() {
-        return cars_crossroad_1.get(Constants.WEST_DIRECTION);
+    public LaneInfo getLaneInfoSouthFirstCrossroad() {
+        return lanes_info_first_crossroad.get(Constants.SOUTH_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoNorthCrossroad_2() {
-        return cars_crossroad_2.get(Constants.NORTH_DIRECTION);
+    public LaneInfo getLaneInfoWestFirstCrossroad() {
+        return lanes_info_first_crossroad.get(Constants.WEST_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoEastCrossroad_2() {
-        return cars_crossroad_2.get(Constants.EAST_DIRECTION);
+    public LaneInfo getLaneInfoNorthSecondCrossroad() {
+        return lanes_info_second_crossroad.get(Constants.NORTH_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoSouthCrossroad_2() {
-        return cars_crossroad_2.get(Constants.SOUTH_DIRECTION);
+    public LaneInfo getLaneInfoEastSecondCrossroad() {
+        return lanes_info_second_crossroad.get(Constants.EAST_DIRECTION);
     }
 
-    public LaneInfo getCarsInfoWestCrossroad_2() {
-        return cars_crossroad_2.get(Constants.WEST_DIRECTION);
+    public LaneInfo getLaneInfoSouthSecondCrossroad() {
+        return lanes_info_second_crossroad.get(Constants.SOUTH_DIRECTION);
+    }
+
+    public LaneInfo getLaneInfoWestSecondCrossroad() {
+        return lanes_info_second_crossroad.get(Constants.WEST_DIRECTION);
+    }
+
+    public int getEastWestCarsCount() {
+        return calculateCarsCountForDirections(false);
+    }
+
+    public int getNorthSouthCarsCount() {
+        return calculateCarsCountForDirections(true);
+    }
+
+    private int calculateCarsCountForDirections(boolean is_north_south) {
+        int count = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (is_north_south) {
+                if (i == Constants.NORTH_DIRECTION || i == Constants.SOUTH_DIRECTION) {
+                    count += lanes_info_first_crossroad.get(i).getCarsInLane().size();
+                    count += lanes_info_second_crossroad.get(i).getCarsInLane().size();
+                }
+            } else {
+                if (i == Constants.EAST_DIRECTION || i == Constants.WEST_DIRECTION) {
+                    count += lanes_info_first_crossroad.get(i).getCarsInLane().size();
+                    count += lanes_info_second_crossroad.get(i).getCarsInLane().size();
+                }
+            }
+        }
+
+        return count;
     }
 
     public boolean getIsCreated() {

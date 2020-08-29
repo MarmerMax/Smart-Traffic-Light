@@ -21,7 +21,7 @@ public class Crossroad {
 
     public Crossroad(Road[] r) {
         roads = r;
-        timeDistribution = new TimeDistribution(Constants.CROSSROAD_PHASE_TIME);
+        timeDistribution = new TimeDistribution(Constants.TRAFFIC_LIGHT_PHASE_TIME);
         northTrafficLight = new TrafficLight();
         eastTrafficLight = new TrafficLight();
         southTrafficLight = new TrafficLight();

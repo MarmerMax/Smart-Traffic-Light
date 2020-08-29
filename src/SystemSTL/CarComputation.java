@@ -1,6 +1,7 @@
 package SystemSTL;
 
 import Tools.Constants;
+import Tools.Formulas;
 
 /**
  * This class performs calculations for the vehicle such that speed changing, distance changing.
@@ -26,10 +27,25 @@ public class CarComputation {
      */
     private void speedUp(double time, double speed_limit) {
         double new_speed = car_info.getCurrentSpeed() + car_info.getCar().getAcceleration() * time;
-        if (new_speed > speed_limit / Constants.METER_TO_PIXEL) {
-            car_info.setCurrentSpeed(speed_limit / Constants.METER_TO_PIXEL);
+
+        //TODO: real speed is too high then necessary to decrease it impact to representation (GUI)
+//        if (new_speed > car_info.getCar().getMaxSpeed() / Constants.METER_TO_PIXEL) {
+//            new_speed = car_info.getCar().getMaxSpeed() / Constants.METER_TO_PIXEL;
+//
+        if (new_speed > Formulas.convertKMpHtoMpS(car_info.getCar().getMaxSpeed()) / 5) {
+            new_speed = Formulas.convertKMpHtoMpS(car_info.getCar().getMaxSpeed() / 5);
+        }
+
+//        if (new_speed > speed_limit / Constants.METER_TO_PIXEL) {
+//            car_info.setCurrentSpeed(speed_limit / Constants.METER_TO_PIXEL);
+//
+
+
+        if (new_speed > Formulas.convertKMpHtoMpS(speed_limit) / 5) {
+            car_info.setCurrentSpeed(Formulas.convertKMpHtoMpS(speed_limit / 5));
             return;
         }
+
         car_info.setCurrentSpeed(new_speed);
     }
 

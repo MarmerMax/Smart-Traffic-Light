@@ -7,8 +7,6 @@ import SystemSTL.Algorithm;
 import Tools.Constants;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -188,8 +186,8 @@ public class Database {
 			int current_conditions_id = getId(pstmt, 1);
 			
 			//Save crossroadsInfo
-	    	CrossroadInfo ci1 = conditions.getCrossroadInfo1();
-	    	CrossroadInfo ci2 = conditions.getCrossroadInfo2();
+	    	CrossroadInfo ci1 = conditions.getFirstCrossroadInfo();
+	    	CrossroadInfo ci2 = conditions.getSecondCrossroadInfo();
 	    	saveCrossroadInfo(ci1, current_conditions_id);
 	    	saveCrossroadInfo(ci2, current_conditions_id);
 	    	

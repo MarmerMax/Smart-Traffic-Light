@@ -32,11 +32,6 @@ public class InformationBox {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
 
-//        Label label = new Label();
-//        label.setText(message);
-//        label.setStyle("-fx-font-size: 12pt; -fx-font-weight: none");
-
-
         image_view = new ImageView(image_info);
         label = new Label(Constants.INFO_LABEL);
         text = new Text(Constants.INFO_TEXT);
@@ -94,7 +89,6 @@ public class InformationBox {
         BorderPane border_pane = new BorderPane();
         border_pane.getStylesheets().add("file:src/GUI/style.css");
         border_pane.getStyleClass().add("main-color");
-//        border_pane.setStyleClass("main-color");
 
         HBox top_menu = new HBox();
         top_menu.setPadding(new Insets(10));

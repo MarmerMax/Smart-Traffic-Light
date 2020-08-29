@@ -6,19 +6,44 @@ import java.util.Queue;
 
 public class Formulas {
     public static double convertKMpHtoMpS(double speed) {
-        return speed * (1000 / 3600);
+        double res = speed * 1000 / 3600;
+        return res;
     }
 
     public static double convertMpStoKMpH(double speed) {
-        return speed * (3600 / 1000);
+        double res = speed * 3600 / 1000;
+        return res;
     }
 
     public double calculateSpeed(double acceleration, double time) {
-        return acceleration * time;
+        double res = acceleration * time;
+        return res;
     }
 
     public double calculateDistance(double speed, double time) {
-        return speed * time;
+        double res = speed * time;
+        return res;
+    }
+
+    //return meters
+    public static double calculateDistanceByVelocityAndTime(double time, double velocity) {
+        return time * velocity;
+    }
+
+    //return meters
+    public static double calculateDistanceByAccelerationAndTime(double time, double acc, double start_velocity) {
+        return start_velocity * time + ((acc * Math.pow(time, 2) / 2));
+    }
+
+    //return m/s
+    public static double calculateVelocity(double time, double acc, double start_velocity) {
+        return start_velocity + time * acc;
+    }
+
+    //return seconds
+    public static double calculateTimeForMaxSpeed(double acc, double velocity) {
+        velocity = Formulas.convertKMpHtoMpS(velocity);
+        return velocity / acc;
     }
 
 
@@ -38,7 +63,7 @@ public class Formulas {
      */
     public static double T_move(double V_last_vehicle, double A_last_vehicle, double D_last_vehicle) {
         return -(V_last_vehicle / A_last_vehicle)
-                + Math.sqrt(Math.pow(V_last_vehicle / A_last_vehicle, 2) + 2 * D_last_vehicle / A_last_vehicle);
+                + Math.sqrt(Math.pow(V_last_vehicle / A_last_vehicle, 2) + ((2 * D_last_vehicle) / A_last_vehicle));
     }
 
     /**

@@ -1,19 +1,22 @@
 package Tools;
 
+import AlgorithmSTL.AlgorithmConditions;
+import AlgorithmSTL.AlgorithmLaneInfo;
 import Objects.Car.CarTypes;
 import Objects.Conditions.Conditions;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
+import AlgorithmSTL.Node;
 import javafx.scene.control.Spinner;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 public class Utils {
 
     public static CarTypes createRandomCarType() {
-
         CarTypes type;
         double random = Math.random();
 
@@ -21,13 +24,11 @@ public class Utils {
             type = CarTypes.Police;
         } else if (0.1 <= random && random < 0.5) {
             type = CarTypes.Taxi;
-        }
-        else if (0.5 <= random && random < 0.6) {
+        } else if (0.5 <= random && random < 0.6) {
             type = CarTypes.Track;
         } else if (0.6 <= random && random < 0.7) {
             type = CarTypes.Ambulance;
-        }
-        else {
+        } else {
             type = CarTypes.Usual;
         }
 
@@ -46,12 +47,7 @@ public class Utils {
 
 
     public static double findRatio(double small_value, double big_value) {
-        double coefficient = 1;
-        while (small_value * coefficient < big_value) {
-            coefficient += 0.01;
-        }
-
-        return coefficient;
+        return round(big_value / small_value, 0);
     }
 
     public static double createRandomInRange(double min, double max) {
@@ -134,4 +130,202 @@ public class Utils {
             spinners.get(i).getValueFactory().setValue(Constants.ACTUAL_LIMIT);
         }
     }
+
+
+    /**
+     * //////////////////////////////////////////////////////////////////////////
+     * //// Next part of the utils functions used for calculate AlgorithmSTL ////
+     * //////////////////////////////////////////////////////////////////////////
+     **/
+
+    //start isEqualsNodes
+    public static boolean isEqualsNodes(Node first, Node second) {
+        return isEqualCarsCountOnCrossroad(first.getConditions().getLanesInfoFirstCrossroad(),
+                second.getConditions().getLanesInfoFirstCrossroad())
+                &&
+                isEqualCarsCountOnCrossroad(first.getConditions().getLanesInfoSecondCrossroad(),
+                        second.getConditions().getLanesInfoSecondCrossroad());
+    }
+
+    private static boolean isEqualCarsCountOnCrossroad(ArrayList<AlgorithmLaneInfo> first, ArrayList<AlgorithmLaneInfo> second) {
+        for (int i = 0; i < 4; i++) {
+            if (!isEqualCarsCountOnDirection(first.get(i), second.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean isEqualCarsCountOnDirection(AlgorithmLaneInfo first, AlgorithmLaneInfo second) {
+        return first.getCarsCount() == second.getCarsCount();
+    }
+    //end isEqualsNodes
+
+
+    public static boolean checkIfNodeExistsInList(Node node, Set<Node> set) {
+        for (Node temp : set) {
+            if (isEqualsNodes(node, temp)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Node getSameNode(Node node, Set<Node> set) {
+        for (Node temp : set) {
+            if (isEqualsNodes(node, temp)) {
+                return temp;
+            }
+        }
+        return null;
+    }
+
+
+    //start updatePassedCars
+    //a function that calculates how many cars have passed the intersections
+    public static void updatePassedCars(AlgorithmConditions conditions, double ns_time, double ew_time) {
+        //calculate north-south
+        updateLanesInfoForCrossroad(conditions.getLanesInfoFirstCrossroad(), true, ns_time);
+        updateLanesInfoForCrossroad(conditions.getLanesInfoSecondCrossroad(), true, ns_time);
+
+        //calculate east-west
+        updateLanesInfoForCrossroad(conditions.getLanesInfoFirstCrossroad(), false, ew_time);
+        updateLanesInfoForCrossroad(conditions.getLanesInfoSecondCrossroad(), false, ew_time);
+
+    }
+
+    //a function that update how many cars have passed a given intersection in a given time and in a given direction
+    private static void updateLanesInfoForCrossroad(ArrayList<AlgorithmLaneInfo> cars_info, boolean is_north_south, double time) {
+        if (is_north_south) {
+            updateLanesInfoByDirection(cars_info.get(Constants.NORTH_DIRECTION), time);
+            updateLanesInfoByDirection(cars_info.get(Constants.SOUTH_DIRECTION), time);
+        } else {
+            updateLanesInfoByDirection(cars_info.get(Constants.EAST_DIRECTION), time);
+            updateLanesInfoByDirection(cars_info.get(Constants.WEST_DIRECTION), time);
+        }
+    }
+
+    private static void updateLanesInfoByDirection(AlgorithmLaneInfo lane_info, double time) {
+        int passed_cars = calculatePassedCarsByDirection(lane_info, time);
+
+        int new_cars_count = passed_cars >= lane_info.getCarsCount() ? 0 : lane_info.getCarsCount() - passed_cars;
+
+        lane_info.setCarsCount(new_cars_count);
+    }
+
+    private static int calculatePassedCarsByDirection(AlgorithmLaneInfo lane_info, double time) {
+
+        if (lane_info.getCarsCount() == 0) {
+            return 0;
+        }
+
+        int count = 0;
+        double car_length = lane_info.getAvgCarLength();
+        double speed_limit = lane_info.getSpeedLimit();
+        boolean next = true;
+
+        while (next && lane_info.getCarsCount() - (count + 1) > 0) {
+
+            //car_length * count => for calculate how many cars cans passed the crossroad is necessary to
+            //calculate distance that each car has to move for passing intersection.
+
+            //(time - (count * time_step)) =>
+            //Each next car that starts moving has 0.5 seconds less than the front car
+            //due to the rules according to which each car must maintain a safe distance of 3 meters.
+            //Each car keeps a distance of 2 meters when the traffic light status is red,
+            //and to start each car, you must wait until the previous cars have passed 1 meter.
+            //Each car travels 1 meter in 0.5 seconds, since the acceleration value is 2 m / s,
+            //it takes 0.5 seconds to travel 1 meter.
+
+            double acc = 2; //pass this variable
+            double time_step = (Constants.SAFETY_DISTANCE_TO_START - Constants.SAFETY_DISTANCE) / acc;
+
+            //+4.5 - stop_acc
+            if (car_length * count < calculatePassedDistance(time - (count * time_step), acc, 0, speed_limit) + 4.5) {
+                count++;
+            } else {
+                next = false;
+            }
+        }
+
+        return count + 1;
+    }
+
+    //TODO calculate passed distance more smart
+    private static double calculatePassedDistance(double time, double acc, double start_velocity, double speed_limit) {
+
+//        if (speed_limit < Formulas.calculateVelocity(time, acc, start_velocity)) {
+//            double time_to_max_speed = round(Formulas.calculateTimeForMaxSpeed(acc, speed_limit), 0);
+//            double rest_time = time - time_to_max_speed;
+//
+////            return
+//        }
+
+
+        return Formulas.calculateDistanceByAccelerationAndTime(time, acc, start_velocity);
+    }
+    //end updatePassedCars
+
+
+    //start createGoalAlgorithmConditions
+    public static AlgorithmConditions createGoalAlgorithmConditions() {
+        return new AlgorithmConditions(createGoalAlgorithmCrossroad(), createGoalAlgorithmCrossroad());
+    }
+
+    private static ArrayList<AlgorithmLaneInfo> createGoalAlgorithmCrossroad() {
+        ArrayList<AlgorithmLaneInfo> crossroad = new ArrayList<>();
+        AlgorithmLaneInfo empty_lane_info_1 = createGoalAlgorithmLaneInfo();
+        AlgorithmLaneInfo empty_lane_info_2 = createGoalAlgorithmLaneInfo();
+        AlgorithmLaneInfo empty_lane_info_3 = createGoalAlgorithmLaneInfo();
+        AlgorithmLaneInfo empty_lane_info_4 = createGoalAlgorithmLaneInfo();
+
+        crossroad.add(empty_lane_info_1);
+        crossroad.add(empty_lane_info_2);
+        crossroad.add(empty_lane_info_3);
+        crossroad.add(empty_lane_info_4);
+        return crossroad;
+    }
+
+    private static AlgorithmLaneInfo createGoalAlgorithmLaneInfo() {
+        return new AlgorithmLaneInfo(0);
+    }
+    //end createGoalAlgorithmConditions
+
+
+    //start heuristicFunction
+    //heuristic function must be admissible and consistent
+    //admissible proof: our function admissible because we used the maximum speed limit for each road,
+    //despite the real speed limit then we always get the result that <= to real result.
+    //consistent proof: in each step the cars count decrease because the speed is more than 0,
+    //so we can says then if we get finite number of cars and speed more than 0 then all cars will passed the
+    //intersection in finite time(proof of finite steps). because the number of cars always decrease then
+    //in each next step we will have real cars number less then in previous step and heuristic time for passing
+    //crossroad will always decrease.
+    public static double heuristicFunction(AlgorithmConditions conditions) {
+        int ns_max = findMaxCarsCount(conditions, true);
+        int ew_max = findMaxCarsCount(conditions, false);
+
+        double time = (double) Math.max(ns_max, ew_max) / Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX);
+
+        return time;
+    }
+
+    private static int findMaxCarsCount(AlgorithmConditions conditions, boolean is_north_south) {
+        int max;
+        if (is_north_south) {
+            int first = findMaxCarsCountForCrossroad(conditions.getLanesInfoFirstCrossroad(), Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
+            int second = findMaxCarsCountForCrossroad(conditions.getLanesInfoSecondCrossroad(), Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
+            max = Math.max(first, second);
+        } else {
+            int first = findMaxCarsCountForCrossroad(conditions.getLanesInfoFirstCrossroad(), Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);
+            int second = findMaxCarsCountForCrossroad(conditions.getLanesInfoSecondCrossroad(), Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);
+            max = Math.max(first, second);
+        }
+        return max;
+    }
+
+    private static int findMaxCarsCountForCrossroad(ArrayList<AlgorithmLaneInfo> crossroad, int first, int second) {
+        return Math.max(crossroad.get(first).getCarsCount(), crossroad.get(second).getCarsCount());
+    }
+    //end heuristicFunction
 }

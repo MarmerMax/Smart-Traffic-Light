@@ -15,7 +15,8 @@ public class Algorithm extends Thread {
     private boolean is_east_west_high_priority;
     private boolean is_north_south_high_priority;
 
-    private int cars_ratio;
+    //    private int cars_ratio;
+    private double cars_ratio;
 
     /**
      * Algorithm constructor. Calculates the initial travel times for cars without a smart algorithm.
@@ -49,6 +50,14 @@ public class Algorithm extends Thread {
             } else {
                 conditions.setDefaultTimeDistribution();
             }
+
+            try {
+                Thread.sleep(5000);
+            } catch (Exception e) {
+
+            }
+            System.out.println("east-west: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getEastWest());
+            System.out.println("north-south: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getNorthSouth());
         }
     }
 
@@ -62,15 +71,32 @@ public class Algorithm extends Thread {
 
         cars_ratio = 1;
 
-        if (east_west_count > north_south_count) {
-            is_east_west_high_priority = true;
-            cars_ratio = (int) Utils.findRatio(north_south_count, east_west_count);
-        } else if (east_west_count < north_south_count) {
-            is_north_south_high_priority = true;
-            cars_ratio = (int) Utils.findRatio(east_west_count, north_south_count);
+        if (north_south_count != 0 && east_west_count != 0) {
+            if (east_west_count > north_south_count) {
+                is_east_west_high_priority = true;
+                is_north_south_high_priority = false;
+                cars_ratio = Utils.findRatio(north_south_count, east_west_count);
+            } else if (east_west_count < north_south_count) {
+                is_north_south_high_priority = true;
+                is_east_west_high_priority = false;
+                cars_ratio = Utils.findRatio(east_west_count, north_south_count);
+            } else {
+                is_east_west_high_priority = false;
+                is_north_south_high_priority = false;
+            }
         } else {
-            is_east_west_high_priority = false;
-            is_north_south_high_priority = false;
+            if (east_west_count > north_south_count) {
+                is_east_west_high_priority = true;
+                is_north_south_high_priority = false;
+                cars_ratio = 2;
+            } else if (east_west_count < north_south_count) {
+                is_north_south_high_priority = true;
+                is_east_west_high_priority = false;
+                cars_ratio = 2;
+            } else {
+                is_east_west_high_priority = false;
+                is_north_south_high_priority = false;
+            }
         }
     }
 
@@ -83,11 +109,11 @@ public class Algorithm extends Thread {
      */
     private double calculateCarsInRoutes(int dir_1, int dir_2) {
 
-        int first_crossroad_amount = conditions.getCarsInfoFirstCrossroad().get(dir_1).getCarsInLane().size() +
-                conditions.getCarsInfoFirstCrossroad().get(dir_2).getCarsInLane().size();
+        int first_crossroad_amount = conditions.getLanesInfoFirstCrossroad().get(dir_1).getCarsInLane().size() +
+                conditions.getLanesInfoFirstCrossroad().get(dir_2).getCarsInLane().size();
 
-        int second_crossroad_amount = conditions.getCarsInfoSecondCrossroad().get(dir_1).getCarsInLane().size() +
-                conditions.getCarsInfoSecondCrossroad().get(dir_2).getCarsInLane().size();
+        int second_crossroad_amount = conditions.getLanesInfoSecondCrossroad().get(dir_1).getCarsInLane().size() +
+                conditions.getLanesInfoSecondCrossroad().get(dir_2).getCarsInLane().size();
 
         return first_crossroad_amount + second_crossroad_amount;
     }

@@ -67,6 +67,14 @@ public class TimeDistribution {
         return min_time;
     }
 
+    public double getMaxTime() {
+        return round_time - min_time;
+    }
+
+    public double getRoundTime() {
+        return round_time;
+    }
+
     public double getChangingExecutionTime() {
         return changing_execution_time;
     }

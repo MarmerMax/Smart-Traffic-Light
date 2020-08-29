@@ -26,12 +26,12 @@ public class SystemSTL {
         traffic_lights_computation = new TrafficLightsComputation(conditions);
 
         initial_duration = traffic_computation.getInitialDuration();
-//        System.out.println("initial time for passed all cars: " + initial_duration);
+        System.out.println("initial time for passed all cars: " + initial_duration);
         is_finished = false;
     }
 
     public void run() {
-//        executor.execute(algorithm);
+        executor.execute(algorithm);
         executor.execute(traffic_computation);
         executor.execute(traffic_lights_computation);
 

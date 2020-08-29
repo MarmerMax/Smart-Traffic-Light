@@ -18,7 +18,7 @@ public abstract class Car implements DrawObject {
         if (image != null) {
             return image;
         } else {
-            String path = "file:images/cars/car" + (int)car_type + ".png";
+            String path = "file:images/cars/car" + (int) car_type + ".png";
             image = new Image(path);
             return image;
         }

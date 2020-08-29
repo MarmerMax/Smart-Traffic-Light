@@ -8,7 +8,7 @@ import Tools.Utils;
 import java.util.ArrayList;
 
 
-//information includes the queue with cars and the queue with distances from each car to the intersection in one lane
+//information includes the list with cars and the queue with distances from each car to the intersection in one lane
 
 /**
  * This class keep information that includes cars and speed limit of specific direction on road.
@@ -17,6 +17,7 @@ public class LaneInfo {
 
     private ArrayList<CarInfo> cars_in_lane;
     private double speed_limit;
+    private double actual_speed;
 
     /**
      * Constructor.
@@ -24,8 +25,10 @@ public class LaneInfo {
      * @param cars_count - count of cars in to create
      * @param sl         - speed limit of the direction
      */
+//    public LaneInfo(int cars_count, double sl, double as) {
     public LaneInfo(int cars_count, double sl) {
         speed_limit = sl;
+//        actual_speed = as;
         addCarsToList(cars_count);
     }
 
@@ -53,7 +56,7 @@ public class LaneInfo {
 
             //random distance between two cars
 //            next_car_distance = car.getLength() + Utils.createRandomInRange(2, 5);
-            next_car_distance = car.getLength() + Constants.START_DISTANCE_BETWEEN;
+            next_car_distance = car.getLength() + Constants.SAFETY_DISTANCE;
 
             iteration++;
         }
@@ -73,8 +76,8 @@ public class LaneInfo {
         return cars_in_lane.get(cars_in_lane.size() - 1).getDistanceFromCrossroad();
     }
 
-    public Car getLastCar() {
-        return cars_in_lane.get(cars_in_lane.size() - 1).getCar();
+    public CarInfo getLastCar() {
+        return cars_in_lane.get(cars_in_lane.size() - 1);
     }
 
     public double getSpeedLimit() {

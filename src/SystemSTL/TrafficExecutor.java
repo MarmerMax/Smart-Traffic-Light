@@ -43,8 +43,8 @@ public class TrafficExecutor extends Thread {
     public void setConditions(Conditions conditions) {
         this.conditions = conditions;
         if (this.getName().toLowerCase().equals(Constants.DIRECTION_NAME_EAST_WEST.toLowerCase())) {
-            lane_computation_first_dir_2.setNextLaneInfo(conditions.getCarsInfoWestCrossroad_2());
-            lane_computation_second_dir_1.setNextLaneInfo(conditions.getCarsInfoEastCrossroad_1());
+            lane_computation_first_dir_2.setNextLaneInfo(conditions.getLaneInfoWestSecondCrossroad());
+            lane_computation_second_dir_1.setNextLaneInfo(conditions.getLaneInfoEastFirstCrossroad());
         }
     }
 

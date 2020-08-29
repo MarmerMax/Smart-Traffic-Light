@@ -641,13 +641,13 @@ public class ProgramGUI {
 
     private void updateWestEastCars() {
         ArrayList<ImageView> east_crossroad_1 =
-                createCars(1, Constants.EAST_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(1));
+                createCars(1, Constants.EAST_DIRECTION, conditions.getLanesInfoFirstCrossroad().get(1));
         ArrayList<ImageView> east_crossroad_2 =
-                createCars(2, Constants.EAST_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(1));
+                createCars(2, Constants.EAST_DIRECTION, conditions.getLanesInfoSecondCrossroad().get(1));
         ArrayList<ImageView> west_crossroad_1 =
-                createCars(1, Constants.WEST_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(3));
+                createCars(1, Constants.WEST_DIRECTION, conditions.getLanesInfoFirstCrossroad().get(3));
         ArrayList<ImageView> west_crossroad_2 =
-                createCars(2, Constants.WEST_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(3));
+                createCars(2, Constants.WEST_DIRECTION, conditions.getLanesInfoSecondCrossroad().get(3));
 
         addCars(east_crossroad_1);
         addCars(east_crossroad_2);
@@ -657,13 +657,13 @@ public class ProgramGUI {
 
     private synchronized void updateNorthSouthCars() {
         ArrayList<ImageView> north_crossroad_1 =
-                createCars(1, Constants.NORTH_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(0));
+                createCars(1, Constants.NORTH_DIRECTION, conditions.getLanesInfoFirstCrossroad().get(0));
         ArrayList<ImageView> north_crossroad_2 =
-                createCars(2, Constants.NORTH_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(0));
+                createCars(2, Constants.NORTH_DIRECTION, conditions.getLanesInfoSecondCrossroad().get(0));
         ArrayList<ImageView> south_crossroad_1 =
-                createCars(1, Constants.SOUTH_DIRECTION, conditions.getCarsInfoFirstCrossroad().get(2));
+                createCars(1, Constants.SOUTH_DIRECTION, conditions.getLanesInfoFirstCrossroad().get(2));
         ArrayList<ImageView> south_crossroad_2 =
-                createCars(2, Constants.SOUTH_DIRECTION, conditions.getCarsInfoSecondCrossroad().get(2));
+                createCars(2, Constants.SOUTH_DIRECTION, conditions.getLanesInfoSecondCrossroad().get(2));
 
         addCars(north_crossroad_1);
         addCars(north_crossroad_2);

@@ -161,9 +161,9 @@ public class Constants {
 
 
     //times
-    public static final int TRAFFIC_LIGHT_CHANGING_TIME = 3;
+    public static final int TRAFFIC_LIGHT_CHANGING_TIME = 2;
     public static final int TRAFFIC_LIGHT_MIN_DISTRIBUTION = 5;
-    public static final double CROSSROAD_PHASE_TIME = 20;
+    public static final double TRAFFIC_LIGHT_PHASE_TIME = 20;
 
 
     // directions
@@ -186,8 +186,11 @@ public class Constants {
     public static final double PIXEL_TO_METER = 0.12;
 
     public static final double METER_TO_PIXEL = 15;
-    public static final double SAFETY_DISTANCE = 3;
-    public static final double START_DISTANCE_BETWEEN = 2;
+    public static final double SAFETY_DISTANCE = 2;
+    public static final double SAFETY_DISTANCE_TO_START = 3;
+
+    public static final double SAFETY_DISTANCE_TO_STOP = 1;
+    public static final double START_DISTANCE_BETWEEN_CARS = 2;
 
 
     //Start values

@@ -79,7 +79,7 @@ public class LaneComputation extends Thread {
                         double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
 
                         dist = Math.abs(dist);
-                        if (dist > Constants.SAFETY_DISTANCE + 1) {
+                        if (dist > Constants.SAFETY_DISTANCE_TO_START) {
                             car_computation.movingMode(add, lane_info.getSpeedLimit());
                         }
                     }
