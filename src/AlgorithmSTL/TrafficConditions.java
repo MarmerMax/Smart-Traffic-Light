@@ -3,8 +3,6 @@ package AlgorithmSTL;
 import Objects.Conditions.Conditions;
 import Tools.Utils;
 
-import java.util.ArrayList;
-
 
 public class TrafficConditions {
 
@@ -13,48 +11,52 @@ public class TrafficConditions {
     private double min_time; //min traffic light working time
     private double max_time; //max traffic light working time
 
-    private static AlgorithmConditions conditions;
+    private static Conditions conditions;
+    private static AlgorithmConditions algorithm_conditions;
 
     public TrafficConditions(Conditions conditions) {
-        this.conditions = new AlgorithmConditions(conditions);
+        this.conditions = conditions;
+        this.algorithm_conditions = new AlgorithmConditions(conditions);
 
         //initial state
-        root = new Node("", 0, 0, this.conditions);
+        root = new Node("", 0, this.algorithm_conditions);
 
         //goal state
         AlgorithmConditions goal_conditions = Utils.createGoalAlgorithmConditions(); //zero conditions
-        goal = new Node("", 0, 0, goal_conditions);
+        goal = new Node("", 0, goal_conditions);
 
         min_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMinTime();
         max_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMaxTime();
     }
 
-    public static Node createNeighbourForNodeByAction(Node current, double time, double max_time) {
+    public static Node createNeighbourForNodeByAction(Node current, double time, double max_time, double min_time) {
         if (time > max_time) {
             return null;
         }
 
         double north_south_time = time;
-        double east_west_time = max_time - time;
+        double east_west_time = (max_time + min_time) - time;
 
-        AlgorithmConditions new_conditions = new AlgorithmConditions(current.getConditions());
-        Utils.updatePassedCars(new_conditions, north_south_time, east_west_time);
+        AlgorithmConditions new_algorithm_conditions = new AlgorithmConditions(current.getConditions());
 
-        Node neighbour = new Node(current.getName(), north_south_time, east_west_time, new_conditions);
+        Utils.updatePassedCars(new_algorithm_conditions, north_south_time, east_west_time);
+
+        String new_name = Utils.createNewName(current.getName(), north_south_time, east_west_time);
+        Node neighbour = new Node(new_name, current.getPrice() + 1, new_algorithm_conditions);
 
         return neighbour;
     }
 
     //check all speeds > 0
     public boolean getIsPathExist() {
-        for (AlgorithmLaneInfo lane_info : conditions.getLanesInfoFirstCrossroad()) {
+        for (AlgorithmLaneInfo lane_info : algorithm_conditions.getLanesInfoFirstCrossroad()) {
 //            if (lane_info.getSpeedLimit() <= 0 %% lane_info.getActualSpeed() <= 0) {
             if (lane_info.getSpeedLimit() <= 0) {
                 return false;
             }
         }
 
-        for (AlgorithmLaneInfo lane_info : conditions.getLanesInfoSecondCrossroad()) {
+        for (AlgorithmLaneInfo lane_info : algorithm_conditions.getLanesInfoSecondCrossroad()) {
 //            if (lane_info.getSpeedLimit() <= 0 %% lane_info.getActualSpeed() <= 0) {
             if (lane_info.getSpeedLimit() <= 0) {
                 return false;
@@ -64,11 +66,8 @@ public class TrafficConditions {
         return true;
     }
 
-    public static boolean isGoal(Node current, Node goal) {
-        if (current.getCarsCount() == goal.getCarsCount()) {
-            return true;
-        }
-        return false;
+    public void setBetterDistribution(String result) {
+        this.conditions.setBetterDistribution(result);
     }
 
     public Node getRoot() {
@@ -78,7 +77,6 @@ public class TrafficConditions {
     public Node getGoal() {
         return goal;
     }
-
 
     public double getMaxTime() {
         return max_time;

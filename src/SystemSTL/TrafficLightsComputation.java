@@ -26,10 +26,26 @@ public class TrafficLightsComputation extends Thread {
         double time = 0;
         double changing_time = 0;
 
-        //must to be in thread
+        int phase_count = 0;
+
         while (!conditions.isAllCarsPassed()) {
 
             traffic_lights_working_time++;
+
+            System.out.println("north-south: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getNorthSouth());
+            System.out.println("east-west: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getEastWest());
+
+            //check if exists a better distribution. if yes then choose it times. happen only once per phase.
+            //phase = north-south-state + red-state + east-west-state
+            if(!conditions.isEastWestActive() && conditions.isNorthSouthActive() && phase_count % 3 == 0){
+                //once at phase time
+                if(this.conditions.getBetterDistribution().size() != 0){
+                    phase_count = 1;
+                    this.conditions.setTimeDistribution(this.conditions.getNextDistribution());
+                    System.err.println("SET SMART TIME");
+                }
+            }
+
 
             try {
                 Thread.sleep(1000);
@@ -37,22 +53,20 @@ public class TrafficLightsComputation extends Thread {
                 e.printStackTrace();
             }
 
-            //main road active
             if (conditions.isEastWestActive()) {
-//                System.out.println("EAST AND WEST ACTIVE");
 
                 if (conditions.getEastWestTimeDistribution() < time) {
                     conditions.changeTrafficLightState();
+                    phase_count++;
                 }
                 time++;
             }
 
-            //others roads active
             else if (conditions.isNorthSouthActive()) {
-//                System.out.println("NORTH AND SOUTH ACTIVE");
 
                 if (conditions.getNorthSouthTimeDistribution() < time) {
                     conditions.changeTrafficLightState();
+                    phase_count++;
                 }
                 time++;
             }
@@ -61,7 +75,6 @@ public class TrafficLightsComputation extends Thread {
             else {
 
                 time = 0;
-//                System.out.println("ALL STOPS");
                 if (changing_time < conditions.getChangingLightsTime()) {
                     changing_time++;
                 } else {
@@ -70,6 +83,9 @@ public class TrafficLightsComputation extends Thread {
                 }
             }
         }
+
+        conditions.setAlgorithmDuration(traffic_lights_working_time);
+
         System.out.println("ALL CARS IS PASSED");
         System.out.println(traffic_lights_working_time);
     }

@@ -53,6 +53,7 @@ public class IDA extends AlgorithmSTL {
 
         while (threshold != Double.MAX_VALUE) {
 
+//            System.out.println("IDA: " + nodes_amount);
             double min_price = Double.MAX_VALUE;
 
             stack.add(start);
@@ -79,10 +80,9 @@ public class IDA extends AlgorithmSTL {
 
                     for (int i = 0; i < actions_count; i++) {
 
-                        Node neighbour = TrafficConditions.createNeighbourForNodeByAction(current, min_time + i, max_time);
+                        Node neighbour = TrafficConditions.createNeighbourForNodeByAction(current, min_time + i, max_time, min_time);
 
                         if (neighbour != null) {
-                            nodes_amount++;
 
                             double neighbour_total_price = neighbour.getTotalPrice();
 

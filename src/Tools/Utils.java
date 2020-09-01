@@ -11,6 +11,7 @@ import AlgorithmSTL.Node;
 import javafx.scene.control.Spinner;
 
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 
@@ -121,13 +122,13 @@ public class Utils {
 
     public static void resetSpeedLimit(ArrayList<Spinner<Integer>> spinners) {
         for (int i = 0; i < 4; i++) {
-            spinners.get(i).getValueFactory().setValue(Constants.SPEED_LIMIT);
+            spinners.get(i).getValueFactory().setValue(Constants.SPEED_LIMIT_DEFAULT);
         }
     }
 
     public static void resetActualSpeed(ArrayList<Spinner<Integer>> spinners) {
         for (int i = 0; i < 4; i++) {
-            spinners.get(i).getValueFactory().setValue(Constants.ACTUAL_LIMIT);
+            spinners.get(i).getValueFactory().setValue(Constants.ACTUAL_LIMIT_DEFAULT);
         }
     }
 
@@ -181,6 +182,24 @@ public class Utils {
     }
 
 
+    //Check if the queue contains the same node with the higher price then change it by cheaper node
+    public static void changeBetweenNodesInQueue(Queue<Node> queue, Set<Node> open_list, Node node) {
+        for (Node temp : queue) {
+            if (Utils.isEqualsNodes(node, temp)) {
+                if (temp.getTotalPrice() > node.getTotalPrice()) {
+
+                    queue.remove(temp);             //remove expensive node from priority queue
+                    open_list.remove(temp);         //remove expensive node from open list
+
+                    queue.add(node);                //add cheap node to priority queue
+                    open_list.add(node);            //add cheap node to open list
+                }
+                break;
+            }
+        }
+    }
+
+
     //start updatePassedCars
     //a function that calculates how many cars have passed the intersections
     public static void updatePassedCars(AlgorithmConditions conditions, double ns_time, double ew_time) {
@@ -209,8 +228,13 @@ public class Utils {
         int passed_cars = calculatePassedCarsByDirection(lane_info, time);
 
         int new_cars_count = passed_cars >= lane_info.getCarsCount() ? 0 : lane_info.getCarsCount() - passed_cars;
+        double new_distance = lane_info.getDistanceFromCrossroad() - passed_cars * lane_info.getAvgCarLength();
+        if (new_distance < 0) {
+            new_distance = 0;
+        }
 
         lane_info.setCarsCount(new_cars_count);
+        lane_info.setDistanceFromCrossroad(new_distance);
     }
 
     private static int calculatePassedCarsByDirection(AlgorithmLaneInfo lane_info, double time) {
@@ -269,7 +293,9 @@ public class Utils {
 
     //start createGoalAlgorithmConditions
     public static AlgorithmConditions createGoalAlgorithmConditions() {
-        return new AlgorithmConditions(createGoalAlgorithmCrossroad(), createGoalAlgorithmCrossroad());
+        ArrayList<AlgorithmLaneInfo> first = createGoalAlgorithmCrossroad();
+        ArrayList<AlgorithmLaneInfo> second = createGoalAlgorithmCrossroad();
+        return new AlgorithmConditions(first, second);
     }
 
     private static ArrayList<AlgorithmLaneInfo> createGoalAlgorithmCrossroad() {
@@ -296,18 +322,51 @@ public class Utils {
     //heuristic function must be admissible and consistent
     //admissible proof: our function admissible because we used the maximum speed limit for each road,
     //despite the real speed limit then we always get the result that <= to real result.
+    //TODO consistent proof
     //consistent proof: in each step the cars count decrease because the speed is more than 0,
     //so we can says then if we get finite number of cars and speed more than 0 then all cars will passed the
     //intersection in finite time(proof of finite steps). because the number of cars always decrease then
     //in each next step we will have real cars number less then in previous step and heuristic time for passing
     //crossroad will always decrease.
-    public static double heuristicFunction(AlgorithmConditions conditions) {
-        int ns_max = findMaxCarsCount(conditions, true);
-        int ew_max = findMaxCarsCount(conditions, false);
+    public static double heuristicFunction(AlgorithmConditions conditions, double[] times) {
+//        int ns_max = findMaxCarsCount(conditions, true);
+//        int ew_max = findMaxCarsCount(conditions, false);
 
-        double time = (double) Math.max(ns_max, ew_max) / Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX);
+        double ns_time = times[0];
+        double ew_time = times[1];
+
+        double ns_passed_distance = Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX) * ns_time;
+        double ew_passed_distance = Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX) * ew_time;
+
+        double ns_max_distance = findMaxDistance(conditions, true);
+        double ew_max_distance = findMaxDistance(conditions, false);
+
+        double time = ns_max_distance / ns_passed_distance + ew_max_distance / ew_passed_distance;
+
+//        double time = Math.max(ns_max_distance, ew_max_distance)
+//                / Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX);
+//
 
         return time;
+    }
+
+    private static double findMaxDistance(AlgorithmConditions conditions, boolean is_north_south) {
+        double max;
+        if (is_north_south) {
+            double first = findMaxDistanceBetweenDirections(conditions.getLanesInfoFirstCrossroad(), Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
+            double second = findMaxDistanceBetweenDirections(conditions.getLanesInfoSecondCrossroad(), Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
+            max = Math.max(first, second);
+        } else {
+            double first = findMaxDistanceBetweenDirections(conditions.getLanesInfoFirstCrossroad(), Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);
+            double second = findMaxDistanceBetweenDirections(conditions.getLanesInfoSecondCrossroad(), Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);
+            max = Math.max(first, second);
+        }
+        return max;
+
+    }
+
+    private static double findMaxDistanceBetweenDirections(ArrayList<AlgorithmLaneInfo> crossroad, int first, int second) {
+        return Math.max(crossroad.get(first).getDistanceFromCrossroad(), crossroad.get(second).getDistanceFromCrossroad());
     }
 
     private static int findMaxCarsCount(AlgorithmConditions conditions, boolean is_north_south) {
@@ -328,4 +387,69 @@ public class Utils {
         return Math.max(crossroad.get(first).getCarsCount(), crossroad.get(second).getCarsCount());
     }
     //end heuristicFunction
+
+
+    public static String createNewName(String name, double ns_time, double ew_time) {
+        return name + Constants.PHASE_DELIMITER + ns_time + Constants.TIMES_DELIMITER + ew_time;
+    }
+
+    public static double[] getLastTimesFromName(String str) {
+        double[] bad_result = {10, 10};
+
+        if (str.equals("")) {
+            return bad_result;
+        }
+
+        String[] times_from_name = getAllPhases(str); //["10:10", "9:11", ...]
+        if (times_from_name.length == 0) {
+            return bad_result;
+        }
+
+        double[] result = getPhaseTimes(times_from_name[times_from_name.length - 1]);
+        return result;
+    }
+
+    public static String[] getAllPhases(String str) {
+        String[] times = str.split(Constants.PHASE_DELIMITER);
+        return times;
+    }
+
+    public static double[] getPhaseTimes(String str) {
+        double[] result = {10, 10};
+
+        String[] times = str.split(Constants.TIMES_DELIMITER);
+        if (times.length != 2) {
+            return result;
+        }
+
+        result[0] = Double.parseDouble(times[0]);
+        result[1] = Double.parseDouble(times[1]);
+        return result;
+    }
+
+    public static void addBetterDistributionToQueue(Queue<Double> queue, String path){
+
+        String [] phases = getAllPhases(path);
+        if(phases.length == 0){
+            return;
+        }
+
+        for (String phase : phases) {
+            double [] times = getPhaseTimes(phase);
+            queue.add(times[0]);
+        }
+
+    }
+
+    public static double calculateBetterDistributionDuration(Queue<Double> queue){
+
+        double phases_work_time = queue.size() * Constants.TRAFFIC_LIGHT_PHASE_TIME;
+        double changing_work_time = (queue.size() - 1) * ((Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 3) * 2;
+        double first_work_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 2;
+
+        double better_duration = phases_work_time + changing_work_time + first_work_time;
+
+        return better_duration;
+
+    }
 }

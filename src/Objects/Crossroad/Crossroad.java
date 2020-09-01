@@ -83,6 +83,10 @@ public class Crossroad {
         timeDistribution.addTimeToNorthSouthRoute();
     }
 
+    public void setTimeDistribution(double north_south_time){
+        timeDistribution.setNorthSouth(north_south_time);
+    }
+
     public TrafficLight getSouthTrafficLight() {
         return southTrafficLight;
     }

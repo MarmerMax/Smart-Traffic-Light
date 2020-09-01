@@ -192,7 +192,7 @@ public class ProgramGUI {
         ArrayList<Spinner<Integer>> limit_spinners_1 = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            limit_spinners_1.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT, 10));
+            limit_spinners_1.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT_DEFAULT, 10));
 
             if (!analyst) {
                 limit_spinners_1.get(i).setDisable(true);
@@ -210,7 +210,7 @@ public class ProgramGUI {
         ArrayList<Spinner<Integer>> actual_spinners_1 = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            actual_spinners_1.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
+            actual_spinners_1.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT_DEFAULT));
 
             if (!analyst) {
                 actual_spinners_1.get(i).setDisable(true);
@@ -279,7 +279,7 @@ public class ProgramGUI {
 
 
         for (int i = 0; i < 4; i++) {
-            limit_spinners_2.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT, 10));
+            limit_spinners_2.add(new Spinner<>(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX, Constants.SPEED_LIMIT_DEFAULT, 10));
 
             if (!analyst) {
                 limit_spinners_2.get(i).setDisable(true);
@@ -297,7 +297,7 @@ public class ProgramGUI {
         ArrayList<Spinner<Integer>> actual_spinners_2 = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            actual_spinners_2.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT));
+            actual_spinners_2.add(new Spinner<>(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX, Constants.ACTUAL_LIMIT_DEFAULT));
 
             if (!analyst) {
                 actual_spinners_2.get(i).setDisable(true);

@@ -32,7 +32,7 @@ public class TimeDistribution {
         }
     }
 
-    public void setEastWest(int time) {
+    public void setEastWest(double time) {
         if (time > round_time || time < min_time) {
             System.err.println("Set north-south new time failed...");
         } else {
@@ -41,7 +41,7 @@ public class TimeDistribution {
         }
     }
 
-    public void setNorthSouth(int time) {
+    public void setNorthSouth(double time) {
         if (time > round_time || time < min_time) {
             System.err.println("Set north-south new time failed...");
         } else {

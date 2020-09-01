@@ -1,9 +1,11 @@
 package SystemSTL;
 
+import AlgorithmSTL.AlgorithmSTL;
+import AlgorithmSTL.Astar;
+import AlgorithmSTL.TrafficConditions;
 import Objects.Conditions.Conditions;
 import Tools.Constants;
 import Tools.Utils;
-
 /**
  * This class is heard of simulation.
  * Here, the calculations of the movement of vehicles and the change of traffic lights take place.
@@ -15,8 +17,10 @@ public class Algorithm extends Thread {
     private boolean is_east_west_high_priority;
     private boolean is_north_south_high_priority;
 
-    //    private int cars_ratio;
     private double cars_ratio;
+
+    private AlgorithmSTL smart_algorithm;
+    private TrafficConditions algorithm_conditions;
 
     /**
      * Algorithm constructor. Calculates the initial travel times for cars without a smart algorithm.
@@ -25,6 +29,11 @@ public class Algorithm extends Thread {
      */
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
+
+        algorithm_conditions = new TrafficConditions(conditions);
+//        smart_algorithm = new IDA();
+        smart_algorithm = new Astar();
+        smart_algorithm.setTrafficConditions(algorithm_conditions);
     }
 
     @Override
@@ -33,31 +42,61 @@ public class Algorithm extends Thread {
     }
 
     /**
-     * This function adds time to the priority direction depending on the ratio.
+     * This function updates time of traffic lights due to the priority direction or due to smart algorithm.
      */
-    public void updateTrafficLightsTimeDistributions() {
-        while (!conditions.isAllCarsPassed()) {
-            checkPriority();
+    private void updateTrafficLightsTimeDistributions() {
 
-            if (is_north_south_high_priority) {
-                for (int i = 0; i < cars_ratio; i++) {
-                    conditions.addTimeToNorthSouthRoute();
+        smart_algorithm.start();
+
+        int actual_duration = 0;
+        boolean better_distribution_selected = false;
+
+        while (!conditions.isAllCarsPassed()) {
+
+            //The algorithm works like a priority algorithm until a smart algorithm finds a better distribution.
+            //After the smart algorithm has found the better distribution, the conditions must set the found
+            //distribution so that the traffic lights will work according to its distribution.
+            //The better distribution has a finite time. If during this time not all cars will pass the crossroad,
+            //then algorithm will again work as a priority algorithm.
+            if (this.conditions.getBetterDistribution().size() != 0 && !better_distribution_selected) {
+                better_distribution_selected = true;
+                double better_duration = this.conditions.getBetterDistributionDuration() - actual_duration;
+
+                try {
+                    System.out.println("Smart algorithm will sleep " + (int) better_duration + " seconds");
+                    Thread.sleep((int) better_duration * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } else if (is_east_west_high_priority) {
-                for (int i = 0; i < cars_ratio; i++) {
-                    conditions.addTimeToEastWestRoute();
-                }
+
             } else {
-                conditions.setDefaultTimeDistribution();
+
+                if (actual_duration % 5 == 0) {
+                    checkPriority();
+
+                    if (is_north_south_high_priority) {
+                        for (int i = 0; i < cars_ratio; i++) {
+                            conditions.addTimeToNorthSouthRoute();
+                        }
+                    } else if (is_east_west_high_priority) {
+                        for (int i = 0; i < cars_ratio; i++) {
+                            conditions.addTimeToEastWestRoute();
+                        }
+                    } else {
+                        conditions.setDefaultTimeDistribution();
+                    }
+                }
+
+                System.out.println("Priority algorithm");
             }
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(1000);
             } catch (Exception e) {
 
             }
-            System.out.println("east-west: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getEastWest());
-            System.out.println("north-south: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getNorthSouth());
+
+            actual_duration++;
         }
     }
 

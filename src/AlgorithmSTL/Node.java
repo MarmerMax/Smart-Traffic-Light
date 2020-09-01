@@ -3,8 +3,6 @@ package AlgorithmSTL;
 import Tools.Utils;
 
 public class Node {
-    private double east_west_time;
-    private double north_south_time;
 
     private double price;
     private double heuristic_price;
@@ -14,20 +12,30 @@ public class Node {
     private AlgorithmConditions conditions;
 
 
-    public Node(String n, double ns_time, double ew_time, AlgorithmConditions conditions) {
+    public Node(String name, double price, AlgorithmConditions conditions) {
         this.conditions = conditions;
+        this.name = name;
+        this.price = price;
 
-        //for represent path
-        east_west_time = ew_time;
-        north_south_time = ns_time;
-        name = n + "-" + north_south_time + ":" + east_west_time; //ns:ew -> 10:10 or 9:11...
+//        print();
 
-        //time distribution
-        price = east_west_time + north_south_time;
+        double[] times = Utils.getLastTimesFromName(name);
 
-        //It is necessary to create a method that will calculate how long it will take for cars
-        //to pass the intersection with the actual distribution of time
-        heuristic_price = Utils.heuristicFunction(this.conditions);
+        heuristic_price = Utils.heuristicFunction(this.conditions, times);
+    }
+
+    private void print() {
+        int i1 = conditions.getLanesInfoFirstCrossroad().get(0).getCarsCount();
+        int i2 = conditions.getLanesInfoFirstCrossroad().get(1).getCarsCount();
+        int i3 = conditions.getLanesInfoFirstCrossroad().get(2).getCarsCount();
+        int i4 = conditions.getLanesInfoFirstCrossroad().get(3).getCarsCount();
+
+        int i11 = conditions.getLanesInfoSecondCrossroad().get(0).getCarsCount();
+        int i22 = conditions.getLanesInfoSecondCrossroad().get(1).getCarsCount();
+        int i33 = conditions.getLanesInfoSecondCrossroad().get(2).getCarsCount();
+        int i44 = conditions.getLanesInfoSecondCrossroad().get(3).getCarsCount();
+
+        System.out.println(i1 + "-" + i2 + "-" + i3 + "-" + i4 + ":" + i11 + "-" + i22 + "-" + i33 + "-" + i44);
     }
 
     public int getCarsCount() {

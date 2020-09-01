@@ -6,23 +6,23 @@ import java.util.Queue;
 
 public class Formulas {
     public static double convertKMpHtoMpS(double speed) {
-        double res = speed * 1000 / 3600;
-        return res;
+        double result = speed * 1000 / 3600;
+        return result;
     }
 
     public static double convertMpStoKMpH(double speed) {
-        double res = speed * 3600 / 1000;
-        return res;
+        double result = speed * 3600 / 1000;
+        return result;
     }
 
     public double calculateSpeed(double acceleration, double time) {
-        double res = acceleration * time;
-        return res;
+        double result = acceleration * time;
+        return result;
     }
 
     public double calculateDistance(double speed, double time) {
-        double res = speed * time;
-        return res;
+        double result = speed * time;
+        return result;
     }
 
     //return meters
@@ -32,18 +32,21 @@ public class Formulas {
 
     //return meters
     public static double calculateDistanceByAccelerationAndTime(double time, double acc, double start_velocity) {
-        return start_velocity * time + ((acc * Math.pow(time, 2) / 2));
+        double result = start_velocity * time + ((acc * Math.pow(time, 2) / 2));
+        return result;
     }
 
     //return m/s
     public static double calculateVelocity(double time, double acc, double start_velocity) {
-        return start_velocity + time * acc;
+        double result = start_velocity + time * acc;
+        return result;
     }
 
     //return seconds
     public static double calculateTimeForMaxSpeed(double acc, double velocity) {
         velocity = Formulas.convertKMpHtoMpS(velocity);
-        return velocity / acc;
+        double result = velocity / acc;
+        return result;
     }
 
 

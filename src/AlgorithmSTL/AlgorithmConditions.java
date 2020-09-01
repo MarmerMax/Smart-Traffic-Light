@@ -12,18 +12,21 @@ public class AlgorithmConditions {
     private ArrayList<AlgorithmLaneInfo> lane_info_first_crossroad;
     private ArrayList<AlgorithmLaneInfo> lane_info_second_crossroad;
 
+    //for first create from Conditions
     public AlgorithmConditions(Conditions conditions) {
         initializeAlgorithmConditions(conditions);
     }
 
-    public AlgorithmConditions(AlgorithmConditions conditions) {
-        lane_info_first_crossroad = new ArrayList<>(conditions.getLanesInfoFirstCrossroad());
-        lane_info_second_crossroad = new ArrayList<>(conditions.getLanesInfoSecondCrossroad());
-    }
-
+    //for create goal state
     public AlgorithmConditions(ArrayList<AlgorithmLaneInfo> first, ArrayList<AlgorithmLaneInfo> second) {
         lane_info_first_crossroad = first;
-        lane_info_first_crossroad = second;
+        lane_info_second_crossroad = second;
+    }
+
+    //for create all neighbours
+    public AlgorithmConditions(AlgorithmConditions conditions) {
+        lane_info_first_crossroad = copyCrossroad(conditions.getLanesInfoFirstCrossroad());
+        lane_info_second_crossroad = copyCrossroad(conditions.getLanesInfoSecondCrossroad());
     }
 
     private void initializeAlgorithmConditions(Conditions conditions) {
@@ -39,6 +42,15 @@ public class AlgorithmConditions {
         }
 
         return list;
+    }
+
+    private ArrayList<AlgorithmLaneInfo> copyCrossroad(ArrayList<AlgorithmLaneInfo> crossroad) {
+        ArrayList<AlgorithmLaneInfo> new_crossroad = new ArrayList<>();
+        for (AlgorithmLaneInfo old_lane : crossroad) {
+            AlgorithmLaneInfo new_lane = new AlgorithmLaneInfo(old_lane);
+            new_crossroad.add(new_lane);
+        }
+        return new_crossroad;
     }
 
     public ArrayList<AlgorithmLaneInfo> getLanesInfoFirstCrossroad() {

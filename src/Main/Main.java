@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jdk.jshell.execution.Util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -45,6 +47,7 @@ public class Main extends Application {
     public static void main(String[] args) throws InterruptedException {
 
         launch(args);
+//        System.out.println(Arrays.toString("".split("/")));
 
 
 //        System.out.println(Utils.createRandomDistance());

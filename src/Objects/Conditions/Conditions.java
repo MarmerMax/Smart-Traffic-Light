@@ -3,8 +3,9 @@ package Objects.Conditions;
 import Objects.CrossroadInfo.CrossroadInfo;
 import SystemSTL.LaneInfo;
 import Tools.Constants;
+import Tools.Utils;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * This class stores all the information about the two intersections that will be used in the simulation.
@@ -17,10 +18,11 @@ public class Conditions {
     private ArrayList<LaneInfo> lanes_info_first_crossroad;
     private ArrayList<LaneInfo> lanes_info_second_crossroad;
 
-    private boolean is_created = false;
+    private double initial_duration;
+    private double algorithm_duration;
 
-//    private ArrayList<CarInfo> passed_cars_first_crossroad_south;
-//    private ArrayList<CarInfo> passed_cars_first_crossroad_south;
+    private Queue<Double> better_distribution;
+    private double better_distribution_duration;
 
     /**
      * Constructor.
@@ -32,6 +34,7 @@ public class Conditions {
     public Conditions(CrossroadInfo info1, CrossroadInfo info2) {
         first_crossroad_info = info1;
         second_crossroad_info = info2;
+        this.better_distribution = new ArrayDeque<>();
         createLanesInfo();
     }
 
@@ -144,6 +147,15 @@ public class Conditions {
     }
 
     /**
+     * This function set distribution time to each crossroad.
+     * When the north-south time changed, the time in the opposite direction (east-west) changed automatically.
+     */
+    public void setTimeDistribution(double north_south_time) {
+        first_crossroad_info.getCrossroad().setTimeDistribution(north_south_time);
+        second_crossroad_info.getCrossroad().setTimeDistribution(north_south_time);
+    }
+
+    /**
      * This function set default time distribution on the crossroads.
      */
     public void setDefaultTimeDistribution() {
@@ -160,8 +172,6 @@ public class Conditions {
 
         lanes_info_second_crossroad = new ArrayList<>();
         createLanesPerCrossroad(lanes_info_second_crossroad, second_crossroad_info);
-
-        is_created = true;
     }
 
     /**
@@ -267,7 +277,69 @@ public class Conditions {
         return count;
     }
 
-    public boolean getIsCreated() {
-        return is_created;
+    /**
+     * This function returns better distribution queue.
+     * @return
+     */
+    public Queue<Double> getBetterDistribution() {
+        return better_distribution;
+    }
+
+    /**
+     * This function returns next better distribution time from queue of better distribution times.
+     * @return
+     */
+    public double getNextDistribution() {
+        return better_distribution.poll();
+    }
+
+    /**
+     * This function receives string of better times and convert it to double and add to queue of better distribution.
+     * @param path - string of better distribution times (->12:8->10:10->14:6)
+     */
+    public void setBetterDistribution(String path) {
+        Utils.addBetterDistributionToQueue(this.better_distribution, path);
+        better_distribution_duration = Utils.calculateBetterDistributionDuration(this.better_distribution);
+    }
+
+    /**
+     * This function returns better distribution duration.
+     * @return - better_distribution_duration
+     */
+    public double getBetterDistributionDuration() {
+        return better_distribution_duration;
+    }
+
+    /**
+     * This function returns initial duration.
+     * @return - initial duration
+     */
+    public double getInitialDuration() {
+        return initial_duration;
+    }
+
+    /**
+     * This function sets initial duration of chosen conditions.
+     * @param initial_duration - real initial time without smart algorithm
+     */
+    public void setInitialDuration(double initial_duration) {
+        System.out.println("initial time for passed all cars: " + initial_duration);
+        this.initial_duration = initial_duration;
+    }
+
+    /**
+     * This function returns real duration of working.
+     * @return algorithm duration - real time of working
+     */
+    public double getAlgorithmDuration() {
+        return algorithm_duration;
+    }
+
+    /**
+     * This function sets algorithm duration.
+     * @param algorithm_duration
+     */
+    public void setAlgorithmDuration(double algorithm_duration) {
+        this.algorithm_duration = algorithm_duration;
     }
 }

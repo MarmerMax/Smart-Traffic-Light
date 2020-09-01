@@ -32,8 +32,8 @@ public class CarComputation {
 //        if (new_speed > car_info.getCar().getMaxSpeed() / Constants.METER_TO_PIXEL) {
 //            new_speed = car_info.getCar().getMaxSpeed() / Constants.METER_TO_PIXEL;
 //
-        if (new_speed > Formulas.convertKMpHtoMpS(car_info.getCar().getMaxSpeed()) / 5) {
-            new_speed = Formulas.convertKMpHtoMpS(car_info.getCar().getMaxSpeed() / 5);
+        if (new_speed > Formulas.convertKMpHtoMpS(car_info.getCar().getMaxSpeed()) / 1.5) {
+            new_speed = Formulas.convertKMpHtoMpS(car_info.getCar().getMaxSpeed() / 1.5);
         }
 
 //        if (new_speed > speed_limit / Constants.METER_TO_PIXEL) {
@@ -41,8 +41,8 @@ public class CarComputation {
 //
 
 
-        if (new_speed > Formulas.convertKMpHtoMpS(speed_limit) / 5) {
-            car_info.setCurrentSpeed(Formulas.convertKMpHtoMpS(speed_limit / 5));
+        if (new_speed > Formulas.convertKMpHtoMpS(speed_limit) / 1.5) {
+            car_info.setCurrentSpeed(Formulas.convertKMpHtoMpS(speed_limit) / 1.5);
             return;
         }
 
