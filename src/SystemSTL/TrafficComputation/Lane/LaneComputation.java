@@ -4,6 +4,9 @@ import SystemSTL.TrafficComputation.Car.CarComputation;
 import SystemSTL.TrafficComputation.Car.CarInfo;
 import Tools.Constants;
 
+import java.time.Duration;
+import java.time.Instant;
+
 /**
  * This class calculates changes of vehicles in the lane such as current speed and distance from an intersection.
  */
@@ -39,14 +42,18 @@ public class LaneComputation extends Thread {
 
             int start_size = lane_info.getCarsInLane().size();
 
+            Instant before = Instant.now();
+// do stuff
+
+
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
 
                 car_computation = new CarComputation(lane_info.getCarsInLane().get(i));
 
+                String lane_name = this.getName().toLowerCase();
+
                 //if the car passed the intersection and placed out of the inspected area then remove this car
                 if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -5) {
-
-                    String lane_name = this.getName().toLowerCase();
 
                     //move this car from first west to second west
                     if (lane_name.contains("first") && lane_name.contains("west")) {
@@ -77,7 +84,33 @@ public class LaneComputation extends Thread {
                 if (moving_mode) {
                     //if this is first car in lane
                     if (i == 0) {
+
+                        //TODO: check distance between cars in another lanes
+//                        if (lane_name.contains("first") && lane_name.contains("west")) {
+//                            CarInfo front_car = next_lane_info.getLastCar();
+//                            CarInfo current_car = lane_info.getCarsInLane().get(i);
+//                            double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength() + 30);
+//
+//                            dist = Math.abs(dist);
+//                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+//                                car_computation.movingMode(add, lane_info.getSpeedLimit());
+//                            }
+//
+//                        } else if (lane_name.contains("second") && lane_name.contains("east")) {
+//                            CarInfo front_car = next_lane_info.getLastCar();
+//                            CarInfo current_car = lane_info.getCarsInLane().get(i);
+//                            double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength() + 30);
+//
+//                            dist = Math.abs(dist);
+//                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+//                                car_computation.movingMode(add, lane_info.getSpeedLimit());
+//                            }
+//                        } else {
+//                            car_computation.movingMode(add, lane_info.getSpeedLimit());
+//                        }
                         car_computation.movingMode(add, lane_info.getSpeedLimit());
+
+
                     } else {
                         //if distance from the front car is correct for moving then start
                         CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
@@ -141,6 +174,13 @@ public class LaneComputation extends Thread {
                 stop_computation = true;
             }
 
+            //add smart time difference
+            Instant after = Instant.now();
+            double delta = Duration.between(before, after).toMillis(); //
+
+            if (delta > 100) {
+                delta = 100;
+            }
 
             //TODO calculate sleep time more smart than now
             try {
@@ -156,7 +196,7 @@ public class LaneComputation extends Thread {
                     start_size = 10;
                 }
 
-                Thread.sleep(100 - start_size);
+                Thread.sleep((int) (100 - start_size));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

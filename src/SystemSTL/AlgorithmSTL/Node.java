@@ -38,9 +38,9 @@ public class Node {
         System.out.println(i1 + "-" + i2 + "-" + i3 + "-" + i4 + ":" + i11 + "-" + i22 + "-" + i33 + "-" + i44);
     }
 
-    public int getCarsCount() {
-        return conditions.getEastWestCarsCount() + conditions.getNorthSouthCarsCount();
-    }
+//    public int getCarsCount() {
+//        return conditions.getEastWestCarsCount() + conditions.getNorthSouthCarsCount();
+//    }
 
     public String getName() {
         return name;

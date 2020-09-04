@@ -32,7 +32,7 @@ public class SystemSTL {
     public SystemSTL(Conditions conditions) {
         this.conditions = conditions;
 
-        executor = Executors.newFixedThreadPool(4);
+        executor = Executors.newFixedThreadPool(3);
 
         algorithm = new Algorithm(conditions);
         traffic_computation = new TrafficComputation(conditions);

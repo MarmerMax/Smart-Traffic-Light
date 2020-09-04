@@ -247,7 +247,6 @@ public class Utils {
 
         int count = 0;
         double car_length = lane_info.getAvgCarLength();
-//        double speed_limit = Formulas.convertKMpHtoMpS(lane_info.getSpeedLimit());
         double speed_limit = lane_info.getSpeedLimit();
         boolean next = true;
 
@@ -278,7 +277,6 @@ public class Utils {
         return count + 1;
     }
 
-    //TODO calculate passed distance more smart
     private static double calculatePassedDistance(double time, double acc, double start_velocity, double speed_limit) {
 
         double result;
@@ -288,7 +286,6 @@ public class Utils {
         } else {
             result = Formulas.calculateDistanceByAccelerationAndTime(time, acc, start_velocity);
         }
-
 
         return result;
     }
@@ -347,8 +344,6 @@ public class Utils {
     //in each next step we will have real cars number less then in previous step and heuristic time for passing
     //crossroad will always decrease.
     public static double heuristicFunction(AlgorithmConditions conditions, double[] times) {
-//        int ns_max = findMaxCarsCount(conditions, true);
-//        int ew_max = findMaxCarsCount(conditions, false);
 
         double ns_time = times[0];
         double ew_time = times[1];
@@ -360,12 +355,7 @@ public class Utils {
         double ew_max_distance = findMaxDistance(conditions, false);
 
         double time = ns_max_distance / ns_passed_distance + ew_max_distance / ew_passed_distance;
-//        double time = ns_passed_distance / ns_max_distance + ew_passed_distance / ew_max_distance;
         time *= (ns_time + ew_time);
-
-//        double time = Math.max(ns_max_distance, ew_max_distance)
-//                / Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX);
-//
 
         return time;
     }
@@ -387,24 +377,6 @@ public class Utils {
 
     private static double findMaxDistanceBetweenDirections(ArrayList<AlgorithmLaneInfo> crossroad, int first, int second) {
         return Math.max(crossroad.get(first).getDistanceFromCrossroad(), crossroad.get(second).getDistanceFromCrossroad());
-    }
-
-    private static int findMaxCarsCount(AlgorithmConditions conditions, boolean is_north_south) {
-        int max;
-        if (is_north_south) {
-            int first = findMaxCarsCountForCrossroad(conditions.getLanesInfoFirstCrossroad(), Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
-            int second = findMaxCarsCountForCrossroad(conditions.getLanesInfoSecondCrossroad(), Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
-            max = Math.max(first, second);
-        } else {
-            int first = findMaxCarsCountForCrossroad(conditions.getLanesInfoFirstCrossroad(), Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);
-            int second = findMaxCarsCountForCrossroad(conditions.getLanesInfoSecondCrossroad(), Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);
-            max = Math.max(first, second);
-        }
-        return max;
-    }
-
-    private static int findMaxCarsCountForCrossroad(ArrayList<AlgorithmLaneInfo> crossroad, int first, int second) {
-        return Math.max(crossroad.get(first).getCarsCount(), crossroad.get(second).getCarsCount());
     }
     //end heuristicFunction
 
@@ -530,7 +502,7 @@ public class Utils {
         int first_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 2;
         int next_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 3;
 
-        double worst_time = 0;
+        double worst_time;
 
         if (first_max_phase[1] > second_max_phase[1]) {
 
@@ -579,55 +551,4 @@ public class Utils {
 
         return phase_count;
     }
-
-//old calculation of Initial time
-//    /**
-//     * This function calculates the duration of the baseline without using an smart algorithm.
-//     * The duration tells how long it will take for all vehicles to pass the intersection.
-//     */
-//    private double calculateInitialStateDuration() {
-//
-//        //find max initial time of roads in each crossroad
-//        double max_crossroad_1 = getMaxInitialTimeOfCrossroad(conditions.getLanesInfoFirstCrossroad());
-//        double max_crossroad_2 = getMaxInitialTimeOfCrossroad(conditions.getLanesInfoSecondCrossroad());
-//
-//        //find max initial time
-//        double max_time = Math.max(max_crossroad_1, max_crossroad_2);
-//
-//        //changing time work of traffic lights
-//        int first_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME + 1) * 2;
-//        int next_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME + 1) * 3;
-//
-//        //phase time is working time of the traffic lights to th next state
-//        int phase_time = (int) (Constants.TRAFFIC_LIGHT_PHASE_TIME / 2) + next_changing_time + 2;
-//
-//        //last phase is time of last traffic light changing
-//        int last_phase = (int) (max_time % (Constants.TRAFFIC_LIGHT_PHASE_TIME / 2));
-//
-//        //amount of phases
-//        int phase_amount = (int) (max_time / (Constants.TRAFFIC_LIGHT_PHASE_TIME / 2));
-//
-//        if (phase_amount == 0) {
-//            phase_amount = 1;
-//        }
-//
-//
-//        return (phase_amount * phase_time) + first_changing_time + last_phase;
-//    }
-//    /**
-//     * @param crossroad_info
-//     * @return
-//     */
-//    private double getMaxInitialTimeOfCrossroad(ArrayList<LaneInfo> crossroad_info) {
-//        double temp_max = 0;
-//        for (LaneInfo lane_info : crossroad_info) {
-//
-//            double lane_time = computeInitialTime(lane_info);
-//            if (temp_max < lane_time) {
-//                temp_max = lane_time;
-//            }
-//        }
-//
-//        return temp_max;
-//    }
 }

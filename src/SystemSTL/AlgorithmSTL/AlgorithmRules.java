@@ -57,7 +57,7 @@ public class AlgorithmRules {
         Utils.updatePassedCars(new_algorithm_conditions, north_south_time, east_west_time);
 
         String new_name = Utils.createNewName(current.getName(), north_south_time, east_west_time);
-        Node neighbour = new Node(new_name, current.getPrice() + 1, new_algorithm_conditions);
+        Node neighbour = new Node(new_name, current.getPrice() + (max_time + min_time), new_algorithm_conditions);
 
         return neighbour;
     }
@@ -68,7 +68,6 @@ public class AlgorithmRules {
      *
      * @return true the all times is more than 0
      */
-    //check all speeds > 0
     public boolean getIsPathExist() {
         for (AlgorithmLaneInfo lane_info : algorithm_conditions.getLanesInfoFirstCrossroad()) {
             if (lane_info.getSpeedLimit() <= 0) {

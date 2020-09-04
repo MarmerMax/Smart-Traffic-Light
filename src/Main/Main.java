@@ -1,21 +1,11 @@
 package Main;
 
 import GUI.ConfirmBox;
-import GUI.InformationBox;
 import GUI.ProgramGUI;
 import Tools.Constants;
-import Tools.Utils;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jdk.jshell.execution.Util;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
 
@@ -47,10 +37,7 @@ public class Main extends Application {
     public static void main(String[] args) throws InterruptedException {
 
 
-//        System.out.println(Math.ceil(6.1));
         launch(args);
-//        System.out.println(Arrays.toString("".split("/")));
-
 
 //        System.out.println(Utils.createRandomDistance());
 //        System.out.println(Utils.findRatio(2.432, 10.345));

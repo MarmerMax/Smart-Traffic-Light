@@ -77,7 +77,7 @@ public class Formulas {
      *                   This is 0 if the vehicle is not going left.
      * @return - time in opposite lane.
      */
-    public static double T_opossite(int N_opposite) {
+    public static double T_opposite(int N_opposite) {
         return 0.1 * (double) N_opposite;
     }
 
@@ -99,16 +99,16 @@ public class Formulas {
      */
     // https://www.diva-portal.org/smash/get/diva2:1214166/FULLTEXT01.pdf
     private double computeInitialTime(LaneInfo lane_info) {
-        double t_start = Formulas.T_start(lane_info.getCarsInLane().size());
+        double t_start = T_start(lane_info.getCarsInLane().size());
 //        double t_move = Formulas.T_move(lane_info.getLastCar().getMaxSpeed(),
-        double t_move = Formulas.T_move(0,
+        double t_move = T_move(0,
                 lane_info.getLastCar().getCar().getAcceleration(),
                 lane_info.getLastCarDistance());
 
         //It is 0 if the opposite vehicle is not going to turn around.
-        double t_opposite = Formulas.T_opossite(0);
+        double t_opposite = T_opposite(0);
 
-        return Formulas.T_common(t_start, t_move, t_opposite);
+        return T_common(t_start, t_move, t_opposite);
     }
 
     //average squared waiting time
