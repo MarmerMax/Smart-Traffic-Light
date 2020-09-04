@@ -1,10 +1,18 @@
 package SystemSTL;
 
 import Objects.Conditions.Conditions;
+import SystemSTL.Algorithm.Algorithm;
+import SystemSTL.TrafficComputation.TrafficComputation;
+import SystemSTL.TrafficLightsComputation.TrafficLightsComputation;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This class is the main core of the application.
+ * It gets the road condition and runs all calculations.
+ * From here, the calculation of traffic lights, traffic and algorithm will begin.
+ */
 public class SystemSTL {
 
     private ExecutorService executor;
@@ -18,6 +26,7 @@ public class SystemSTL {
 
     /**
      * System STL - class that start all executors than will execute work of algorithms, traffic lights, vehicles changes.
+     *
      * @param conditions
      */
     public SystemSTL(Conditions conditions) {
@@ -49,6 +58,7 @@ public class SystemSTL {
 
     /**
      * This function return flag about finish of executors working.
+     *
      * @return
      */
     public boolean isFinished() {

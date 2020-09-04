@@ -24,8 +24,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.scene.shape.Rectangle;
-import SystemSTL.LaneInfo;
-import SystemSTL.CarInfo;
+import SystemSTL.TrafficComputation.Lane.LaneInfo;
+import SystemSTL.TrafficComputation.Car.CarInfo;
 
 import javafx.event.ActionEvent;
 

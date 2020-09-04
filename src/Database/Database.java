@@ -3,7 +3,7 @@ package Database;
 import Objects.Conditions.Conditions;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
-import SystemSTL.Algorithm;
+import SystemSTL.Algorithm.Algorithm;
 import Tools.Constants;
 
 import java.sql.*;

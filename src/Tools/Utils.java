@@ -1,13 +1,13 @@
 package Tools;
 
-import AlgorithmSTL.AlgorithmConditions;
-import AlgorithmSTL.AlgorithmLaneInfo;
+import SystemSTL.AlgorithmSTL.AlgorithmConditions;
+import SystemSTL.AlgorithmSTL.AlgorithmLaneInfo;
 import Objects.Car.CarTypes;
 import Objects.Conditions.Conditions;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
-import AlgorithmSTL.Node;
+import SystemSTL.AlgorithmSTL.Node;
 import javafx.scene.control.Spinner;
 
 import java.util.ArrayList;
@@ -135,7 +135,7 @@ public class Utils {
 
     /**
      * //////////////////////////////////////////////////////////////////////////
-     * //// Next part of the utils functions used for calculate AlgorithmSTL ////
+     * //// Next part of the utils functions used for calculate SystemSTL.AlgorithmSTL ////
      * //////////////////////////////////////////////////////////////////////////
      **/
 
@@ -389,10 +389,24 @@ public class Utils {
     //end heuristicFunction
 
 
+    /**
+     * This functions creates name for new Node.
+     * For example for parameters ("->14:6->13:7", 12, 8) the output will be "->14:6->13:7->12:8"
+     * @param name - exist name
+     * @param ns_time - new north-south time
+     * @param ew_time - new east-west time
+     * @return full name
+     */
     public static String createNewName(String name, double ns_time, double ew_time) {
         return name + Constants.PHASE_DELIMITER + ns_time + Constants.TIMES_DELIMITER + ew_time;
     }
 
+    /**
+     * This function converts last phase of distribution from string to numbers.
+     * For example ->14:6->13:7 will be converted to [13.0, 7.0].
+     * @param str
+     * @return
+     */
     public static double[] getLastTimesFromName(String str) {
         double[] bad_result = {10, 10};
 
@@ -409,11 +423,23 @@ public class Utils {
         return result;
     }
 
+    /**
+     * This function splits the string of phases to array of phases.
+     * For example ->14:6->13:7 will be converted to ["14:6", "13:7"].
+     * @param str - full string of distributions
+     * @return array of time distribution
+     */
     public static String[] getAllPhases(String str) {
         String[] times = str.split(Constants.PHASE_DELIMITER);
         return times;
     }
 
+    /**
+     * This function convert phase from string to numbers.
+     * For example "14:6" will be converted to [14.0, 6.0].
+     * @param str - phase string
+     * @return array of numbers that represents times
+     */
     public static double[] getPhaseTimes(String str) {
         double[] result = {10, 10};
 
@@ -427,6 +453,11 @@ public class Utils {
         return result;
     }
 
+    /**
+     * This function convert string of time distribution to numbers and adds it to queue.
+     * @param queue - queue with better times (actual is empty queue)
+     * @param path - string of time distribution
+     */
     public static void addBetterDistributionToQueue(Queue<Double> queue, String path){
 
         String [] phases = getAllPhases(path);
@@ -441,6 +472,11 @@ public class Utils {
 
     }
 
+    /**
+     * This function calculates the time duration of the better distribution.
+     * @param queue - queue with better times
+     * @return better duration - amount of second that includes traffic lights working and changing time
+     */
     public static double calculateBetterDistributionDuration(Queue<Double> queue){
 
         double phases_work_time = queue.size() * Constants.TRAFFIC_LIGHT_PHASE_TIME;

@@ -1,7 +1,7 @@
 package Objects.Conditions;
 
 import Objects.CrossroadInfo.CrossroadInfo;
-import SystemSTL.LaneInfo;
+import SystemSTL.TrafficComputation.Lane.LaneInfo;
 import Tools.Constants;
 import Tools.Utils;
 
@@ -340,6 +340,7 @@ public class Conditions {
      * @param algorithm_duration
      */
     public void setAlgorithmDuration(double algorithm_duration) {
+        System.out.println("simulation working time: " + algorithm_duration);
         this.algorithm_duration = algorithm_duration;
     }
 }
