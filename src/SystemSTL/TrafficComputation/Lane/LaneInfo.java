@@ -4,6 +4,7 @@ import Objects.Car.Car;
 import Objects.Car.CarFactory;
 import SystemSTL.TrafficComputation.Car.CarInfo;
 import Tools.Constants;
+import Tools.Formulas;
 import Tools.Utils;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class LaneInfo {
 
     private ArrayList<CarInfo> cars_in_lane;
     private double speed_limit;
-    private double actual_speed;
 
     /**
      * Constructor.
@@ -26,10 +26,14 @@ public class LaneInfo {
      * @param cars_count - count of cars in to create
      * @param sl         - speed limit of the direction
      */
-//    public LaneInfo(int cars_count, double sl, double as) {
-    public LaneInfo(int cars_count, double sl) {
-        speed_limit = sl;
-//        actual_speed = as;
+    public LaneInfo(int cars_count, double sl, double as) {
+
+        if (sl > as) {
+            speed_limit = Formulas.convertKMpHtoMpS(as);
+        } else {
+            speed_limit = Formulas.convertKMpHtoMpS(sl);
+        }
+
         addCarsToList(cars_count);
     }
 
@@ -63,7 +67,7 @@ public class LaneInfo {
         }
     }
 
-    public void addCarFromPreviousCrossroad(CarInfo car){
+    public void addCarFromPreviousCrossroad(CarInfo car) {
         car.setDistanceFromCrossroad(29.5);
 
         cars_in_lane.add(car);

@@ -37,8 +37,6 @@ public class SystemSTL {
         algorithm = new Algorithm(conditions);
         traffic_computation = new TrafficComputation(conditions);
         traffic_lights_computation = new TrafficLightsComputation(conditions);
-
-        this.conditions.setInitialDuration(traffic_computation.getInitialDuration());
     }
 
     /**

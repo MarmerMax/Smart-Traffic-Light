@@ -1,6 +1,7 @@
 package Tools;
 
 import Objects.Car.Car;
+import SystemSTL.TrafficComputation.Lane.LaneInfo;
 
 import java.util.Queue;
 
@@ -88,6 +89,26 @@ public class Formulas {
      */
     public static double T_common(double t_start, double t_move, double t_opposite) {
         return t_start + t_move + t_opposite;
+    }
+
+    /**
+     * This function calculate the time for passing the crossroad for specific lane.
+     *
+     * @param lane_info - lane to check
+     * @return required moving time
+     */
+    // https://www.diva-portal.org/smash/get/diva2:1214166/FULLTEXT01.pdf
+    private double computeInitialTime(LaneInfo lane_info) {
+        double t_start = Formulas.T_start(lane_info.getCarsInLane().size());
+//        double t_move = Formulas.T_move(lane_info.getLastCar().getMaxSpeed(),
+        double t_move = Formulas.T_move(0,
+                lane_info.getLastCar().getCar().getAcceleration(),
+                lane_info.getLastCarDistance());
+
+        //It is 0 if the opposite vehicle is not going to turn around.
+        double t_opposite = Formulas.T_opossite(0);
+
+        return Formulas.T_common(t_start, t_move, t_opposite);
     }
 
     //average squared waiting time

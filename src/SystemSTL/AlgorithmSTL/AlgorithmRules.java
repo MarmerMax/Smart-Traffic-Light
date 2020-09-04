@@ -71,14 +71,12 @@ public class AlgorithmRules {
     //check all speeds > 0
     public boolean getIsPathExist() {
         for (AlgorithmLaneInfo lane_info : algorithm_conditions.getLanesInfoFirstCrossroad()) {
-//            if (lane_info.getSpeedLimit() <= 0 %% lane_info.getActualSpeed() <= 0) {
             if (lane_info.getSpeedLimit() <= 0) {
                 return false;
             }
         }
 
         for (AlgorithmLaneInfo lane_info : algorithm_conditions.getLanesInfoSecondCrossroad()) {
-//            if (lane_info.getSpeedLimit() <= 0 %% lane_info.getActualSpeed() <= 0) {
             if (lane_info.getSpeedLimit() <= 0) {
                 return false;
             }

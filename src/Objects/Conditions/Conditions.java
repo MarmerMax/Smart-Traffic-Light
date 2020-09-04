@@ -1,6 +1,7 @@
 package Objects.Conditions;
 
 import Objects.CrossroadInfo.CrossroadInfo;
+import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
 import Tools.Constants;
 import Tools.Utils;
@@ -181,10 +182,14 @@ public class Conditions {
      * @param actual_crossroad - specific crossroad
      */
     private void createLanesPerCrossroad(ArrayList<LaneInfo> cars, CrossroadInfo actual_crossroad) {
-        cars.add(new LaneInfo(actual_crossroad.getNorth().getCarsCount(), actual_crossroad.getNorth().getSpeedLimit()));
-        cars.add(new LaneInfo(actual_crossroad.getEast().getCarsCount(), actual_crossroad.getEast().getSpeedLimit()));
-        cars.add(new LaneInfo(actual_crossroad.getSouth().getCarsCount(), actual_crossroad.getSouth().getSpeedLimit()));
-        cars.add(new LaneInfo(actual_crossroad.getWest().getCarsCount(), actual_crossroad.getWest().getSpeedLimit()));
+        cars.add(createLaneInfo(actual_crossroad.getNorth()));
+        cars.add(createLaneInfo(actual_crossroad.getEast()));
+        cars.add(createLaneInfo(actual_crossroad.getSouth()));
+        cars.add(createLaneInfo(actual_crossroad.getWest()));
+    }
+
+    private LaneInfo createLaneInfo(DirectionInfo direction_info) {
+        return new LaneInfo(direction_info.getCarsCount(), direction_info.getSpeedLimit(), direction_info.getActualSpeed());
     }
 
     public int getCarsCount() {
@@ -279,6 +284,7 @@ public class Conditions {
 
     /**
      * This function returns better distribution queue.
+     *
      * @return
      */
     public Queue<Double> getBetterDistribution() {
@@ -287,6 +293,7 @@ public class Conditions {
 
     /**
      * This function returns next better distribution time from queue of better distribution times.
+     *
      * @return
      */
     public double getNextDistribution() {
@@ -295,6 +302,7 @@ public class Conditions {
 
     /**
      * This function receives string of better times and convert it to double and add to queue of better distribution.
+     *
      * @param path - string of better distribution times (->12:8->10:10->14:6)
      */
     public void setBetterDistribution(String path) {
@@ -304,6 +312,7 @@ public class Conditions {
 
     /**
      * This function returns better distribution duration.
+     *
      * @return - better_distribution_duration
      */
     public double getBetterDistributionDuration() {
@@ -312,6 +321,7 @@ public class Conditions {
 
     /**
      * This function returns initial duration.
+     *
      * @return - initial duration
      */
     public double getInitialDuration() {
@@ -320,6 +330,7 @@ public class Conditions {
 
     /**
      * This function sets initial duration of chosen conditions.
+     *
      * @param initial_duration - real initial time without smart algorithm
      */
     public void setInitialDuration(double initial_duration) {
@@ -329,6 +340,7 @@ public class Conditions {
 
     /**
      * This function returns real duration of working.
+     *
      * @return algorithm duration - real time of working
      */
     public double getAlgorithmDuration() {
@@ -337,6 +349,7 @@ public class Conditions {
 
     /**
      * This function sets algorithm duration.
+     *
      * @param algorithm_duration
      */
     public void setAlgorithmDuration(double algorithm_duration) {

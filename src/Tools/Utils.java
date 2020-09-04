@@ -8,6 +8,7 @@ import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import SystemSTL.AlgorithmSTL.Node;
+import SystemSTL.TrafficComputation.Lane.LaneInfo;
 import javafx.scene.control.Spinner;
 
 import java.util.ArrayList;
@@ -237,6 +238,7 @@ public class Utils {
         lane_info.setDistanceFromCrossroad(new_distance);
     }
 
+
     private static int calculatePassedCarsByDirection(AlgorithmLaneInfo lane_info, double time) {
 
         if (lane_info.getCarsCount() == 0) {
@@ -245,8 +247,12 @@ public class Utils {
 
         int count = 0;
         double car_length = lane_info.getAvgCarLength();
+//        double speed_limit = Formulas.convertKMpHtoMpS(lane_info.getSpeedLimit());
         double speed_limit = lane_info.getSpeedLimit();
         boolean next = true;
+
+        double acc = 2; //pass this variable
+        double time_step = (Constants.SAFETY_DISTANCE_TO_START - Constants.SAFETY_DISTANCE) / acc;
 
         while (next && lane_info.getCarsCount() - (count + 1) > 0) {
 
@@ -261,11 +267,8 @@ public class Utils {
             //Each car travels 1 meter in 0.5 seconds, since the acceleration value is 2 m / s,
             //it takes 0.5 seconds to travel 1 meter.
 
-            double acc = 2; //pass this variable
-            double time_step = (Constants.SAFETY_DISTANCE_TO_START - Constants.SAFETY_DISTANCE) / acc;
-
             //+4.5 - stop_acc
-            if (car_length * count < calculatePassedDistance(time - (count * time_step), acc, 0, speed_limit) + 4.5) {
+            if (car_length * count < calculatePassedDistance(time - (count * time_step), acc, 0, speed_limit)) {
                 count++;
             } else {
                 next = false;
@@ -278,15 +281,30 @@ public class Utils {
     //TODO calculate passed distance more smart
     private static double calculatePassedDistance(double time, double acc, double start_velocity, double speed_limit) {
 
-//        if (speed_limit < Formulas.calculateVelocity(time, acc, start_velocity)) {
-//            double time_to_max_speed = round(Formulas.calculateTimeForMaxSpeed(acc, speed_limit), 0);
-//            double rest_time = time - time_to_max_speed;
-//
-////            return
-//        }
+        double result;
+
+        if (time * acc > speed_limit) {
+            result = calculateDistanceByAccTimeMaxSpeed(time, acc, start_velocity, speed_limit);
+        } else {
+            result = Formulas.calculateDistanceByAccelerationAndTime(time, acc, start_velocity);
+        }
 
 
-        return Formulas.calculateDistanceByAccelerationAndTime(time, acc, start_velocity);
+        return result;
+    }
+
+    private static double calculateDistanceByAccTimeMaxSpeed(double time, double acc, double start_velocity, double max_speed) {
+        double dist = 0;
+        double act_speed = start_velocity;
+
+        for (int i = 1; i < time + 1; i++) {
+            if (act_speed < max_speed) {
+                act_speed += acc;
+            }
+            dist += act_speed;
+        }
+
+        return dist;
     }
     //end updatePassedCars
 
@@ -342,6 +360,8 @@ public class Utils {
         double ew_max_distance = findMaxDistance(conditions, false);
 
         double time = ns_max_distance / ns_passed_distance + ew_max_distance / ew_passed_distance;
+//        double time = ns_passed_distance / ns_max_distance + ew_passed_distance / ew_max_distance;
+        time *= (ns_time + ew_time);
 
 //        double time = Math.max(ns_max_distance, ew_max_distance)
 //                / Formulas.convertKMpHtoMpS(Constants.SPEED_LIMIT_MAX);
@@ -392,7 +412,8 @@ public class Utils {
     /**
      * This functions creates name for new Node.
      * For example for parameters ("->14:6->13:7", 12, 8) the output will be "->14:6->13:7->12:8"
-     * @param name - exist name
+     *
+     * @param name    - exist name
      * @param ns_time - new north-south time
      * @param ew_time - new east-west time
      * @return full name
@@ -404,6 +425,7 @@ public class Utils {
     /**
      * This function converts last phase of distribution from string to numbers.
      * For example ->14:6->13:7 will be converted to [13.0, 7.0].
+     *
      * @param str
      * @return
      */
@@ -426,6 +448,7 @@ public class Utils {
     /**
      * This function splits the string of phases to array of phases.
      * For example ->14:6->13:7 will be converted to ["14:6", "13:7"].
+     *
      * @param str - full string of distributions
      * @return array of time distribution
      */
@@ -437,6 +460,7 @@ public class Utils {
     /**
      * This function convert phase from string to numbers.
      * For example "14:6" will be converted to [14.0, 6.0].
+     *
      * @param str - phase string
      * @return array of numbers that represents times
      */
@@ -455,18 +479,19 @@ public class Utils {
 
     /**
      * This function convert string of time distribution to numbers and adds it to queue.
+     *
      * @param queue - queue with better times (actual is empty queue)
-     * @param path - string of time distribution
+     * @param path  - string of time distribution
      */
-    public static void addBetterDistributionToQueue(Queue<Double> queue, String path){
+    public static void addBetterDistributionToQueue(Queue<Double> queue, String path) {
 
-        String [] phases = getAllPhases(path);
-        if(phases.length == 0){
+        String[] phases = getAllPhases(path);
+        if (phases.length == 0) {
             return;
         }
 
         for (String phase : phases) {
-            double [] times = getPhaseTimes(phase);
+            double[] times = getPhaseTimes(phase);
             queue.add(times[0]);
         }
 
@@ -474,10 +499,11 @@ public class Utils {
 
     /**
      * This function calculates the time duration of the better distribution.
+     *
      * @param queue - queue with better times
      * @return better duration - amount of second that includes traffic lights working and changing time
      */
-    public static double calculateBetterDistributionDuration(Queue<Double> queue){
+    public static double calculateBetterDistributionDuration(Queue<Double> queue) {
 
         double phases_work_time = queue.size() * Constants.TRAFFIC_LIGHT_PHASE_TIME;
         double changing_work_time = (queue.size() - 1) * ((Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 3) * 2;
@@ -486,6 +512,122 @@ public class Utils {
         double better_duration = phases_work_time + changing_work_time + first_work_time;
 
         return better_duration;
-
     }
+
+
+    public static double calculateDefaultInitialStateDuration(Conditions conditions) {
+        double result = findInitialDuration(conditions);
+        return result;
+    }
+
+    private static double findInitialDuration(Conditions conditions) {
+
+        double time = Constants.TRAFFIC_LIGHT_PHASE_TIME / 2;
+
+        double[] first_max_phase = findPassCarsPerPhase(conditions.getLanesInfoFirstCrossroad(), time);
+        double[] second_max_phase = findPassCarsPerPhase(conditions.getLanesInfoSecondCrossroad(), time);
+
+        int first_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 2;
+        int next_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 3;
+
+        double worst_time = 0;
+
+        if (first_max_phase[1] > second_max_phase[1]) {
+
+            worst_time = first_max_phase[1] * (next_changing_time + Constants.TRAFFIC_LIGHT_PHASE_TIME) + first_changing_time;
+
+            if (first_max_phase[0] == 1 || first_max_phase[0] == 3) {
+                worst_time += (Constants.TRAFFIC_LIGHT_PHASE_TIME + next_changing_time);
+            }
+
+        } else {
+
+            worst_time = second_max_phase[1] * (next_changing_time + Constants.TRAFFIC_LIGHT_PHASE_TIME) + first_changing_time;
+
+            if (second_max_phase[0] == 1 || second_max_phase[0] == 3) {
+                worst_time += (Constants.TRAFFIC_LIGHT_PHASE_TIME + next_changing_time);
+            }
+
+        }
+
+        return worst_time;
+    }
+
+    private static double[] findPassCarsPerPhase(ArrayList<LaneInfo> crossroad, double time) {
+        double worst_time = -1;
+        int worst_direction = -1;
+
+        for (int i = 0; i < 4; i++) {
+            double temp_time = calculatePhaseCountForDirection(crossroad.get(i), time);
+            if (temp_time > worst_time) {
+                worst_time = temp_time;
+                worst_direction = i;
+            }
+        }
+
+        double[] result = {worst_direction, worst_time};
+
+        return result;
+    }
+
+    private static double calculatePhaseCountForDirection(LaneInfo lane_info, double time) {
+        AlgorithmLaneInfo algorithm_lane_info = new AlgorithmLaneInfo(lane_info);
+
+        int cars_per_phase = calculatePassedCarsByDirection(algorithm_lane_info, time);
+        double phase_count = (double) lane_info.getCarsInLane().size() / (double) cars_per_phase;
+        phase_count = Math.ceil(phase_count);
+
+        return phase_count;
+    }
+
+//old calculation of Initial time
+//    /**
+//     * This function calculates the duration of the baseline without using an smart algorithm.
+//     * The duration tells how long it will take for all vehicles to pass the intersection.
+//     */
+//    private double calculateInitialStateDuration() {
+//
+//        //find max initial time of roads in each crossroad
+//        double max_crossroad_1 = getMaxInitialTimeOfCrossroad(conditions.getLanesInfoFirstCrossroad());
+//        double max_crossroad_2 = getMaxInitialTimeOfCrossroad(conditions.getLanesInfoSecondCrossroad());
+//
+//        //find max initial time
+//        double max_time = Math.max(max_crossroad_1, max_crossroad_2);
+//
+//        //changing time work of traffic lights
+//        int first_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME + 1) * 2;
+//        int next_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME + 1) * 3;
+//
+//        //phase time is working time of the traffic lights to th next state
+//        int phase_time = (int) (Constants.TRAFFIC_LIGHT_PHASE_TIME / 2) + next_changing_time + 2;
+//
+//        //last phase is time of last traffic light changing
+//        int last_phase = (int) (max_time % (Constants.TRAFFIC_LIGHT_PHASE_TIME / 2));
+//
+//        //amount of phases
+//        int phase_amount = (int) (max_time / (Constants.TRAFFIC_LIGHT_PHASE_TIME / 2));
+//
+//        if (phase_amount == 0) {
+//            phase_amount = 1;
+//        }
+//
+//
+//        return (phase_amount * phase_time) + first_changing_time + last_phase;
+//    }
+//    /**
+//     * @param crossroad_info
+//     * @return
+//     */
+//    private double getMaxInitialTimeOfCrossroad(ArrayList<LaneInfo> crossroad_info) {
+//        double temp_max = 0;
+//        for (LaneInfo lane_info : crossroad_info) {
+//
+//            double lane_time = computeInitialTime(lane_info);
+//            if (temp_max < lane_time) {
+//                temp_max = lane_time;
+//            }
+//        }
+//
+//        return temp_max;
+//    }
 }
