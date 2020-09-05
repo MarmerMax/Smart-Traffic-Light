@@ -2,7 +2,7 @@ package SystemSTL.Algorithm;
 
 import SystemSTL.AlgorithmSTL.*;
 import Objects.Conditions.Conditions;
-import SystemSTL.SystemSTL;
+import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;
 
@@ -63,7 +63,16 @@ public class Algorithm extends Thread {
 
                 try {
                     System.out.println("Smart algorithm will sleep " + (int) better_duration + " seconds");
-                    Thread.sleep((int) better_duration * 1000);
+//                    Thread.sleep((int) better_duration * 1000);
+
+                    while (this.conditions.getBetterDistribution().size() != 0) {
+//                        Thread.sleep((int) better_duration * 1000);
+                        Thread.sleep(1000);
+                    }
+
+                    double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3;
+                    Thread.sleep((int) last_phase_time * 1000);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -71,6 +80,8 @@ public class Algorithm extends Thread {
             } else {
 
                 if (actual_duration % 5 == 0) {
+                    System.out.println(ConsoleColors.YELLOW_BOLD + "Priority algorithm" + ConsoleColors.RESET);
+
                     checkPriority();
 
                     if (is_north_south_high_priority) {
@@ -103,7 +114,6 @@ public class Algorithm extends Thread {
      * Where there are more cars, the higher the priority.
      */
     private void checkPriority() {
-        System.out.println("Priority algorithm");
 
         double north_south_count = calculateCarsInRoutes(Constants.NORTH_DIRECTION, Constants.SOUTH_DIRECTION);
         double east_west_count = calculateCarsInRoutes(Constants.EAST_DIRECTION, Constants.WEST_DIRECTION);

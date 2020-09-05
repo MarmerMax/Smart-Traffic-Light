@@ -10,8 +10,6 @@ import Tools.Utils;
 import java.util.ArrayList;
 
 
-//information includes the list with cars and the queue with distances from each car to the intersection in one lane
-
 /**
  * This class keep information that includes cars and speed limit of specific direction on road.
  */
@@ -68,7 +66,7 @@ public class LaneInfo {
     }
 
     public void addCarFromPreviousCrossroad(CarInfo car) {
-        car.setDistanceFromCrossroad(29.5);
+        car.setDistanceFromCrossroad(30);
 
         cars_in_lane.add(car);
     }

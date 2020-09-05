@@ -45,8 +45,6 @@ public class TrafficComputation extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("ALL CARS IS PASSED");
     }
 
     /**

@@ -1,6 +1,8 @@
 package SystemSTL.AlgorithmSTL;
 
+import Tools.ConsoleColors;
 import Tools.Utils;
+import com.sun.webkit.network.Util;
 
 /**
  * An abstract class for all algorithms.
@@ -47,7 +49,10 @@ public abstract class AlgorithmSTL extends Thread {
             is_path_exist = checkIfPathExist(traffic_conditions.getRoot(), traffic_conditions.getGoal());
             if (is_path_exist) {
                 traffic_conditions.setBetterDistribution(path);
-                System.out.println(path);
+                System.out.println(Utils.createSeparationString(path));
+                System.out.println(ConsoleColors.GREEN_BRIGHT + "Better path was found!"  + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.GREEN_BRIGHT + path + ConsoleColors.RESET);
+                System.out.println(Utils.createSeparationString(path));
             }
         }
     }

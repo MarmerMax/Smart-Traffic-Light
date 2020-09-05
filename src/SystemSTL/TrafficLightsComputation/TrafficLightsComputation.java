@@ -2,6 +2,7 @@ package SystemSTL.TrafficLightsComputation;
 
 import Objects.Conditions.Conditions;
 import SystemSTL.SystemSTL;
+import Tools.ConsoleColors;
 
 /**
  * This class is responsible for changing the states of the traffic light.
@@ -26,7 +27,7 @@ public class TrafficLightsComputation extends Thread {
      * Function has to changes the traffic light states (green, yellow, red).
      */
     public void updateTrafficLightsState() {
-        System.err.println("[START]");
+        System.out.println(ConsoleColors.RED_BOLD + "[START]" + ConsoleColors.RESET);
 
         double time = 0;
         double changing_time = 0;
@@ -37,25 +38,23 @@ public class TrafficLightsComputation extends Thread {
 
             traffic_lights_working_time++;
 
-            System.out.println("north-south: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getNorthSouth());
-            System.out.println("east-west: " + conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getEastWest());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             //check if exists a better distribution. if yes then choose it times. happen only once per phase.
             //phase = north-south-state + red-state + east-west-state
             if (!conditions.isEastWestActive() && conditions.isNorthSouthActive() && phase_count % 3 == 0) {
                 //once at phase time
-                if (this.conditions.getBetterDistribution().size() != 0) {
+                if (conditions.getBetterDistribution().size() != 0) {
                     phase_count = 1;
-                    this.conditions.setTimeDistribution(this.conditions.getNextDistribution());
-                    System.err.println("SET SMART TIME");
+                    System.out.println(ConsoleColors.GREEN_BOLD + "SET SMART TIME." + ConsoleColors.RESET);
+                    conditions.setTimeDistribution(conditions.getNextDistribution());
+                    int phases_left_count = conditions.getBetterDistribution().size();
+                    System.out.println(ConsoleColors.YELLOW + "(" + phases_left_count + " phases left)" + ConsoleColors.RESET);
                 }
-            }
-
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
 
             if (conditions.isEastWestActive()) {
@@ -86,10 +85,7 @@ public class TrafficLightsComputation extends Thread {
                 }
             }
         }
-
         conditions.setAlgorithmDuration(traffic_lights_working_time);
-
-        System.out.println("ALL CARS IS PASSED");
     }
 
     /**

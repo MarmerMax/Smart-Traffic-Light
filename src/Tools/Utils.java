@@ -551,4 +551,12 @@ public class Utils {
 
         return phase_count;
     }
+
+    public static String createSeparationString(String str) {
+        String result = "";
+        for (int i = 0; i < str.length(); i++) {
+            result += "/";
+        }
+        return result;
+    }
 }

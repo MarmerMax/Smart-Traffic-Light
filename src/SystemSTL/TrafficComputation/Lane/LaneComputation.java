@@ -2,6 +2,7 @@ package SystemSTL.TrafficComputation.Lane;
 
 import SystemSTL.TrafficComputation.Car.CarComputation;
 import SystemSTL.TrafficComputation.Car.CarInfo;
+import Tools.ConsoleColors;
 import Tools.Constants;
 
 import java.time.Duration;
@@ -33,17 +34,13 @@ public class LaneComputation extends Thread {
      * This function computes changes of each car on the given lane such that current speed and distance from crossroad.
      */
     private void computeLane() {
-//        System.out.println(this.getName() + " start lane computation");
-        double add = 0.1; // =100ms
+        double add = 0.01; // =10ms
 
         while (!stop_computation) {
 
             CarComputation car_computation;
 
-            int start_size = lane_info.getCarsInLane().size();
-
             Instant before = Instant.now();
-// do stuff
 
 
             for (int i = 0; i < lane_info.getCarsInLane().size(); i++) {
@@ -86,29 +83,32 @@ public class LaneComputation extends Thread {
                     if (i == 0) {
 
                         //TODO: check distance between cars in another lanes
-//                        if (lane_name.contains("first") && lane_name.contains("west")) {
-//                            CarInfo front_car = next_lane_info.getLastCar();
-//                            CarInfo current_car = lane_info.getCarsInLane().get(i);
-//                            double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength() + 30);
+                        if (lane_name.contains("first") && lane_name.contains("west")) {
+                            CarInfo front_car = next_lane_info.getLastCar();
+                            CarInfo current_car = lane_info.getCarsInLane().get(i);
+                            double dist = (current_car.getDistanceFromCrossroad() + 35) - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+
+                            dist = Math.abs(dist);
+                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+                                car_computation.movingMode(add, lane_info.getSpeedLimit());
+                            } else {
+                                car_computation.stoppingMode(add);
+                            }
 //
-//                            dist = Math.abs(dist);
-//                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
-//                                car_computation.movingMode(add, lane_info.getSpeedLimit());
-//                            }
-//
-//                        } else if (lane_name.contains("second") && lane_name.contains("east")) {
-//                            CarInfo front_car = next_lane_info.getLastCar();
-//                            CarInfo current_car = lane_info.getCarsInLane().get(i);
-//                            double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength() + 30);
-//
-//                            dist = Math.abs(dist);
-//                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
-//                                car_computation.movingMode(add, lane_info.getSpeedLimit());
-//                            }
-//                        } else {
-//                            car_computation.movingMode(add, lane_info.getSpeedLimit());
-//                        }
-                        car_computation.movingMode(add, lane_info.getSpeedLimit());
+                        } else if (lane_name.contains("second") && lane_name.contains("east")) {
+                            CarInfo front_car = next_lane_info.getLastCar();
+                            CarInfo current_car = lane_info.getCarsInLane().get(i);
+                            double dist = (current_car.getDistanceFromCrossroad() + 35) - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+
+                            dist = Math.abs(dist);
+                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+                                car_computation.movingMode(add, lane_info.getSpeedLimit());
+                            } else {
+                                car_computation.stoppingMode(add);
+                            }
+                        } else {
+                            car_computation.movingMode(add, lane_info.getSpeedLimit());
+                        }
 
 
                     } else {
@@ -120,6 +120,8 @@ public class LaneComputation extends Thread {
                         dist = Math.abs(dist);
                         if (dist > Constants.SAFETY_DISTANCE_TO_START) {
                             car_computation.movingMode(add, lane_info.getSpeedLimit());
+                        } else {
+                            car_computation.stoppingMode(add);
                         }
                     }
 
@@ -144,6 +146,8 @@ public class LaneComputation extends Thread {
                             dist = Math.abs(dist);
                             if (dist > Constants.SAFETY_DISTANCE - 1) {
                                 car_computation.movingMode(add, lane_info.getSpeedLimit() / 5);
+                            } else {
+                                car_computation.stoppingMode(add);
                             }
                         }
 
@@ -159,6 +163,8 @@ public class LaneComputation extends Thread {
                             dist = Math.abs(dist);
                             if (dist > Constants.SAFETY_DISTANCE - 1) {
                                 car_computation.movingMode(add, lane_info.getSpeedLimit() / 7);
+                            } else {
+                                car_computation.stoppingMode(add);
                             }
                         }
 
@@ -174,29 +180,24 @@ public class LaneComputation extends Thread {
                 stop_computation = true;
             }
 
-            //add smart time difference
+            //TODO calculate sleep time more smart than now
             Instant after = Instant.now();
-            double delta = Duration.between(before, after).toMillis(); //
+            long delta = Duration.between(before, after).toMillis(); //
 
-            if (delta > 100) {
-                delta = 100;
+            if (delta > 10) {
+                delta = 10;
             }
 
-            //TODO calculate sleep time more smart than now
-            try {
-                if (start_size < 10) {
-                    start_size = 10 * 5;
-                } else if (start_size < 20) {
-                    start_size = 10 * 4;
-                } else if (start_size < 30) {
-                    start_size = 10 * 3;
-                } else if (start_size < 40) {
-                    start_size = 10 * 2;
-                } else {
-                    start_size = 10;
+            for (int i = 3; i < 10; i++) {
+                if (delta < i) {
+                    delta = i;
+                    break;
                 }
+            }
 
-                Thread.sleep((int) (100 - start_size));
+
+            try {
+                Thread.sleep((int) (10 - delta));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

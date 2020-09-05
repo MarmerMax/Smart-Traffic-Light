@@ -1,5 +1,6 @@
 package Objects.TrafficLight.TrafficLightTimeDistribution;
 
+import Tools.ConsoleColors;
 import Tools.Constants;
 
 public class TimeDistribution {
@@ -77,5 +78,9 @@ public class TimeDistribution {
 
     public double getChangingExecutionTime() {
         return changing_execution_time;
+    }
+
+    public void printTimeDistributionAfterChange() {
+        System.out.println(ConsoleColors.GREEN + "north-south: " + north_south + ", east-west: " + east_west + ConsoleColors.RESET);
     }
 }

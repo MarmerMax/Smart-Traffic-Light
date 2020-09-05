@@ -5,6 +5,7 @@ import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
 import SystemSTL.SystemSTL;
+import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;
 import javafx.application.Platform;
@@ -592,6 +593,7 @@ public class ProgramGUI {
                             }
                         });
                     }
+                    System.out.println(ConsoleColors.RED_BOLD + "All cars is passed" + ConsoleColors.RESET);
                 }
             });
 //            update_simulation.start();
@@ -704,34 +706,22 @@ public class ProgramGUI {
         distance_from_crossroad *= Constants.METER_TO_PIXEL;
 
         if (direction == Constants.NORTH_DIRECTION) {
-//            x += 180;
-//            y += 150;
-
             x += 187;
             y += 130;
 
             y -= distance_from_crossroad;
         } else if (direction == Constants.EAST_DIRECTION) {
-//            x += 290;
-//            y += 210;
-
             x += 305;
             y += 204;
 
             x += distance_from_crossroad;
         } else if (direction == Constants.SOUTH_DIRECTION) {
-//            x += 230;
-//            y += 320;
-
             x += 237;
             y += 315;
 
             y += distance_from_crossroad;
 
         } else if (direction == Constants.WEST_DIRECTION) {
-//            x += 120;
-//            y += 255;
-
             x += 118;
             y += 250;
 

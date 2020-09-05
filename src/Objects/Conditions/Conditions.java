@@ -3,6 +3,7 @@ package Objects.Conditions;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
+import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;
 
@@ -137,6 +138,8 @@ public class Conditions {
     public void addTimeToEastWestRoute() {
         first_crossroad_info.getCrossroad().addTimeToEastWestRoute();
         second_crossroad_info.getCrossroad().addTimeToEastWestRoute();
+
+        first_crossroad_info.getCrossroad().getTimeDistribution().printTimeDistributionAfterChange();
     }
 
     /**
@@ -145,6 +148,8 @@ public class Conditions {
     public void addTimeToNorthSouthRoute() {
         first_crossroad_info.getCrossroad().addTimeToNorthSouthRoute();
         second_crossroad_info.getCrossroad().addTimeToNorthSouthRoute();
+
+        first_crossroad_info.getCrossroad().getTimeDistribution().printTimeDistributionAfterChange();
     }
 
     /**
@@ -154,6 +159,8 @@ public class Conditions {
     public void setTimeDistribution(double north_south_time) {
         first_crossroad_info.getCrossroad().setTimeDistribution(north_south_time);
         second_crossroad_info.getCrossroad().setTimeDistribution(north_south_time);
+
+        first_crossroad_info.getCrossroad().getTimeDistribution().printTimeDistributionAfterChange();
     }
 
     /**
@@ -162,6 +169,8 @@ public class Conditions {
     public void setDefaultTimeDistribution() {
         first_crossroad_info.getCrossroad().getTimeDistribution().setDefaultDistribution();
         second_crossroad_info.getCrossroad().getTimeDistribution().setDefaultDistribution();
+
+        first_crossroad_info.getCrossroad().getTimeDistribution().printTimeDistributionAfterChange();
     }
 
     /**
@@ -353,7 +362,7 @@ public class Conditions {
      * @param algorithm_duration
      */
     public void setAlgorithmDuration(double algorithm_duration) {
-        System.out.println("simulation working time: " + algorithm_duration);
+        System.out.println(ConsoleColors.RED_BOLD + "simulation working time: " + algorithm_duration + ConsoleColors.RESET);
         this.algorithm_duration = algorithm_duration;
     }
 }
