@@ -136,18 +136,21 @@ public class Database {
         String result = "";
 
         try {
-            Statement statement = con.createStatement();
-            ResultSet resultSet = statement.executeQuery(Constants.select_conditions_names_query);
+        	PreparedStatement pstmt = con.prepareStatement(Constants.select_conditions_dates_query);
+        	ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next()) {
-                result += resultSet.getString(Constants.conditions_names) + "\n";
+                result += resultSet.getString(Constants.conditions_dates) + "\n";
             }
         } catch (Exception e) {
-            System.err.println("ERROR");
+        	e.printStackTrace();
         }
 
         return result;
     }
 
+    /**
+     * 
+     */
     public Conditions getFromDatabase(String id) {
         return null;
     }

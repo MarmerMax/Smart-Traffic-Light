@@ -77,8 +77,8 @@ public class Constants {
     public static final String insert_traffic_light = "insert into stl.trafficlights(actual_state) values(?)";
 
     //Selects
-    public static final String select_conditions_names_query = "select conditions_name from Conditions";
-    public static final String conditions_names = "conditions_name";
+    public static final String select_conditions_dates_query = "select Date from stl.conditions";
+    public static final String conditions_dates = "Date";
     ///////////////////////////////////////////////////////////
 
     //log messages
