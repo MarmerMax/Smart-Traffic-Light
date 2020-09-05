@@ -102,6 +102,10 @@ public class Crossroad {
     public TrafficLight getNorthTrafficLight() {
         return northTrafficLight;
     }
+    
+    public int getActualState() {
+    	return actualState;
+    }
 
     public boolean isNorthSouthActive() {
         return isNorthSouthActive;

@@ -1,8 +1,10 @@
 package Database;
 
 import Objects.Conditions.Conditions;
+import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
+import Objects.TrafficLight.TrafficLight;
 import SystemSTL.Algorithm.Algorithm;
 import Tools.Constants;
 
@@ -236,6 +238,12 @@ public class Database {
     		pstmt = saveDirectionInfo(west_di, "west");
     		id4 = getId(pstmt, 1);
     		
+    		//Save cars of directionsInfo(north)?
+    		//Save cars of directionsInfo(east)?
+    		//Save cars of directionsInfo(south)?
+    		//Save cars of directionsInfo(west)?
+    		
+    		
     		pstmt = con.prepareStatement(Constants.insert_crossroadsInfo_statment, Statement.RETURN_GENERATED_KEYS);
     		pstmt.setInt(1, current_conditions_id);
     		pstmt.setInt(2, id1);
@@ -243,6 +251,13 @@ public class Database {
     		pstmt.setInt(4, id3);
     		pstmt.setInt(5, id4);
 			pstmt.executeUpdate();
+			
+    		//Save crossroad
+			int current_ci_id = getId(pstmt, 1);
+			System.out.println(current_ci_id);
+    		Crossroad cr = ci.getCrossroad();
+    		saveCrossroad(cr, current_ci_id);
+    		
 			return pstmt;
     	} catch (SQLException e) {
 			e.printStackTrace();
@@ -265,6 +280,62 @@ public class Database {
 		}
 		return null;
     }
+    
+    private PreparedStatement saveCrossroad(Crossroad cr, int ci_id) {
+		try {
+			PreparedStatement pstmt;
+			
+			//Save north traffic light
+			int id1 = 0;
+			TrafficLight tl1 = cr.getNorthTrafficLight();
+			pstmt = saveTrafficLight(tl1);
+			id1 = getId(pstmt, 1);
+			
+			//Save east traffic light
+			int id2 = 0;
+			TrafficLight tl2 = cr.getNorthTrafficLight();
+			pstmt = saveTrafficLight(tl2);
+			id2 = getId(pstmt, 1);
+			
+			//Save south traffic light
+			int id3 = 0;
+			TrafficLight tl3 = cr.getNorthTrafficLight();
+			pstmt = saveTrafficLight(tl3);
+			id3 = getId(pstmt, 1);
+			
+			//Save west traffic light
+			int id4 = 0;
+			TrafficLight tl4 = cr.getNorthTrafficLight();
+			pstmt = saveTrafficLight(tl4);
+			id4 = getId(pstmt, 1);
+			
+			pstmt = con.prepareStatement(Constants.insert_crossroads_statment, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, ci_id);
+			pstmt.setInt(2, id1);
+			pstmt.setInt(3, id2);
+			pstmt.setInt(4, id3);
+			pstmt.setInt(5, id4);
+			pstmt.setInt(6, cr.getActualState());
+			pstmt.executeUpdate();
+			return pstmt;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+    }
+    
+    private PreparedStatement saveTrafficLight(TrafficLight tl) {
+    	try {
+	    	PreparedStatement pstmt;
+			pstmt = con.prepareStatement(Constants.insert_traffic_light, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, tl.getActualStateNumber());
+			pstmt.executeUpdate();
+			return pstmt;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
     
     private int getId(PreparedStatement pstmt, int index) {
     	//Extract id from ResultSet

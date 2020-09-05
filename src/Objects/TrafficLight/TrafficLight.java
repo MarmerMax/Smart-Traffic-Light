@@ -33,4 +33,8 @@ public class TrafficLight {
     public State getActualState() {
         return STATES[actualState];
     }
+    
+    public int getActualStateNumber() {
+    	return actualState;
+    }
 }

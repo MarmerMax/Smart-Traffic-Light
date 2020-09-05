@@ -71,6 +71,10 @@ public class Constants {
     public static final String insert_crossroadsInfo_statment = "insert into "
             + "stl.CrossroadsInfo(condition_id, north_direction_info_id, east_direction_info_id, south_direction_info_id, west_direction_info_id)"
             + " values(?,?,?,?,?)";
+    public static final String insert_crossroads_statment = "insert into"
+    		+ " stl.crossroads(crossroad_info_id, north_traffic_light_id, east_traffic_light_id, south_traffic_light_id, west_traffic_light_id, actual_state)"
+    		+ " values(?,?,?,?,?,?)";
+    public static final String insert_traffic_light = "insert into stl.trafficlights(actual_state) values(?)";
 
     //Selects
     public static final String select_conditions_names_query = "select conditions_name from Conditions";
