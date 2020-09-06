@@ -45,9 +45,11 @@ public abstract class AlgorithmSTL extends Thread {
             return;
         } else {
             is_path_exist = checkIfPathExist(traffic_conditions.getRoot(), traffic_conditions.getGoal());
-            if (is_path_exist) {
+
+            if (is_path_exist && !traffic_conditions.getBetterDistribution().equals(path)) {
                 traffic_conditions.setBetterDistribution(path);
             }
+
             if (!path.equals("no path")) {
                 printFinish();
             }

@@ -110,6 +110,10 @@ public class AlgorithmRules {
         this.conditions.setBetterDistribution(result);
     }
 
+    public String getBetterDistribution(){
+        return this.conditions.getBetterDistributionDurationString();
+    }
+
     public Node getRoot() {
         return root;
     }
