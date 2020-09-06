@@ -69,7 +69,7 @@ public class ProgramGUI {
         crossroad_info_1 = new CrossroadInfo(crossroad_1);
         crossroad_info_2 = new CrossroadInfo(crossroad_2);
 
-        conditions = Utils.createStartConditions();
+//        conditions = Utils.createStartConditions();
 
         createHomeWindow();
     }
@@ -308,10 +308,11 @@ public class ProgramGUI {
         }
 
 
-        //listener
-        limit_spinners_1.get(1).valueProperty().addListener((obs, oldValue, newValue) -> {
-            limit_spinners_2.get(1).getValueFactory().setValue(newValue);
-        });
+        //Speed limit listeners - there are directions that go along the same road through two intersections,
+        //so the speed limit should be the same on them
+        limit_spinners_1.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
+                limit_spinners_2.get(1).getValueFactory().setValue(newValue));
+
 
         limit_spinners_2.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
                 limit_spinners_1.get(1).getValueFactory().setValue(newValue));
@@ -323,6 +324,10 @@ public class ProgramGUI {
         limit_spinners_2.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
                 limit_spinners_1.get(3).getValueFactory().setValue(newValue));
 
+
+        //actual speed listeners - actual speed can't be more than speed limit
+        Utils.createActualSpeedListeners(actual_spinners_1, limit_spinners_1);
+        Utils.createActualSpeedListeners(actual_spinners_2, limit_spinners_2);
 
         actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
@@ -344,23 +349,22 @@ public class ProgramGUI {
         boxButtonRandom.getChildren().add(buttonRandom);
         buttonRandom.setOnAction(e -> {
             if (!analyst) {
-                AlertBox.display("Fail", "Observer does not have this permissions.");
+                AlertBox.display(Constants.fail_window_label, Constants.fail_text_label);
             } else {
                 boolean answer = ConfirmBox.display(Constants.random_window_label, Constants.generate_random_data_label);
                 if (answer) {
                     //1
-                    Utils.createRandomCarsCount(cars_spinners_1, 1);
-                    Utils.createRandomSpeedLimit(limit_spinners_1);
-                    Utils.createRandomActualSpeed(actual_spinners_1);
+                    Utils.createRandomConditions(cars_spinners_1, limit_spinners_1, actual_spinners_1, 1);
 
                     //2
-                    Utils.createRandomCarsCount(cars_spinners_2, 3);
-                    Utils.createRandomSpeedLimit(limit_spinners_2);
-                    Utils.createRandomActualSpeed(actual_spinners_2);
+                    Utils.createRandomConditions(cars_spinners_2, limit_spinners_2, actual_spinners_2, 3);
 
+                    //synchronize between same directions spinners
                     limit_spinners_1.get(1).getValueFactory().setValue(limit_spinners_2.get(1).getValue());
                     limit_spinners_1.get(3).getValueFactory().setValue(limit_spinners_2.get(3).getValue());
 
+                    actual_spinners_1.get(1).getValueFactory().setValue(actual_spinners_2.get(1).getValue());
+                    actual_spinners_1.get(3).getValueFactory().setValue(actual_spinners_2.get(3).getValue());
                 }
             }
         });
@@ -386,14 +390,10 @@ public class ProgramGUI {
             boolean answer = ConfirmBox.display(Constants.reset_button_label, Constants.reset_conditions_label);
             if (answer) {
                 //1
-                Utils.resetCarsCount(cars_spinners_1, 1);
-                Utils.resetSpeedLimit(limit_spinners_1);
-                Utils.resetActualSpeed(actual_spinners_1);
+                Utils.resetConditions(cars_spinners_1, limit_spinners_1, actual_spinners_1, 1);
 
                 //2
-                Utils.resetCarsCount(cars_spinners_2, 3);
-                Utils.resetSpeedLimit(limit_spinners_2);
-                Utils.resetActualSpeed(actual_spinners_2);
+                Utils.resetConditions(cars_spinners_2, limit_spinners_2, actual_spinners_2, 3);
             }
         });
 

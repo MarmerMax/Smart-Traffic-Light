@@ -18,7 +18,8 @@ public class TrafficComputation extends Thread {
 
     public TrafficComputation(Conditions conditions) {
         this.conditions = conditions;
-        double initial_duration = Utils.calculateDefaultInitialStateDuration(conditions);
+
+        double initial_duration = Utils.calculateInitialDuration(conditions);
         this.conditions.setInitialDuration(initial_duration);
 
         createEastWestExecutor();

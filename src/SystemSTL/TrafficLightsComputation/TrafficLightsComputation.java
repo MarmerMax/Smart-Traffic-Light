@@ -27,8 +27,6 @@ public class TrafficLightsComputation extends Thread {
      * Function has to changes the traffic light states (green, yellow, red).
      */
     public void updateTrafficLightsState() {
-        System.out.println(ConsoleColors.RED_BOLD + "[START]" + ConsoleColors.RESET);
-
         double time = 0;
         double changing_time = 0;
 
@@ -50,7 +48,7 @@ public class TrafficLightsComputation extends Thread {
                 //once at phase time
                 if (conditions.getBetterDistribution().size() != 0) {
                     phase_count = 1;
-                    System.out.println(ConsoleColors.GREEN_BOLD + "SET SMART TIME." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.GREEN_BOLD + "New time was set" + ConsoleColors.RESET);
                     conditions.setTimeDistribution(conditions.getNextDistribution());
                     int phases_left_count = conditions.getBetterDistribution().size();
                     System.out.println(ConsoleColors.YELLOW + "(" + phases_left_count + " phases left)" + ConsoleColors.RESET);

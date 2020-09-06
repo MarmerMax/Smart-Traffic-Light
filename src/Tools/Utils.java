@@ -78,7 +78,24 @@ public class Utils {
         return conditions;
     }
 
-    public static void createRandomCarsCount(ArrayList<Spinner<Integer>> spinners, int exception_road) {
+    //random conditions for crossroad
+    public static void createRandomConditions(ArrayList<Spinner<Integer>> cars_spinners,
+                                              ArrayList<Spinner<Integer>> limit_spinners,
+                                              ArrayList<Spinner<Integer>> actual_spinners,
+                                              int exception_road) {
+
+        createRandomCarsCount(cars_spinners, exception_road);
+        createRandomSpeedLimit(limit_spinners);
+
+        int[] limits = new int[4];
+        for (int i = 0; i < limits.length; i++) {
+            limits[i] = limit_spinners.get(i).getValue();
+        }
+
+        createRandomActualSpeed(actual_spinners, limits);
+    }
+
+    private static void createRandomCarsCount(ArrayList<Spinner<Integer>> spinners, int exception_road) {
         for (int i = 0; i < spinners.size(); i++) {
             int min = Constants.CARS_COUNT_MIN;
             int max;
@@ -95,7 +112,7 @@ public class Utils {
         }
     }
 
-    public static void createRandomSpeedLimit(ArrayList<Spinner<Integer>> spinners) {
+    private static void createRandomSpeedLimit(ArrayList<Spinner<Integer>> spinners) {
         for (int i = 0; i < 4; i++) {
             int speed_limit = (int) createRandomInRange(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX);
             speed_limit = ((speed_limit + 5) / 10) * 10;
@@ -103,15 +120,42 @@ public class Utils {
         }
     }
 
-    public static void createRandomActualSpeed(ArrayList<Spinner<Integer>> spinners) {
+    private static void createRandomActualSpeed(ArrayList<Spinner<Integer>> spinners, int[] limits) {
         for (int i = 0; i < 4; i++) {
-            int actual_speed = (int) createRandomInRange(Constants.ACTUAL_LIMIT_MIN, Constants.ACTUAL_LIMIT_MAX);
+            int actual_speed = (int) createRandomInRange(Constants.ACTUAL_LIMIT_MIN, limits[i]);
             actual_speed = ((actual_speed + 5) / 10) * 10;
             spinners.get(i).getValueFactory().setValue(actual_speed);
         }
     }
+    //end random conditions for crossroad
 
-    public static void resetCarsCount(ArrayList<Spinner<Integer>> spinners, int exception_road) {
+
+    /**
+     * This function resets spinners conditions to default values.
+     *
+     * @param cars_spinners   - cars spinners
+     * @param limit_spinners  - speed limit spinners
+     * @param actual_spinners - actual speed spinners
+     * @param exception_road  - road with lower count of cars
+     */
+    //reset conditions for crossroad
+    public static void resetConditions(ArrayList<Spinner<Integer>> cars_spinners,
+                                       ArrayList<Spinner<Integer>> limit_spinners,
+                                       ArrayList<Spinner<Integer>> actual_spinners,
+                                       int exception_road) {
+
+        resetCarsCount(cars_spinners, exception_road);
+        resetSpeedLimit(limit_spinners);
+        resetActualSpeed(actual_spinners);
+    }
+
+    /**
+     * This function resets values for cars spinner.
+     *
+     * @param spinners
+     * @param exception_road
+     */
+    private static void resetCarsCount(ArrayList<Spinner<Integer>> spinners, int exception_road) {
         for (int i = 0; i < spinners.size(); i++) {
             if (i == exception_road) {
                 spinners.get(i).getValueFactory().setValue(Constants.CARS_COUNT_SHORT_ROAD);
@@ -121,16 +165,70 @@ public class Utils {
         }
     }
 
-    public static void resetSpeedLimit(ArrayList<Spinner<Integer>> spinners) {
+    /**
+     * This function resets values for speed limit spinner.
+     *
+     * @param spinners
+     */
+    private static void resetSpeedLimit(ArrayList<Spinner<Integer>> spinners) {
         for (int i = 0; i < 4; i++) {
             spinners.get(i).getValueFactory().setValue(Constants.SPEED_LIMIT_DEFAULT);
         }
     }
 
-    public static void resetActualSpeed(ArrayList<Spinner<Integer>> spinners) {
+    /**
+     * This function resets values for actual speed spinner.
+     *
+     * @param spinners
+     */
+    private static void resetActualSpeed(ArrayList<Spinner<Integer>> spinners) {
         for (int i = 0; i < 4; i++) {
             spinners.get(i).getValueFactory().setValue(Constants.ACTUAL_LIMIT_DEFAULT);
         }
+    }
+    //end reset conditions for crossroad
+
+
+    /**
+     * This function creates listeners for the actual limit spinners.
+     * The actual speed cannot be higher than the speed limit.
+     *
+     * @param actual_spinners
+     * @param limit_spinners
+     */
+    @SuppressWarnings("Duplicates")
+    public static void createActualSpeedListeners(ArrayList<Spinner<Integer>> actual_spinners, ArrayList<Spinner<Integer>> limit_spinners) {
+        if (actual_spinners.size() != limit_spinners.size()) {
+            throw new RuntimeException("Fail! Wrong program parameters...");
+        }
+
+        actual_spinners.get(0).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (limit_spinners.get(0).getValue() < newValue) {
+                newValue = limit_spinners.get(0).getValue();
+            }
+            actual_spinners.get(0).getValueFactory().setValue(newValue);
+        });
+
+        actual_spinners.get(1).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (limit_spinners.get(1).getValue() < newValue) {
+                newValue = limit_spinners.get(1).getValue();
+            }
+            actual_spinners.get(1).getValueFactory().setValue(newValue);
+        });
+
+        actual_spinners.get(2).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (limit_spinners.get(2).getValue() < newValue) {
+                newValue = limit_spinners.get(2).getValue();
+            }
+            actual_spinners.get(2).getValueFactory().setValue(newValue);
+        });
+
+        actual_spinners.get(3).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (limit_spinners.get(3).getValue() < newValue) {
+                newValue = limit_spinners.get(3).getValue();
+            }
+            actual_spinners.get(3).getValueFactory().setValue(newValue);
+        });
     }
 
 
@@ -469,80 +567,50 @@ public class Utils {
 
     }
 
-    /**
-     * This function calculates the time duration of the better distribution.
-     *
-     * @param queue - queue with better times
-     * @return better duration - amount of second that includes traffic lights working and changing time
-     */
-    public static double calculateBetterDistributionDuration(Queue<Double> queue) {
 
-        double phases_work_time = queue.size() * Constants.TRAFFIC_LIGHT_PHASE_TIME;
-        double changing_work_time = (queue.size() - 1) * ((Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 3) * 2;
-        double first_work_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 2;
-
-        double better_duration = phases_work_time + changing_work_time + first_work_time;
-
-        return better_duration;
-    }
-
-
-    public static double calculateDefaultInitialStateDuration(Conditions conditions) {
-        double result = findInitialDuration(conditions);
-        return result;
-    }
-
-    private static double findInitialDuration(Conditions conditions) {
-
+    public static double calculateInitialDuration(Conditions conditions) {
         double time = Constants.TRAFFIC_LIGHT_PHASE_TIME / 2;
 
-        double[] first_max_phase = findPassCarsPerPhase(conditions.getLanesInfoFirstCrossroad(), time);
-        double[] second_max_phase = findPassCarsPerPhase(conditions.getLanesInfoSecondCrossroad(), time);
-
-        int first_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 2;
-        int next_changing_time = (Constants.TRAFFIC_LIGHT_CHANGING_TIME) * 3;
+        double first_max_phase = calculatePhasesCount(conditions.getLanesInfoFirstCrossroad(), time);
+        double second_max_phase = calculatePhasesCount(conditions.getLanesInfoSecondCrossroad(), time);
 
         double worst_time;
 
-        if (first_max_phase[1] > second_max_phase[1]) {
-
-            worst_time = first_max_phase[1] * (next_changing_time + Constants.TRAFFIC_LIGHT_PHASE_TIME) + first_changing_time;
-
-            if (first_max_phase[0] == 1 || first_max_phase[0] == 3) {
-                worst_time += (Constants.TRAFFIC_LIGHT_PHASE_TIME + next_changing_time);
-            }
-
+        if (first_max_phase > second_max_phase) {
+            worst_time = calculateDurationByPhasesCount(first_max_phase);
         } else {
-
-            worst_time = second_max_phase[1] * (next_changing_time + Constants.TRAFFIC_LIGHT_PHASE_TIME) + first_changing_time;
-
-            if (second_max_phase[0] == 1 || second_max_phase[0] == 3) {
-                worst_time += (Constants.TRAFFIC_LIGHT_PHASE_TIME + next_changing_time);
-            }
-
+            worst_time = calculateDurationByPhasesCount(second_max_phase);
         }
 
         return worst_time;
     }
 
-    private static double[] findPassCarsPerPhase(ArrayList<LaneInfo> crossroad, double time) {
-        double worst_time = -1;
-        int worst_direction = -1;
+
+    private static double calculatePhasesCount(ArrayList<LaneInfo> crossroad, double time) {
+        double worst_phases_count = -1;
 
         for (int i = 0; i < 4; i++) {
-            double temp_time = calculatePhaseCountForDirection(crossroad.get(i), time);
-            if (temp_time > worst_time) {
-                worst_time = temp_time;
-                worst_direction = i;
+            double temp_phases = calculatePhasesCountForDirection(crossroad.get(i), time);
+            if (temp_phases > worst_phases_count) {
+                worst_phases_count = temp_phases;
             }
         }
 
-        double[] result = {worst_direction, worst_time};
-
-        return result;
+        return worst_phases_count;
     }
 
-    private static double calculatePhaseCountForDirection(LaneInfo lane_info, double time) {
+
+    private static double calculateDurationByPhasesCount(double phases) {
+        double changing_lights_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
+        double phase_work_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_lights_time;
+
+        double better_duration = phase_work_time * phases - Constants.TRAFFIC_LIGHT_CHANGING_TIME;
+
+        return better_duration;
+    }
+
+
+    private static double calculatePhasesCountForDirection(LaneInfo lane_info, double time) {
         AlgorithmLaneInfo algorithm_lane_info = new AlgorithmLaneInfo(lane_info);
 
         int cars_per_phase = calculatePassedCarsByDirection(algorithm_lane_info, time);
@@ -551,6 +619,21 @@ public class Utils {
 
         return phase_count;
     }
+
+
+    /**
+     * This function calculates the time duration of the better distribution.
+     *
+     * @param str - path with better times
+     * @return better duration - amount of second that includes traffic lights working and changing time
+     */
+    public static double calculateDurationFromString(String str) {
+        String[] phases = getAllPhases(str);
+
+        double result = calculateDurationByPhasesCount(phases.length);
+        return result;
+    }
+
 
     public static String createSeparationString(String str) {
         String result = "";

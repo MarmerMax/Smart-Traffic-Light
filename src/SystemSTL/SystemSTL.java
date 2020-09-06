@@ -4,6 +4,7 @@ import Objects.Conditions.Conditions;
 import SystemSTL.Algorithm.Algorithm;
 import SystemSTL.TrafficComputation.TrafficComputation;
 import SystemSTL.TrafficLightsComputation.TrafficLightsComputation;
+import Tools.ConsoleColors;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,6 +44,8 @@ public class SystemSTL {
      * This function start all computations.
      */
     public void run() {
+        System.out.println(ConsoleColors.RED_BOLD + "[START]" + ConsoleColors.RESET);
+
         executor.execute(algorithm);
         executor.execute(traffic_computation);
         executor.execute(traffic_lights_computation);

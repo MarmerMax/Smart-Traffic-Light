@@ -25,6 +25,7 @@ public class Conditions {
 
     private Queue<Double> better_distribution;
     private double better_distribution_duration;
+    private String better_distribution_duration_string;
 
     /**
      * Constructor.
@@ -315,8 +316,10 @@ public class Conditions {
      * @param path - string of better distribution times (->12:8->10:10->14:6)
      */
     public void setBetterDistribution(String path) {
+        better_distribution_duration_string = path;
+        better_distribution_duration = Utils.calculateDurationFromString(path);
+        this.better_distribution.clear();
         Utils.addBetterDistributionToQueue(this.better_distribution, path);
-        better_distribution_duration = Utils.calculateBetterDistributionDuration(this.better_distribution);
     }
 
     /**
@@ -364,5 +367,9 @@ public class Conditions {
     public void setAlgorithmDuration(double algorithm_duration) {
         System.out.println(ConsoleColors.RED_BOLD + "simulation working time: " + algorithm_duration + ConsoleColors.RESET);
         this.algorithm_duration = algorithm_duration;
+    }
+
+    public String getBetterDistributionDurationString() {
+        return better_distribution_duration_string;
     }
 }

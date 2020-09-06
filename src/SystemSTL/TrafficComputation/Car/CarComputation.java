@@ -29,8 +29,8 @@ public class CarComputation {
             new_speed = car_info.getCar().getMaxSpeed();
         }
 
-        if (new_speed > speed_limit / 1.5) {
-            car_info.setCurrentSpeed(speed_limit / 1.5);
+        if (new_speed > speed_limit) {
+            car_info.setCurrentSpeed(speed_limit);
             return;
         }
 

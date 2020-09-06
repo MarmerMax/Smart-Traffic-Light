@@ -3,6 +3,8 @@ package SystemSTL.AlgorithmSTL;
 import Objects.Conditions.Conditions;
 import Tools.Utils;
 
+import java.util.ArrayList;
+
 /**
  * This class represents the rules for the algorithm.
  * The class creates the initial and target states for the obtained algorithm conditions.
@@ -33,6 +35,19 @@ public class AlgorithmRules {
 
         min_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMinTime();
         max_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMaxTime();
+    }
+
+    public static ArrayList<Node> createNeighboursOfNode(Node current, double max_time, double min_time) {
+        ArrayList<Node> neighbours = new ArrayList<>();
+
+        int actions_count = (int) (max_time - min_time) + 1;
+
+        for (int i = 0; i < actions_count; i++) {
+            Node next = createNeighbourForNodeByAction(current, min_time + i, max_time, min_time);
+            neighbours.add(next);
+        }
+
+        return neighbours;
     }
 
     /**

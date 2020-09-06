@@ -2,14 +2,12 @@ package SystemSTL.AlgorithmSTL;
 
 import Tools.ConsoleColors;
 import Tools.Utils;
-import com.sun.webkit.network.Util;
 
 /**
  * An abstract class for all algorithms.
  * Each algorithm should implement only one function - checkIfPathExist (start, target).
  * Other functions are common to all algorithms.
  */
-
 public abstract class AlgorithmSTL extends Thread {
 
     protected double price;
@@ -49,10 +47,9 @@ public abstract class AlgorithmSTL extends Thread {
             is_path_exist = checkIfPathExist(traffic_conditions.getRoot(), traffic_conditions.getGoal());
             if (is_path_exist) {
                 traffic_conditions.setBetterDistribution(path);
-                System.out.println(Utils.createSeparationString(path));
-                System.out.println(ConsoleColors.GREEN_BRIGHT + "Better path was found!"  + ConsoleColors.RESET);
-                System.out.println(ConsoleColors.GREEN_BRIGHT + path + ConsoleColors.RESET);
-                System.out.println(Utils.createSeparationString(path));
+            }
+            if (!path.equals("no path")) {
+                printFinish();
             }
         }
     }
@@ -76,8 +73,18 @@ public abstract class AlgorithmSTL extends Thread {
     //if current node is the target node then update path, price...
     protected boolean isGoal(Node current, Node target) {
         if (Utils.isEqualsNodes(current, target)) {
+
+            is_path_exist = true;
             path = current.getName().substring(2);
             price = current.getPrice();
+
+
+            if (is_path_exist) {
+                traffic_conditions.setBetterDistribution(path);
+            }
+
+            printFoundPath(path);
+
             return true;
         }
         return false;
@@ -93,5 +100,22 @@ public abstract class AlgorithmSTL extends Thread {
 
     public boolean getPathExist() {
         return is_path_exist;
+    }
+
+    private void printFoundPath(String path) {
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + Utils.createSeparationString(path) + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BRIGHT + "New path was found!" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BRIGHT + path + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BRIGHT + "Path duration: " + Utils.calculateDurationFromString(path) + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + Utils.createSeparationString(path) + ConsoleColors.RESET);
+        System.out.println();
+    }
+
+    private void printFinish() {
+        String msg = "The STL algorithm is finished with a better path.";
+        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + Utils.createSeparationString(msg) + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED_BRIGHT + msg + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + Utils.createSeparationString(msg) + ConsoleColors.RESET);
+        System.out.println();
     }
 }

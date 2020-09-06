@@ -96,6 +96,8 @@ public class Constants {
     public static final String random_window_label = "Random";
     public static final String go_to_previous_page_window_label = "Go to previous window";
     public static final String exit_window_label = "Exit";
+    public static final String fail_window_label = "Fail";
+
 
 
     //buttons labels
@@ -147,6 +149,9 @@ public class Constants {
     public static final String generate_random_data_label = "Generate random data?";
     public static final String reset_conditions_label = "Reset all values?";
     public static final String exit_text_label = "Sure you want to exit?";
+    public static final String fail_text_label = "Observer does not have this permissions.";
+
+
 
 
     public static final double POLICE_MAX_SPEED = 70;
@@ -159,9 +164,6 @@ public class Constants {
     //sizes
     public static final double TRAFFIC_LIGHT_HEIGHT = 40;
     public static final double TRAFFIC_LIGHT_WIDTH = 15;
-
-    public static final double CAR_HEIGHT = 60;
-    public static final double CAR_WIDTH = 40;
 
 
     //times
@@ -176,7 +178,8 @@ public class Constants {
     public static final int SOUTH_DIRECTION = 2;
     public static final int WEST_DIRECTION = 3;
 
-    // names
+
+    //directions names
     public static final String DIRECTION_NAME_EAST_WEST = "east-west";
     public static final String DIRECTION_NAME_NORTH_SOUTH = "north-south";
     public static final String DIRECTION_NAME_EAST = "east";
@@ -187,15 +190,10 @@ public class Constants {
     public static final String CROSSROAD_NAME_SECOND = "second";
 
     //Units
-    public static final double PIXEL_TO_METER = 0.12;
-
     public static final double METER_TO_PIXEL = 15;
-    public static final double SAFETY_DISTANCE = 2;
-    public static final double SAFETY_DISTANCE_TO_START = 3;
 
-    public static final double SAFETY_DISTANCE_TO_STOP = 1;
-    public static final double START_DISTANCE_BETWEEN_CARS = 2;
 
+    //String delimiters
     public static final String PHASE_DELIMITER = "->";
     public static final String TIMES_DELIMITER = ":";
 
@@ -214,6 +212,12 @@ public class Constants {
     public static final int ACTUAL_LIMIT_DEFAULT = 50;
     public static final int ACTUAL_LIMIT_MAX = 110;
     public static final int ACTUAL_LIMIT_MIN = 50;
+
+    public static final double SAFETY_DISTANCE = 2;
+    public static final double SAFETY_DISTANCE_TO_START = 3;
+
+    public static final double SAFETY_DISTANCE_TO_STOP = 1;
+    public static final double START_DISTANCE_BETWEEN_CARS = 2;
 
 
     //info text

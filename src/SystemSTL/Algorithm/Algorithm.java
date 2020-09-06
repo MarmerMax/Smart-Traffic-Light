@@ -2,6 +2,8 @@ package SystemSTL.Algorithm;
 
 import SystemSTL.AlgorithmSTL.*;
 import Objects.Conditions.Conditions;
+import SystemSTL.AlgorithmSTL.AlgorithmCore.Astar;
+import SystemSTL.AlgorithmSTL.AlgorithmCore.DFBnB;
 import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;
@@ -31,7 +33,8 @@ public class Algorithm extends Thread {
         this.conditions = conditions;
 
         algorithm_conditions = new AlgorithmRules(conditions);
-        smart_algorithm = new Astar();
+//        smart_algorithm = new Astar();
+        smart_algorithm = new DFBnB();
         smart_algorithm.setTrafficConditions(algorithm_conditions);
     }
 
@@ -59,6 +62,7 @@ public class Algorithm extends Thread {
             //then algorithm will again work as a priority algorithm.
             if (this.conditions.getBetterDistribution().size() != 0 && !better_distribution_selected) {
                 better_distribution_selected = true;
+
                 double better_duration = this.conditions.getBetterDistributionDuration() - actual_duration;
 
                 try {
@@ -66,11 +70,10 @@ public class Algorithm extends Thread {
 //                    Thread.sleep((int) better_duration * 1000);
 
                     while (this.conditions.getBetterDistribution().size() != 0) {
-//                        Thread.sleep((int) better_duration * 1000);
                         Thread.sleep(1000);
                     }
 
-                    double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3;
+                    double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
                     Thread.sleep((int) last_phase_time * 1000);
 
                 } catch (InterruptedException e) {

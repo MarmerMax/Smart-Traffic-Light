@@ -1,5 +1,8 @@
-package SystemSTL.AlgorithmSTL;
+package SystemSTL.AlgorithmSTL.AlgorithmCore;
 
+import SystemSTL.AlgorithmSTL.AlgorithmRules;
+import SystemSTL.AlgorithmSTL.AlgorithmSTL;
+import SystemSTL.AlgorithmSTL.Node;
 import Tools.Utils;
 
 import java.util.*;
@@ -9,23 +12,6 @@ public class Astar extends AlgorithmSTL {
     public Astar() {
         super();
     }
-
-    /**
-     * UCS(Node start, Vector goal)
-     * 1. L  make_priority_queue (start) and make_hash_table
-     * 2. C  make_hash_table
-     * 3. While L not empty loop
-     *      1. n  L.remove_front
-     *      2. If goal(n) return path(n)
-     *      3. C  n
-     *      4. For each allowed operator on n
-     *          1. x  operator(n)
-     *          2. If x not in C and not in L
-     *              1. L.insert (
-     *          3. Else if x in L with higher path cost
-     *              1. Replace the node in L with x
-     * 4. Return false
-     */
 
     @Override
     public boolean checkIfPathExist(Node start, Node goal) {

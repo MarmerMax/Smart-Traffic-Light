@@ -188,7 +188,7 @@ public class LaneComputation extends Thread {
                 delta = 10;
             }
 
-            for (int i = 3; i < 10; i++) {
+            for (int i = 4; i < 10; i++) {
                 if (delta < i) {
                     delta = i;
                     break;
