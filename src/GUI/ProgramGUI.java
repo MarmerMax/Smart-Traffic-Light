@@ -377,6 +377,12 @@ public class ProgramGUI {
         buttonDatabase.setOnAction(e -> {
             DatabaseBox.display();
 
+//            DatabaseConditions database = DatabaseBox.display();
+//            Utils.setConditionsInSpinner(cars_spinners_1, limit_spinners_1, actual_spinners_1, database.getFirstCrossroad());
+//            Utils.setConditionsInSpinner(cars_spinners_2, limit_spinners_2, actual_spinners_2, database.getSecondCrossroad());
+//
+//            ResolvedBox.display(); // previous result
+
             //load from database
             //String query_name = DatabaseBox.display();
             //System.out.println(query_name);

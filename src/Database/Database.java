@@ -23,7 +23,7 @@ public class Database {
 
     private static volatile Database instance;
 
-    
+
     public static Database getInstance() {
         Database localInstance = instance;
         if (localInstance == null) {
@@ -36,83 +36,83 @@ public class Database {
         }
         return localInstance;
     }
-    
+
     public Connection getConnection() {
-    	return con;
+        return con;
     }
-    
+
     /**
      * This function performs a connection to the database.
-     * 
+     *
      * @param url
      * @param user
      * @param password
      * @return
      */
     public boolean connect(String url, String user, String password) {
-    	try {
-    		con = null;
-    		Class.forName(driver);
+        try {
+            con = null;
+            Class.forName(driver);
             con = DriverManager.getConnection(url, user, password);
             this.url = url;
             this.user = user;
             this.password = password;
-    	} catch (Exception e) {
-    		System.err.println(Constants.connection_fail);
-    		return false;
-    	}
-    	System.out.println("Connection success!");
-    	return true;
+        } catch (Exception e) {
+            System.err.println(Constants.connection_fail);
+            return false;
+        }
+        System.out.println("Connection success!");
+        return true;
     }
-    
+
     /**
      * This function creates the entire database by executing SQL commands.
-     * 
+     *
      * @param url
      * @param user
      * @param password
      * @return true - if all executes success, otherwise return false.
      */
     public boolean createLocalDatabase(String url, String user, String password) {
-    	try {
-    		String new_url = extractHostAndPort(url);
-    		connect(new_url, user, password);
-        	
-    		System.out.println("Creating database and tables: ");
-    		
-    		PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
-        	create_database_query.execute();
-        	System.out.println("creating database success!");
-        	
-        	PreparedStatement create_conditions_table_query = con.prepareStatement(Constants.create_conditions_table_query);
-        	create_conditions_table_query.execute();
-        	System.out.println("creating conditions table success!");
-        	
-        	PreparedStatement create_directionsInfo_table_query = con.prepareStatement(Constants.create_directionsInfo_table_query);
-        	create_directionsInfo_table_query.execute();
-        	System.out.println("creating directionsInfo table success!");
-        	
-        	PreparedStatement create_traffic_lights_table_query = con.prepareStatement(Constants.create_traffic_lights_table_query);
-        	create_traffic_lights_table_query.execute();
-        	System.out.println("creating trafficLights table success!");
-        	
-        	PreparedStatement create_cars_table_query = con.prepareStatement(Constants.create_cars_table_query);
-        	create_cars_table_query.execute();
-        	System.out.println("creating cars table success!");
-        	
-        	PreparedStatement create_crossroadsInfo_table_query = con.prepareStatement(Constants.create_crossroadsInfo_table_query);
-        	create_crossroadsInfo_table_query.execute();
-        	System.out.println("creating crossroadsInfo table success!");
-        	
-        	PreparedStatement create_crossroads_table_query = con.prepareStatement(Constants.create_crossroads_table_query);
-        	create_crossroads_table_query.execute();
-        	System.out.println("creating crossroads table success!");
-        	
-    	} catch(SQLException e) {
-    		System.err.println(Constants.create_database_fail);
-    		return false;
-    	}
-    	return true;
+        try {
+            String new_url = extractHostAndPort(url);
+            connect(new_url, user, password);
+
+            System.out.println("Creating database and tables: ");
+
+            PreparedStatement create_database_query = con.prepareStatement(Constants.create_database_query);
+            create_database_query.execute();
+            System.out.println("creating database success!");
+
+            PreparedStatement create_conditions_table_query = con.prepareStatement(Constants.create_conditions_table_query);
+            create_conditions_table_query.execute();
+            System.out.println("creating conditions table success!");
+
+            PreparedStatement create_directionsInfo_table_query = con.prepareStatement(Constants.create_directionsInfo_table_query);
+            create_directionsInfo_table_query.execute();
+            System.out.println("creating directionsInfo table success!");
+
+            PreparedStatement create_traffic_lights_table_query = con.prepareStatement(Constants.create_traffic_lights_table_query);
+            create_traffic_lights_table_query.execute();
+            System.out.println("creating trafficLights table success!");
+
+            PreparedStatement create_cars_table_query = con.prepareStatement(Constants.create_cars_table_query);
+            create_cars_table_query.execute();
+            System.out.println("creating cars table success!");
+
+            PreparedStatement create_crossroadsInfo_table_query = con.prepareStatement(Constants.create_crossroadsInfo_table_query);
+            create_crossroadsInfo_table_query.execute();
+            System.out.println("creating crossroadsInfo table success!");
+
+            PreparedStatement create_crossroads_table_query = con.prepareStatement(Constants.create_crossroads_table_query);
+            create_crossroads_table_query.execute();
+            System.out.println("creating crossroads table success!");
+
+        } catch (SQLException e) {
+            System.err.println(Constants.create_database_fail);
+            return false;
+        }
+        return true;
     }
 
     public void test() {
@@ -136,20 +136,20 @@ public class Database {
         String result = "";
 
         try {
-        	PreparedStatement pstmt = con.prepareStatement(Constants.select_conditions_dates_query);
-        	ResultSet resultSet = pstmt.executeQuery();
+            PreparedStatement pstmt = con.prepareStatement(Constants.select_conditions_dates_query);
+            ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next()) {
                 result += resultSet.getString(Constants.conditions_dates) + "\n";
             }
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
         }
 
         return result;
     }
 
     /**
-     * 
+     *
      */
     public Conditions getFromDatabase(String id) {
         return null;
@@ -165,194 +165,203 @@ public class Database {
     }
 
     private String extractHostAndPort(String url) {
-    	String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
-    	Pattern r = Pattern.compile(pattern);
-    	Matcher m = r.matcher(url);
-    	if(m.find( )) {
-    		return m.group(0);
-    	}
-    	return null;
+        String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(url);
+        if (m.find()) {
+            return m.group(0);
+        }
+        return null;
     }
-    
-    
+
+
     /**
      * This function should take the crossroads data and store it in the database.
-     * 
+     *
      * @param conditions
      */
     public void save(Conditions conditions) {
-    	try {
-    		//Save conditions
-			PreparedStatement pstmt = con.prepareStatement(Constants.insert_conditions_statment, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setNString(1, "name"); //need to replace to name of conditions
-			pstmt.executeUpdate();
-			
-			//Extract conditions_id from ResultSet
-			int current_conditions_id = getId(pstmt, 1);
-			
-			//Save crossroadsInfo
-	    	CrossroadInfo ci1 = conditions.getFirstCrossroadInfo();
-	    	CrossroadInfo ci2 = conditions.getSecondCrossroadInfo();
-	    	saveCrossroadInfo(ci1, current_conditions_id);
-	    	saveCrossroadInfo(ci2, current_conditions_id);
-	    	
-	    	
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+        try {
+            //Save conditions
+            PreparedStatement pstmt = con.prepareStatement(Constants.insert_conditions_statment, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setNString(1, "name"); //need to replace to name of conditions
+            pstmt.executeUpdate();
+
+            //Extract conditions_id from ResultSet
+            int current_conditions_id = getId(pstmt, 1);
+
+            //Save crossroadsInfo
+            CrossroadInfo ci1 = conditions.getFirstCrossroadInfo();
+            CrossroadInfo ci2 = conditions.getSecondCrossroadInfo();
+            saveCrossroadInfo(ci1, current_conditions_id);
+            saveCrossroadInfo(ci2, current_conditions_id);
+
+
+//            saveResult(
+//                    conditions.getInitialDuration(),
+//                    conditions.getBetterDuration(),
+//                    conditions.getSimulationDuration(),
+//                    conditions.getBetterDistributionString());
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
-    
+
+
     /**
      * This function should take the algorithm results data and store them in the database.
-     * 
+     *
      * @param results
      */
     public static void save(Algorithm results) {
-    	
+
     }
-    
-    
+
+
     private PreparedStatement saveCrossroadInfo(CrossroadInfo ci, int current_conditions_id) {
-    	try {
-    		PreparedStatement pstmt;
-        	
-        	//Save directionsInfo(north)
-        	int id1 = 0;
-    		DirectionInfo north_di = ci.getNorth();
-    		pstmt = saveDirectionInfo(north_di, "north");
-    		id1 = getId(pstmt, 1);
-    		
-    		//Save directionsInfo(east)
-    		int id2 = 0;
-    		DirectionInfo east_di = ci.getEast();
-    		pstmt = saveDirectionInfo(east_di, "east");
-    		id2 = getId(pstmt, 1);
-    		
-    		//Save directionsInfo(south)
-    		int id3 = 0;
-    		DirectionInfo south_di = ci.getSouth();
-    		pstmt = saveDirectionInfo(south_di, "south");
-    		id3 = getId(pstmt, 1);
-    		
-    		//Save directionsInfo(west)
-    		int id4 = 0;
-    		DirectionInfo west_di = ci.getWest();
-    		pstmt = saveDirectionInfo(west_di, "west");
-    		id4 = getId(pstmt, 1);
-    		
-    		//Save cars of directionsInfo(north)?
-    		//Save cars of directionsInfo(east)?
-    		//Save cars of directionsInfo(south)?
-    		//Save cars of directionsInfo(west)?
-    		
-    		
-    		pstmt = con.prepareStatement(Constants.insert_crossroadsInfo_statment, Statement.RETURN_GENERATED_KEYS);
-    		pstmt.setInt(1, current_conditions_id);
-    		pstmt.setInt(2, id1);
-    		pstmt.setInt(3, id2);
-    		pstmt.setInt(4, id3);
-    		pstmt.setInt(5, id4);
-			pstmt.executeUpdate();
-			
-    		//Save crossroad
-			int current_ci_id = getId(pstmt, 1);
-			System.out.println(current_ci_id);
-    		Crossroad cr = ci.getCrossroad();
-    		saveCrossroad(cr, current_ci_id);
-    		
-			return pstmt;
-    	} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+        try {
+            PreparedStatement pstmt;
+
+            //Save directionsInfo(north)
+            int id1 = 0;
+            DirectionInfo north_di = ci.getNorth();
+            pstmt = saveDirectionInfo(north_di, "north");
+            id1 = getId(pstmt, 1);
+
+            //Save directionsInfo(east)
+            int id2 = 0;
+            DirectionInfo east_di = ci.getEast();
+            pstmt = saveDirectionInfo(east_di, "east");
+            id2 = getId(pstmt, 1);
+
+            //Save directionsInfo(south)
+            int id3 = 0;
+            DirectionInfo south_di = ci.getSouth();
+            pstmt = saveDirectionInfo(south_di, "south");
+            id3 = getId(pstmt, 1);
+
+            //Save directionsInfo(west)
+            int id4 = 0;
+            DirectionInfo west_di = ci.getWest();
+            pstmt = saveDirectionInfo(west_di, "west");
+            id4 = getId(pstmt, 1);
+
+            //Save cars of directionsInfo(north)?
+            //Save cars of directionsInfo(east)?
+            //Save cars of directionsInfo(south)?
+            //Save cars of directionsInfo(west)?
+
+
+            pstmt = con.prepareStatement(Constants.insert_crossroadsInfo_statment, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, current_conditions_id);
+            pstmt.setInt(2, id1);
+            pstmt.setInt(3, id2);
+            pstmt.setInt(4, id3);
+            pstmt.setInt(5, id4);
+            pstmt.executeUpdate();
+
+            //Save crossroad
+            int current_ci_id = getId(pstmt, 1);
+            System.out.println(current_ci_id);
+            Crossroad cr = ci.getCrossroad();
+            saveCrossroad(cr, current_ci_id);
+
+            return pstmt;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    
+
     private PreparedStatement saveDirectionInfo(DirectionInfo di, String type) {
-		try {
-	    	PreparedStatement pstmt;
-			pstmt = con.prepareStatement(Constants.insert_directionsInfo_statment, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setInt(1, di.getCarsCount());
-			pstmt.setDouble(2, di.getActualSpeed());
-			pstmt.setDouble(3, di.getSpeedLimit());
-			pstmt.setString(4, type);
-			pstmt.executeUpdate();
-			return pstmt;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+        try {
+            PreparedStatement pstmt;
+            pstmt = con.prepareStatement(Constants.insert_directionsInfo_statment, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, di.getCarsCount());
+            pstmt.setDouble(2, di.getActualSpeed());
+            pstmt.setDouble(3, di.getSpeedLimit());
+            pstmt.setString(4, type);
+            pstmt.executeUpdate();
+            return pstmt;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    
+
     private PreparedStatement saveCrossroad(Crossroad cr, int ci_id) {
-		try {
-			PreparedStatement pstmt;
-			
-			//Save north traffic light
-			int id1 = 0;
-			TrafficLight tl1 = cr.getNorthTrafficLight();
-			pstmt = saveTrafficLight(tl1);
-			id1 = getId(pstmt, 1);
-			
-			//Save east traffic light
-			int id2 = 0;
-			TrafficLight tl2 = cr.getNorthTrafficLight();
-			pstmt = saveTrafficLight(tl2);
-			id2 = getId(pstmt, 1);
-			
-			//Save south traffic light
-			int id3 = 0;
-			TrafficLight tl3 = cr.getNorthTrafficLight();
-			pstmt = saveTrafficLight(tl3);
-			id3 = getId(pstmt, 1);
-			
-			//Save west traffic light
-			int id4 = 0;
-			TrafficLight tl4 = cr.getNorthTrafficLight();
-			pstmt = saveTrafficLight(tl4);
-			id4 = getId(pstmt, 1);
-			
-			pstmt = con.prepareStatement(Constants.insert_crossroads_statment, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setInt(1, ci_id);
-			pstmt.setInt(2, id1);
-			pstmt.setInt(3, id2);
-			pstmt.setInt(4, id3);
-			pstmt.setInt(5, id4);
-			pstmt.setInt(6, cr.getActualState());
-			pstmt.executeUpdate();
-			return pstmt;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+        try {
+            PreparedStatement pstmt;
+
+            //Save north traffic light
+            int id1 = 0;
+            TrafficLight tl1 = cr.getNorthTrafficLight();
+            pstmt = saveTrafficLight(tl1);
+            id1 = getId(pstmt, 1);
+
+            //Save east traffic light
+            int id2 = 0;
+            TrafficLight tl2 = cr.getNorthTrafficLight();
+            pstmt = saveTrafficLight(tl2);
+            id2 = getId(pstmt, 1);
+
+            //Save south traffic light
+            int id3 = 0;
+            TrafficLight tl3 = cr.getNorthTrafficLight();
+            pstmt = saveTrafficLight(tl3);
+            id3 = getId(pstmt, 1);
+
+            //Save west traffic light
+            int id4 = 0;
+            TrafficLight tl4 = cr.getNorthTrafficLight();
+            pstmt = saveTrafficLight(tl4);
+            id4 = getId(pstmt, 1);
+
+            pstmt = con.prepareStatement(Constants.insert_crossroads_statment, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, ci_id);
+            pstmt.setInt(2, id1);
+            pstmt.setInt(3, id2);
+            pstmt.setInt(4, id3);
+            pstmt.setInt(5, id4);
+            pstmt.setInt(6, cr.getActualState());
+            pstmt.executeUpdate();
+            return pstmt;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    
+
     private PreparedStatement saveTrafficLight(TrafficLight tl) {
-    	try {
-	    	PreparedStatement pstmt;
-			pstmt = con.prepareStatement(Constants.insert_traffic_light, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setInt(1, tl.getActualStateNumber());
-			pstmt.executeUpdate();
-			return pstmt;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-    
-    private int getId(PreparedStatement pstmt, int index) {
-    	//Extract id from ResultSet
-		try {
-			ResultSet rs = pstmt.getGeneratedKeys();
-			int id = 0;
-			while(rs.next()){ id = rs.getInt(index); }
-			return id;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return -1;
+        try {
+            PreparedStatement pstmt;
+            pstmt = con.prepareStatement(Constants.insert_traffic_light, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, tl.getActualStateNumber());
+            pstmt.executeUpdate();
+            return pstmt;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    
+
+    private int getId(PreparedStatement pstmt, int index) {
+        //Extract id from ResultSet
+        try {
+            ResultSet rs = pstmt.getGeneratedKeys();
+            int id = 0;
+            while (rs.next()) {
+                id = rs.getInt(index);
+            }
+            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
     private String createQuery(String... query_part) {
         String full_query = "";
         for (String query : query_part) {

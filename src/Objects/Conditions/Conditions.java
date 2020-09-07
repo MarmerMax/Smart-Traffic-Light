@@ -20,12 +20,12 @@ public class Conditions {
     private ArrayList<LaneInfo> lanes_info_first_crossroad;
     private ArrayList<LaneInfo> lanes_info_second_crossroad;
 
+    private double better_duration; //save to database - number
     private double initial_duration;
-    private double algorithm_duration;
+    private double simulation_duration;
 
     private Queue<Double> better_distribution;
-    private double better_distribution_duration;
-    private String better_distribution_duration_string;
+    private String better_distribution_string; //save to database - as string
 
     /**
      * Constructor.
@@ -316,8 +316,8 @@ public class Conditions {
      * @param path - string of better distribution times (->12:8->10:10->14:6)
      */
     public void setBetterDistribution(String path) {
-        better_distribution_duration_string = path;
-        better_distribution_duration = Utils.calculateDurationFromString(path);
+        better_distribution_string = path;
+        better_duration = Utils.calculateDurationFromString(path);
         this.better_distribution.clear();
         Utils.addBetterDistributionToQueue(this.better_distribution, path);
     }
@@ -327,8 +327,8 @@ public class Conditions {
      *
      * @return - better_distribution_duration
      */
-    public double getBetterDistributionDuration() {
-        return better_distribution_duration;
+    public double getBetterDuration() {
+        return better_duration;
     }
 
     /**
@@ -355,21 +355,21 @@ public class Conditions {
      *
      * @return algorithm duration - real time of working
      */
-    public double getAlgorithmDuration() {
-        return algorithm_duration;
+    public double getSimulationDuration() {
+        return simulation_duration;
     }
 
     /**
      * This function sets algorithm duration.
      *
-     * @param algorithm_duration
+     * @param simulation_duration
      */
-    public void setAlgorithmDuration(double algorithm_duration) {
-        System.out.println(ConsoleColors.RED_BOLD + "simulation working time: " + algorithm_duration + ConsoleColors.RESET);
-        this.algorithm_duration = algorithm_duration;
+    public void setSimulationDuration(double simulation_duration) {
+        System.out.println(ConsoleColors.RED_BOLD + "simulation working time: " + simulation_duration + ConsoleColors.RESET);
+        this.simulation_duration = simulation_duration;
     }
 
-    public String getBetterDistributionDurationString() {
-        return better_distribution_duration_string;
+    public String getBetterDistributionString() {
+        return better_distribution_string;
     }
 }

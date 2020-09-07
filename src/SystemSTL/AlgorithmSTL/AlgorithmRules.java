@@ -111,7 +111,7 @@ public class AlgorithmRules {
     }
 
     public String getBetterDistribution(){
-        return this.conditions.getBetterDistributionDurationString();
+        return this.conditions.getBetterDistributionString();
     }
 
     public Node getRoot() {

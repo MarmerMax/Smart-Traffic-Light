@@ -83,7 +83,7 @@ public class TrafficLightsComputation extends Thread {
                 }
             }
         }
-        conditions.setAlgorithmDuration(traffic_lights_working_time);
+        conditions.setSimulationDuration(traffic_lights_working_time);
     }
 
     /**

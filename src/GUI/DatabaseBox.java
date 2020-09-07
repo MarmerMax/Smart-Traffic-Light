@@ -135,8 +135,9 @@ public class DatabaseBox {
         window.setResizable(false);
         window.showAndWait();
     }
-    
-    
+
+
+//    public static DatabaseConditions display() {
     public static String display() {
         query = "";
 
