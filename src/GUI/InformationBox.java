@@ -121,10 +121,11 @@ public class InformationBox {
         buttons.getChildren().add(button_info_speed_limit);
         buttons.getChildren().add(button_info_actual_speed);
 
-        content.getChildren().addAll(image_text, buttons);
+        content.getChildren().addAll(image_text);
 
         border_pane.setTop(top_menu);
         border_pane.setCenter(content);
+        border_pane.setBottom(buttons);
 
         Scene scene = new Scene(border_pane);
         window.setScene(scene);

@@ -243,5 +243,6 @@ public class Constants {
             "\n\nIt takes 3 seconds to switch the state of traffic light colors.";
     public static final String INFO_CARS_COUNT_TEXT = "The number of cars indicates how many cars must pass the intersection from the selected side.";
     public static final String INFO_SPEED_LIMIT_TEXT = "Speed limit indicates the speed limit for the selected road.";
-    public static final String INFO_ACTUAL_SPEED_TEXT = "The actual speed indicates the speed at which the movement is taking place in real time.";
+    public static final String INFO_ACTUAL_SPEED_TEXT = "The actual speed indicates the speed at which the movement is taking place in real time." +
+            "\n\nActual speed can be less than speed limit, but can not be more than speed limit on the road.";
 }

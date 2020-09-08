@@ -24,6 +24,9 @@ public class Conditions {
     private double initial_duration;
     private double simulation_duration;
 
+    private double initial_awt;
+    private double better_awt;
+
     private Queue<Double> better_distribution;
     private String better_distribution_string; //save to database - as string
 
@@ -38,6 +41,7 @@ public class Conditions {
         first_crossroad_info = info1;
         second_crossroad_info = info2;
         this.better_distribution = new ArrayDeque<>();
+        better_distribution_string = "";
         createLanesInfo();
     }
 
@@ -371,5 +375,23 @@ public class Conditions {
 
     public String getBetterDistributionString() {
         return better_distribution_string;
+    }
+
+    public double getInitialAWT() {
+        return initial_awt;
+    }
+
+    public void setInitialAWT(double initial_awt) {
+        this.initial_awt = initial_awt;
+        System.out.println(ConsoleColors.RED_BOLD + initial_awt + ConsoleColors.RESET);
+    }
+
+    public double getBetterAWT() {
+        return better_awt;
+    }
+
+    public void setBetterAWT(double better_awt) {
+        this.better_awt = better_awt;
+        System.out.println(ConsoleColors.RED_BOLD + better_awt + ConsoleColors.RESET);
     }
 }

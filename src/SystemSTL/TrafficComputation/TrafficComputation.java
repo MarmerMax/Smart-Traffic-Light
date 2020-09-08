@@ -22,6 +22,9 @@ public class TrafficComputation extends Thread {
         double initial_duration = Utils.calculateInitialDuration(conditions);
         this.conditions.setInitialDuration(initial_duration);
 
+        double initial_awt = Utils.calculateAWT(conditions);
+        this.conditions.setInitialAWT(initial_awt);
+
         createEastWestExecutor();
         createNorthSouthExecutor();
     }

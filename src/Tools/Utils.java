@@ -642,4 +642,131 @@ public class Utils {
         }
         return result;
     }
+
+    @SuppressWarnings("Duplicates")
+    public static double calculateAWT(Conditions conditions) {
+        int phases_passed = 0;
+
+        double changing_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3;
+        double phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_time * 2;
+
+        LaneInfo lane_info_first_north = new LaneInfo(conditions.getFirstCrossroadInfo().getNorth());
+        LaneInfo lane_info_first_east = new LaneInfo(conditions.getFirstCrossroadInfo().getEast());
+        LaneInfo lane_info_first_south = new LaneInfo(conditions.getFirstCrossroadInfo().getSouth());
+        LaneInfo lane_info_first_west = new LaneInfo(conditions.getFirstCrossroadInfo().getWest());
+        LaneInfo lane_info_second_north = new LaneInfo(conditions.getFirstCrossroadInfo().getNorth());
+        LaneInfo lane_info_second_east = new LaneInfo(conditions.getFirstCrossroadInfo().getEast());
+        LaneInfo lane_info_second_south = new LaneInfo(conditions.getFirstCrossroadInfo().getSouth());
+        LaneInfo lane_info_second_west = new LaneInfo(conditions.getFirstCrossroadInfo().getWest());
+
+        AlgorithmLaneInfo first_north = new AlgorithmLaneInfo(lane_info_first_north);
+        AlgorithmLaneInfo first_east = new AlgorithmLaneInfo(lane_info_first_east);
+        AlgorithmLaneInfo first_south = new AlgorithmLaneInfo(lane_info_first_south);
+        AlgorithmLaneInfo first_west = new AlgorithmLaneInfo(lane_info_first_west);
+        AlgorithmLaneInfo second_north = new AlgorithmLaneInfo(lane_info_second_north);
+        AlgorithmLaneInfo second_east = new AlgorithmLaneInfo(lane_info_second_east);
+        AlgorithmLaneInfo second_south = new AlgorithmLaneInfo(lane_info_second_south);
+        AlgorithmLaneInfo second_west = new AlgorithmLaneInfo(lane_info_second_west);
+
+        ArrayList<Double> times_arr = new ArrayList<>();
+
+        if (conditions.getBetterDistributionString().equals("")) {
+            double time = Constants.TRAFFIC_LIGHT_PHASE_TIME / 2;
+            double[] times = {time, time};
+            boolean finish = false;
+
+            while (!finish) {
+
+                calculateASWTForLaneByTime(times_arr, first_north, times[0], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, second_north, times[0], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, first_east, times[1], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_west, times[1], phase_time * phases_passed + 6);
+
+                if (checkIfAllPass(first_north, first_east, first_south, first_west)) {
+                    finish = true;
+                }
+
+                if (checkIfAllPass(second_north, second_east, second_south, second_west)) {
+                    finish = true;
+                }
+
+                phases_passed++;
+            }
+
+        } else {
+            String[] phases = getAllPhases(conditions.getBetterDistributionString());
+
+            for (String phase : phases) {
+                double times[] = getPhaseTimes(phase);
+
+
+                calculateASWTForLaneByTime(times_arr, first_north, times[0], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, second_north, times[0], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, first_east, times[1], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_west, times[1], phase_time * phases_passed + 6);
+
+                phases_passed++;
+            }
+        }
+
+        double result_awt = Utils.round(Formulas.AWT(times_arr), 2);
+        return result_awt;
+    }
+
+    private static void calculateASWTForLaneByTime(ArrayList<Double> times, AlgorithmLaneInfo lane_info, double time, double passed_time) {
+
+        int cars_count = lane_info.getCarsCount();
+        double speed_limit = lane_info.getSpeedLimit();
+        double car_length = lane_info.getAvgCarLength();
+        double dist = lane_info.getDistanceFromCrossroad();
+
+        double acc = 2;
+
+        double time_step = (Constants.SAFETY_DISTANCE_TO_START - Constants.SAFETY_DISTANCE) / acc;
+        int passed_count = 0;
+        boolean next = true;
+
+        while (next && cars_count - (passed_count) > 0) {
+
+            if (car_length * passed_count < calculatePassedDistance(time - (passed_count * time_step), acc, 0, speed_limit)) {
+
+                double act_time = Formulas.calculateTimeForPassingDistanceByAcc(acc, car_length * passed_count);
+
+                passed_count++;
+                times.add(act_time + passed_time);
+
+            } else {
+                next = false;
+            }
+        }
+
+        cars_count = cars_count - (passed_count + 1);
+
+        if (cars_count < 0) {
+            cars_count = 0;
+        }
+
+
+        lane_info.setCarsCount(cars_count);
+        lane_info.setDistanceFromCrossroad(dist - passed_count * car_length);
+
+    }
+
+    private static boolean checkIfAllPass(AlgorithmLaneInfo n, AlgorithmLaneInfo e, AlgorithmLaneInfo s, AlgorithmLaneInfo w) {
+
+        if (n.getCarsCount() == 0 && e.getCarsCount() == 0 && s.getCarsCount() == 0 && w.getCarsCount() == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

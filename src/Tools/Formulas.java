@@ -2,7 +2,9 @@ package Tools;
 
 import Objects.Car.Car;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
+import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.Queue;
 
 public class Formulas {
@@ -47,6 +49,11 @@ public class Formulas {
     public static double calculateTimeForMaxSpeed(double acc, double velocity) {
         velocity = Formulas.convertKMpHtoMpS(velocity);
         double result = velocity / acc;
+        return result;
+    }
+
+    public static double calculateTimeForPassingDistanceByAcc(double acc, double dist) {
+        double result = Math.sqrt(2 * dist / acc);
         return result;
     }
 
@@ -111,8 +118,17 @@ public class Formulas {
         return T_common(t_start, t_move, t_opposite);
     }
 
-    //average squared waiting time
-    public static double ASWT(Queue<Car> cars) {
-        return 0;
+    //average waiting time
+    public static double AWT(ArrayList<Double> times) {
+        double cars = times.size();
+        double result = 0;
+
+        for (double time : times) {
+            result += time;
+        }
+
+        result /= cars;
+
+        return result;
     }
 }

@@ -70,7 +70,7 @@ public class ProgramGUI {
         crossroad_info_2 = new CrossroadInfo(crossroad_2);
 
 //        conditions = Utils.createStartConditions();
-
+//        ResultsBox.display("1", "2");
         createHomeWindow();
     }
 
@@ -381,7 +381,7 @@ public class ProgramGUI {
 //            Utils.setConditionsInSpinner(cars_spinners_1, limit_spinners_1, actual_spinners_1, database.getFirstCrossroad());
 //            Utils.setConditionsInSpinner(cars_spinners_2, limit_spinners_2, actual_spinners_2, database.getSecondCrossroad());
 //
-//            ResolvedBox.display(); // previous result
+//            ResultsBox.display(); // previous result
 
             //load from database
             //String query_name = DatabaseBox.display();
@@ -572,9 +572,10 @@ public class ProgramGUI {
 
         BorderPane borderPane = new BorderPane();
 
+        SystemSTL systemSTL = new SystemSTL(conditions);
+
         Button buttonStart = new Button(Constants.start_button_label);
         buttonStart.setOnAction(e -> {
-            SystemSTL systemSTL = new SystemSTL(conditions);
             Thread run_system = new Thread(new Runnable() {
                 @Override
                 public void run() {

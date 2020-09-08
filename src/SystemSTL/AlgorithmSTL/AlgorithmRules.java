@@ -108,6 +108,7 @@ public class AlgorithmRules {
      */
     public void setBetterDistribution(String result) {
         this.conditions.setBetterDistribution(result);
+        this.conditions.setBetterAWT(Utils.calculateAWT(this.conditions));
     }
 
     public String getBetterDistribution(){

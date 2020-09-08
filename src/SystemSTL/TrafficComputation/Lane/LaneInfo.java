@@ -2,6 +2,7 @@ package SystemSTL.TrafficComputation.Lane;
 
 import Objects.Car.Car;
 import Objects.Car.CarFactory;
+import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import SystemSTL.TrafficComputation.Car.CarInfo;
 import Tools.Constants;
 import Tools.Formulas;
@@ -33,6 +34,18 @@ public class LaneInfo {
         }
 
         addCarsToList(cars_count);
+    }
+
+
+    public LaneInfo(DirectionInfo direction_info) {
+
+        if (direction_info.getSpeedLimit() > direction_info.getActualSpeed()) {
+            speed_limit = Formulas.convertKMpHtoMpS(direction_info.getActualSpeed());
+        } else {
+            speed_limit = Formulas.convertKMpHtoMpS(direction_info.getSpeedLimit());
+        }
+
+        addCarsToList(direction_info.getCarsCount());
     }
 
     /**
