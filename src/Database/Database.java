@@ -185,6 +185,10 @@ public class Database {
             //Save conditions
             PreparedStatement pstmt = con.prepareStatement(Constants.insert_conditions_statment, Statement.RETURN_GENERATED_KEYS);
             pstmt.setNString(1, "name"); //need to replace to name of conditions
+            pstmt.setDouble(2, conditions.getInitialDuration());
+            pstmt.setDouble(3, conditions.getBetterDuration());
+            pstmt.setNString(4, conditions.getBetterDistributionString());
+            pstmt.setDouble(5, conditions.getSimulationDuration());
             pstmt.executeUpdate();
 
             //Extract conditions_id from ResultSet

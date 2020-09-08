@@ -5,12 +5,17 @@ public class Constants {
     /////////////////////database queries///////////////////////
     //Creates
     public static final String create_database_query = "create database if not exists stl";
-    public static final String create_conditions_table_query = "create table if not exists stl.Conditions (\n" +
-            "	`condition_id` int not null auto_increment,\n" +
-            "    `condition_name` varchar(20) not null,\n" +
-            "    `Date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n" +
-            "    PRIMARY KEY (`condition_id`)\n" +
-            ")";
+    public static final String create_conditions_table_query = "create table if not exists stl.Conditions (\n" + 
+    		"	`condition_id` int not null,\n" + 
+    		"    `condition_name` varchar(20) not null,\n" + 
+    		"    `Date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n" + 
+    		"    `init_total_time` double,\n" + 
+    		"    `better_total_time` double,\n" + 
+    		"    `distribution_path` varchar(255),\n" + 
+    		"    `simulation_time` double,\n" + 
+    		"    `AWT` double,\n" + 
+    		"    PRIMARY KEY (`condition_id`)\n" + 
+    		")";
     public static final String create_directionsInfo_table_query = "create table if not exists stl.DirectionsInfo (\n" +
             "	`direction_info_id` int not null auto_increment, \n" +
             "	`cars_amount` int not null,\n" +
@@ -64,7 +69,7 @@ public class Constants {
             ")";
 
     //Saves
-    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name) values(?)";
+    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name,init_total_time,better_total_time,distribution_path,simulation_time) values(?,?,?,?,?)";
     public static final String insert_directionsInfo_statment = "insert into "
             + "stl.DirectionsInfo(cars_amount, average_speed, limit_speed, type)"
             + " values(?,?,?,?)";
