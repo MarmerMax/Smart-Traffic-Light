@@ -1,6 +1,9 @@
 package GUI;
 
+import java.sql.PreparedStatement;
+
 import Database.Database;
+import Database.DatabaseConditions;
 import Objects.Conditions.Conditions;
 import Tools.Constants;
 import javafx.beans.value.ChangeListener;
@@ -138,7 +141,7 @@ public class DatabaseBox {
 
 
 //    public static DatabaseConditions display() {
-    public static String display() {
+    public static DatabaseConditions display() {
         query = "";
 
         login();
@@ -180,6 +183,8 @@ public class DatabaseBox {
 
             Button yesButton = new Button(Constants.confirm_button_database);
             yesButton.setOnAction(e -> {
+            	Database db = Database.getInstance();
+            	db.getDatabaseConditions(query);
 //            	//create crossroadInfo with fields data
 //                //check if data correct
 //                //continue to next window
@@ -223,7 +228,7 @@ public class DatabaseBox {
             window.setResizable(false);
             window.showAndWait();
 
-            return query;
+            return null;
             }
         return null;
         }

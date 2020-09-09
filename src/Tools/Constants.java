@@ -6,7 +6,7 @@ public class Constants {
     //Creates
     public static final String create_database_query = "create database if not exists stl";
     public static final String create_conditions_table_query = "create table if not exists stl.Conditions (\n" + 
-    		"	`condition_id` int not null,\n" + 
+    		"	`condition_id` int not null auto_increment,\n" + 
     		"    `condition_name` varchar(20) not null,\n" + 
     		"    `Date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n" + 
     		"    `init_total_time` double,\n" + 
@@ -84,6 +84,12 @@ public class Constants {
     //Selects
     public static final String select_conditions_dates_query = "select Date from stl.conditions";
     public static final String conditions_dates = "Date";
+    public static final String select_condition_by_date_query = "select * from stl.conditions where date =?";
+    public static final String select_crossroadsInfo_ids_query = "select crossroad_info_id from stl.crossroadsinfo where condition_id =?";
+    public static final String select_crossroadsInfo_query = "select north_direction_info_id, east_direction_info_id, south_direction_info_id, west_direction_info_id"
+    		+ " from stl.crossroadsinfo where crossroad_info_id =?";
+    public static final String select_directionInfo_query = "select cars_amount, average_speed, limit_speed from stl.directionsinfo"
+    		+ "where direction_info_id = ?";
     ///////////////////////////////////////////////////////////
 
     //log messages
