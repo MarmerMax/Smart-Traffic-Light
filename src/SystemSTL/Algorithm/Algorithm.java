@@ -71,7 +71,7 @@ public class Algorithm extends Thread {
             if (this.conditions.getBetterDistribution().size() != 0 && !better_distribution_selected) {
                 better_distribution_selected = true;
 
-                double better_duration = this.conditions.getBetterDuration() - actual_duration;
+                double better_duration = this.conditions.getAlgorithmDuration() - actual_duration;
 
                 try {
                     System.out.println("Smart algorithm will sleep " + (int) better_duration + " seconds");

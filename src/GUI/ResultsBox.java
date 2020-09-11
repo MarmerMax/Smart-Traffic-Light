@@ -1,5 +1,7 @@
 package GUI;
 
+import Database.DatabaseConditions;
+import Tools.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,12 +17,11 @@ import javafx.stage.Stage;
 public class ResultsBox {
 
     @SuppressWarnings("Duplicates")
-//    public static void display(String path, int [] cars1, int [] cars2, int [] limit1,int [] limit2,int [] actual1,int [] actual2, double aswt_init, double aswt_better, int[] result) {
-    public static void display() {
+    public static void display(DatabaseConditions database_conditions) {
         Stage stage = new Stage();
         stage.setTitle("Bar Chart");
         final String TIME_LABEL = "Time";
-        final String ASWT_LABEL = "AWT";
+        final String AWT_LABEL = "AWT";
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String, Number> bc =
@@ -32,17 +33,17 @@ public class ResultsBox {
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("Initial");
-        series1.getData().add(new XYChart.Data(TIME_LABEL, 160));
-        series1.getData().add(new XYChart.Data(ASWT_LABEL, 400));
+        series1.getData().add(new XYChart.Data(TIME_LABEL, database_conditions.getInitialTime()));
+        series1.getData().add(new XYChart.Data(AWT_LABEL, database_conditions.getInitialAWS()));
 
         XYChart.Series series2 = new XYChart.Series();
         series2.setName("Algorithm");
-        series2.getData().add(new XYChart.Data(TIME_LABEL, 150));
-        series2.getData().add(new XYChart.Data(ASWT_LABEL, 200));
+        series2.getData().add(new XYChart.Data(TIME_LABEL, database_conditions.getBetterTime()));
+        series2.getData().add(new XYChart.Data(AWT_LABEL, database_conditions.getBetterAWS()));
 
         XYChart.Series series3 = new XYChart.Series();
         series3.setName("Simulation");
-        series3.getData().add(new XYChart.Data(TIME_LABEL, 200));
+        series3.getData().add(new XYChart.Data(TIME_LABEL, database_conditions.getSimulationTime()));
 
 
         BorderPane border_pane = new BorderPane();
@@ -114,28 +115,28 @@ public class ResultsBox {
         VBox first_cars_count = new VBox();
         first_cars_count.setAlignment(Pos.CENTER);
         Label first_cars_label = new Label("cars count");
-        Label first_cars_north = new Label("10");
-        Label first_cars_east = new Label("50");
-        Label first_cars_south = new Label("50");
-        Label first_cars_west = new Label("50");
+        Label first_cars_north = new Label("" + database_conditions.getCarsFirstCrossroad()[Constants.NORTH_DIRECTION]);
+        Label first_cars_east = new Label("" + database_conditions.getCarsFirstCrossroad()[Constants.EAST_DIRECTION]);
+        Label first_cars_south = new Label("" + +database_conditions.getCarsFirstCrossroad()[Constants.SOUTH_DIRECTION]);
+        Label first_cars_west = new Label("" + +database_conditions.getCarsFirstCrossroad()[Constants.WEST_DIRECTION]);
         first_cars_count.getChildren().addAll(first_cars_label, first_cars_north, first_cars_east, first_cars_south, first_cars_west);
 
         VBox first_speed_limit = new VBox();
         first_speed_limit.setAlignment(Pos.CENTER);
         Label first_speed_label = new Label("speed limit");
-        Label first_speed_north = new Label("10");
-        Label first_speed_east = new Label("50");
-        Label first_speed_south = new Label("50");
-        Label first_speed_west = new Label("50");
+        Label first_speed_north = new Label("" + database_conditions.getSpeedLimitFirstCrossroad()[Constants.NORTH_DIRECTION]);
+        Label first_speed_east = new Label("" + database_conditions.getSpeedLimitFirstCrossroad()[Constants.EAST_DIRECTION]);
+        Label first_speed_south = new Label("" + database_conditions.getSpeedLimitFirstCrossroad()[Constants.SOUTH_DIRECTION]);
+        Label first_speed_west = new Label("" + database_conditions.getSpeedLimitFirstCrossroad()[Constants.WEST_DIRECTION]);
         first_speed_limit.getChildren().addAll(first_speed_label, first_speed_north, first_speed_east, first_speed_south, first_speed_west);
 
         VBox first_actual_speed = new VBox();
         first_actual_speed.setAlignment(Pos.CENTER);
         Label first_actual_label = new Label("actual speed");
-        Label first_actual_north = new Label("10");
-        Label first_actual_east = new Label("50");
-        Label first_actual_south = new Label("50");
-        Label first_actual_west = new Label("50");
+        Label first_actual_north = new Label("" + database_conditions.getActualSpeedFirstCrossroad()[Constants.NORTH_DIRECTION]);
+        Label first_actual_east = new Label("" + database_conditions.getActualSpeedFirstCrossroad()[Constants.EAST_DIRECTION]);
+        Label first_actual_south = new Label("" + database_conditions.getActualSpeedFirstCrossroad()[Constants.SOUTH_DIRECTION]);
+        Label first_actual_west = new Label("" + database_conditions.getActualSpeedFirstCrossroad()[Constants.WEST_DIRECTION]);
         first_actual_speed.getChildren().addAll(first_actual_label, first_actual_north, first_actual_east, first_actual_south, first_actual_west);
 
         VBox second_directions = new VBox();
@@ -150,28 +151,28 @@ public class ResultsBox {
         VBox second_cars_count = new VBox();
         second_cars_count.setAlignment(Pos.CENTER);
         Label second_cars_label = new Label("cars count");
-        Label second_cars_north = new Label("10");
-        Label second_cars_east = new Label("50");
-        Label second_cars_south = new Label("50");
-        Label second_cars_west = new Label("50");
+        Label second_cars_north = new Label("" + database_conditions.getCarsSecondCrossroad()[Constants.NORTH_DIRECTION]);
+        Label second_cars_east = new Label("" + database_conditions.getCarsSecondCrossroad()[Constants.EAST_DIRECTION]);
+        Label second_cars_south = new Label("" + database_conditions.getCarsSecondCrossroad()[Constants.SOUTH_DIRECTION]);
+        Label second_cars_west = new Label("" + database_conditions.getCarsSecondCrossroad()[Constants.WEST_DIRECTION]);
         second_cars_count.getChildren().addAll(second_cars_label, second_cars_north, second_cars_east, second_cars_south, second_cars_west);
 
         VBox second_speed_limit = new VBox();
         second_speed_limit.setAlignment(Pos.CENTER);
         Label second_speed_label = new Label("speed limit");
-        Label second_speed_north = new Label("10");
-        Label second_speed_east = new Label("50");
-        Label second_speed_south = new Label("50");
-        Label second_speed_west = new Label("50");
+        Label second_speed_north = new Label("" + database_conditions.getSpeedLimitSecondCrossroad()[Constants.NORTH_DIRECTION]);
+        Label second_speed_east = new Label("" + database_conditions.getSpeedLimitSecondCrossroad()[Constants.EAST_DIRECTION]);
+        Label second_speed_south = new Label("" + database_conditions.getSpeedLimitSecondCrossroad()[Constants.SOUTH_DIRECTION]);
+        Label second_speed_west = new Label("" + database_conditions.getSpeedLimitSecondCrossroad()[Constants.WEST_DIRECTION]);
         second_speed_limit.getChildren().addAll(second_speed_label, second_speed_north, second_speed_east, second_speed_south, second_speed_west);
 
         VBox second_actual_speed = new VBox();
         second_actual_speed.setAlignment(Pos.CENTER);
         Label second_actual_label = new Label("actual speed");
-        Label second_actual_north = new Label("10");
-        Label second_actual_east = new Label("50");
-        Label second_actual_south = new Label("50");
-        Label second_actual_west = new Label("50");
+        Label second_actual_north = new Label("" + database_conditions.getActualSpeedSecondCrossroad()[Constants.NORTH_DIRECTION]);
+        Label second_actual_east = new Label("" + database_conditions.getActualSpeedSecondCrossroad()[Constants.EAST_DIRECTION]);
+        Label second_actual_south = new Label("" + database_conditions.getActualSpeedSecondCrossroad()[Constants.SOUTH_DIRECTION]);
+        Label second_actual_west = new Label("" + database_conditions.getActualSpeedSecondCrossroad()[Constants.WEST_DIRECTION]);
         second_actual_speed.getChildren().addAll(second_actual_label, second_actual_north, second_actual_east, second_actual_south, second_actual_west);
 
 
@@ -185,16 +186,16 @@ public class ResultsBox {
         VBox results_times = new VBox();
         results_times.setAlignment(Pos.CENTER);
         Label results_times_label = new Label("Time");
-        Label results_times_initial = new Label("10");
-        Label results_times_algorithm = new Label("50");
+        Label results_times_initial = new Label("" + database_conditions.getInitialTime());
+        Label results_times_algorithm = new Label("" + database_conditions.getBetterTime());
         results_times.getChildren().addAll(results_times_label, results_times_initial, results_times_algorithm);
 
-        VBox results_aswt = new VBox();
-        results_aswt.setAlignment(Pos.CENTER);
-        Label results_aswt_label = new Label("AWT");
-        Label results_aswt_initial = new Label("12");
-        Label results_aswt_algorithm = new Label("50");
-        results_aswt.getChildren().addAll(results_aswt_label, results_aswt_initial, results_aswt_algorithm);
+        VBox results_awt = new VBox();
+        results_awt.setAlignment(Pos.CENTER);
+        Label results_awt_label = new Label("AWT");
+        Label results_awt_initial = new Label("" + database_conditions.getInitialAWS());
+        Label results_awt_algorithm = new Label("" + database_conditions.getBetterAWS());
+        results_awt.getChildren().addAll(results_awt_label, results_awt_initial, results_awt_algorithm);
 
 
         first_crossroad_conditions.getChildren().addAll(
@@ -213,7 +214,7 @@ public class ResultsBox {
         results_conditions.getChildren().addAll(
                 results_types,
                 results_times,
-                results_aswt);
+                results_awt);
 
         first_crossroad_box.getChildren().addAll(first_crossroad_label, first_crossroad_conditions);
         second_crossroad_box.getChildren().addAll(second_crossroad_label, second_crossroad_conditions);

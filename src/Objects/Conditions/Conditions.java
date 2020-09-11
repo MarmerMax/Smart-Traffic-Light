@@ -20,12 +20,12 @@ public class Conditions {
     private ArrayList<LaneInfo> lanes_info_first_crossroad;
     private ArrayList<LaneInfo> lanes_info_second_crossroad;
 
-    private double better_duration; //save to database - number
+    private double algorithm_duration; //save to database - number
     private double initial_duration;
     private double simulation_duration;
 
     private double initial_awt;
-    private double better_awt;
+    private double algorithm_awt;
 
     private Queue<Double> better_distribution;
     private String better_distribution_string; //save to database - as string
@@ -321,7 +321,7 @@ public class Conditions {
      */
     public void setBetterDistribution(String path) {
         better_distribution_string = path;
-        better_duration = Utils.calculateDurationFromString(path);
+        algorithm_duration = Utils.calculateDurationFromString(path);
         this.better_distribution.clear();
         Utils.addBetterDistributionToQueue(this.better_distribution, path);
     }
@@ -331,8 +331,8 @@ public class Conditions {
      *
      * @return - better_distribution_duration
      */
-    public double getBetterDuration() {
-        return better_duration;
+    public double getAlgorithmDuration() {
+        return algorithm_duration;
     }
 
     /**
@@ -386,12 +386,12 @@ public class Conditions {
         System.out.println(ConsoleColors.CYAN + "Initial time of AWT: " + initial_awt + " seconds." + ConsoleColors.RESET);
     }
 
-    public double getBetterAWT() {
-        return better_awt;
+    public double getAlgorithmAWT() {
+        return algorithm_awt;
     }
 
-    public void setBetterAWT(double better_awt) {
-        this.better_awt = better_awt;
-        System.out.println(ConsoleColors.GREEN + "Algorithm time of AWT: " + better_awt + " seconds" + ConsoleColors.RESET);
+    public void setAlgorithmAWT(double better_awt) {
+        this.algorithm_awt = better_awt;
+        System.out.println(ConsoleColors.GREEN + "Algorithm time of AWT: " + algorithm_awt + " seconds" + ConsoleColors.RESET);
     }
 }

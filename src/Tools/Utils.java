@@ -1,5 +1,6 @@
 package Tools;
 
+import Database.DatabaseConditions;
 import SystemSTL.AlgorithmSTL.AlgorithmConditions;
 import SystemSTL.AlgorithmSTL.AlgorithmLaneInfo;
 import Objects.Car.CarTypes;
@@ -776,4 +777,74 @@ public class Utils {
         System.out.println("*******************************************" + ConsoleColors.RESET);
     }
 
+    public static DatabaseConditions createDatabaseConditions(Conditions conditions) {
+        int[] cars_count_first = Utils.getCarsCount(conditions.getFirstCrossroadInfo());
+        int[] cars_count_second = Utils.getCarsCount(conditions.getSecondCrossroadInfo());
+
+        int[] speed_limit_first = Utils.getSpeedLimits(conditions.getFirstCrossroadInfo());
+        int[] speed_limit_second = Utils.getSpeedLimits(conditions.getSecondCrossroadInfo());
+
+        int[] actual_speed_first = Utils.getActualSpeeds(conditions.getFirstCrossroadInfo());
+        int[] actual_speed_second = Utils.getActualSpeeds(conditions.getSecondCrossroadInfo());
+
+        double init_time = conditions.getInitialDuration();
+        double alg_time = conditions.getAlgorithmDuration();
+        double sim_time = conditions.getSimulationDuration();
+
+        double init_aws = conditions.getInitialAWT();
+        double alg_aws = conditions.getAlgorithmAWT();
+
+        String better_distribution = conditions.getBetterDistributionString();
+
+        DatabaseConditions database_conditions = new DatabaseConditions(
+                cars_count_first,
+                cars_count_second,
+                speed_limit_first,
+                speed_limit_second,
+                actual_speed_first,
+                actual_speed_second,
+                init_time,
+                alg_time,
+                sim_time,
+                init_aws,
+                alg_aws,
+                better_distribution
+        );
+
+        return database_conditions;
+    }
+
+
+    private static int[] getCarsCount(CrossroadInfo crossroad_info) {
+        int[] res = new int[4];
+
+        res[Constants.NORTH_DIRECTION] = crossroad_info.getNorth().getCarsCount();
+        res[Constants.EAST_DIRECTION] = crossroad_info.getEast().getCarsCount();
+        res[Constants.SOUTH_DIRECTION] = crossroad_info.getSouth().getCarsCount();
+        res[Constants.WEST_DIRECTION] = crossroad_info.getWest().getCarsCount();
+
+        return res;
+    }
+
+    private static int[] getSpeedLimits(CrossroadInfo crossroad_info) {
+        int[] res = new int[4];
+
+        res[Constants.NORTH_DIRECTION] = (int) crossroad_info.getNorth().getSpeedLimit();
+        res[Constants.EAST_DIRECTION] = (int) crossroad_info.getEast().getSpeedLimit();
+        res[Constants.SOUTH_DIRECTION] = (int) crossroad_info.getSouth().getSpeedLimit();
+        res[Constants.WEST_DIRECTION] = (int) crossroad_info.getWest().getSpeedLimit();
+
+        return res;
+    }
+
+    private static int[] getActualSpeeds(CrossroadInfo crossroad_info) {
+        int[] res = new int[4];
+
+        res[Constants.NORTH_DIRECTION] = (int) crossroad_info.getNorth().getActualSpeed();
+        res[Constants.EAST_DIRECTION] = (int) crossroad_info.getEast().getActualSpeed();
+        res[Constants.SOUTH_DIRECTION] = (int) crossroad_info.getSouth().getActualSpeed();
+        res[Constants.WEST_DIRECTION] = (int) crossroad_info.getWest().getActualSpeed();
+
+        return res;
+    }
 }

@@ -52,7 +52,6 @@ public class SystemSTL {
         executor.execute(traffic_computation);
         executor.execute(traffic_lights_computation);
 
-        executor.shutdown();
     }
 
     public void stop() {
@@ -69,7 +68,11 @@ public class SystemSTL {
      *
      * @return
      */
-    public boolean isFinished() {
-        return conditions.isAllCarsPassed() || isStopped;
+    public boolean getIsFinished() {
+        return conditions.isAllCarsPassed();
+    }
+
+    public boolean getIsStopped(){
+        return isStopped;
     }
 }

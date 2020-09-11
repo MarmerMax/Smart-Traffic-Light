@@ -211,7 +211,7 @@ public class Constants {
 
     //Start values
     public static final int CARS_COUNT_SHORT_ROAD = 3;
-    public static final int CARS_COUNT_LONG_ROAD = 10;
+    public static final int CARS_COUNT_LONG_ROAD = 5;
     public static final int CARS_COUNT_LONG_ROAD_MAX = 100;
     public static final int CARS_COUNT_SHORT_ROAD_MAX = 4;
     public static final int CARS_COUNT_MIN = 1;

@@ -5,7 +5,6 @@ import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
 import Objects.Conditions.Conditions;
 import SystemSTL.SystemSTL;
-import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;
 import javafx.application.Platform;
@@ -31,6 +30,7 @@ import SystemSTL.TrafficComputation.Car.CarInfo;
 import javafx.event.ActionEvent;
 
 import Database.Database;
+import Database.DatabaseConditions;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -578,14 +578,34 @@ public class ProgramGUI {
             Thread run_system = new Thread(new Runnable() {
                 @Override
                 public void run() {
+
                     systemSTL.run();
+
+                    while (!systemSTL.getIsFinished() && !systemSTL.getIsStopped()) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (systemSTL.getIsFinished()) {
+                                DatabaseConditions database_conditions = Utils.createDatabaseConditions(conditions);
+
+                                ResultsBox.display(database_conditions);
+                            }
+                        }
+                    });
                 }
             });
 
             Thread update_simulation = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (!systemSTL.isFinished()) {
+                    while (!systemSTL.getIsFinished() && !systemSTL.getIsStopped()) {
                         try {
                             Thread.sleep(30);
                         } catch (InterruptedException ex) {

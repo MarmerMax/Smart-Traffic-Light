@@ -149,88 +149,103 @@ public class Database {
     }
 
     /**
-     *	return DatabaseConditions object by reriveting data from database.
+     * return DatabaseConditions object by reriveting data from database.
      */
     public DatabaseConditions getDatabaseConditions(String date) {
-    	try {
-			PreparedStatement pstmt = con.prepareStatement(Constants.select_condition_by_date_query);
-			pstmt.setString(1, date);
-			ResultSet rs = pstmt.executeQuery();
-			int condition_id = 0;
-			double initial_time = 0;
-			double better_time = 0;
-			double simulation_time = 0;
-			String better_distribtuion = "";
-			while (rs.next()) {
-				condition_id = rs.getInt(1);
-				initial_time = rs.getInt(4);
-				better_time = rs.getInt(5);
-				better_distribtuion = rs.getString(6);
-				simulation_time = rs.getInt(7);
+        try {
+            PreparedStatement pstmt = con.prepareStatement(Constants.select_condition_by_date_query);
+            pstmt.setString(1, date);
+            ResultSet rs = pstmt.executeQuery();
+            int condition_id = 0;
+            double initial_time = 0;
+            double better_time = 0;
+            double simulation_time = 0;
+
+            double initial_aws = 0;
+            double better_aws = 0;
+
+            String better_distribtuion = "";
+            while (rs.next()) {
+                condition_id = rs.getInt(1);
+                initial_time = rs.getInt(4);
+                better_time = rs.getInt(5);
+                better_distribtuion = rs.getString(6);
+                simulation_time = rs.getInt(7);
             }
-			
-			pstmt = con.prepareStatement(Constants.select_crossroadsInfo_ids_query);
-			pstmt.setInt(1, condition_id);
-			rs = pstmt.executeQuery();
-			int[] crossroadsInfo_ids = new int[2];
-			int index = 0;
-			while (rs.next()) {
-				crossroadsInfo_ids[index] = rs.getInt(1);
-				index++;
-			}
-			
-			pstmt = con.prepareStatement(Constants.select_crossroadsInfo_query);
-			pstmt.setInt(1, crossroadsInfo_ids[0]);
-			rs = pstmt.executeQuery();
-			// crossroadinfo 1 - direction info ids
-			int[] directions_info_ids1 = new int[4];
-			int[] cars_first_crossroad = new int[4];
-			int[] speed_limit_first_crossroad = new int[4];
-			int[] actual_speed_first_crossroad = new int[4];
-			index = 0;
-			while (rs.next()) {
-				directions_info_ids1[index] = rs.getInt(1);
-				pstmt = con.prepareStatement(Constants.select_directionInfo_query);
-				pstmt.setInt(1, rs.getInt(1));
-				ResultSet rs1 = pstmt.executeQuery();
-				while (rs1.next()) {
-					cars_first_crossroad[index] = rs1.getInt(1);
-					speed_limit_first_crossroad[index] = rs1.getInt(2);
-					actual_speed_first_crossroad[index] = rs1.getInt(3);
-				}
-				index++;
-			}
-			
-			pstmt = con.prepareStatement(Constants.select_crossroadsInfo_query);
-			pstmt.setInt(1, crossroadsInfo_ids[1]);
-			rs = pstmt.executeQuery();
-			// crossroadinfo 2 - direction info ids
-			int[] directions_info_ids2 = new int[4];
-			int[] cars_second_crossroad = new int[4];
-			int[] speed_limit_second_crossroad = new int[4];
-			int[] actual_speed_second_crossroad = new int[4];
-			index = 0;
-			while (rs.next()) {
-				directions_info_ids2[index] = rs.getInt(1);
-				pstmt = con.prepareStatement(Constants.select_directionInfo_query);
-				pstmt.setInt(1, rs.getInt(1));
-				ResultSet rs1 = pstmt.executeQuery();
-				while (rs1.next()) {
-					cars_second_crossroad[index] = rs1.getInt(1);
-					speed_limit_second_crossroad[index] = rs1.getInt(2);
-					actual_speed_second_crossroad[index] = rs1.getInt(3);
-				}
-				index++;
-			}
-			
-			
-			return new DatabaseConditions(cars_first_crossroad, cars_second_crossroad, speed_limit_first_crossroad, 
-					speed_limit_second_crossroad, actual_speed_first_crossroad, actual_speed_second_crossroad, initial_time, better_time,
-					simulation_time, better_distribtuion);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+            pstmt = con.prepareStatement(Constants.select_crossroadsInfo_ids_query);
+            pstmt.setInt(1, condition_id);
+            rs = pstmt.executeQuery();
+            int[] crossroadsInfo_ids = new int[2];
+            int index = 0;
+            while (rs.next()) {
+                crossroadsInfo_ids[index] = rs.getInt(1);
+                index++;
+            }
+
+            pstmt = con.prepareStatement(Constants.select_crossroadsInfo_query);
+            pstmt.setInt(1, crossroadsInfo_ids[0]);
+            rs = pstmt.executeQuery();
+            // crossroadinfo 1 - direction info ids
+            int[] directions_info_ids1 = new int[4];
+            int[] cars_first_crossroad = new int[4];
+            int[] speed_limit_first_crossroad = new int[4];
+            int[] actual_speed_first_crossroad = new int[4];
+            index = 0;
+            while (rs.next()) {
+                directions_info_ids1[index] = rs.getInt(1);
+                pstmt = con.prepareStatement(Constants.select_directionInfo_query);
+                pstmt.setInt(1, rs.getInt(1));
+                ResultSet rs1 = pstmt.executeQuery();
+                while (rs1.next()) {
+                    cars_first_crossroad[index] = rs1.getInt(1);
+                    speed_limit_first_crossroad[index] = rs1.getInt(2);
+                    actual_speed_first_crossroad[index] = rs1.getInt(3);
+                }
+                index++;
+            }
+
+            pstmt = con.prepareStatement(Constants.select_crossroadsInfo_query);
+            pstmt.setInt(1, crossroadsInfo_ids[1]);
+            rs = pstmt.executeQuery();
+            // crossroadinfo 2 - direction info ids
+            int[] directions_info_ids2 = new int[4];
+            int[] cars_second_crossroad = new int[4];
+            int[] speed_limit_second_crossroad = new int[4];
+            int[] actual_speed_second_crossroad = new int[4];
+            index = 0;
+            while (rs.next()) {
+                directions_info_ids2[index] = rs.getInt(1);
+                pstmt = con.prepareStatement(Constants.select_directionInfo_query);
+                pstmt.setInt(1, rs.getInt(1));
+                ResultSet rs1 = pstmt.executeQuery();
+                while (rs1.next()) {
+                    cars_second_crossroad[index] = rs1.getInt(1);
+                    speed_limit_second_crossroad[index] = rs1.getInt(2);
+                    actual_speed_second_crossroad[index] = rs1.getInt(3);
+                }
+                index++;
+            }
+
+
+            return new DatabaseConditions(
+                    cars_first_crossroad,
+                    cars_second_crossroad,
+                    speed_limit_first_crossroad,
+                    speed_limit_second_crossroad,
+                    actual_speed_first_crossroad,
+                    actual_speed_second_crossroad,
+                    initial_time,
+                    better_time,
+                    simulation_time,
+                    initial_aws,
+                    better_aws,
+                    better_distribtuion);
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -265,7 +280,7 @@ public class Database {
             PreparedStatement pstmt = con.prepareStatement(Constants.insert_conditions_statment, Statement.RETURN_GENERATED_KEYS);
             pstmt.setNString(1, "name"); //need to replace to name of conditions
             pstmt.setDouble(2, conditions.getInitialDuration());
-            pstmt.setDouble(3, conditions.getBetterDuration());
+            pstmt.setDouble(3, conditions.getAlgorithmDuration());
             pstmt.setNString(4, conditions.getBetterDistributionString());
             pstmt.setDouble(5, conditions.getSimulationDuration());
             pstmt.executeUpdate();
@@ -282,7 +297,7 @@ public class Database {
 
 //            saveResult(
 //                    conditions.getInitialDuration(),
-//                    conditions.getBetterDuration(),
+//                    conditions.getAlgorithmDuration(),
 //                    conditions.getSimulationDuration(),
 //                    conditions.getBetterDistributionString());
 

@@ -89,8 +89,11 @@ public class TrafficLightsComputation extends Thread {
                     conditions.changeTrafficLightState();
                 }
             }
+
+            if (conditions.isAllCarsPassed()) {
+                conditions.setSimulationDuration(traffic_lights_working_time);
+            }
         }
-        conditions.setSimulationDuration(traffic_lights_working_time);
     }
 
     /**
