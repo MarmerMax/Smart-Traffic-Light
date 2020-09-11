@@ -769,4 +769,11 @@ public class Utils {
         return false;
     }
 
+    public static void printSimulationCreated() {
+        System.out.println();
+        System.out.println(ConsoleColors.GREEN_BOLD + "*******************************************");
+        System.out.println("\t\t\tSimulation created!");
+        System.out.println("*******************************************" + ConsoleColors.RESET);
+    }
+
 }

@@ -2,7 +2,6 @@ package SystemSTL.Algorithm;
 
 import SystemSTL.AlgorithmSTL.*;
 import Objects.Conditions.Conditions;
-import SystemSTL.AlgorithmSTL.AlgorithmCore.Astar;
 import SystemSTL.AlgorithmSTL.AlgorithmCore.DFBnB;
 import Tools.ConsoleColors;
 import Tools.Constants;
@@ -20,6 +19,7 @@ public class Algorithm extends Thread {
     private boolean is_north_south_high_priority;
 
     private double cars_ratio;
+    private volatile boolean isStopped = false;
 
     private AlgorithmSTL smart_algorithm;
     private AlgorithmRules algorithm_conditions;
@@ -41,6 +41,14 @@ public class Algorithm extends Thread {
     @Override
     public void run() {
         updateTrafficLightsTimeDistributions();
+        if (isStopped) {
+            System.out.println(ConsoleColors.RED_BOLD + "Algorithm was stopped!" + ConsoleColors.RESET);
+        }
+    }
+
+    public void stopAlgorithm() {
+        isStopped = true;
+        smart_algorithm.stopAlgorithmSTL();
     }
 
     /**
@@ -53,7 +61,7 @@ public class Algorithm extends Thread {
         int actual_duration = 0;
         boolean better_distribution_selected = false;
 
-        while (!conditions.isAllCarsPassed()) {
+        while (!conditions.isAllCarsPassed() && !isStopped) {
 
             //The algorithm works like a priority algorithm until a smart algorithm finds a better distribution.
             //After the smart algorithm has found the better distribution, the conditions must set the found

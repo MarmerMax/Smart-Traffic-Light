@@ -64,11 +64,6 @@ public class ProgramGUI {
      * SimulationWindow
      */
     private void createUI() {
-        Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
-        Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
-        crossroad_info_1 = new CrossroadInfo(crossroad_1);
-        crossroad_info_2 = new CrossroadInfo(crossroad_2);
-
 //        conditions = Utils.createStartConditions();
 //        ResultsBox.display("1", "2");
         createHomeWindow();
@@ -431,6 +426,11 @@ public class ProgramGUI {
             //create crossroadInfo with fields data
             //check if data correct
             //continue to next window
+            Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
+            Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
+            crossroad_info_1 = new CrossroadInfo(crossroad_1);
+            crossroad_info_2 = new CrossroadInfo(crossroad_2);
+
             int[] cars_inputs_1 = {cars_spinners_1.get(0).getValue(), cars_spinners_1.get(1).getValue(), cars_spinners_1.get(2).getValue(), cars_spinners_1.get(3).getValue()};
             int[] actual_inputs_1 = {actual_spinners_1.get(0).getValue(), actual_spinners_1.get(1).getValue(), actual_spinners_1.get(2).getValue(), actual_spinners_1.get(3).getValue()};
             int[] limit_inputs_1 = {limit_spinners_1.get(0).getValue(), limit_spinners_1.get(1).getValue(), limit_spinners_1.get(2).getValue(), limit_spinners_1.get(3).getValue()};
@@ -438,8 +438,6 @@ public class ProgramGUI {
             int[] cars_inputs_2 = {cars_spinners_2.get(0).getValue(), cars_spinners_2.get(1).getValue(), cars_spinners_2.get(2).getValue(), cars_spinners_2.get(3).getValue()};
             int[] actual_inputs_2 = {actual_spinners_2.get(0).getValue(), actual_spinners_2.get(1).getValue(), actual_spinners_2.get(2).getValue(), actual_spinners_2.get(3).getValue()};
             int[] limit_inputs_2 = {limit_spinners_2.get(0).getValue(), limit_spinners_2.get(1).getValue(), limit_spinners_2.get(2).getValue(), limit_spinners_2.get(3).getValue()};
-
-            //else alert box fail!
 
             crossroad_info_1.setCrossroadInfo(cars_inputs_1, actual_inputs_1, limit_inputs_1);
             crossroad_info_2.setCrossroadInfo(cars_inputs_2, actual_inputs_2, limit_inputs_2);
@@ -530,7 +528,10 @@ public class ProgramGUI {
 
     @SuppressWarnings("Duplicates")
     private void createSimulationWindow() {
+        Utils.printSimulationCreated();
+
         ExecutorService executor = Executors.newFixedThreadPool(2);
+        SystemSTL systemSTL = new SystemSTL(conditions);
 
         HBox topMenu = new HBox();
         Label label = new Label(Constants.simulation_window_label);
@@ -561,7 +562,7 @@ public class ProgramGUI {
                     Constants.go_to_previous_page_from_simulation_text);
 
             if (goBack) {
-//                executor.shutdownNow();
+                systemSTL.stop();
                 window.setScene(windowOptions);
             }
         });
@@ -572,8 +573,6 @@ public class ProgramGUI {
 
         BorderPane borderPane = new BorderPane();
 
-        SystemSTL systemSTL = new SystemSTL(conditions);
-
         Button buttonStart = new Button(Constants.start_button_label);
         buttonStart.setOnAction(e -> {
             Thread run_system = new Thread(new Runnable() {
@@ -582,7 +581,6 @@ public class ProgramGUI {
                     systemSTL.run();
                 }
             });
-//            run_system.start();
 
             Thread update_simulation = new Thread(new Runnable() {
                 @Override
@@ -600,13 +598,12 @@ public class ProgramGUI {
                             }
                         });
                     }
-                    System.out.println(ConsoleColors.RED_BOLD + "All cars is passed" + ConsoleColors.RESET);
                 }
             });
-//            update_simulation.start();
 
             executor.execute(run_system);
             executor.execute(update_simulation);
+            executor.shutdown();
         });
         bottomMenu.getChildren().addAll(buttonBack, buttonSave, buttonStart);
 

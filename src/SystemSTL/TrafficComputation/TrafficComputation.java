@@ -3,6 +3,7 @@ package SystemSTL.TrafficComputation;
 import Objects.Conditions.Conditions;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
 import SystemSTL.TrafficExecutor;
+import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;
 
@@ -15,6 +16,8 @@ public class TrafficComputation extends Thread {
 
     private TrafficExecutor east_west_executor;
     private TrafficExecutor north_south_executor;
+
+    private volatile boolean isStopped = false;
 
     public TrafficComputation(Conditions conditions) {
         this.conditions = conditions;
@@ -33,6 +36,16 @@ public class TrafficComputation extends Thread {
     @Override
     public void run() {
         updateTrafficState();
+        if (isStopped) {
+            System.out.println(ConsoleColors.RED_BOLD + "Traffic computation was stopped!" + ConsoleColors.RESET);
+        }
+    }
+
+
+    public void stopTrafficComputation() {
+        isStopped = true;
+        east_west_executor.stopTrafficExecutor();
+        north_south_executor.stopTrafficExecutor();
     }
 
     /**

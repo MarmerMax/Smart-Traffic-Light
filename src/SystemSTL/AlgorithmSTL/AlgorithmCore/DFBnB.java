@@ -27,7 +27,7 @@ public class DFBnB extends AlgorithmSTL {
         int threshold = Integer.MAX_VALUE;
         boolean result = false;
 
-        while (!stack.empty()) {
+        while (!stack.empty() && !isStopped) {
 
             Node current = stack.pop();
 

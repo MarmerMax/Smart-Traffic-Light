@@ -1,7 +1,6 @@
 package SystemSTL.TrafficLightsComputation;
 
 import Objects.Conditions.Conditions;
-import SystemSTL.SystemSTL;
 import Tools.ConsoleColors;
 
 /**
@@ -11,6 +10,7 @@ public class TrafficLightsComputation extends Thread {
 
     private Conditions conditions;
     private int traffic_lights_working_time;
+    private volatile boolean isStopped = false;
 
     public TrafficLightsComputation(Conditions conditions) {
         this.conditions = conditions;
@@ -20,6 +20,13 @@ public class TrafficLightsComputation extends Thread {
     @Override
     public void run() {
         updateTrafficLightsState();
+        if (isStopped) {
+            System.out.println(ConsoleColors.RED_BOLD + "Traffic lights computation was stopped!" + ConsoleColors.RESET);
+        }
+    }
+
+    public void stopTrafficLightComputation() {
+        isStopped = true;
     }
 
     /**
@@ -32,7 +39,7 @@ public class TrafficLightsComputation extends Thread {
 
         int phase_count = 0;
 
-        while (!conditions.isAllCarsPassed()) {
+        while (!conditions.isAllCarsPassed() && !isStopped) {
 
             traffic_lights_working_time++;
 
@@ -94,4 +101,5 @@ public class TrafficLightsComputation extends Thread {
     public int getTrafficLightsWorkingTime() {
         return traffic_lights_working_time;
     }
+
 }

@@ -2,7 +2,6 @@ package SystemSTL.TrafficComputation.Lane;
 
 import SystemSTL.TrafficComputation.Car.CarComputation;
 import SystemSTL.TrafficComputation.Car.CarInfo;
-import Tools.ConsoleColors;
 import Tools.Constants;
 
 import java.time.Duration;
@@ -17,6 +16,7 @@ public class LaneComputation extends Thread {
     private boolean moving_mode; //true-moving, false-stopping. Received from the outside.
     private boolean stop_computation; //when the all cars are passed is necessary to stop the thread
     private LaneInfo next_lane_info;
+    private volatile boolean isStopped = false;
 
     public LaneComputation(LaneInfo lane_info) {
         this.lane_info = lane_info;
@@ -29,6 +29,9 @@ public class LaneComputation extends Thread {
         computeLane();
     }
 
+    public void stopLaneComputation() {
+        isStopped = true;
+    }
 
     /**
      * This function computes changes of each car on the given lane such that current speed and distance from crossroad.
@@ -36,7 +39,7 @@ public class LaneComputation extends Thread {
     private void computeLane() {
         double add = 0.01; // =10ms
 
-        while (!stop_computation) {
+        while (!stop_computation && !isStopped) {
 
             CarComputation car_computation;
 
@@ -204,7 +207,7 @@ public class LaneComputation extends Thread {
 
 
         }
-        System.out.println(this.getName() + " finished lane computation");
+//        System.out.println(this.getName() + " finished lane computation");
     }
 
     public void setMovingMode(boolean moving_mode) {

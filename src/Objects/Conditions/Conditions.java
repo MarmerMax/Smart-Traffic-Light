@@ -350,7 +350,7 @@ public class Conditions {
      * @param initial_duration - real initial time without smart algorithm
      */
     public void setInitialDuration(double initial_duration) {
-        System.out.println("initial time for passed all cars: " + initial_duration);
+        System.out.println(ConsoleColors.CYAN + "Initial time of passing all cars: " + initial_duration + " seconds." + ConsoleColors.RESET);
         this.initial_duration = initial_duration;
     }
 
@@ -369,7 +369,7 @@ public class Conditions {
      * @param simulation_duration
      */
     public void setSimulationDuration(double simulation_duration) {
-        System.out.println(ConsoleColors.RED_BOLD + "simulation working time: " + simulation_duration + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED_BOLD + "Simulation working time: " + simulation_duration + " seconds" + ConsoleColors.RESET);
         this.simulation_duration = simulation_duration;
     }
 
@@ -383,7 +383,7 @@ public class Conditions {
 
     public void setInitialAWT(double initial_awt) {
         this.initial_awt = initial_awt;
-        System.out.println(ConsoleColors.RED_BOLD + initial_awt + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.CYAN + "Initial time of AWT: " + initial_awt + " seconds." + ConsoleColors.RESET);
     }
 
     public double getBetterAWT() {
@@ -392,6 +392,6 @@ public class Conditions {
 
     public void setBetterAWT(double better_awt) {
         this.better_awt = better_awt;
-        System.out.println(ConsoleColors.RED_BOLD + better_awt + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN + "Algorithm time of AWT: " + better_awt + " seconds" + ConsoleColors.RESET);
     }
 }

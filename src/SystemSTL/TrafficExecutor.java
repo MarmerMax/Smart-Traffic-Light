@@ -50,21 +50,28 @@ public class TrafficExecutor extends Thread {
         }
     }
 
+
     @Override
     public void run() {
+        updateTrafficExecutors();
+    }
 
+    public void stopTrafficExecutor() {
+        lane_computation_first_dir_1.stopLaneComputation();
+        lane_computation_first_dir_2.stopLaneComputation();
+        lane_computation_second_dir_1.stopLaneComputation();
+        lane_computation_second_dir_2.stopLaneComputation();
+    }
+
+    private void updateTrafficExecutors() {
         System.out.println(this.getName() + " start");
 
-//        setMovingMode(moving_mode);
-//        setStopComputation(false);
-
-//        executor.shutdown();
 
         executor.execute(lane_computation_first_dir_1);
         executor.execute(lane_computation_first_dir_2);
         executor.execute(lane_computation_second_dir_1);
         executor.execute(lane_computation_second_dir_2);
-//
+
         executor.shutdown();
 
 
@@ -89,21 +96,6 @@ public class TrafficExecutor extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-//        executor.shutdown();
-//        if (moving_mode) {
-//            try {
-//                executor.awaitTermination(100, TimeUnit.MILLISECONDS);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            setStopComputation(true);
-//        }
-//            executor.shutdownNow();
-//        } else {
-//            executor.shutdown();
-//        }
 
         System.out.println(this.getName() + " finished");
     }

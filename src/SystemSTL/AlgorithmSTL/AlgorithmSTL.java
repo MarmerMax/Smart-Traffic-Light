@@ -14,6 +14,7 @@ public abstract class AlgorithmSTL extends Thread {
     protected String path;
     protected boolean is_path_exist;
     protected AlgorithmRules traffic_conditions;
+    protected volatile boolean isStopped = false;
 
     public AlgorithmSTL() {
         price = 0;
@@ -24,6 +25,14 @@ public abstract class AlgorithmSTL extends Thread {
     @Override
     public void run() {
         checkTrafficConditions();
+//        if (isStopped) {
+//            System.out.println(ConsoleColors.RED_BOLD + "AlgorithmSTL was stopped!" + ConsoleColors.RESET);
+//        }
+    }
+
+
+    public void stopAlgorithmSTL() {
+        isStopped = true;
     }
 
     /**

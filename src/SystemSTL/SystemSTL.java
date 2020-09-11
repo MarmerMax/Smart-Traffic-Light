@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 public class SystemSTL {
 
     private ExecutorService executor;
+    private boolean isStopped;
 
     private Conditions conditions;
     private Algorithm algorithm;
@@ -32,6 +33,7 @@ public class SystemSTL {
      */
     public SystemSTL(Conditions conditions) {
         this.conditions = conditions;
+        this.isStopped = false;
 
         executor = Executors.newFixedThreadPool(3);
 
@@ -44,7 +46,7 @@ public class SystemSTL {
      * This function start all computations.
      */
     public void run() {
-        System.out.println(ConsoleColors.RED_BOLD + "[START]" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "[START]" + ConsoleColors.RESET);
 
         executor.execute(algorithm);
         executor.execute(traffic_computation);
@@ -54,7 +56,12 @@ public class SystemSTL {
     }
 
     public void stop() {
-//        algorithm.stop();
+        algorithm.stopAlgorithm();
+        traffic_computation.stopTrafficComputation();
+        traffic_lights_computation.stopTrafficLightComputation();
+        isStopped = true;
+
+        System.out.println(ConsoleColors.RED_BOLD + "System was stopped!" + ConsoleColors.RESET);
     }
 
     /**
@@ -63,6 +70,6 @@ public class SystemSTL {
      * @return
      */
     public boolean isFinished() {
-        return conditions.isAllCarsPassed();
+        return conditions.isAllCarsPassed() || isStopped;
     }
 }
