@@ -1,0 +1,6 @@
+﻿conditions;f_cars_count;s_cars_count;f_speed_limit;f_speed_limit;f_actual_speed;s_actual_speed
+north;35;35;50;50;50;50
+east;35;35;50;50;50;50
+south;35;35;50;50;50;50
+west;35;35;50;50;50;120
+over raw;;;;;;

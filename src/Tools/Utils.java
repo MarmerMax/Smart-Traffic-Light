@@ -1,5 +1,6 @@
 package Tools;
 
+import CSV.CSVCondition;
 import Database.DatabaseConditions;
 import SystemSTL.AlgorithmSTL.AlgorithmConditions;
 import SystemSTL.AlgorithmSTL.AlgorithmLaneInfo;
@@ -12,11 +13,14 @@ import SystemSTL.AlgorithmSTL.Node;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
 import javafx.scene.control.Spinner;
 
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.Random;
-import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
+@SuppressWarnings("Duplicates")
 public class Utils {
 
     public static CarTypes createRandomCarType() {
@@ -932,5 +936,122 @@ public class Utils {
         }
 
         return false;
+    }
+
+
+    public static CSVCondition createConditionsFromCSV(String path) {
+        Path currentRelativePath = Paths.get("");
+        String project_dir = currentRelativePath.toAbsolutePath().toString();
+
+        String line = "";
+        String cvsSplitBy = ";";
+
+        boolean is_bad_file = false;
+
+        int[] cars_first_crossroad = new int[4];
+        int[] cars_second_crossroad = new int[4];
+        int[] speed_limit_first_crossroad = new int[4];
+        int[] speed_limit_second_crossroad = new int[4];
+        int[] actual_speed_first_crossroad = new int[4];
+        int[] actual_speed_second_crossroad = new int[4];
+
+        try (BufferedReader br = new BufferedReader(new FileReader(project_dir + "/CSVs/" + path))) {
+
+            int i = 0;
+
+            while ((line = br.readLine()) != null && i < 5) {
+
+                String[] conds = line.split(cvsSplitBy);
+
+                //bad number of raws - missing data
+                if (conds.length < 7) {
+                    is_bad_file = true;
+                    break;
+                }
+
+                if (i != 0) {
+                    cars_first_crossroad[i - 1] = Integer.parseInt(conds[1]);
+                    cars_second_crossroad[i - 1] = Integer.parseInt(conds[2]);
+                    speed_limit_first_crossroad[i - 1] = Integer.parseInt(conds[3]);
+                    speed_limit_second_crossroad[i - 1] = Integer.parseInt(conds[4]);
+                    actual_speed_first_crossroad[i - 1] = Integer.parseInt(conds[5]);
+                    actual_speed_second_crossroad[i - 1] = Integer.parseInt(conds[6]);
+                }
+
+                i++;
+            }
+
+            //bad number of raws - missing data
+            if (i < 5) {
+                is_bad_file = true;
+            }
+
+        } catch (IOException e) {
+//            e.printStackTrace();
+            System.err.println("Bad CSV file...");
+        }
+
+        if (is_bad_file) {
+            return null;
+        }
+
+        return new CSVCondition(
+                cars_first_crossroad,
+                cars_second_crossroad,
+                speed_limit_first_crossroad,
+                speed_limit_second_crossroad,
+                actual_speed_first_crossroad,
+                actual_speed_second_crossroad);
+    }
+
+
+    public static void setCSVConditionsInSpinner(ArrayList<Spinner<Integer>> cars_spinners,
+                                                 ArrayList<Spinner<Integer>> limit_spinners,
+                                                 ArrayList<Spinner<Integer>> actual_spinners,
+                                                 int[][] data) {
+
+        setDataInSpinner(cars_spinners, data[0]);
+        setDataInSpinner(limit_spinners, data[1]);
+        setDataInSpinner(actual_spinners, data[2]);
+
+    }
+
+    private static void setDataInSpinner(ArrayList<Spinner<Integer>> spinners, int[] data) {
+        spinners.get(Constants.NORTH_DIRECTION).getValueFactory().setValue(data[Constants.NORTH_DIRECTION]);
+        spinners.get(Constants.EAST_DIRECTION).getValueFactory().setValue(data[Constants.EAST_DIRECTION]);
+        spinners.get(Constants.SOUTH_DIRECTION).getValueFactory().setValue(data[Constants.SOUTH_DIRECTION]);
+        spinners.get(Constants.WEST_DIRECTION).getValueFactory().setValue(data[Constants.WEST_DIRECTION]);
+    }
+
+
+    public static void creatSpeedLimitListeners(ArrayList<Spinner<Integer>> actual_spinners, ArrayList<Spinner<Integer>> limit_spinners) {
+        if (actual_spinners.size() != limit_spinners.size()) {
+            throw new RuntimeException("Fail! Wrong program parameters...");
+        }
+
+        limit_spinners.get(0).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (actual_spinners.get(0).getValue() > newValue) {
+                actual_spinners.get(0).getValueFactory().setValue(newValue);
+            }
+        });
+
+        limit_spinners.get(1).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (actual_spinners.get(1).getValue() > newValue) {
+                actual_spinners.get(1).getValueFactory().setValue(newValue);
+            }
+        });
+
+        limit_spinners.get(2).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (actual_spinners.get(2).getValue() > newValue) {
+                actual_spinners.get(2).getValueFactory().setValue(newValue);
+            }
+
+        });
+
+        limit_spinners.get(3).valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (actual_spinners.get(3).getValue() > newValue) {
+                actual_spinners.get(3).getValueFactory().setValue(newValue);
+            }
+        });
     }
 }

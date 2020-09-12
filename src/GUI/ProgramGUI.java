@@ -1,5 +1,6 @@
 package GUI;
 
+import CSV.CSVCondition;
 import Objects.Crossroad.Crossroad;
 import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.Road.RoadCreator;
@@ -66,6 +67,7 @@ public class ProgramGUI {
     private void createUI() {
 //        conditions = Utils.createStartConditions();
 //        ResultsBox.display("1", "2");
+
         createHomeWindow();
     }
 
@@ -308,10 +310,8 @@ public class ProgramGUI {
         limit_spinners_1.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
                 limit_spinners_2.get(1).getValueFactory().setValue(newValue));
 
-
         limit_spinners_2.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
                 limit_spinners_1.get(1).getValueFactory().setValue(newValue));
-
 
         limit_spinners_1.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
                 limit_spinners_2.get(3).getValueFactory().setValue(newValue));
@@ -324,6 +324,9 @@ public class ProgramGUI {
         Utils.createActualSpeedListeners(actual_spinners_1, limit_spinners_1);
         Utils.createActualSpeedListeners(actual_spinners_2, limit_spinners_2);
 
+        Utils.creatSpeedLimitListeners(actual_spinners_1, limit_spinners_1);
+        Utils.creatSpeedLimitListeners(actual_spinners_2, limit_spinners_2);
+
         actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
@@ -332,11 +335,33 @@ public class ProgramGUI {
         HBox otherOptions = new HBox();
         otherOptions.getStyleClass().add("options-container");
 
-        VBox boxLabel3 = new VBox(10);
-        boxLabel3.getStyleClass().add("options-column");
-        Label nameLabel3 = new Label(Constants.other_features_label);
-        nameLabel3.getStyleClass().add("label-column");
-        boxLabel3.getChildren().addAll(nameLabel3);
+//        VBox boxLabel3 = new VBox(10);
+//        boxLabel3.getStyleClass().add("options-column");
+//        Label nameLabel3 = new Label(Constants.other_features_label);
+//        nameLabel3.getStyleClass().add("label-column");
+//        boxLabel3.getChildren().addAll(nameLabel3);
+
+        VBox boxButtonOpenCSV = new VBox(10);
+        boxButtonOpenCSV.getStyleClass().add("options-column");
+        Button buttonOpenCSV = new Button("Open CSV");
+        boxButtonOpenCSV.getChildren().add(buttonOpenCSV);
+        buttonOpenCSV.setOnAction(e -> {
+            String path = OpenBox.display();
+
+            if (path != null) {
+
+                CSVCondition csv_condition = Utils.createConditionsFromCSV(path);
+
+                if (csv_condition != null) {
+                    //1
+                    Utils.setCSVConditionsInSpinner(cars_spinners_1, limit_spinners_1, actual_spinners_1, csv_condition.getFirstCrossroad());
+                    //2
+                    Utils.setCSVConditionsInSpinner(cars_spinners_2, limit_spinners_2, actual_spinners_2, csv_condition.getSecondCrossroad());
+                } else {
+                    AlertBox.display("Fail", "The opened file has wrong format");
+                }
+            }
+        });
 
         VBox boxButtonRandom = new VBox(10);
         boxButtonRandom.getStyleClass().add("options-column");
@@ -406,7 +431,8 @@ public class ProgramGUI {
             InformationBox.display("Information");
         });
 
-        otherOptions.getChildren().addAll(boxLabel3, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
+
+        otherOptions.getChildren().addAll(boxButtonOpenCSV, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
 
         centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
 

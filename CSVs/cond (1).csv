@@ -1,0 +1,5 @@
+﻿conditions;f_cars_count;s_cars_count;f_speed_limit;f_speed_limit;f_actual_speed;s_actual_speed
+north;15;15;50;50;90;110
+east;15;15;60;70;90;110
+south;15;15;50;50;90;110
+west;15;15;90;80;90;110
