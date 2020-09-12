@@ -24,10 +24,10 @@ public class AlgorithmRules {
 
     public AlgorithmRules(Conditions conditions) {
         this.conditions = conditions;
-        this.algorithm_conditions = new AlgorithmConditions(conditions);
+        algorithm_conditions = new AlgorithmConditions(conditions);
 
         //initial state
-        root = new Node("", 0, this.algorithm_conditions);
+        root = new Node("", 0, algorithm_conditions);
 
         //goal state
         AlgorithmConditions goal_conditions = Utils.createGoalAlgorithmConditions(); //zero conditions
@@ -107,12 +107,13 @@ public class AlgorithmRules {
      * @param result
      */
     public void setBetterDistribution(String result) {
-        this.conditions.setBetterDistribution(result);
-        this.conditions.setAlgorithmAWT(Utils.calculateAWT(this.conditions));
+        conditions.setBetterDistribution(result);
+        double new_awt = Utils.calculateAWT(conditions);
+        conditions.setAlgorithmAWT(new_awt);
     }
 
-    public String getBetterDistribution(){
-        return this.conditions.getBetterDistributionString();
+    public String getBetterDistribution() {
+        return conditions.getBetterDistributionString();
     }
 
     public Node getRoot() {

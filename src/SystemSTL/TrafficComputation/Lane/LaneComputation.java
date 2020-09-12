@@ -3,6 +3,7 @@ package SystemSTL.TrafficComputation.Lane;
 import SystemSTL.TrafficComputation.Car.CarComputation;
 import SystemSTL.TrafficComputation.Car.CarInfo;
 import Tools.Constants;
+import Tools.Utils;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -16,10 +17,11 @@ public class LaneComputation extends Thread {
     private boolean moving_mode; //true-moving, false-stopping. Received from the outside.
     private boolean stop_computation; //when the all cars are passed is necessary to stop the thread
     private LaneInfo next_lane_info;
-    private volatile boolean isStopped = false;
+    private volatile boolean isStopped;
 
     public LaneComputation(LaneInfo lane_info) {
         this.lane_info = lane_info;
+        isStopped = false;
         stop_computation = false;
         moving_mode = false;
     }
@@ -55,7 +57,7 @@ public class LaneComputation extends Thread {
                 //if the car passed the intersection and placed out of the inspected area then remove this car
                 if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() < -5) {
 
-                    //move this car from first west to second west
+                    //move this car from first west crossroad to second west crossroad
                     if (lane_name.contains("first") && lane_name.contains("west")) {
 
                         next_lane_info.addCarFromPreviousCrossroad(lane_info.getCarsInLane().get(i));
@@ -63,7 +65,7 @@ public class LaneComputation extends Thread {
                         i--;
                         continue;
 
-                        //move this car from first east to second east
+                        //move this car from first east crossroad to second east crossroad
                     } else if (lane_name.contains("second") && lane_name.contains("east")) {
 
                         next_lane_info.addCarFromPreviousCrossroad(lane_info.getCarsInLane().get(i));
@@ -121,7 +123,15 @@ public class LaneComputation extends Thread {
                         double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
 
                         dist = Math.abs(dist);
-                        if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+
+//                        if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+//                            car_computation.movingMode(add, lane_info.getSpeedLimit());
+//                        } else {
+//                            car_computation.stoppingMode(add);
+//                        }
+
+                        //TODO: QA tests
+                        if (Utils.isCarCanGo(current_car.getCurrentSpeed(), current_car.getCar().getDeceleration(), dist)) {
                             car_computation.movingMode(add, lane_info.getSpeedLimit());
                         } else {
                             car_computation.stoppingMode(add);
@@ -141,14 +151,14 @@ public class LaneComputation extends Thread {
                         //then continue computation at a slower speed
                     } else if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() > 10) {
                         if (i == 0) {
-                            car_computation.movingMode(add, lane_info.getSpeedLimit() / 5);
+                            car_computation.movingMode(add, 7);
                         } else {
                             CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
                             CarInfo current_car = lane_info.getCarsInLane().get(i);
                             double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
                             dist = Math.abs(dist);
-                            if (dist > Constants.SAFETY_DISTANCE - 1) {
-                                car_computation.movingMode(add, lane_info.getSpeedLimit() / 5);
+                            if (Utils.isCarCanGo(current_car.getCurrentSpeed(), current_car.getCar().getDeceleration(), dist)) {
+                                car_computation.movingMode(add, 7);
                             } else {
                                 car_computation.stoppingMode(add);
                             }
@@ -158,14 +168,14 @@ public class LaneComputation extends Thread {
                         //then continue computation at a more slower speed
                     } else if (lane_info.getCarsInLane().get(i).getDistanceFromCrossroad() > 1) {
                         if (i == 0) {
-                            car_computation.movingMode(add, lane_info.getSpeedLimit() / 7);
+                            car_computation.movingMode(add, 3);
                         } else {
                             CarInfo front_car = lane_info.getCarsInLane().get(i - 1);
                             CarInfo current_car = lane_info.getCarsInLane().get(i);
                             double dist = current_car.getDistanceFromCrossroad() - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
                             dist = Math.abs(dist);
-                            if (dist > Constants.SAFETY_DISTANCE - 1) {
-                                car_computation.movingMode(add, lane_info.getSpeedLimit() / 7);
+                            if (Utils.isCarCanGo(current_car.getCurrentSpeed(), current_car.getCar().getDeceleration(), dist)) {
+                                car_computation.movingMode(add, 3);
                             } else {
                                 car_computation.stoppingMode(add);
                             }

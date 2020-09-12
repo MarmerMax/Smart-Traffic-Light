@@ -636,6 +636,12 @@ public class Utils {
     }
 
 
+    /**
+     * This function create separation string for console.
+     *
+     * @param str
+     * @return
+     */
     public static String createSeparationString(String str) {
         String result = "";
         for (int i = 0; i < str.length(); i++) {
@@ -644,6 +650,13 @@ public class Utils {
         return result;
     }
 
+    /**
+     * This function calculates the AWT for a given condition state.
+     * This function decides for itself whether to check against the found distribution or by default.
+     *
+     * @param conditions - actual conditions.
+     * @return - AWT amount
+     */
     @SuppressWarnings("Duplicates")
     public static double calculateAWT(Conditions conditions) {
         int phases_passed = 0;
@@ -679,21 +692,28 @@ public class Utils {
             while (!finish) {
 
                 calculateASWTForLaneByTime(times_arr, first_north, times[0], phase_time * phases_passed);
-                calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed);
                 calculateASWTForLaneByTime(times_arr, second_north, times[0], phase_time * phases_passed);
-                calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed + 6);
-                calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed + 6);
                 calculateASWTForLaneByTime(times_arr, first_east, times[1], phase_time * phases_passed + 6);
-                calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed + 6);
                 calculateASWTForLaneByTime(times_arr, second_west, times[1], phase_time * phases_passed + 6);
 
-                if (checkIfAllPass(first_north, first_east, first_south, first_west)) {
+                boolean isFirstFinished = checkIfAllPass(first_north, first_east, first_south, first_west);
+                boolean isSecondFinished = checkIfAllPass(first_north, first_east, first_south, first_west);
+
+                if (isFirstFinished && isSecondFinished) {
                     finish = true;
                 }
 
-                if (checkIfAllPass(second_north, second_east, second_south, second_west)) {
-                    finish = true;
-                }
+//                if (checkIfAllPass(first_north, first_east, first_south, first_west)) {
+//                    finish = true;
+//                }
+//
+//                if (checkIfAllPass(second_north, second_east, second_south, second_west)) {
+//                    finish = true;
+//                }
 
                 phases_passed++;
             }
@@ -704,14 +724,13 @@ public class Utils {
             for (String phase : phases) {
                 double times[] = getPhaseTimes(phase);
 
-
                 calculateASWTForLaneByTime(times_arr, first_north, times[0], phase_time * phases_passed);
-                calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed + 6);
+                calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed);
                 calculateASWTForLaneByTime(times_arr, second_north, times[0], phase_time * phases_passed);
-                calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed + 6);
-                calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed + 6);
                 calculateASWTForLaneByTime(times_arr, first_east, times[1], phase_time * phases_passed + 6);
-                calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed);
+                calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed + 6);
                 calculateASWTForLaneByTime(times_arr, second_west, times[1], phase_time * phases_passed + 6);
 
                 phases_passed++;
@@ -722,6 +741,14 @@ public class Utils {
         return result_awt;
     }
 
+    /**
+     * This function calculates the AWT (average waiting time) for the given lane.
+     *
+     * @param times       - array with all times
+     * @param lane_info   - actual lane to calculate
+     * @param time        - time of traffic light working
+     * @param passed_time - already passed time
+     */
     private static void calculateASWTForLaneByTime(ArrayList<Double> times, AlgorithmLaneInfo lane_info, double time, double passed_time) {
 
         int cars_count = lane_info.getCarsCount();
@@ -761,6 +788,15 @@ public class Utils {
 
     }
 
+    /**
+     * This function checks if all cars passed the crossroad.
+     *
+     * @param n - north info
+     * @param e - east inf0
+     * @param s - south info
+     * @param w - west info
+     * @return - true if all size equals to zero, false otherwise
+     */
     private static boolean checkIfAllPass(AlgorithmLaneInfo n, AlgorithmLaneInfo e, AlgorithmLaneInfo s, AlgorithmLaneInfo w) {
 
         if (n.getCarsCount() == 0 && e.getCarsCount() == 0 && s.getCarsCount() == 0 && w.getCarsCount() == 0) {
@@ -770,6 +806,9 @@ public class Utils {
         return false;
     }
 
+    /**
+     * This function prints to console message about simulation created status.
+     */
     public static void printSimulationCreated() {
         System.out.println();
         System.out.println(ConsoleColors.GREEN_BOLD + "*******************************************");
@@ -777,6 +816,13 @@ public class Utils {
         System.out.println("*******************************************" + ConsoleColors.RESET);
     }
 
+    /**
+     * For store the conditions in database is necessary to convert the system conditions to database conditions.
+     *
+     * @param conditions - info about crossroads state
+     * @return conditions in database representation
+     */
+    //create Database Conditions from conditions
     public static DatabaseConditions createDatabaseConditions(Conditions conditions) {
         int[] cars_count_first = Utils.getCarsCount(conditions.getFirstCrossroadInfo());
         int[] cars_count_second = Utils.getCarsCount(conditions.getSecondCrossroadInfo());
@@ -814,7 +860,12 @@ public class Utils {
         return database_conditions;
     }
 
-
+    /**
+     * This function receives crossroad info and returns array with cars counts of this crossroad.
+     *
+     * @param crossroad_info - information about crossroad
+     * @return - array with information about cars
+     */
     private static int[] getCarsCount(CrossroadInfo crossroad_info) {
         int[] res = new int[4];
 
@@ -826,6 +877,12 @@ public class Utils {
         return res;
     }
 
+    /**
+     * This function receives crossroad info and returns array with speed limits of this crossroad.
+     *
+     * @param crossroad_info - information about crossroad
+     * @return - array with information about speed limits
+     */
     private static int[] getSpeedLimits(CrossroadInfo crossroad_info) {
         int[] res = new int[4];
 
@@ -837,6 +894,12 @@ public class Utils {
         return res;
     }
 
+    /**
+     * This function receives crossroad info and returns array with actual speeds of this crossroad.
+     *
+     * @param crossroad_info - information about crossroad
+     * @return - array with information about actuals speed
+     */
     private static int[] getActualSpeeds(CrossroadInfo crossroad_info) {
         int[] res = new int[4];
 
@@ -846,5 +909,28 @@ public class Utils {
         res[Constants.WEST_DIRECTION] = (int) crossroad_info.getWest().getActualSpeed();
 
         return res;
+    }
+    //end of database conditions created
+
+    /**
+     * This function checks if the car can go faster or if it needs to slow down the actual speed.
+     *
+     * @param speed - actual speed
+     * @param dec   - deceleration of car
+     * @param dist  - distance to next car
+     * @return - true if can go, false - otherwise
+     */
+    public static boolean isCarCanGo(double speed, double dec, double dist) {
+
+        while (speed > 0) {
+            dist -= speed;
+            speed -= dec;
+        }
+
+        if (dist > Constants.SAFETY_DISTANCE - 1) {
+            return true;
+        }
+
+        return false;
     }
 }

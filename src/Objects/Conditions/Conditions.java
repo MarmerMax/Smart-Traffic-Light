@@ -392,6 +392,6 @@ public class Conditions {
 
     public void setAlgorithmAWT(double better_awt) {
         this.algorithm_awt = better_awt;
-        System.out.println(ConsoleColors.GREEN + "Algorithm time of AWT: " + algorithm_awt + " seconds" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.CYAN + "Algorithm time of AWT: " + algorithm_awt + " seconds" + ConsoleColors.RESET);
     }
 }

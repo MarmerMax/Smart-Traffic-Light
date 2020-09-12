@@ -17,10 +17,11 @@ public class TrafficComputation extends Thread {
     private TrafficExecutor east_west_executor;
     private TrafficExecutor north_south_executor;
 
-    private volatile boolean isStopped = false;
+    private volatile boolean isStopped;
 
     public TrafficComputation(Conditions conditions) {
         this.conditions = conditions;
+        isStopped = false;
 
         double initial_duration = Utils.calculateInitialDuration(conditions);
         this.conditions.setInitialDuration(initial_duration);
@@ -35,6 +36,7 @@ public class TrafficComputation extends Thread {
 
     @Override
     public void run() {
+        System.out.println(ConsoleColors.BLUE_BOLD + "[Traffic computation started]" + ConsoleColors.RESET);
         updateTrafficState();
         if (isStopped) {
             System.out.println(ConsoleColors.RED_BOLD + "Traffic computation was stopped!" + ConsoleColors.RESET);

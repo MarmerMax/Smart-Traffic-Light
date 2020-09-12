@@ -439,8 +439,8 @@ public class ProgramGUI {
             int[] actual_inputs_2 = {actual_spinners_2.get(0).getValue(), actual_spinners_2.get(1).getValue(), actual_spinners_2.get(2).getValue(), actual_spinners_2.get(3).getValue()};
             int[] limit_inputs_2 = {limit_spinners_2.get(0).getValue(), limit_spinners_2.get(1).getValue(), limit_spinners_2.get(2).getValue(), limit_spinners_2.get(3).getValue()};
 
-            crossroad_info_1.setCrossroadInfo(cars_inputs_1, actual_inputs_1, limit_inputs_1);
-            crossroad_info_2.setCrossroadInfo(cars_inputs_2, actual_inputs_2, limit_inputs_2);
+            crossroad_info_1.setCrossroadInfo(cars_inputs_1, limit_inputs_1, actual_inputs_1);
+            crossroad_info_2.setCrossroadInfo(cars_inputs_2, limit_inputs_2, actual_inputs_2);
 
             conditions = new Conditions(crossroad_info_1, crossroad_info_2);
             createSimulationWindow();

@@ -9,7 +9,7 @@ public class UsualCar extends Car {
 
         acceleration = 2;
         deceleration = 4.5;
-        max_speed = 70;
+        max_speed = 110;
     }
 
 }

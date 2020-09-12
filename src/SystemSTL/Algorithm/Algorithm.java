@@ -19,7 +19,7 @@ public class Algorithm extends Thread {
     private boolean is_north_south_high_priority;
 
     private double cars_ratio;
-    private volatile boolean isStopped = false;
+    private volatile boolean isStopped;
 
     private AlgorithmSTL smart_algorithm;
     private AlgorithmRules algorithm_conditions;
@@ -31,7 +31,7 @@ public class Algorithm extends Thread {
      */
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
-
+        isStopped = false;
         algorithm_conditions = new AlgorithmRules(conditions);
 //        smart_algorithm = new Astar();
         smart_algorithm = new DFBnB();
@@ -40,6 +40,7 @@ public class Algorithm extends Thread {
 
     @Override
     public void run() {
+        System.out.println(ConsoleColors.YELLOW_BOLD + "[Algorithm started]" + ConsoleColors.RESET);
         updateTrafficLightsTimeDistributions();
         if (isStopped) {
             System.out.println(ConsoleColors.RED_BOLD + "Algorithm was stopped!" + ConsoleColors.RESET);
@@ -68,21 +69,50 @@ public class Algorithm extends Thread {
             //distribution so that the traffic lights will work according to its distribution.
             //The better distribution has a finite time. If during this time not all cars will pass the crossroad,
             //then algorithm will again work as a priority algorithm.
-            if (this.conditions.getBetterDistribution().size() != 0 && !better_distribution_selected) {
+            if (conditions.getBetterDistribution().size() != 0 && !better_distribution_selected) {
                 better_distribution_selected = true;
 
-                double better_duration = this.conditions.getAlgorithmDuration() - actual_duration;
+                String actual_path = conditions.getBetterDistributionString();
+                double better_duration = conditions.getAlgorithmDuration() - actual_duration;
 
                 try {
-                    System.out.println("Smart algorithm will sleep " + (int) better_duration + " seconds");
-//                    Thread.sleep((int) better_duration * 1000);
 
+                    boolean isBreak = false;
+
+                    //after better path was found we need to set it distribution and use it times.
+                    //smart algorithm will keep searching to the best distribution until find it.
+                    //if algorithm will not find the better distribution than former than will stay actual distribution.
+                    //if algorithm will find better distribution than sleep time must change.
+                    System.out.println(ConsoleColors.YELLOW + "Smart algorithm will sleep " + (int) better_duration + " seconds" + ConsoleColors.RESET);
                     while (this.conditions.getBetterDistribution().size() != 0) {
+
+                        actual_duration++;
+
+                        if (!actual_path.equals(conditions.getBetterDistributionString())) {
+                            actual_path = conditions.getBetterDistributionString();
+                            better_duration = conditions.getAlgorithmDuration() - actual_duration;
+                            System.out.println(ConsoleColors.YELLOW + "Sleep time changed to " + (int) better_duration + ConsoleColors.RESET);
+                        }
+
+                        if (conditions.getNorthSouthCarsCount() == 0 || conditions.getEastWestCarsCount() == 0) {
+                            isBreak = true;
+                            break;
+                        }
+
                         Thread.sleep(1000);
+
                     }
 
-                    double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
-                    Thread.sleep((int) last_phase_time * 1000);
+//                    while (this.conditions.getBetterDistribution().size() != 0) {
+//                        Thread.sleep(1000);
+//                    }
+//
+                    if (!isBreak) {
+                        double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
+                        Thread.sleep((int) last_phase_time * 1000);
+                    }
+
+                    System.out.println(ConsoleColors.YELLOW + "Smart algorithm time is up" + ConsoleColors.RESET);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -91,7 +121,7 @@ public class Algorithm extends Thread {
             } else {
 
                 if (actual_duration % 5 == 0) {
-                    System.out.println(ConsoleColors.YELLOW_BOLD + "Priority algorithm" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.YELLOW + "Priority algorithm" + ConsoleColors.RESET);
 
                     checkPriority();
 

@@ -10,15 +10,17 @@ public class TrafficLightsComputation extends Thread {
 
     private Conditions conditions;
     private int traffic_lights_working_time;
-    private volatile boolean isStopped = false;
+    private volatile boolean isStopped;
 
     public TrafficLightsComputation(Conditions conditions) {
         this.conditions = conditions;
+        isStopped = false;
         traffic_lights_working_time = 0;
     }
 
     @Override
     public void run() {
+        System.out.println(ConsoleColors.PURPLE_BOLD + "[Traffic lights computation started]" + ConsoleColors.RESET);
         updateTrafficLightsState();
         if (isStopped) {
             System.out.println(ConsoleColors.RED_BOLD + "Traffic lights computation was stopped!" + ConsoleColors.RESET);

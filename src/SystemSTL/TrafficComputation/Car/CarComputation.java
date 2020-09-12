@@ -48,7 +48,7 @@ public class CarComputation {
             car_info.setCurrentSpeed(0);
             return;
         }
-        car_info.setCurrentSpeed(new_speed / 1.5);
+        car_info.setCurrentSpeed(new_speed / 1.2);
     }
 
     /**
