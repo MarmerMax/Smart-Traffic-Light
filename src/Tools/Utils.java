@@ -521,6 +521,36 @@ public class Utils {
     }
 
     /**
+     * This functions returns last times of found path.
+     * @param str
+     * @return
+     */
+    public static ArrayList<Double> getLastAndCurrentTimeOfNode(String str) {
+        ArrayList<Double> array = null;
+
+        if (str.equals("")) {
+            return array;
+        }
+
+        String[] times_from_name = getAllPhases(str); //["10:10", "9:11", ...]
+        if (times_from_name.length == 0) {
+            return array;
+        }
+
+        array = new ArrayList<>();
+        int times_size = times_from_name.length;
+
+        if (times_size == 2) {
+            array.add(Double.parseDouble(times_from_name[times_size - 1].split(Constants.TIMES_DELIMITER)[0]));
+        } else if (times_size > 2) {
+            array.add(Double.parseDouble(times_from_name[times_size - 1].split(Constants.TIMES_DELIMITER)[0]));
+            array.add(Double.parseDouble(times_from_name[times_size - 2].split(Constants.TIMES_DELIMITER)[0]));
+        }
+
+        return array;
+    }
+
+    /**
      * This function splits the string of phases to array of phases.
      * For example ->14:6->13:7 will be converted to ["14:6", "13:7"].
      *

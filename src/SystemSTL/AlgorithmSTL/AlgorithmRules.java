@@ -2,8 +2,11 @@ package SystemSTL.AlgorithmSTL;
 
 import Objects.Conditions.Conditions;
 import Tools.Utils;
+import com.sun.webkit.network.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class represents the rules for the algorithm.
@@ -44,7 +47,9 @@ public class AlgorithmRules {
 
         for (int i = 0; i < actions_count; i++) {
             Node next = createNeighbourForNodeByAction(current, min_time + i, max_time, min_time);
-            neighbours.add(next);
+            if (next != null) {
+                neighbours.add(next);
+            }
         }
 
         return neighbours;
@@ -62,6 +67,14 @@ public class AlgorithmRules {
     public static Node createNeighbourForNodeByAction(Node current, double time, double max_time, double min_time) {
         if (time > max_time) {
             return null;
+        }
+
+        ArrayList<Double> previous_times = Utils.getLastAndCurrentTimeOfNode(current.getName());
+
+        if (previous_times != null) {
+            if (previous_times.contains(time)) {
+                return null;
+            }
         }
 
         double north_south_time = time;

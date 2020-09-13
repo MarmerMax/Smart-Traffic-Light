@@ -343,7 +343,7 @@ public class ProgramGUI {
 
         VBox boxButtonOpenCSV = new VBox(10);
         boxButtonOpenCSV.getStyleClass().add("options-column");
-        Button buttonOpenCSV = new Button("Open CSV");
+        Button buttonOpenCSV = new Button(Constants.open_csv_button_label);
         boxButtonOpenCSV.getChildren().add(buttonOpenCSV);
         buttonOpenCSV.setOnAction(e -> {
             String path = OpenBox.display();
@@ -358,7 +358,7 @@ public class ProgramGUI {
                     //2
                     Utils.setCSVConditionsInSpinner(cars_spinners_2, limit_spinners_2, actual_spinners_2, csv_condition.getSecondCrossroad());
                 } else {
-                    AlertBox.display("Fail", "The opened file has wrong format");
+                    AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
                 }
             }
         });

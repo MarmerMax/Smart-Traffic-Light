@@ -129,6 +129,7 @@ public class Constants {
     public static final String close_button_label = "Close";
     public static final String cancel_button = "Cancel";
     public static final String confirm_button_database = "Choose";
+    public static final String open_csv_button_label = "Open CSV";
 
     //pages labels
     public static final String about_us_text = "Smart Traffic Light\nVersion 1.0\n" +
@@ -161,6 +162,7 @@ public class Constants {
     public static final String reset_conditions_label = "Reset all values?";
     public static final String exit_text_label = "Sure you want to exit?";
     public static final String fail_text_label = "Observer does not have this permissions.";
+    public static final String csv_fail_text_label = "The opened file has wrong data format.";
 
 
 
