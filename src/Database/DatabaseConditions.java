@@ -1,5 +1,9 @@
 package Database;
 
+import com.mysql.jdbc.Util;
+
+import Tools.Utils;
+
 public class DatabaseConditions {
 
     private int[] cars_first_crossroad; //= {12, 3, 43, 13};
@@ -147,5 +151,18 @@ public class DatabaseConditions {
 
     public void setBetterDistribtuion(String better_distribtuion) {
         this.better_distribution = better_distribtuion;
+    }
+    
+    public String toString() {
+    	String res = "";
+    	res += "First crossroad: \n"
+    			+ "cars : " + Utils.arrayToString(cars_first_crossroad) + "\n"
+    			+ "speed limit : " + Utils.arrayToString(speed_limit_first_crossroad) + "\n" 
+    			+ "actual speed : " + Utils.arrayToString(actual_speed_first_crossroad) + "\n"
+    			+ "Second crossroad: \n"
+    			+ "cars : " + Utils.arrayToString(cars_second_crossroad) + "\n"
+    			+ "speed limit : " + Utils.arrayToString(speed_limit_second_crossroad) + "\n" 
+    			+ "actual speed : " + Utils.arrayToString(actual_speed_first_crossroad) + "\n";
+    	return res;
     }
 }

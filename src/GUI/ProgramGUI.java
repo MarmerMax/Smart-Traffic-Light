@@ -389,13 +389,37 @@ public class ProgramGUI {
             }
         });
 
+        
         //Database
         VBox boxButtonDatabase = new VBox(10);
         boxButtonDatabase.getStyleClass().add("options-column");
         Button buttonDatabase = new Button(Constants.database_button_label);
         boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
-            DatabaseBox.display();
+            String condition_date = DatabaseBox.display();
+            if(condition_date != null && condition_date != "") {
+            	Database db = Database.getInstance();
+                DatabaseConditions db_condition = db.getDatabaseConditions(condition_date);
+                if(db_condition != null) {
+                	//1
+                	Utils.setDatabaseConditionsInSpinner(cars_spinners_1,
+                										limit_spinners_1,
+                										actual_spinners_1,
+                										db_condition.getCarsFirstCrossroad(),
+                										db_condition.getSpeedLimitFirstCrossroad(),
+                										db_condition.getActualSpeedFirstCrossroad());
+                	//2
+                	Utils.setDatabaseConditionsInSpinner(cars_spinners_2,
+                										limit_spinners_2,
+                										actual_spinners_2,
+                										db_condition.getCarsSecondCrossroad(),
+                										db_condition.getSpeedLimitSecondCrossroad(),
+                										db_condition.getActualSpeedSecondCrossroad());
+                } else {
+                AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
+                }
+            }
+            
 
 //            DatabaseConditions database = DatabaseBox.display();
 //            Utils.setConditionsInSpinner(cars_spinners_1, limit_spinners_1, actual_spinners_1, database.getFirstCrossroad());
@@ -552,9 +576,11 @@ public class ProgramGUI {
         windowClientTypes = new Scene(borderPane, 600, 400);
     }
 
+    
     @SuppressWarnings("Duplicates")
     private void createSimulationWindow() {
-        Utils.printSimulationCreated();
+    
+    	Utils.printSimulationCreated();
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
         SystemSTL systemSTL = new SystemSTL(conditions);
@@ -581,6 +607,7 @@ public class ProgramGUI {
                 Database.getInstance().save(conditions);
             }
         });
+        buttonSave.setDisable(true);
 
         Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
@@ -601,6 +628,8 @@ public class ProgramGUI {
 
         Button buttonStart = new Button(Constants.start_button_label);
         buttonStart.setOnAction(e -> {
+        	buttonStart.setDisable(true);
+        	buttonSave.setDisable(true);
             Thread run_system = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -621,7 +650,10 @@ public class ProgramGUI {
                             if (systemSTL.getIsFinished()) {
                                 DatabaseConditions database_conditions = Utils.createDatabaseConditions(conditions);
 
+                                buttonSave.setDisable(false);
+                                
                                 ResultsBox.display(database_conditions);
+                                
                             }
                         }
                     });
@@ -662,6 +694,7 @@ public class ProgramGUI {
         windowSimulation = new Scene(borderPane, 1000, 660);
     }
 
+    
     private synchronized void updateSimulation() {
         simulation.getChildren().clear();
         simulation.getStyleClass().add("simulation-container");

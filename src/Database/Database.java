@@ -192,10 +192,18 @@ public class Database {
             int[] speed_limit_first_crossroad = new int[4];
             int[] actual_speed_first_crossroad = new int[4];
             index = 0;
-            while (rs.next()) {
-                directions_info_ids1[index] = rs.getInt(1);
+            // the first row accepted from query
+            rs.next();
+            // while there are more direction info id column then run (max number of direction is 4)
+            while (index < 4) {
+            	// column = 1 -> north_direction_info_id
+            	// column = 2 -> east_direction_info_id
+            	// column = 3 -> south_direction_info_id
+            	// column = 4 -> west_direction_info_id
+            	int column = index+1;
+                directions_info_ids1[index] = rs.getInt(column);
                 pstmt = con.prepareStatement(Constants.select_directionInfo_query);
-                pstmt.setInt(1, rs.getInt(1));
+                pstmt.setInt(1, rs.getInt(column));
                 ResultSet rs1 = pstmt.executeQuery();
                 while (rs1.next()) {
                     cars_first_crossroad[index] = rs1.getInt(1);
@@ -214,10 +222,18 @@ public class Database {
             int[] speed_limit_second_crossroad = new int[4];
             int[] actual_speed_second_crossroad = new int[4];
             index = 0;
-            while (rs.next()) {
-                directions_info_ids2[index] = rs.getInt(1);
+            // the first row accepted from query
+            rs.next();
+            // while there are more direction info id column then run (max number of direction is 4)
+            while (index < 4) {
+            	// column = 1 -> north_direction_info_id
+            	// column = 2 -> east_direction_info_id
+            	// column = 3 -> south_direction_info_id
+            	// column = 4 -> west_direction_info_id
+            	int column = index+1;
+                directions_info_ids2[index] = rs.getInt(column);
                 pstmt = con.prepareStatement(Constants.select_directionInfo_query);
-                pstmt.setInt(1, rs.getInt(1));
+                pstmt.setInt(1, rs.getInt(column));
                 ResultSet rs1 = pstmt.executeQuery();
                 while (rs1.next()) {
                     cars_second_crossroad[index] = rs1.getInt(1);
@@ -226,9 +242,8 @@ public class Database {
                 }
                 index++;
             }
-
-
-            return new DatabaseConditions(
+            
+            DatabaseConditions dc = new DatabaseConditions(
                     cars_first_crossroad,
                     cars_second_crossroad,
                     speed_limit_first_crossroad,
@@ -241,6 +256,9 @@ public class Database {
                     initial_aws,
                     better_aws,
                     better_distribtuion);
+            System.out.println(dc.toString());
+
+            return dc;
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -249,15 +267,7 @@ public class Database {
         return null;
     }
 
-    public void putToDatabase(Conditions conditions, Algorithm algorithm) {
-        //break conditions into specific objects and save them to tables
-        //crossroadInfo: crossroad, north, east, south, west
-        //crossroadInfo -> Table conditions.
-        //Conditions table comprises from id, name, crossroadInfo1, crossroadInfo2
-        //crossroad -> Table crossroads
-        //north, east, south, west -> Table directionInfo
-    }
-
+    
     private String extractHostAndPort(String url) {
         String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
         Pattern r = Pattern.compile(pattern);

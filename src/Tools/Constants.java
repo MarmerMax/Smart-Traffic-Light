@@ -88,7 +88,7 @@ public class Constants {
     public static final String select_crossroadsInfo_ids_query = "select crossroad_info_id from stl.crossroadsinfo where condition_id =?";
     public static final String select_crossroadsInfo_query = "select north_direction_info_id, east_direction_info_id, south_direction_info_id, west_direction_info_id"
     		+ " from stl.crossroadsinfo where crossroad_info_id =?";
-    public static final String select_directionInfo_query = "select cars_amount, average_speed, limit_speed from stl.directionsinfo"
+    public static final String select_directionInfo_query = "select cars_amount, average_speed, limit_speed from stl.directionsinfo "
     		+ "where direction_info_id = ?";
     ///////////////////////////////////////////////////////////
 

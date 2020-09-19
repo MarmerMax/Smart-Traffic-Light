@@ -683,6 +683,22 @@ public class Utils {
         }
         return result;
     }
+    
+    
+    /**
+     * This function create string from array
+     * 
+     * @param arr
+     * @return
+     */
+    public static String arrayToString(int[] arr) {
+    	String res = "[ ";
+    	for(int i : arr) {
+    		res += i + " ";
+    	}
+    	res += "]"; 
+    	return res;
+    }
 
     /**
      * This function calculates the AWT for a given condition state.
@@ -892,6 +908,17 @@ public class Utils {
         );
 
         return database_conditions;
+    }
+    
+    public static void setDatabaseConditionsInSpinner(ArrayList<Spinner<Integer>> cars_spinners,
+    											 	 ArrayList<Spinner<Integer>> limit_spinners,
+    											 	 ArrayList<Spinner<Integer>> actual_spinners,
+    											 	 int[] car_amounts,
+    											 	 int[] speed_limits,
+    											 	 int[] actual_speeds) {
+    	setDataInSpinner(cars_spinners, car_amounts);
+    	setDataInSpinner(limit_spinners, speed_limits);
+    	setDataInSpinner(actual_spinners, actual_speeds);
     }
 
     /**

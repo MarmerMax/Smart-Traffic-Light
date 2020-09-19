@@ -1,3 +1,4 @@
+// 
 package GUI;
 
 import java.sql.PreparedStatement;
@@ -141,7 +142,7 @@ public class DatabaseBox {
 
 
 //    public static DatabaseConditions display() {
-    public static DatabaseConditions display() {
+    public static String display() {
         query = "";
 
         login();
@@ -183,27 +184,6 @@ public class DatabaseBox {
 
             Button yesButton = new Button(Constants.confirm_button_database);
             yesButton.setOnAction(e -> {
-            	Database db = Database.getInstance();
-            	db.getDatabaseConditions(query);
-//            	//create crossroadInfo with fields data
-//                //check if data correct
-//                //continue to next window
-//                int[] cars_inputs_1 = {cars_spinners_1.get(0).getValue(), cars_spinners_1.get(1).getValue(), cars_spinners_1.get(2).getValue(), cars_spinners_1.get(3).getValue()};
-//                int[] actual_inputs_1 = {actual_spinners_1.get(0).getValue(), actual_spinners_1.get(1).getValue(), actual_spinners_1.get(2).getValue(), actual_spinners_1.get(3).getValue()};
-//                int[] limit_inputs_1 = {limit_spinners_1.get(0).getValue(), limit_spinners_1.get(1).getValue(), limit_spinners_1.get(2).getValue(), limit_spinners_1.get(3).getValue()};
-//
-//                int[] cars_inputs_2 = {cars_spinners_2.get(0).getValue(), cars_spinners_2.get(1).getValue(), cars_spinners_2.get(2).getValue(), cars_spinners_2.get(3).getValue()};
-//                int[] actual_inputs_2 = {actual_spinners_2.get(0).getValue(), actual_spinners_2.get(1).getValue(), actual_spinners_2.get(2).getValue(), actual_spinners_2.get(3).getValue()};
-//                int[] limit_inputs_2 = {limit_spinners_2.get(0).getValue(), limit_spinners_2.get(1).getValue(), limit_spinners_2.get(2).getValue(), limit_spinners_2.get(3).getValue()};
-//
-//                //else alert box fail!
-//
-//                crossroad_info_1.setCrossroadInfo(cars_inputs_1, actual_inputs_1, limit_inputs_1);
-//                crossroad_info_2.setCrossroadInfo(cars_inputs_2, actual_inputs_2, limit_inputs_2);
-//
-//                conditions = new Conditions(crossroad_info_1, crossroad_info_2);
-//                createSimulationWindow();
-//                window.setScene(windowSimulation);
                 window.close();
             });
 
@@ -228,7 +208,7 @@ public class DatabaseBox {
             window.setResizable(false);
             window.showAndWait();
 
-            return null;
+            return query;
             }
         return null;
         }
