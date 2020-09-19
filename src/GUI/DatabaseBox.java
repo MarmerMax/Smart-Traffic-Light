@@ -1,4 +1,3 @@
-// 
 package GUI;
 
 import java.sql.PreparedStatement;
@@ -18,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -73,7 +73,7 @@ public class DatabaseBox {
         TextField userField = new TextField();
         userField.setText("root");
         userField.getStyleClass().add("label-direction");
-        TextField passwordField = new TextField();
+        PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("label-direction");
         
         //Error log

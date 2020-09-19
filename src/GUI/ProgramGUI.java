@@ -602,9 +602,13 @@ public class ProgramGUI {
                 DatabaseBox.login();
                 //Save to database window
                 Database.getInstance().save(conditions);
+                //Disable button
+                buttonSave.setDisable(true);
             } else {
                 //Save to database window
                 Database.getInstance().save(conditions);
+                //Disable button
+                buttonSave.setDisable(true);
             }
         });
         buttonSave.setDisable(true);
