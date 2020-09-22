@@ -238,6 +238,32 @@ public class Utils {
 
 
     /**
+     * This function creates listeners for the speed spinners.
+     *
+     * @param first_spinners
+     * @param second_spinners
+     */
+    @SuppressWarnings("Duplicates")
+    public static void createSameSpeedListeners(ArrayList<Spinner<Integer>> first_spinners, ArrayList<Spinner<Integer>> second_spinners) {
+        if (first_spinners.size() != second_spinners.size()) {
+            throw new RuntimeException("Fail! Wrong program parameters...");
+        }
+
+        first_spinners.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
+                second_spinners.get(1).getValueFactory().setValue(newValue));
+
+        second_spinners.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
+                first_spinners.get(1).getValueFactory().setValue(newValue));
+
+        first_spinners.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
+                second_spinners.get(3).getValueFactory().setValue(newValue));
+
+        second_spinners.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
+                first_spinners.get(3).getValueFactory().setValue(newValue));
+    }
+
+
+    /**
      * //////////////////////////////////////////////////////////////////////////
      * //// Next part of the utils functions used for calculate SystemSTL.AlgorithmSTL ////
      * //////////////////////////////////////////////////////////////////////////

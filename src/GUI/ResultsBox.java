@@ -41,9 +41,9 @@ public class ResultsBox {
         series2.getData().add(new XYChart.Data(TIME_LABEL, database_conditions.getBetterTime()));
         series2.getData().add(new XYChart.Data(AWT_LABEL, database_conditions.getBetterAWS()));
 
-        XYChart.Series series3 = new XYChart.Series();
-        series3.setName("Simulation");
-        series3.getData().add(new XYChart.Data(TIME_LABEL, database_conditions.getSimulationTime()));
+//        XYChart.Series series3 = new XYChart.Series();
+//        series3.setName("Simulation");
+//        series3.getData().add(new XYChart.Data(TIME_LABEL, database_conditions.getSimulationTime()));
 
 
         BorderPane border_pane = new BorderPane();
@@ -231,7 +231,8 @@ public class ResultsBox {
         border_pane.setCenter(content);
 
         Scene scene = new Scene(border_pane, 800, 500);
-        bc.getData().addAll(series1, series2, series3);
+//        bc.getData().addAll(series1, series2, series3);
+        bc.getData().addAll(series1, series2);
         stage.setScene(scene);
         stage.showAndWait();
     }

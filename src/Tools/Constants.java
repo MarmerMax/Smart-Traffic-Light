@@ -213,7 +213,7 @@ public class Constants {
 
     //Start values
     public static final int CARS_COUNT_SHORT_ROAD = 3;
-    public static final int CARS_COUNT_LONG_ROAD = 50;
+    public static final int CARS_COUNT_LONG_ROAD = 10;
     public static final int CARS_COUNT_LONG_ROAD_MAX = 100;
     public static final int CARS_COUNT_SHORT_ROAD_MAX = 4;
     public static final int CARS_COUNT_MIN = 1;
@@ -224,7 +224,7 @@ public class Constants {
 
     public static final int ACTUAL_LIMIT_DEFAULT = 50;
     public static final int ACTUAL_LIMIT_MAX = 110;
-    public static final int ACTUAL_LIMIT_MIN = 50;
+    public static final int ACTUAL_LIMIT_MIN = 30;
 
     public static final double SAFETY_DISTANCE = 2;
     public static final double SAFETY_DISTANCE_TO_START = 3;

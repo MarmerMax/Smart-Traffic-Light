@@ -172,15 +172,6 @@ public class ProgramGUI {
             }
         }
 
-//        for (Spinner<Integer> spinner : cars_spinners_1) {
-//            if (spinner.getValue() == 10) {
-//                upgradeSpinner(spinner, 1, 1000, false);
-//
-//            } else {
-//                upgradeSpinner(spinner, 1, 5, false);
-//            }
-//        }
-
         cars1.getChildren().addAll(carsLabel1, cars_spinners_1.get(0), cars_spinners_1.get(1), cars_spinners_1.get(2), cars_spinners_1.get(3));
 
         VBox speedLimit1 = new VBox(10);
@@ -307,18 +298,8 @@ public class ProgramGUI {
 
         //Speed limit listeners - there are directions that go along the same road through two intersections,
         //so the speed limit should be the same on them
-        limit_spinners_1.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
-                limit_spinners_2.get(1).getValueFactory().setValue(newValue));
-
-        limit_spinners_2.get(1).valueProperty().addListener((obs, oldValue, newValue) ->
-                limit_spinners_1.get(1).getValueFactory().setValue(newValue));
-
-        limit_spinners_1.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
-                limit_spinners_2.get(3).getValueFactory().setValue(newValue));
-
-        limit_spinners_2.get(3).valueProperty().addListener((obs, oldValue, newValue) ->
-                limit_spinners_1.get(3).getValueFactory().setValue(newValue));
-
+        Utils.createSameSpeedListeners(limit_spinners_1, limit_spinners_2);
+        Utils.createSameSpeedListeners(actual_spinners_1, actual_spinners_2);
 
         //actual speed listeners - actual speed can't be more than speed limit
         Utils.createActualSpeedListeners(actual_spinners_1, limit_spinners_1);
@@ -389,7 +370,7 @@ public class ProgramGUI {
             }
         });
 
-        
+
         //Database
         VBox boxButtonDatabase = new VBox(10);
         boxButtonDatabase.getStyleClass().add("options-column");
@@ -397,29 +378,29 @@ public class ProgramGUI {
         boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
             String condition_date = DatabaseBox.display();
-            if(condition_date != null && condition_date != "") {
-            	Database db = Database.getInstance();
+            if (condition_date != null && condition_date != "") {
+                Database db = Database.getInstance();
                 DatabaseConditions db_condition = db.getDatabaseConditions(condition_date);
-                if(db_condition != null) {
-                	//1
-                	Utils.setDatabaseConditionsInSpinner(cars_spinners_1,
-                										limit_spinners_1,
-                										actual_spinners_1,
-                										db_condition.getCarsFirstCrossroad(),
-                										db_condition.getSpeedLimitFirstCrossroad(),
-                										db_condition.getActualSpeedFirstCrossroad());
-                	//2
-                	Utils.setDatabaseConditionsInSpinner(cars_spinners_2,
-                										limit_spinners_2,
-                										actual_spinners_2,
-                										db_condition.getCarsSecondCrossroad(),
-                										db_condition.getSpeedLimitSecondCrossroad(),
-                										db_condition.getActualSpeedSecondCrossroad());
+                if (db_condition != null) {
+                    //1
+                    Utils.setDatabaseConditionsInSpinner(cars_spinners_1,
+                            limit_spinners_1,
+                            actual_spinners_1,
+                            db_condition.getCarsFirstCrossroad(),
+                            db_condition.getSpeedLimitFirstCrossroad(),
+                            db_condition.getActualSpeedFirstCrossroad());
+                    //2
+                    Utils.setDatabaseConditionsInSpinner(cars_spinners_2,
+                            limit_spinners_2,
+                            actual_spinners_2,
+                            db_condition.getCarsSecondCrossroad(),
+                            db_condition.getSpeedLimitSecondCrossroad(),
+                            db_condition.getActualSpeedSecondCrossroad());
                 } else {
-                AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
+                    AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
                 }
             }
-            
+
 
 //            DatabaseConditions database = DatabaseBox.display();
 //            Utils.setConditionsInSpinner(cars_spinners_1, limit_spinners_1, actual_spinners_1, database.getFirstCrossroad());
@@ -576,11 +557,11 @@ public class ProgramGUI {
         windowClientTypes = new Scene(borderPane, 600, 400);
     }
 
-    
+
     @SuppressWarnings("Duplicates")
     private void createSimulationWindow() {
-    
-    	Utils.printSimulationCreated();
+
+        Utils.printSimulationCreated();
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
         SystemSTL systemSTL = new SystemSTL(conditions);
@@ -632,8 +613,8 @@ public class ProgramGUI {
 
         Button buttonStart = new Button(Constants.start_button_label);
         buttonStart.setOnAction(e -> {
-        	buttonStart.setDisable(true);
-        	buttonSave.setDisable(true);
+            buttonStart.setDisable(true);
+            buttonSave.setDisable(true);
             Thread run_system = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -655,9 +636,9 @@ public class ProgramGUI {
                                 DatabaseConditions database_conditions = Utils.createDatabaseConditions(conditions);
 
                                 buttonSave.setDisable(false);
-                                
+
                                 ResultsBox.display(database_conditions);
-                                
+
                             }
                         }
                     });
@@ -698,7 +679,7 @@ public class ProgramGUI {
         windowSimulation = new Scene(borderPane, 1000, 660);
     }
 
-    
+
     private synchronized void updateSimulation() {
         simulation.getChildren().clear();
         simulation.getStyleClass().add("simulation-container");
@@ -904,89 +885,8 @@ public class ProgramGUI {
         simulation.getChildren().addAll(images);
     }
 
-    private void upgradeSpinner(Spinner<Integer> spinner, int min, int max, boolean limit) {
-        spinner.setEditable(true);
-
-        ArrayList<Integer> arr = new ArrayList<>();
-
-        int speed_limit_step = 1;
-
-        if (limit) {
-            speed_limit_step = 5;
-        }
-
-        for (int i = min; i < max; i += speed_limit_step) {
-            arr.add(i);
-        }
-
-        // Item List.
-        ObservableList<Integer> items = FXCollections.observableArrayList(arr);
-
-        // Value Factory:
-        SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.ListSpinnerValueFactory<>(items);
-
-        // The converter to convert between text and item object.
-        InputConverter converter = new InputConverter();
-        valueFactory.setConverter(converter);
-
-        spinner.setValueFactory(valueFactory);
-
-        spinner.getEditor().setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                String text = spinner.getEditor().getText();
-                SpinnerValueFactory.ListSpinnerValueFactory<Integer>//
-                        valueFactory = (SpinnerValueFactory.ListSpinnerValueFactory<Integer>) spinner.getValueFactory();
-
-                StringConverter<Integer> converter = valueFactory.getConverter();
-                Integer enterValue;
-                try {
-                    enterValue = converter.fromString(text);
-                } catch (RuntimeException e) {
-                    enterValue = 1;
-                }
-
-
-                // If the list does not contains 'enterValue'.
-                if (!valueFactory.getItems().contains(enterValue)) {
-                    // Add new item to list
-                    valueFactory.getItems().add(enterValue);
-                    // Set to current
-                    valueFactory.setValue(enterValue);
-
-                    if (enterValue > max) {
-                        enterValue = max;
-                    } else {
-                        enterValue = min;
-                    }
-
-                    spinner.getValueFactory().setValue(enterValue);
-                    System.out.println(spinner.getValueFactory().getValue());
-
-                }
-            }
-        });
-    }
-
     public Scene getScene() {
         return windowHome;
     }
 
 }
-
-class InputConverter extends StringConverter<Integer> {
-
-    @Override
-    public String toString(Integer object) {
-        return object + "";
-    }
-
-    @Override
-    public Integer fromString(String string) {
-        return Integer.parseInt(string);
-    }
-
-}
-
