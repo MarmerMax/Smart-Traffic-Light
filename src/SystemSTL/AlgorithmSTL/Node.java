@@ -6,6 +6,9 @@ public class Node {
 
     private double price;
     private double heuristic_price;
+
+    private double awt;
+
     private boolean out;
     private String name;
 
@@ -16,6 +19,7 @@ public class Node {
         this.conditions = conditions;
         this.name = name;
         this.price = price;
+        this.awt = 0;
 
 //        print();
 
@@ -72,5 +76,13 @@ public class Node {
 
     public AlgorithmConditions getConditions() {
         return conditions;
+    }
+
+    public double getAWT() {
+        return awt;
+    }
+
+    public void setAWT(double awt) {
+        this.awt = awt;
     }
 }

@@ -9,26 +9,19 @@ import SystemSTL.SystemSTL;
 import Tools.Constants;
 import Tools.Utils;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import javafx.scene.shape.Rectangle;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
 import SystemSTL.TrafficComputation.Car.CarInfo;
-
-import javafx.event.ActionEvent;
 
 import Database.Database;
 import Database.DatabaseConditions;
@@ -160,9 +153,9 @@ public class ProgramGUI {
 
         for (int i = 0; i < 4; i++) {
             if (i != 1) {
-                cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_LONG_ROAD_MAX, Constants.CARS_COUNT_LONG_ROAD));
+                cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_LONG_ROAD_MAX, Constants.CARS_COUNT_LONG_ROAD_DEFAULT));
             } else {
-                cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD));
+                cars_spinners_1.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD_DEFAULT));
             }
 
             if (!analyst) {
@@ -245,9 +238,9 @@ public class ProgramGUI {
 
         for (int i = 0; i < 4; i++) {
             if (i != 3) {
-                cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_LONG_ROAD_MAX, Constants.CARS_COUNT_LONG_ROAD));
+                cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_LONG_ROAD_MAX, Constants.CARS_COUNT_LONG_ROAD_DEFAULT));
             } else {
-                cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD));
+                cars_spinners_2.add(new Spinner<>(Constants.CARS_COUNT_MIN, Constants.CARS_COUNT_SHORT_ROAD_MAX, Constants.CARS_COUNT_SHORT_ROAD_DEFAULT));
             }
 
             if (!analyst) {
@@ -377,28 +370,32 @@ public class ProgramGUI {
         Button buttonDatabase = new Button(Constants.database_button_label);
         boxButtonDatabase.getChildren().add(buttonDatabase);
         buttonDatabase.setOnAction(e -> {
-            String condition_date = DatabaseBox.display();
-            if (condition_date != null && condition_date != "") {
-                Database db = Database.getInstance();
-                DatabaseConditions db_condition = db.getDatabaseConditions(condition_date);
-                if (db_condition != null) {
-                    //1
-                    Utils.setDatabaseConditionsInSpinner(cars_spinners_1,
-                            limit_spinners_1,
-                            actual_spinners_1,
-                            db_condition.getCarsFirstCrossroad(),
-                            db_condition.getSpeedLimitFirstCrossroad(),
-                            db_condition.getActualSpeedFirstCrossroad());
-                    //2
-                    Utils.setDatabaseConditionsInSpinner(cars_spinners_2,
-                            limit_spinners_2,
-                            actual_spinners_2,
-                            db_condition.getCarsSecondCrossroad(),
-                            db_condition.getSpeedLimitSecondCrossroad(),
-                            db_condition.getActualSpeedSecondCrossroad());
-                } else {
-                    AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
+            try {
+                String condition_date = DatabaseBox.display();
+                if (condition_date != null && condition_date != "") {
+                    Database db = Database.getInstance();
+                    DatabaseConditions db_condition = db.getDatabaseConditions(condition_date);
+                    if (db_condition != null) {
+                        //1
+                        Utils.setDatabaseConditionsInSpinner(cars_spinners_1,
+                                limit_spinners_1,
+                                actual_spinners_1,
+                                db_condition.getCarsFirstCrossroad(),
+                                db_condition.getSpeedLimitFirstCrossroad(),
+                                db_condition.getActualSpeedFirstCrossroad());
+                        //2
+                        Utils.setDatabaseConditionsInSpinner(cars_spinners_2,
+                                limit_spinners_2,
+                                actual_spinners_2,
+                                db_condition.getCarsSecondCrossroad(),
+                                db_condition.getSpeedLimitSecondCrossroad(),
+                                db_condition.getActualSpeedSecondCrossroad());
+                    } else {
+                        AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
+                    }
                 }
+            } catch (Exception ex) {
+                System.out.println("ERROR: Database failed...");
             }
 
 
@@ -578,18 +575,23 @@ public class ProgramGUI {
 
         Button buttonSave = new Button(Constants.save_button_label);
         buttonSave.setOnAction(e -> {
-            //Login before saving
-            if (Database.getInstance().getConnection() == null) {
-                DatabaseBox.login();
-                //Save to database window
-                Database.getInstance().save(conditions);
-                //Disable button
-                buttonSave.setDisable(true);
-            } else {
-                //Save to database window
-                Database.getInstance().save(conditions);
-                //Disable button
-                buttonSave.setDisable(true);
+
+            try {
+                //Login before saving
+                if (Database.getInstance().getConnection() == null) {
+                    DatabaseBox.login();
+                    //Save to database window
+                    Database.getInstance().save(conditions);
+                    //Disable button
+                    buttonSave.setDisable(true);
+                } else {
+                    //Save to database window
+                    Database.getInstance().save(conditions);
+                    //Disable button
+                    buttonSave.setDisable(true);
+                }
+            } catch (Exception ex) {
+                System.err.println("ERROR: Saving to database failed...");
             }
         });
         buttonSave.setDisable(true);

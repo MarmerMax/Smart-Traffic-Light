@@ -39,8 +39,8 @@ public class Astar extends AlgorithmSTL {
 
             close_list.add(current);
 
-            double max_time = traffic_conditions.getMaxTime();
-            double min_time = traffic_conditions.getMinTime();
+            double max_time = traffic_rules.getMaxTime();
+            double min_time = traffic_rules.getMinTime();
 
             int actions_count = (int) (max_time - min_time) + 1;
 

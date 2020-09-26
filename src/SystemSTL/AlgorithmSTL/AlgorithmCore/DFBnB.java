@@ -41,8 +41,8 @@ public class DFBnB extends AlgorithmSTL {
                 stack.add(current);
 
                 //create all available neighbours for the current node
-                double max_time = traffic_conditions.getMaxTime();
-                double min_time = traffic_conditions.getMinTime();
+                double max_time = traffic_rules.getMaxTime();
+                double min_time = traffic_rules.getMinTime();
 
                 ArrayList<Node> neighbours = AlgorithmRules.createNeighboursOfNode(current, max_time, min_time);
 

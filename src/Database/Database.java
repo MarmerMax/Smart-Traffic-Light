@@ -196,11 +196,11 @@ public class Database {
             rs.next();
             // while there are more direction info id column then run (max number of direction is 4)
             while (index < 4) {
-            	// column = 1 -> north_direction_info_id
-            	// column = 2 -> east_direction_info_id
-            	// column = 3 -> south_direction_info_id
-            	// column = 4 -> west_direction_info_id
-            	int column = index+1;
+                // column = 1 -> north_direction_info_id
+                // column = 2 -> east_direction_info_id
+                // column = 3 -> south_direction_info_id
+                // column = 4 -> west_direction_info_id
+                int column = index + 1;
                 directions_info_ids1[index] = rs.getInt(column);
                 pstmt = con.prepareStatement(Constants.select_directionInfo_query);
                 pstmt.setInt(1, rs.getInt(column));
@@ -226,11 +226,11 @@ public class Database {
             rs.next();
             // while there are more direction info id column then run (max number of direction is 4)
             while (index < 4) {
-            	// column = 1 -> north_direction_info_id
-            	// column = 2 -> east_direction_info_id
-            	// column = 3 -> south_direction_info_id
-            	// column = 4 -> west_direction_info_id
-            	int column = index+1;
+                // column = 1 -> north_direction_info_id
+                // column = 2 -> east_direction_info_id
+                // column = 3 -> south_direction_info_id
+                // column = 4 -> west_direction_info_id
+                int column = index + 1;
                 directions_info_ids2[index] = rs.getInt(column);
                 pstmt = con.prepareStatement(Constants.select_directionInfo_query);
                 pstmt.setInt(1, rs.getInt(column));
@@ -242,7 +242,7 @@ public class Database {
                 }
                 index++;
             }
-            
+
             DatabaseConditions dc = new DatabaseConditions(
                     cars_first_crossroad,
                     cars_second_crossroad,
@@ -267,7 +267,7 @@ public class Database {
         return null;
     }
 
-    
+
     private String extractHostAndPort(String url) {
         String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
         Pattern r = Pattern.compile(pattern);

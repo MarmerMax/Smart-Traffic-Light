@@ -23,6 +23,7 @@ public class Conditions {
     private double algorithm_duration; //save to database - number
     private double initial_duration;
     private double simulation_duration;
+    private int phases_count;
 
     private double initial_awt;
     private double algorithm_awt;
@@ -393,5 +394,18 @@ public class Conditions {
     public void setAlgorithmAWT(double better_awt) {
         this.algorithm_awt = better_awt;
         System.out.println(ConsoleColors.CYAN + "Algorithm time of AWT: " + algorithm_awt + " seconds" + ConsoleColors.RESET);
+    }
+
+    public int getPhasesCount() {
+        return phases_count;
+    }
+
+    public void setPhasesCount(int phases_count) {
+        this.phases_count = phases_count;
+        double best_time = Utils.calculateDurationByPhasesCount(phases_count);
+        if (best_time < algorithm_duration) {
+            algorithm_duration = best_time;
+        }
+        System.out.println(algorithm_duration);
     }
 }

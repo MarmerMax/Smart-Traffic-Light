@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import Database.Database;
 import Database.DatabaseConditions;
 import Objects.Conditions.Conditions;
+import Tools.ConsoleColors;
 import Tools.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,44 +29,46 @@ import javafx.stage.Stage;
 
 public class DatabaseBox {
 
-	public enum login_states{no_state, login_failed, login_succeeded};
-	
-	public static login_states login_state =  login_states.no_state;
+    public enum login_states {no_state, login_failed, login_succeeded}
+
+    ;
+
+    public static login_states login_state = login_states.no_state;
     private static String query = "";
 
     /**
      * The function allows the user to connect to his database.
-     * 
+     * <p>
      * Login details:
      * url - jdbc:mysql://hostname/databaseName.
      * user - Username to connect to the MySql system.
      * password -
-     * 
+     * <p>
      * Buttons:
      * Connect - This button performs the connection to the database according to the data entered.
-     *           If the connection fails the user is not moved to the next window until he enters correct data.
-     *           If the connection success the user moved to conditions list.
-     * Create database - 
+     * If the connection fails the user is not moved to the next window until he enters correct data.
+     * If the connection success the user moved to conditions list.
+     * Create database -
      */
     public static void login() {
-    	Stage window = new Stage();
-    	window.setTitle(Constants.database_connect_window_label);
+        Stage window = new Stage();
+        window.setTitle(Constants.database_connect_window_label);
 
-    	HBox centerMenu = new HBox(10);
-    	centerMenu.getStyleClass().add("options-container");
-    	
-    	//login labels
-    	VBox boxLabel1 = new VBox(10);
+        HBox centerMenu = new HBox(10);
+        centerMenu.getStyleClass().add("options-container");
+
+        //login labels
+        VBox boxLabel1 = new VBox(10);
         boxLabel1.getStyleClass().add("options-column");
-    	Label urlLabel = new Label(Constants.url_label);
-    	urlLabel.getStyleClass().add("label-direction");
-    	Label userLabel = new Label(Constants.user_label);
-    	userLabel.getStyleClass().add("label-direction");
-    	Label passwordLabel = new Label(Constants.password_label);
-    	passwordLabel.getStyleClass().add("label-direction");
-    	
-    	//login fields
-    	VBox boxLabel2 = new VBox(10);
+        Label urlLabel = new Label(Constants.url_label);
+        urlLabel.getStyleClass().add("label-direction");
+        Label userLabel = new Label(Constants.user_label);
+        userLabel.getStyleClass().add("label-direction");
+        Label passwordLabel = new Label(Constants.password_label);
+        passwordLabel.getStyleClass().add("label-direction");
+
+        //login fields
+        VBox boxLabel2 = new VBox(10);
         boxLabel2.getStyleClass().add("options-column");
         TextField urlField = new TextField();
         urlField.setText("jdbc:mysql://localhost:3306/stl");
@@ -75,7 +78,7 @@ public class DatabaseBox {
         userField.getStyleClass().add("label-direction");
         PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("label-direction");
-        
+
         //Error log
         HBox top = new HBox();
         top.setAlignment(Pos.CENTER);
@@ -90,68 +93,68 @@ public class DatabaseBox {
         buttonConnect.getStyleClass().add("label-direction");
         buttonConnect.setAlignment(Pos.BOTTOM_LEFT);
         buttonConnect.setOnAction(e -> {
-        	Database database = Database.getInstance();
-        	if(database.connect(urlField.getText(), userField.getText(), passwordField.getText())) 
-        	{
-        		login_state = login_states.login_succeeded;
-        		window.close();
-        	}
-        	else {
-        		logLabel.setText(Constants.connection_fail);
-        		login_state = login_states.login_failed;
-        	}
+            Database database = Database.getInstance();
+            if (database.connect(urlField.getText(), userField.getText(), passwordField.getText())) {
+                login_state = login_states.login_succeeded;
+                window.close();
+            } else {
+                logLabel.setText(Constants.connection_fail);
+                login_state = login_states.login_failed;
+            }
         });
-        
+
         //Create database button
         Button buttonCreate = new Button(Constants.create_database_button);
         buttonCreate.setMaxWidth(500);
         buttonCreate.getStyleClass().add("label-direction");
         buttonCreate.setOnAction(e -> {
-        	Database database = Database.getInstance();
-        	if(database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText()))
-        	{
-        		login_state = login_states.login_succeeded;
-        		window.close();
-        	}
-        	else {
-        		logLabel.setText(Constants.create_database_fail);
-        		login_state = login_states.login_failed;
-        	}        		
+            try {
+                Database database = Database.getInstance();
+                if (database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText())) {
+                    login_state = login_states.login_succeeded;
+                    window.close();
+                } else {
+                    logLabel.setText(Constants.create_database_fail);
+                    login_state = login_states.login_failed;
+                }
+            } catch (Exception ex) {
+                System.err.println("ERROR: Failed to create database...");
+            }
         });
 
         HBox bottomMenu = new HBox(10);
         bottomMenu.setPadding(new Insets(10));
         bottomMenu.setAlignment(Pos.CENTER);
         bottomMenu.getChildren().addAll(buttonCreate, buttonConnect);
-        
-    	boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel);
-    	boxLabel2.getChildren().addAll(urlField, userField, passwordField);
-    	centerMenu.getChildren().addAll(boxLabel1, boxLabel2);
-    	
-    	BorderPane borderPane = new BorderPane();
+
+        boxLabel1.getChildren().addAll(urlLabel, userLabel, passwordLabel);
+        boxLabel2.getChildren().addAll(urlField, userField, passwordField);
+        centerMenu.getChildren().addAll(boxLabel1, boxLabel2);
+
+        BorderPane borderPane = new BorderPane();
         borderPane.getStylesheets().add("file:src/GUI/style.css");
         borderPane.setTop(top);
         borderPane.setCenter(centerMenu);
         borderPane.setBottom(bottomMenu);
-        
-    	Scene scene = new Scene(borderPane, 550, 300);
+
+        Scene scene = new Scene(borderPane, 550, 300);
         window.setScene(scene);
         window.setResizable(false);
         window.showAndWait();
     }
 
 
-//    public static DatabaseConditions display() {
+    //    public static DatabaseConditions display() {
     public static String display() {
         query = "";
 
         login();
-        
+
         Stage window = new Stage();
-        if(login_state == login_states.login_succeeded) {
-        	login_state = login_states.no_state;
-        	
-        	window.initModality(Modality.APPLICATION_MODAL);
+        if (login_state == login_states.login_succeeded) {
+            login_state = login_states.no_state;
+
+            window.initModality(Modality.APPLICATION_MODAL);
             window.setTitle(Constants.database_window_label);
 
             window.setOnCloseRequest(e -> {
@@ -209,8 +212,8 @@ public class DatabaseBox {
             window.showAndWait();
 
             return query;
-            }
-        return null;
         }
+        return null;
+    }
 
 }

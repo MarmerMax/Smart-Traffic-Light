@@ -234,6 +234,7 @@ public class ResultsBox {
 //        bc.getData().addAll(series1, series2, series3);
         bc.getData().addAll(series1, series2);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 }

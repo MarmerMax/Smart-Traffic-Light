@@ -44,8 +44,8 @@ public class IDA extends AlgorithmSTL {
                     stack.add(current);
 
 
-                    double max_time = traffic_conditions.getMaxTime();
-                    double min_time = traffic_conditions.getMinTime();
+                    double max_time = traffic_rules.getMaxTime();
+                    double min_time = traffic_rules.getMinTime();
 
                     int actions_count = (int) (max_time - min_time) + 1;
 

@@ -39,7 +39,8 @@ public class TrafficLightsComputation extends Thread {
         double time = 0;
         double changing_time = 0;
 
-        int phase_count = 0;
+        int phase_state = 0;
+        int phases_count = 0;
 
         while (!conditions.isAllCarsPassed() && !isStopped) {
 
@@ -53,14 +54,15 @@ public class TrafficLightsComputation extends Thread {
 
             //check if exists a better distribution. if yes then choose it times. happen only once per phase.
             //phase = north-south-state + red-state + east-west-state
-            if (!conditions.isEastWestActive() && conditions.isNorthSouthActive() && phase_count % 3 == 0) {
+            if (!conditions.isEastWestActive() && conditions.isNorthSouthActive() && phase_state % 3 == 0) {
                 //once at phase time
                 if (conditions.getBetterDistribution().size() != 0) {
-                    phase_count = 1;
+                    phase_state = 1;
                     System.out.println(ConsoleColors.GREEN_BOLD + "New time was set" + ConsoleColors.RESET);
                     conditions.setTimeDistribution(conditions.getNextDistribution());
                     int phases_left_count = conditions.getBetterDistribution().size();
                     System.out.println(ConsoleColors.YELLOW + "(" + phases_left_count + " phases left)" + ConsoleColors.RESET);
+                    phases_count++;
                 }
             }
 
@@ -68,19 +70,19 @@ public class TrafficLightsComputation extends Thread {
 
                 if (conditions.getEastWestTimeDistribution() < time) {
                     conditions.changeTrafficLightState();
-                    phase_count++;
+                    phase_state++;
                 }
                 time++;
             } else if (conditions.isNorthSouthActive()) {
 
                 if (conditions.getNorthSouthTimeDistribution() < time) {
                     conditions.changeTrafficLightState();
-                    phase_count++;
+                    phase_state++;
                 }
                 time++;
             }
 
-            //all road are stop
+            //all traffic lights are not green
             else {
 
                 time = 0;
@@ -94,6 +96,7 @@ public class TrafficLightsComputation extends Thread {
 
             if (conditions.isAllCarsPassed()) {
                 conditions.setSimulationDuration(traffic_lights_working_time);
+                conditions.setPhasesCount(phases_count);
             }
         }
     }

@@ -36,6 +36,9 @@ public class AlgorithmRules {
         AlgorithmConditions goal_conditions = Utils.createGoalAlgorithmConditions(); //zero conditions
         goal = new Node("", 0, goal_conditions);
 
+        double awt = Utils.calculateAWT(conditions);
+        goal.setAWT(awt);
+
         min_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMinTime();
         max_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMaxTime();
     }

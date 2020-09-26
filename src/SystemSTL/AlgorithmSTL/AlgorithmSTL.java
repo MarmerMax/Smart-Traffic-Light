@@ -1,5 +1,6 @@
 package SystemSTL.AlgorithmSTL;
 
+import Objects.Conditions.Conditions;
 import Tools.ConsoleColors;
 import Tools.Utils;
 
@@ -13,8 +14,10 @@ public abstract class AlgorithmSTL extends Thread {
     protected double price;
     protected String path;
     protected boolean is_path_exist;
-    protected AlgorithmRules traffic_conditions;
     protected volatile boolean isStopped;
+
+    protected AlgorithmRules traffic_rules;
+    private Conditions conditions;
 
     public AlgorithmSTL() {
         isStopped = false;
@@ -46,15 +49,15 @@ public abstract class AlgorithmSTL extends Thread {
      * This function checks if there is a better solution for a given traffic conditions.
      */
     private void checkTrafficConditions() {
-        if (Utils.isEqualsNodes(traffic_conditions.getRoot(), traffic_conditions.getGoal())) { //check if the start state equals to the goal state
+        if (Utils.isEqualsNodes(traffic_rules.getRoot(), traffic_rules.getGoal())) { //check if the start state equals to the goal state
             return;
-        } else if (!traffic_conditions.getIsPathExist()) { //check if all speeds > 0
+        } else if (!traffic_rules.getIsPathExist()) { //check if all speeds > 0
             return;
         } else {
-            is_path_exist = checkIfPathExist(traffic_conditions.getRoot(), traffic_conditions.getGoal());
+            is_path_exist = checkIfPathExist(traffic_rules.getRoot(), traffic_rules.getGoal());
 
-            if (is_path_exist && !traffic_conditions.getBetterDistribution().equals(path)) {
-                traffic_conditions.setBetterDistribution(path);
+            if (is_path_exist && !traffic_rules.getBetterDistribution().equals(path)) {
+                traffic_rules.setBetterDistribution(path);
             }
 
             if (!path.equals("no path")) {
@@ -64,12 +67,13 @@ public abstract class AlgorithmSTL extends Thread {
     }
 
     /**
-     * This function sets the conditions to be checked for the existing best distribution.
+     * This function sets the conditions for checking the existing best distribution.
      *
      * @param conditions
      */
-    public void setTrafficConditions(AlgorithmRules conditions) {
-        traffic_conditions = conditions;
+    public void setConditions(Conditions conditions) {
+        this.conditions = conditions;
+        traffic_rules = new AlgorithmRules(conditions);
     }
 
     /**
@@ -83,18 +87,25 @@ public abstract class AlgorithmSTL extends Thread {
     protected boolean isGoal(Node current, Node target) {
         if (Utils.isEqualsNodes(current, target)) {
 
-            is_path_exist = true;
-            path = current.getName().substring(2);
-            price = current.getPrice();
+            double current_awt = Utils.calculateAWTForDistributionString(conditions, current.getName().substring(2));
+            current.setAWT(current_awt);
+
+            if (current.getAWT() + 0.1 < target.getAWT()) {
+//            if (current.getPrice() < target.getPrice()) {
+                is_path_exist = true;
+                path = current.getName().substring(2);
+                price = current.getPrice();
 
 
-            if (is_path_exist) {
-                traffic_conditions.setBetterDistribution(path);
+//                if (is_path_exist) {
+                traffic_rules.setBetterDistribution(path);
+//                }
+
+
+                printFoundPath(path);
+
+                return true;
             }
-
-            printFoundPath(path);
-
-            return true;
         }
         return false;
     }

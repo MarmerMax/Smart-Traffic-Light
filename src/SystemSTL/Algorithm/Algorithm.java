@@ -22,7 +22,6 @@ public class Algorithm extends Thread {
     private volatile boolean isStopped;
 
     private AlgorithmSTL smart_algorithm;
-    private AlgorithmRules algorithm_conditions;
 
     /**
      * Algorithm constructor. Calculates the initial travel times for cars without a smart algorithm.
@@ -32,10 +31,8 @@ public class Algorithm extends Thread {
     public Algorithm(Conditions conditions) {
         this.conditions = conditions;
         isStopped = false;
-        algorithm_conditions = new AlgorithmRules(conditions);
-//        smart_algorithm = new Astar();
         smart_algorithm = new DFBnB();
-        smart_algorithm.setTrafficConditions(algorithm_conditions);
+        smart_algorithm.setConditions(conditions);
     }
 
     @Override

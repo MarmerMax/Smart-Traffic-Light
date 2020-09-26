@@ -163,9 +163,9 @@ public class Utils {
     private static void resetCarsCount(ArrayList<Spinner<Integer>> spinners, int exception_road) {
         for (int i = 0; i < spinners.size(); i++) {
             if (i == exception_road) {
-                spinners.get(i).getValueFactory().setValue(Constants.CARS_COUNT_SHORT_ROAD);
+                spinners.get(i).getValueFactory().setValue(Constants.CARS_COUNT_SHORT_ROAD_DEFAULT);
             } else {
-                spinners.get(i).getValueFactory().setValue(Constants.CARS_COUNT_LONG_ROAD);
+                spinners.get(i).getValueFactory().setValue(Constants.CARS_COUNT_LONG_ROAD_DEFAULT);
             }
         }
     }
@@ -548,6 +548,7 @@ public class Utils {
 
     /**
      * This functions returns last times of found path.
+     *
      * @param str
      * @return
      */
@@ -661,7 +662,7 @@ public class Utils {
     }
 
 
-    private static double calculateDurationByPhasesCount(double phases) {
+    public static double calculateDurationByPhasesCount(double phases) {
         double changing_lights_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
         double phase_work_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_lights_time;
 
@@ -709,21 +710,21 @@ public class Utils {
         }
         return result;
     }
-    
-    
+
+
     /**
      * This function create string from array
-     * 
+     *
      * @param arr
      * @return
      */
     public static String arrayToString(int[] arr) {
-    	String res = "[ ";
-    	for(int i : arr) {
-    		res += i + " ";
-    	}
-    	res += "]"; 
-    	return res;
+        String res = "[ ";
+        for (int i : arr) {
+            res += i + " ";
+        }
+        res += "]";
+        return res;
     }
 
     /**
@@ -783,14 +784,6 @@ public class Utils {
                     finish = true;
                 }
 
-//                if (checkIfAllPass(first_north, first_east, first_south, first_west)) {
-//                    finish = true;
-//                }
-//
-//                if (checkIfAllPass(second_north, second_east, second_south, second_west)) {
-//                    finish = true;
-//                }
-
                 phases_passed++;
             }
 
@@ -811,6 +804,55 @@ public class Utils {
 
                 phases_passed++;
             }
+        }
+
+        double result_awt = Utils.round(Formulas.AWT(times_arr), 2);
+        return result_awt;
+    }
+
+
+    public static double calculateAWTForDistributionString(Conditions conditions, String distribution) {
+
+        int phases_passed = 0;
+
+        double changing_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3;
+        double phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_time * 2;
+
+        LaneInfo lane_info_first_north = new LaneInfo(conditions.getFirstCrossroadInfo().getNorth());
+        LaneInfo lane_info_first_east = new LaneInfo(conditions.getFirstCrossroadInfo().getEast());
+        LaneInfo lane_info_first_south = new LaneInfo(conditions.getFirstCrossroadInfo().getSouth());
+        LaneInfo lane_info_first_west = new LaneInfo(conditions.getFirstCrossroadInfo().getWest());
+        LaneInfo lane_info_second_north = new LaneInfo(conditions.getFirstCrossroadInfo().getNorth());
+        LaneInfo lane_info_second_east = new LaneInfo(conditions.getFirstCrossroadInfo().getEast());
+        LaneInfo lane_info_second_south = new LaneInfo(conditions.getFirstCrossroadInfo().getSouth());
+        LaneInfo lane_info_second_west = new LaneInfo(conditions.getFirstCrossroadInfo().getWest());
+
+        AlgorithmLaneInfo first_north = new AlgorithmLaneInfo(lane_info_first_north);
+        AlgorithmLaneInfo first_east = new AlgorithmLaneInfo(lane_info_first_east);
+        AlgorithmLaneInfo first_south = new AlgorithmLaneInfo(lane_info_first_south);
+        AlgorithmLaneInfo first_west = new AlgorithmLaneInfo(lane_info_first_west);
+        AlgorithmLaneInfo second_north = new AlgorithmLaneInfo(lane_info_second_north);
+        AlgorithmLaneInfo second_east = new AlgorithmLaneInfo(lane_info_second_east);
+        AlgorithmLaneInfo second_south = new AlgorithmLaneInfo(lane_info_second_south);
+        AlgorithmLaneInfo second_west = new AlgorithmLaneInfo(lane_info_second_west);
+
+        ArrayList<Double> times_arr = new ArrayList<>();
+
+        String[] phases = getAllPhases(distribution);
+
+        for (String phase : phases) {
+            double times[] = getPhaseTimes(phase);
+
+            calculateASWTForLaneByTime(times_arr, first_north, times[0], phase_time * phases_passed);
+            calculateASWTForLaneByTime(times_arr, first_south, times[0], phase_time * phases_passed);
+            calculateASWTForLaneByTime(times_arr, second_north, times[0], phase_time * phases_passed);
+            calculateASWTForLaneByTime(times_arr, second_south, times[0], phase_time * phases_passed);
+            calculateASWTForLaneByTime(times_arr, first_west, times[1], phase_time * phases_passed + 6);
+            calculateASWTForLaneByTime(times_arr, first_east, times[1], phase_time * phases_passed + 6);
+            calculateASWTForLaneByTime(times_arr, second_east, times[1], phase_time * phases_passed + 6);
+            calculateASWTForLaneByTime(times_arr, second_west, times[1], phase_time * phases_passed + 6);
+
+            phases_passed++;
         }
 
         double result_awt = Utils.round(Formulas.AWT(times_arr), 2);
@@ -935,16 +977,16 @@ public class Utils {
 
         return database_conditions;
     }
-    
+
     public static void setDatabaseConditionsInSpinner(ArrayList<Spinner<Integer>> cars_spinners,
-    											 	 ArrayList<Spinner<Integer>> limit_spinners,
-    											 	 ArrayList<Spinner<Integer>> actual_spinners,
-    											 	 int[] car_amounts,
-    											 	 int[] speed_limits,
-    											 	 int[] actual_speeds) {
-    	setDataInSpinner(cars_spinners, car_amounts);
-    	setDataInSpinner(limit_spinners, speed_limits);
-    	setDataInSpinner(actual_spinners, actual_speeds);
+                                                      ArrayList<Spinner<Integer>> limit_spinners,
+                                                      ArrayList<Spinner<Integer>> actual_spinners,
+                                                      int[] car_amounts,
+                                                      int[] speed_limits,
+                                                      int[] actual_speeds) {
+        setDataInSpinner(cars_spinners, car_amounts);
+        setDataInSpinner(limit_spinners, speed_limits);
+        setDataInSpinner(actual_spinners, actual_speeds);
     }
 
     /**
