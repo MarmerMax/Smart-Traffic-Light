@@ -20,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -71,8 +72,16 @@ public class DatabaseBox {
         VBox boxLabel2 = new VBox(10);
         boxLabel2.getStyleClass().add("options-column");
         TextField urlField = new TextField();
-        urlField.setText("jdbc:mysql://localhost:3306/stl");
+        urlField.setText("mysql://localhost:3306/stl");
         urlField.getStyleClass().add("label-direction");
+        final Tooltip tooltip = new Tooltip();
+        tooltip.getStyleClass().add("tool-tip");
+        tooltip.setText(
+            "Your database url must be\n" +
+            "of form subprotocol:subname.\n"  +
+            "For example: mysql://localhost:3306"
+        );
+        urlField.setTooltip(tooltip);
         TextField userField = new TextField();
         userField.setText("root");
         userField.getStyleClass().add("label-direction");

@@ -53,7 +53,7 @@ public class Database {
         try {
             con = null;
             Class.forName(driver);
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection("jdbc:"+url, user, password);
             this.url = url;
             this.user = user;
             this.password = password;
@@ -150,6 +150,9 @@ public class Database {
 
     /**
      * return DatabaseConditions object by reriveting data from database.
+     * 
+     * @param String date
+     * @return DatabaseConditions
      */
     public DatabaseConditions getDatabaseConditions(String date) {
         try {
@@ -269,7 +272,7 @@ public class Database {
 
 
     private String extractHostAndPort(String url) {
-        String pattern = "jdbc:mysql://(\\w)*:(\\d)*/?";
+        String pattern = "mysql://(\\w)*:(\\d)*/?";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(url);
         if (m.find()) {
@@ -292,7 +295,8 @@ public class Database {
             pstmt.setDouble(2, conditions.getInitialDuration());
             pstmt.setDouble(3, conditions.getAlgorithmDuration());
             pstmt.setNString(4, conditions.getBetterDistributionString());
-            pstmt.setDouble(5, conditions.getSimulationDuration());
+            pstmt.setDouble(5, conditions.getInitialAWT());
+            pstmt.setDouble(6, conditions.getAlgorithmAWT());
             pstmt.executeUpdate();
 
             //Extract conditions_id from ResultSet
@@ -372,7 +376,6 @@ public class Database {
 
             //Save crossroad
             int current_ci_id = getId(pstmt, 1);
-            System.out.println(current_ci_id);
             Crossroad cr = ci.getCrossroad();
             saveCrossroad(cr, current_ci_id);
 

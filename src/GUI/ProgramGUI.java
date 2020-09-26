@@ -636,8 +636,9 @@ public class ProgramGUI {
                         public void run() {
                             if (systemSTL.getIsFinished()) {
                                 DatabaseConditions database_conditions = Utils.createDatabaseConditions(conditions);
-
-                                buttonSave.setDisable(false);
+                                
+                                if(analyst)	
+                                	buttonSave.setDisable(false);
 
                                 ResultsBox.display(database_conditions);
 

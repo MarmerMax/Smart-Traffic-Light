@@ -12,8 +12,8 @@ public class Constants {
     		"    `init_total_time` double,\n" + 
     		"    `better_total_time` double,\n" + 
     		"    `distribution_path` varchar(255),\n" + 
-    		"    `simulation_time` double,\n" + 
-    		"    `AWT` double,\n" + 
+    		"    `init_awt` double,\n" + 
+    		"    `better_awt` double,\n" + 
     		"    PRIMARY KEY (`condition_id`)\n" + 
     		")";
     public static final String create_directionsInfo_table_query = "create table if not exists stl.DirectionsInfo (\n" +
@@ -69,7 +69,7 @@ public class Constants {
             ")";
 
     //Saves
-    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name,init_total_time,better_total_time,distribution_path,simulation_time) values(?,?,?,?,?)";
+    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name,init_total_time,better_total_time,distribution_path,init_awt,better_awt) values(?,?,?,?,?,?)";
     public static final String insert_directionsInfo_statment = "insert into "
             + "stl.DirectionsInfo(cars_amount, average_speed, limit_speed, type)"
             + " values(?,?,?,?)";
