@@ -105,8 +105,9 @@ public class Algorithm extends Thread {
 //                    }
 //
                     if (!isBreak) {
-                        double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
-                        Thread.sleep((int) last_phase_time * 1000);
+//                        double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
+//                        Thread.sleep((int) last_phase_time * 1000);
+                        Thread.sleep(5 * 1000);
                     }
 
                     System.out.println(ConsoleColors.YELLOW + "Smart algorithm time is up" + ConsoleColors.RESET);

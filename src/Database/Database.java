@@ -6,6 +6,7 @@ import Objects.CrossroadInfo.CrossroadInfo;
 import Objects.CrossroadInfo.DirectionInfo.DirectionInfo;
 import Objects.TrafficLight.TrafficLight;
 import SystemSTL.Algorithm.Algorithm;
+import Tools.ConsoleColors;
 import Tools.Constants;
 
 import java.sql.*;
@@ -53,7 +54,7 @@ public class Database {
         try {
             con = null;
             Class.forName(driver);
-            con = DriverManager.getConnection("jdbc:"+url, user, password);
+            con = DriverManager.getConnection("jdbc:" + url, user, password);
             this.url = url;
             this.user = user;
             this.password = password;
@@ -150,8 +151,8 @@ public class Database {
 
     /**
      * return DatabaseConditions object by reriveting data from database.
-     * 
-     * @param String date
+     *
+     * @param date - date of saving file
      * @return DatabaseConditions
      */
     public DatabaseConditions getDatabaseConditions(String date) {
@@ -163,9 +164,8 @@ public class Database {
             double initial_time = 0;
             double better_time = 0;
             double simulation_time = 0;
-
-            double initial_aws = 0;
-            double better_aws = 0;
+            double initial_awt = 0;
+            double better_awt = 0;
 
             String better_distribtuion = "";
             while (rs.next()) {
@@ -173,7 +173,8 @@ public class Database {
                 initial_time = rs.getInt(4);
                 better_time = rs.getInt(5);
                 better_distribtuion = rs.getString(6);
-                simulation_time = rs.getInt(7);
+                initial_awt = rs.getDouble(7);
+                better_awt = rs.getDouble(8);
             }
 
             pstmt = con.prepareStatement(Constants.select_crossroadsInfo_ids_query);
@@ -256,10 +257,11 @@ public class Database {
                     initial_time,
                     better_time,
                     simulation_time,
-                    initial_aws,
-                    better_aws,
+                    initial_awt,
+                    better_awt,
                     better_distribtuion);
-            System.out.println(dc.toString());
+
+//            System.out.println(dc.toString());
 
             return dc;
 

@@ -59,8 +59,6 @@ public class ProgramGUI {
      */
     private void createUI() {
 //        conditions = Utils.createStartConditions();
-//        ResultsBox.display("1", "2");
-
         createHomeWindow();
     }
 
@@ -390,6 +388,9 @@ public class ProgramGUI {
                                 db_condition.getCarsSecondCrossroad(),
                                 db_condition.getSpeedLimitSecondCrossroad(),
                                 db_condition.getActualSpeedSecondCrossroad());
+
+                        ResultsBox.display(db_condition);
+
                     } else {
                         AlertBox.display(Constants.fail_window_label, Constants.csv_fail_text_label);
                     }
@@ -397,17 +398,6 @@ public class ProgramGUI {
             } catch (Exception ex) {
                 System.out.println("ERROR: Database failed...");
             }
-
-
-//            DatabaseConditions database = DatabaseBox.display();
-//            Utils.setConditionsInSpinner(cars_spinners_1, limit_spinners_1, actual_spinners_1, database.getFirstCrossroad());
-//            Utils.setConditionsInSpinner(cars_spinners_2, limit_spinners_2, actual_spinners_2, database.getSecondCrossroad());
-//
-//            ResultsBox.display(); // previous result
-
-            //load from database
-            //String query_name = DatabaseBox.display();
-            //System.out.println(query_name);
         });
 
         VBox boxButtonReset = new VBox(10);
@@ -435,6 +425,23 @@ public class ProgramGUI {
 
 
         otherOptions.getChildren().addAll(boxButtonOpenCSV, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
+
+//
+//        HBox phaseTimeOptions = new HBox();
+//        phaseTimeOptions.getStyleClass().add("options-container");
+//
+//        VBox labelBox = new VBox(10);
+//        labelBox.getStyleClass().add("options-column");
+//        Label labelPhase = new Label("Select the initial time for one traffic light phase: ");
+//        labelPhase.getStyleClass().add("label-column");
+//        labelBox.getChildren().add(labelPhase);
+//
+//        VBox spinnerBox = new VBox(10);
+//        Spinner<Integer> phaseTime = new Spinner<>(20, 100, 20, 2);
+//        spinnerBox.getChildren().add(phaseTime);
+//
+//        phaseTimeOptions.getChildren().addAll(labelPhase, spinnerBox);
+//        centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, phaseTimeOptions, otherOptions);
 
         centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
 
@@ -497,6 +504,7 @@ public class ProgramGUI {
 //        StackPane layout2 = new StackPane();
 //        layout2.getChildren().add(buttonBackHome);
 //        layout2.getChildren().add(new ImageView(img));
+//        windowOptions = new Scene(borderPane, 1000, 740);
         windowOptions = new Scene(borderPane, 1000, 660);
     }
 
@@ -574,6 +582,7 @@ public class ProgramGUI {
         bottomMenu.setAlignment(Pos.CENTER);
 
         Button buttonSave = new Button(Constants.save_button_label);
+        buttonSave.setDisable(true);
         buttonSave.setOnAction(e -> {
 
             try {
@@ -594,7 +603,6 @@ public class ProgramGUI {
                 System.err.println("ERROR: Saving to database failed...");
             }
         });
-        buttonSave.setDisable(true);
 
         Button buttonBack = new Button(Constants.back_button_label);
         buttonBack.setOnAction(e -> {
@@ -636,12 +644,12 @@ public class ProgramGUI {
                         public void run() {
                             if (systemSTL.getIsFinished()) {
                                 DatabaseConditions database_conditions = Utils.createDatabaseConditions(conditions);
-                                
-                                if(analyst)	
-                                	buttonSave.setDisable(false);
 
                                 ResultsBox.display(database_conditions);
 
+                                if (analyst) {
+                                    buttonSave.setDisable(false);
+                                }
                             }
                         }
                     });

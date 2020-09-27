@@ -9,6 +9,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -20,12 +21,16 @@ public class ResultsBox {
     public static void display(DatabaseConditions database_conditions) {
         Stage stage = new Stage();
         stage.setTitle("Bar Chart");
+
+        Button button = new Button(Constants.close_button_label);
+        button.setOnAction(e -> stage.close());
+
         final String TIME_LABEL = "Time";
         final String AWT_LABEL = "AWT";
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
-        final BarChart<String, Number> bc =
-                new BarChart<String, Number>(xAxis, yAxis);
+        final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+
         bc.setCategoryGap(100);
 //        bc.setTitle("Chart");
         xAxis.setLabel("Duration type");

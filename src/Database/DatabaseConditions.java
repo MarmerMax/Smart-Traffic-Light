@@ -1,7 +1,5 @@
 package Database;
 
-import com.mysql.jdbc.Util;
-
 import Tools.Utils;
 
 public class DatabaseConditions {
@@ -61,98 +59,42 @@ public class DatabaseConditions {
         return cars_first_crossroad;
     }
 
-    public void setCarsFirstCrossroad(int[] cars_first_crossroad) {
-        this.cars_first_crossroad = cars_first_crossroad;
-    }
-
     public int[] getCarsSecondCrossroad() {
         return cars_second_crossroad;
-    }
-
-    public void setCarsSecondCrossroad(int[] cars_second_crossroad) {
-        this.cars_second_crossroad = cars_second_crossroad;
     }
 
     public int[] getSpeedLimitFirstCrossroad() {
         return speed_limit_first_crossroad;
     }
 
-    public void setSpeedLimitFirstCrossroad(int[] speed_limit_first_crossroad) {
-        this.speed_limit_first_crossroad = speed_limit_first_crossroad;
-    }
-
     public int[] getSpeedLimitSecondCrossroad() {
         return speed_limit_second_crossroad;
-    }
-
-    public void setSpeedLimitSecondCrossroad(int[] speed_limit_second_crossroad) {
-        this.speed_limit_second_crossroad = speed_limit_second_crossroad;
     }
 
     public int[] getActualSpeedFirstCrossroad() {
         return actual_speed_first_crossroad;
     }
 
-    public void setActualSpeedFirstCrossroad(int[] actual_speed_first_crossroad) {
-        this.actual_speed_first_crossroad = actual_speed_first_crossroad;
-    }
-
     public int[] getActualSpeedSecondCrossroad() {
         return actual_speed_second_crossroad;
-    }
-
-    public void setActualSpeedSecondCrossroad(int[] actual_speed_second_crossroad) {
-        this.actual_speed_second_crossroad = actual_speed_second_crossroad;
     }
 
     public double getInitialTime() {
         return initial_time;
     }
 
-    public void setInitialTime(double initial_time) {
-        this.initial_time = initial_time;
-    }
-
     public double getBetterTime() {
         return better_time;
-    }
-
-    public void setBetterTime(double better_time) {
-        this.better_time = better_time;
-    }
-
-    public double getSimulationTime() {
-        return simulation_time;
-    }
-
-    public void setSimulationTime(double simulation_time) {
-        this.simulation_time = simulation_time;
     }
 
     public double getInitialAWS() {
         return initial_aws;
     }
 
-    public void setInitialAWS(double initial_aws) {
-        this.initial_aws = initial_aws;
-    }
-
     public double getBetterAWS() {
         return better_aws;
     }
 
-    public void setBetterAWS(double better_aws) {
-        this.better_aws = better_aws;
-    }
-
-    public String getBetterDistribtuion() {
-        return better_distribution;
-    }
-
-    public void setBetterDistribtuion(String better_distribtuion) {
-        this.better_distribution = better_distribtuion;
-    }
-    
     public String toString() {
     	String res = "";
     	res += "First crossroad: \n"

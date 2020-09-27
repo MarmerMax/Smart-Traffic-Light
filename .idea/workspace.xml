@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java" line="126" />
+    <bookmark url="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java" line="135" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/DatabaseBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DatabaseBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/DatabaseConditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/DatabaseConditions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ResultsBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ResultsBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/Astar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/Astar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/DFBnB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/DFBnB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/IDA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/IDA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/TrafficLightsComputation/TrafficLightsComputation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/TrafficLightsComputation/TrafficLightsComputation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Utils.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,12 +75,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="503" column="67" selection-start-line="503" selection-start-column="60" selection-end-line="503" selection-end-column="67" />
+            <state relative-caret-position="238">
+              <caret line="434" column="39" lean-forward="true" selection-start-line="434" selection-start-column="39" selection-end-line="434" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#28395#28396#0" expanded="true" />
-                <element signature="e#28477#28478#0" expanded="true" />
+                <element signature="e#28532#28533#0" expanded="true" />
+                <element signature="e#28614#28615#0" expanded="true" />
                 <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
                 <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
                 <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
@@ -102,19 +92,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="71" column="102" selection-start-line="71" selection-start-column="102" selection-end-line="71" selection-end-column="102" />
+            <state relative-caret-position="143">
+              <caret line="96" column="40" selection-start-line="96" selection-start-column="40" selection-end-line="96" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
+        <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="815" selection-start-line="815" selection-end-line="815" />
+            <state relative-caret-position="704">
+              <caret line="109" column="37" lean-forward="true" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,86 +118,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ResultsBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+            <state relative-caret-position="369">
+              <caret line="96" column="8" lean-forward="true" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="85" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SystemSTL/TrafficLightsComputation/TrafficLightsComputation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="22" column="37" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#7966#7967#0" expanded="true" />
-                <element signature="e#8009#8010#0" expanded="true" />
-                <element signature="e#9461#9462#0" expanded="true" />
-                <element signature="e#9522#9523#0" expanded="true" />
-                <element signature="e#13642#13643#0" expanded="true" />
-                <element signature="e#13677#13678#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="174" column="50" selection-start-line="174" selection-start-column="50" selection-end-line="174" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Database/Database.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="289" column="86" selection-start-line="289" selection-start-column="86" selection-end-line="289" selection-end-column="86" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmRules.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4758#4759#0" expanded="true" />
-                <element signature="e#4821#4822#0" expanded="true" />
-                <element signature="e#4850#4851#0" expanded="true" />
-                <element signature="e#4877#4878#0" expanded="true" />
-                <element signature="e#4906#4907#0" expanded="true" />
-                <element signature="e#4933#4934#0" expanded="true" />
-                <element signature="e#4967#4968#0" expanded="true" />
-                <element signature="e#4998#4999#0" expanded="true" />
-                <element signature="e#5032#5033#0" expanded="true" />
-                <element signature="e#5063#5064#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -213,15 +130,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
+            <state relative-caret-position="400">
               <caret line="89" column="58" selection-start-line="89" selection-start-column="58" selection-end-line="89" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#680#681#0" expanded="true" />
-                <element signature="e#720#721#0" expanded="true" />
+                <element signature="e#3330#3331#0" expanded="true" />
                 <element signature="e#3357#3358#0" expanded="true" />
+                <element signature="e#3389#3390#0" expanded="true" />
                 <element signature="e#3417#3418#0" expanded="true" />
+                <element signature="e#3454#3455#0" expanded="true" />
                 <element signature="e#3490#3491#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Database/Database.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="403" column="20" selection-start-line="403" selection-start-column="20" selection-end-line="403" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -243,14 +173,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>simu</find>
-      <find>this</find>
-      <find>Algorithm was</find>
-      <find>isStopped</find>
-      <find>isSto</find>
-      <find>isStopped =</find>
-      <find>console</find>
-      <find>spinn</find>
       <find>liste</find>
       <find>Dup</find>
       <find>fail</find>
@@ -273,6 +195,14 @@
       <find>ResultsB</find>
       <find>databa</find>
       <find>analyst</find>
+      <find>getAlg</find>
+      <find>save</find>
+      <find>aws</find>
+      <find>First cross</find>
+      <find>DatabaseConditions</find>
+      <find>YELLOW_BOLD</find>
+      <find>YELLOW</find>
+      <find>println</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -318,7 +248,6 @@
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/Lane/LaneInfo.java" />
         <option value="$PROJECT_DIR$/src/Tools/Formulas.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficExecutor.java" />
-        <option value="$PROJECT_DIR$/src/Database/DatabaseConditions.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/SystemSTL.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/Car/CarComputation.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/Lane/LaneComputation.java" />
@@ -331,17 +260,18 @@
         <option value="$PROJECT_DIR$/CSVs/test.txt" />
         <option value="$PROJECT_DIR$/src/CSV/CSVCondition.java" />
         <option value="$PROJECT_DIR$/src/GUI/OpenBox.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ResultsBox.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/Node.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmRules.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficLightsComputation/TrafficLightsComputation.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java" />
         <option value="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" />
         <option value="$PROJECT_DIR$/src/GUI/DatabaseBox.java" />
-        <option value="$PROJECT_DIR$/src/Database/Database.java" />
         <option value="$PROJECT_DIR$/src/Tools/Utils.java" />
         <option value="$PROJECT_DIR$/src/Tools/Constants.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ResultsBox.java" />
+        <option value="$PROJECT_DIR$/src/Database/Database.java" />
+        <option value="$PROJECT_DIR$/src/Database/DatabaseConditions.java" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" />
         <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
       </list>
     </option>
@@ -700,7 +630,7 @@
       <workItem from="1598094922615" duration="178400000" />
       <workItem from="1599896728664" duration="31470000" />
       <workItem from="1600765413360" duration="3292000" />
-      <workItem from="1600775131495" duration="13889000" />
+      <workItem from="1600775131495" duration="21403000" />
     </task>
     <servers />
   </component>
@@ -737,7 +667,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="681399000" />
+    <option name="totallyTimeSpent" value="688913000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,6 +680,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1263911" />
       <window_info id="Structure" order="1" weight="0.24962178" />
@@ -860,30 +791,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/IDA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1015">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1540">
           <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="20" column="8" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1093,19 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Database/DatabaseConditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-          <folding>
-            <element signature="e#3986#3987#0" expanded="true" />
-            <element signature="e#4024#4025#0" expanded="true" />
-            <element signature="e#4176#4177#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.base.jar!/javafx/beans/property/ReadOnlyObjectPropertyBase.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1210,36 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmRules.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4758#4759#0" expanded="true" />
-            <element signature="e#4821#4822#0" expanded="true" />
-            <element signature="e#4850#4851#0" expanded="true" />
-            <element signature="e#4877#4878#0" expanded="true" />
-            <element signature="e#4906#4907#0" expanded="true" />
-            <element signature="e#4933#4934#0" expanded="true" />
-            <element signature="e#4967#4968#0" expanded="true" />
-            <element signature="e#4998#4999#0" expanded="true" />
-            <element signature="e#5032#5033#0" expanded="true" />
-            <element signature="e#5063#5064#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -1247,45 +1115,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.sql/java/sql/Statement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="89" column="58" selection-start-line="89" selection-start-column="58" selection-end-line="89" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#680#681#0" expanded="true" />
-            <element signature="e#720#721#0" expanded="true" />
-            <element signature="e#3357#3358#0" expanded="true" />
-            <element signature="e#3417#3418#0" expanded="true" />
-            <element signature="e#3490#3491#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="262">
+          <caret line="654" column="8" selection-start-line="654" selection-start-column="8" selection-end-line="654" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
+    <entry file="file://$PROJECT_DIR$/src/Database/DatabaseConditions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="815" selection-start-line="815" selection-end-line="815" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="309">
+          <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/AlertBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="174" column="50" selection-start-line="174" selection-start-column="50" selection-end-line="174" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ResultsBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+        <state relative-caret-position="459">
+          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1302,27 +1149,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Database/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="289" column="86" selection-start-line="289" selection-start-column="86" selection-end-line="289" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="71" column="102" selection-start-line="71" selection-start-column="102" selection-end-line="71" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="37" />
+        <state relative-caret-position="-1796">
+          <caret line="36" column="6" lean-forward="true" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7966#7967#0" expanded="true" />
@@ -1335,14 +1165,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="503" column="67" selection-start-line="503" selection-start-column="60" selection-end-line="503" selection-end-column="67" />
+        <state relative-caret-position="400">
+          <caret line="89" column="58" selection-start-line="89" selection-start-column="58" selection-end-line="89" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#28395#28396#0" expanded="true" />
-            <element signature="e#28477#28478#0" expanded="true" />
+            <element signature="e#3330#3331#0" expanded="true" />
+            <element signature="e#3357#3358#0" expanded="true" />
+            <element signature="e#3389#3390#0" expanded="true" />
+            <element signature="e#3417#3418#0" expanded="true" />
+            <element signature="e#3454#3455#0" expanded="true" />
+            <element signature="e#3490#3491#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="109" column="37" lean-forward="true" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Database/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="403" column="20" selection-start-line="403" selection-start-column="20" selection-end-line="403" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="71" column="167" selection-start-line="71" selection-start-column="167" selection-end-line="71" selection-end-column="167" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="943" column="36" selection-start-line="943" selection-start-column="18" selection-end-line="943" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="96" column="40" selection-start-line="96" selection-start-column="40" selection-end-line="96" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ResultsBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="96" column="8" lean-forward="true" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="434" column="39" lean-forward="true" selection-start-line="434" selection-start-column="39" selection-end-line="434" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#28532#28533#0" expanded="true" />
+            <element signature="e#28614#28615#0" expanded="true" />
             <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
             <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
             <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
