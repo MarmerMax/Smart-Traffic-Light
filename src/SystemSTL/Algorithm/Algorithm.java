@@ -105,7 +105,7 @@ public class Algorithm extends Thread {
 //                    }
 //
                     if (!isBreak) {
-//                        double last_phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
+//                        double last_phase_time = conditions.getPhaseTime() + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
 //                        Thread.sleep((int) last_phase_time * 1000);
                         Thread.sleep(5 * 1000);
                     }
@@ -117,6 +117,15 @@ public class Algorithm extends Thread {
                 }
 
             } else {
+
+                if (conditions.getNorthSouthCarsCount() == 0 || conditions.getEastWestCarsCount() == 0) {
+                    checkPriority();
+                    if (is_north_south_high_priority) {
+                        conditions.addTimeToNorthSouthRoute();
+                    } else {
+                        conditions.setDefaultTimeDistribution();
+                    }
+                }
 
                 if (actual_duration % 5 == 0) {
                     System.out.println(ConsoleColors.YELLOW + "Priority algorithm" + ConsoleColors.RESET);

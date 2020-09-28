@@ -631,17 +631,18 @@ public class Utils {
 
 
     public static double calculateInitialDuration(Conditions conditions) {
-        double time = Constants.TRAFFIC_LIGHT_PHASE_TIME / 2;
+        double time = conditions.getPhaseTime() / 2;
 
         double first_max_phase = calculatePhasesCount(conditions.getLanesInfoFirstCrossroad(), time);
         double second_max_phase = calculatePhasesCount(conditions.getLanesInfoSecondCrossroad(), time);
 
         double worst_time;
+        double phase_time = conditions.getPhaseTime();
 
         if (first_max_phase > second_max_phase) {
-            worst_time = calculateDurationByPhasesCount(first_max_phase);
+            worst_time = calculateDurationByPhasesCount(first_max_phase, phase_time);
         } else {
-            worst_time = calculateDurationByPhasesCount(second_max_phase);
+            worst_time = calculateDurationByPhasesCount(second_max_phase, phase_time);
         }
 
         return worst_time;
@@ -662,9 +663,9 @@ public class Utils {
     }
 
 
-    public static double calculateDurationByPhasesCount(double phases) {
+    public static double calculateDurationByPhasesCount(double phases, double phase_time) {
         double changing_lights_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
-        double phase_work_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_lights_time;
+        double phase_work_time = phase_time + changing_lights_time;
 
         double better_duration = phase_work_time * phases - Constants.TRAFFIC_LIGHT_CHANGING_TIME;
 
@@ -689,10 +690,10 @@ public class Utils {
      * @param str - path with better times
      * @return better duration - amount of second that includes traffic lights working and changing time
      */
-    public static double calculateDurationFromString(String str) {
+    public static double calculateDurationFromString(String str, double phase_time) {
         String[] phases = getAllPhases(str);
 
-        double result = calculateDurationByPhasesCount(phases.length);
+        double result = calculateDurationByPhasesCount(phases.length, phase_time);
         return result;
     }
 
@@ -739,7 +740,7 @@ public class Utils {
         int phases_passed = 0;
 
         double changing_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3;
-        double phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_time * 2;
+        double phase_time = conditions.getPhaseTime() + changing_time * 2;
 
         LaneInfo lane_info_first_north = new LaneInfo(conditions.getFirstCrossroadInfo().getNorth());
         LaneInfo lane_info_first_east = new LaneInfo(conditions.getFirstCrossroadInfo().getEast());
@@ -762,7 +763,7 @@ public class Utils {
         ArrayList<Double> times_arr = new ArrayList<>();
 
         if (conditions.getBetterDistributionString().equals("")) {
-            double time = Constants.TRAFFIC_LIGHT_PHASE_TIME / 2;
+            double time = conditions.getPhaseTime() / 2;
             double[] times = {time, time};
             boolean finish = false;
 
@@ -816,7 +817,7 @@ public class Utils {
         int phases_passed = 0;
 
         double changing_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3;
-        double phase_time = Constants.TRAFFIC_LIGHT_PHASE_TIME + changing_time * 2;
+        double phase_time = conditions.getPhaseTime() + changing_time * 2;
 
         LaneInfo lane_info_first_north = new LaneInfo(conditions.getFirstCrossroadInfo().getNorth());
         LaneInfo lane_info_first_east = new LaneInfo(conditions.getFirstCrossroadInfo().getEast());

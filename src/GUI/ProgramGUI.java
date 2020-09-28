@@ -303,6 +303,22 @@ public class ProgramGUI {
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);
 
 
+        HBox phaseTimeOptions = new HBox();
+        phaseTimeOptions.getStyleClass().add("options-container");
+
+        VBox labelBox = new VBox(10);
+        labelBox.getStyleClass().add("options-column");
+        Label labelPhase = new Label("Select the initial time for one traffic light phase: ");
+        labelPhase.getStyleClass().add("label-column");
+        labelBox.getChildren().add(labelPhase);
+
+        VBox spinnerBox = new VBox(10);
+        Spinner<Integer> phaseTime = new Spinner<>(20, 30, 20, 2);
+        spinnerBox.getChildren().add(phaseTime);
+
+        phaseTimeOptions.getChildren().addAll(labelPhase, spinnerBox);
+
+
         //Other options
         HBox otherOptions = new HBox();
         otherOptions.getStyleClass().add("options-container");
@@ -426,24 +442,8 @@ public class ProgramGUI {
 
         otherOptions.getChildren().addAll(boxButtonOpenCSV, boxButtonDatabase, boxButtonRandom, boxButtonReset, boxButtonInfo);
 
-//
-//        HBox phaseTimeOptions = new HBox();
-//        phaseTimeOptions.getStyleClass().add("options-container");
-//
-//        VBox labelBox = new VBox(10);
-//        labelBox.getStyleClass().add("options-column");
-//        Label labelPhase = new Label("Select the initial time for one traffic light phase: ");
-//        labelPhase.getStyleClass().add("label-column");
-//        labelBox.getChildren().add(labelPhase);
-//
-//        VBox spinnerBox = new VBox(10);
-//        Spinner<Integer> phaseTime = new Spinner<>(20, 100, 20, 2);
-//        spinnerBox.getChildren().add(phaseTime);
-//
-//        phaseTimeOptions.getChildren().addAll(labelPhase, spinnerBox);
-//        centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, phaseTimeOptions, otherOptions);
-
-        centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
+        centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, phaseTimeOptions, otherOptions);
+//        centerMenu.getChildren().addAll(crossroad_fields_1, crossroad_fields_2, otherOptions);
 
         //Title
         HBox topMenu = new HBox();
@@ -463,6 +463,12 @@ public class ProgramGUI {
             //continue to next window
             Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
             Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
+
+            if (phaseTime.getValue() != Constants.TRAFFIC_LIGHT_PHASE_TIME) {
+                crossroad_1.setPhaseTime(phaseTime.getValue());
+                crossroad_2.setPhaseTime(phaseTime.getValue());
+            }
+
             crossroad_info_1 = new CrossroadInfo(crossroad_1);
             crossroad_info_2 = new CrossroadInfo(crossroad_2);
 
@@ -504,8 +510,8 @@ public class ProgramGUI {
 //        StackPane layout2 = new StackPane();
 //        layout2.getChildren().add(buttonBackHome);
 //        layout2.getChildren().add(new ImageView(img));
-//        windowOptions = new Scene(borderPane, 1000, 740);
-        windowOptions = new Scene(borderPane, 1000, 660);
+        windowOptions = new Scene(borderPane, 1000, 740);
+//        windowOptions = new Scene(borderPane, 1000, 660);
     }
 
     /**

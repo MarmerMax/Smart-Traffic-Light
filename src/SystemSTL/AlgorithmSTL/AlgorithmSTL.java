@@ -96,13 +96,11 @@ public abstract class AlgorithmSTL extends Thread {
                 path = current.getName().substring(2);
                 price = current.getPrice();
 
+                printFoundPath(path);
 
 //                if (is_path_exist) {
                 traffic_rules.setBetterDistribution(path);
 //                }
-
-
-                printFoundPath(path);
 
                 return true;
             }
@@ -126,7 +124,6 @@ public abstract class AlgorithmSTL extends Thread {
         System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + Utils.createSeparationString(path) + ConsoleColors.RESET);
         System.out.println(ConsoleColors.GREEN_BRIGHT + "New path was found!" + ConsoleColors.RESET);
         System.out.println(ConsoleColors.GREEN_BRIGHT + path + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.GREEN_BRIGHT + "Path duration: " + Utils.calculateDurationFromString(path) + ConsoleColors.RESET);
         System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + Utils.createSeparationString(path) + ConsoleColors.RESET);
         System.out.println();
     }

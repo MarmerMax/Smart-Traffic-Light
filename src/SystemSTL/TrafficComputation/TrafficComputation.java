@@ -2,7 +2,6 @@ package SystemSTL.TrafficComputation;
 
 import Objects.Conditions.Conditions;
 import SystemSTL.TrafficComputation.Lane.LaneInfo;
-import SystemSTL.TrafficExecutor;
 import Tools.ConsoleColors;
 import Tools.Constants;
 import Tools.Utils;

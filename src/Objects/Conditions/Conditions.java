@@ -207,20 +207,6 @@ public class Conditions {
         return new LaneInfo(direction_info.getCarsCount(), direction_info.getSpeedLimit(), direction_info.getActualSpeed());
     }
 
-    public int getCarsCount() {
-        int count = 0;
-
-        for (LaneInfo info : lanes_info_first_crossroad) {
-            count += info.getCarsInLane().size();
-        }
-
-        for (LaneInfo info : lanes_info_second_crossroad) {
-            count += info.getCarsInLane().size();
-        }
-
-        return count;
-    }
-
     public CrossroadInfo getFirstCrossroadInfo() {
         return first_crossroad_info;
     }
@@ -322,7 +308,8 @@ public class Conditions {
      */
     public void setBetterDistribution(String path) {
         better_distribution_string = path;
-        algorithm_duration = Utils.calculateDurationFromString(path);
+        algorithm_duration = Utils.calculateDurationFromString(path, first_crossroad_info.getPhaseTime());
+        System.out.println(ConsoleColors.CYAN + "Algorithm time of passing all cars:" + Utils.calculateDurationFromString(path, first_crossroad_info.getPhaseTime()) + ConsoleColors.RESET);
         this.better_distribution.clear();
         Utils.addBetterDistributionToQueue(this.better_distribution, path);
     }
@@ -396,13 +383,17 @@ public class Conditions {
         System.out.println(ConsoleColors.CYAN + "Algorithm time of AWT: " + algorithm_awt + " seconds" + ConsoleColors.RESET);
     }
 
+    public double getPhaseTime() {
+        return first_crossroad_info.getPhaseTime();
+    }
+
     public int getPhasesCount() {
         return phases_count;
     }
 
     public void setPhasesCount(int phases_count) {
         this.phases_count = phases_count;
-        double best_time = Utils.calculateDurationByPhasesCount(phases_count);
+        double best_time = Utils.calculateDurationByPhasesCount(phases_count, first_crossroad_info.getPhaseTime());
         if (best_time < algorithm_duration) {
             algorithm_duration = best_time;
         }

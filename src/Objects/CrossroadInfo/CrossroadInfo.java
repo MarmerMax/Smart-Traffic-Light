@@ -63,4 +63,9 @@ public class CrossroadInfo {
     public DirectionInfo getWest() {
         return west;
     }
+
+    public double getPhaseTime(){
+        return crossroad.getPhaseTime();
+    }
+
 }
