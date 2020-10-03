@@ -20,7 +20,7 @@ public class Conditions {
     private ArrayList<LaneInfo> lanes_info_first_crossroad;
     private ArrayList<LaneInfo> lanes_info_second_crossroad;
 
-    private double algorithm_duration; //save to database - number
+    private double algorithm_duration;
     private double initial_duration;
     private double simulation_duration;
     private int phases_count;
@@ -29,7 +29,7 @@ public class Conditions {
     private double algorithm_awt;
 
     private Queue<Double> better_distribution;
-    private String better_distribution_string; //save to database - as string
+    private String better_distribution_string;
 
     /**
      * Constructor.
@@ -309,7 +309,7 @@ public class Conditions {
     public void setBetterDistribution(String path) {
         better_distribution_string = path;
         algorithm_duration = Utils.calculateDurationFromString(path, first_crossroad_info.getPhaseTime());
-        System.out.println(ConsoleColors.CYAN + "Algorithm time of passing all cars:" + Utils.calculateDurationFromString(path, first_crossroad_info.getPhaseTime()) + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.CYAN + "Algorithm time of passing all cars: " + Utils.calculateDurationFromString(path, first_crossroad_info.getPhaseTime()) + ConsoleColors.RESET);
         this.better_distribution.clear();
         Utils.addBetterDistributionToQueue(this.better_distribution, path);
     }
@@ -352,7 +352,7 @@ public class Conditions {
     }
 
     /**
-     * This function sets algorithm duration.
+     * This function sets the simulation time for all vehicles to pass through the intersection and displays its value.
      *
      * @param simulation_duration
      */
@@ -369,6 +369,11 @@ public class Conditions {
         return initial_awt;
     }
 
+    /**
+     * This function sets the initial time awt and displays its value.
+     *
+     * @param initial_awt
+     */
     public void setInitialAWT(double initial_awt) {
         this.initial_awt = initial_awt;
         System.out.println(ConsoleColors.CYAN + "Initial time of AWT: " + initial_awt + " seconds." + ConsoleColors.RESET);
@@ -378,6 +383,11 @@ public class Conditions {
         return algorithm_awt;
     }
 
+    /**
+     * This function sets the awt found by algorithm and displays its value.
+     *
+     * @param better_awt
+     */
     public void setAlgorithmAWT(double better_awt) {
         this.algorithm_awt = better_awt;
         System.out.println(ConsoleColors.CYAN + "Algorithm time of AWT: " + algorithm_awt + " seconds" + ConsoleColors.RESET);
@@ -391,6 +401,12 @@ public class Conditions {
         return phases_count;
     }
 
+    /**
+     * This function sets the actual number of phases to resolve the actual state.
+     * Also this function checks if it able to update best time.
+     *
+     * @param phases_count - found phases count
+     */
     public void setPhasesCount(int phases_count) {
         this.phases_count = phases_count;
         double best_time = Utils.calculateDurationByPhasesCount(phases_count, first_crossroad_info.getPhaseTime());

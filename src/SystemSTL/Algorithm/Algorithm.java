@@ -100,14 +100,10 @@ public class Algorithm extends Thread {
 
                     }
 
-//                    while (this.conditions.getBetterDistribution().size() != 0) {
-//                        Thread.sleep(1000);
-//                    }
-//
                     if (!isBreak) {
-//                        double last_phase_time = conditions.getPhaseTime() + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
-//                        Thread.sleep((int) last_phase_time * 1000);
-                        Thread.sleep(5 * 1000);
+                        double last_phase_time = conditions.getPhaseTime() / 2 + Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
+                        Thread.sleep((int) last_phase_time * 1000);
+//                        Thread.sleep(5 * 1000);
                     }
 
                     System.out.println(ConsoleColors.YELLOW + "Smart algorithm time is up" + ConsoleColors.RESET);
@@ -117,15 +113,6 @@ public class Algorithm extends Thread {
                 }
 
             } else {
-
-                if (conditions.getNorthSouthCarsCount() == 0 || conditions.getEastWestCarsCount() == 0) {
-                    checkPriority();
-                    if (is_north_south_high_priority) {
-                        conditions.addTimeToNorthSouthRoute();
-                    } else {
-                        conditions.setDefaultTimeDistribution();
-                    }
-                }
 
                 if (actual_duration % 5 == 0) {
                     System.out.println(ConsoleColors.YELLOW + "Priority algorithm" + ConsoleColors.RESET);

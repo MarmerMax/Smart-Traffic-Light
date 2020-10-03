@@ -1,29 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="STL" />
+    </artifacts-to-build>
+  </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/GUI/DatabaseBox.java" line="135" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/STL.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/TrafficComputation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/TrafficComputation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficExecutor$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficExecutor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/CSV/CSVCondition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Database/Database.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Database/DatabaseConditions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/AlertBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ConfirmBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox$login_states.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/DatabaseBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/InformationBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/OpenBox$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/OpenBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ProgramGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/ResultsBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/GUI/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/META-INF/STL.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Main/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/AmbulanceCar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/Car.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/CarTypes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/PoliceCar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/TaxiCar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/TrackCar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Car/UsualCar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Conditions/Conditions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Crossroad/Crossroad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/CrossroadInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/DrawObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Road/Road.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/Road/RoadCreator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLight.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/GreenState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/RedYellowState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightState/YellowState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/Algorithm/Algorithm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmConditions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmCore/Astar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmCore/Astar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmCore/DFBnB$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmCore/DFBnB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmCore/IDA.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmLaneInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmRules.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/AlgorithmSTL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/AlgorithmSTL/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/SystemSTL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/Car/CarComputation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/Car/CarInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/Lane/LaneComputation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/Lane/LaneInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/TrafficComputation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/TrafficExecutor$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficComputation/TrafficExecutor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/SystemSTL/TrafficLightsComputation/TrafficLightsComputation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/CarTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/ConditionsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/CrossroadInfoTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/DirectionInfoTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/RoadCreatorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TimeDistributionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tests/TrafficLightTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/ConsoleColors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/Formulas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/STL/Tools/Utils.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ProgramGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficComputation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficComputation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemSTL/TrafficExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,85 +162,55 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="468" column="34" lean-forward="true" selection-start-line="468" selection-start-column="34" selection-end-line="468" selection-end-column="34" />
+            <state relative-caret-position="1350">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#28874#28875#0" expanded="true" />
-                <element signature="e#28956#28957#0" expanded="true" />
-                <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
+                <element signature="e#29351#29352#0" expanded="true" />
+                <element signature="e#29433#29434#0" expanded="true" />
                 <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
                 <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
                 <element signature="method#createTrafficLight#0;class#ProgramGUI#0" />
                 <element signature="method#addTrafficLights#0;class#ProgramGUI#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3125">
-              <caret line="125" column="64" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="639" column="44" lean-forward="true" selection-start-line="639" selection-start-column="44" selection-end-line="639" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5425">
-              <caret line="217" column="32" selection-start-line="217" selection-start-column="32" selection-end-line="217" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#13824#13825#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="103" selection-start-line="103" selection-end-line="103" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3330#3331#0" expanded="true" />
-                <element signature="e#3357#3358#0" expanded="true" />
-                <element signature="e#3389#3390#0" expanded="true" />
-                <element signature="e#3417#3418#0" expanded="true" />
-                <element signature="e#3454#3455#0" expanded="true" />
-                <element signature="e#3490#3491#0" expanded="true" />
+                <element signature="e#37132#37133#0" expanded="true" />
+                <element signature="e#37165#37166#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficComputation.java">
+        <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+            <state relative-caret-position="2541">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3268#3269#0" expanded="true" />
+                <element signature="e#3295#3296#0" expanded="true" />
+                <element signature="e#3327#3328#0" expanded="true" />
+                <element signature="e#3355#3356#0" expanded="true" />
+                <element signature="e#3392#3393#0" expanded="true" />
+                <element signature="e#3428#3429#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -187,8 +231,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CSV</find>
-      <find>csv</find>
       <find>resi</find>
       <find>new AlgorithmCon</find>
       <find>setIn</find>
@@ -217,6 +259,8 @@
       <find>Algorithm time</find>
       <find>getFirst</find>
       <find>getPhaseTime</find>
+      <find>Stage</find>
+      <find>Algorithm time of passing all cars</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -236,9 +280,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AlgorithmSTL/A.java" />
-        <option value="$PROJECT_DIR$/src/AlgorithmSTL/Node.java" />
-        <option value="$PROJECT_DIR$/src/AlgorithmSTL/IDA.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmSTL/Astar.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmSTL/TrafficConditions.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmSTL/AlgorithmSTL.java" />
@@ -254,7 +295,6 @@
         <option value="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmCore/Astar.java" />
         <option value="$PROJECT_DIR$/src/GUI/InformationBox.java" />
         <option value="$PROJECT_DIR$/src/GUI/ResulstBox.java" />
-        <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/Lane/LaneInfo.java" />
         <option value="$PROJECT_DIR$/src/Tools/Formulas.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/TrafficExecutor.java" />
@@ -277,25 +317,29 @@
         <option value="$PROJECT_DIR$/src/GUI/ResultsBox.java" />
         <option value="$PROJECT_DIR$/src/Database/Database.java" />
         <option value="$PROJECT_DIR$/src/Database/DatabaseConditions.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficComputation.java" />
-        <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java" />
         <option value="$PROJECT_DIR$/src/Objects/Crossroad/Crossroad.java" />
         <option value="$PROJECT_DIR$/src/Objects/TrafficLight/TrafficLightTimeDistribution/TimeDistribution.java" />
         <option value="$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
-        <option value="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" />
         <option value="$PROJECT_DIR$/src/Tools/Utils.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java" />
+        <option value="$PROJECT_DIR$/src/Main/Controller.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ProgramGUI.java" />
+        <option value="$PROJECT_DIR$/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/src/Main/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java" />
+        <option value="$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficComputation.java" />
+        <option value="$PROJECT_DIR$/src/Objects/Conditions/Conditions.java" />
         <option value="$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="y" value="14" />
-    <option name="width" value="1380" />
-    <option name="height" value="784" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1612" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -306,6 +350,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,31 +366,21 @@
             </path>
             <path>
               <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="SystemSTL" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart-Traffic-Light" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="SystemSTL" type="462c0819:PsiDirectoryNode" />
-              <item name="TrafficComputation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart-Traffic-Light" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="smart-traffic-light" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -365,10 +401,10 @@
     <property name="create.test.in.the.same.root" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/Tests" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -611,7 +647,9 @@
       <workItem from="1599896728664" duration="31470000" />
       <workItem from="1600765413360" duration="3292000" />
       <workItem from="1600775131495" duration="21668000" />
-      <workItem from="1601277153774" duration="6539000" />
+      <workItem from="1601277153774" duration="9894000" />
+      <workItem from="1601552107686" duration="13532000" />
+      <workItem from="1601718313801" duration="4912000" />
     </task>
     <servers />
   </component>
@@ -648,7 +686,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="695717000" />
+    <option name="totallyTimeSpent" value="717516000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -660,10 +698,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.12718602" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13029577" />
       <window_info id="Structure" order="1" weight="0.24962178" />
       <window_info id="Favorites" order="2" weight="0.32978722" />
       <window_info id="Designer" order="3" />
@@ -672,21 +709,21 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32501948" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36710835" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5050663" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36682615" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5047847" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32854864" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" weight="0.3289689" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32501948" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.33014354" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" />
-      <window_info anchor="bottom" id="Terminal" order="16" weight="0.27357754" />
+      <window_info anchor="bottom" id="Terminal" order="16" weight="0.27272728" />
       <window_info anchor="bottom" id="Duplicate detector" order="17" weight="0.32733223" />
       <window_info anchor="bottom" id="Thumbnails" order="18" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -772,96 +809,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmConditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmLaneInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#1252#1253#0" expanded="true" />
-            <element signature="e#1285#1286#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/Formulas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/util/concurrent/ExecutorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="210" column="12" selection-start-line="210" selection-start-column="12" selection-end-line="210" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/DirectionInfo/DirectionInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-          <folding>
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#865#866#0" expanded="true" />
-            <element signature="e#899#900#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.controls.jar!/javafx/scene/chart/XYChart.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="942" selection-start-line="942" selection-end-line="942" />
-          <folding>
-            <element signature="e#35125#35126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/javafx-sdk-13.0.2/lib/javafx.base.jar!/javafx/beans/binding/ObjectExpression.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#550#551#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Car/Car.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#906#907#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemSTL/TrafficComputation/Car/CarInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -1101,13 +1048,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tools/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -1119,26 +1059,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
           <caret line="38" column="35" lean-forward="true" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3125">
-          <caret line="125" column="64" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="639" column="44" lean-forward="true" selection-start-line="639" selection-start-column="44" selection-end-line="639" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1157,17 +1077,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5425">
-          <caret line="217" column="32" selection-start-line="217" selection-start-column="32" selection-end-line="217" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13824#13825#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Objects/CrossroadInfo/CrossroadInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
@@ -1178,23 +1087,6 @@
             <element signature="e#460#461#0" expanded="true" />
             <element signature="e#2243#2244#0" expanded="true" />
             <element signature="e#2290#2291#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="468" column="34" lean-forward="true" selection-start-line="468" selection-start-column="34" selection-end-line="468" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#28874#28875#0" expanded="true" />
-            <element signature="e#28956#28957#0" expanded="true" />
-            <element signature="method#getRotateByDirection#0;class#ProgramGUI#0" />
-            <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
-            <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
-            <element signature="method#createTrafficLight#0;class#ProgramGUI#0" />
-            <element signature="method#addTrafficLights#0;class#ProgramGUI#0" />
           </folding>
         </state>
       </provider>
@@ -1218,28 +1110,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
+    <entry file="file://$PROJECT_DIR$/src/Tools/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="103" selection-start-line="103" selection-end-line="103" />
+        <state relative-caret-position="16659">
+          <caret line="639" column="44" selection-start-line="639" selection-start-column="44" selection-end-line="639" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3330#3331#0" expanded="true" />
-            <element signature="e#3357#3358#0" expanded="true" />
-            <element signature="e#3389#3390#0" expanded="true" />
-            <element signature="e#3417#3418#0" expanded="true" />
-            <element signature="e#3454#3455#0" expanded="true" />
-            <element signature="e#3490#3491#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/artifacts/STL.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/artifacts/STL_jar.xml" />
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smart-traffic-light.xml" />
+    <entry file="file://$PROJECT_DIR$/smart-traffic-light.properties" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/sample.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2185#2186#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemSTL/TrafficComputation/TrafficComputation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+        <state relative-caret-position="-429">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/Algorithm/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects/Conditions/Conditions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8856">
+          <caret line="354" selection-start-line="354" selection-end-line="354" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ProgramGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#29351#29352#0" expanded="true" />
+            <element signature="e#29433#29434#0" expanded="true" />
+            <element signature="method#updateTrafficLights#0;class#ProgramGUI#0" />
+            <element signature="method#createTrafficLights#0;class#ProgramGUI#0" />
+            <element signature="method#createTrafficLight#0;class#ProgramGUI#0" />
+            <element signature="method#addTrafficLights#0;class#ProgramGUI#0" />
+            <element signature="e#37132#37133#0" expanded="true" />
+            <element signature="e#37165#37166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SystemSTL/AlgorithmSTL/AlgorithmSTL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2541">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3268#3269#0" expanded="true" />
+            <element signature="e#3295#3296#0" expanded="true" />
+            <element signature="e#3327#3328#0" expanded="true" />
+            <element signature="e#3355#3356#0" expanded="true" />
+            <element signature="e#3392#3393#0" expanded="true" />
+            <element signature="e#3428#3429#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1261,11 +1251,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>JavaFXApp</last-edited>
+          <last-edited>STL</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1296,7 +1287,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8.0_181</last-edited>
+          <last-edited>12</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

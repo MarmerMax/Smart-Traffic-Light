@@ -42,6 +42,10 @@ public class TrafficExecutor extends Thread {
 
     }
 
+    /**
+     * This function sets the actual conditions of road to executors.
+     * @param conditions
+     */
     public void setConditions(Conditions conditions) {
         this.conditions = conditions;
         if (this.getName().toLowerCase().equals(Constants.DIRECTION_NAME_EAST_WEST.toLowerCase())) {
@@ -56,6 +60,9 @@ public class TrafficExecutor extends Thread {
         updateTrafficExecutors();
     }
 
+    /**
+     * This function stop traffic executors.
+     */
     public void stopTrafficExecutor() {
         lane_computation_first_dir_1.stopLaneComputation();
         lane_computation_first_dir_2.stopLaneComputation();
@@ -63,6 +70,9 @@ public class TrafficExecutor extends Thread {
         lane_computation_second_dir_2.stopLaneComputation();
     }
 
+    /**
+     * This function executes the lane computation for traffic executors.
+     */
     private void updateTrafficExecutors() {
         System.out.println(this.getName() + " start");
 
@@ -100,12 +110,20 @@ public class TrafficExecutor extends Thread {
         System.out.println(this.getName() + " finished");
     }
 
+    /**
+     * This function sets name of chosen executor.
+     * @param name - north-south/east-west
+     */
     public void setExecutorName(String name) {
         this.setName(name);
         this.executor_name = name;
         createLabels();
     }
 
+    /**
+     * This function set moving mode of chosen executor.
+     * @param mode - go/stop
+     */
     private void setMovingMode(boolean mode) {
         lane_computation_first_dir_1.setMovingMode(mode);
         lane_computation_first_dir_2.setMovingMode(mode);
@@ -114,6 +132,9 @@ public class TrafficExecutor extends Thread {
 
     }
 
+    /**
+     * This function creates labels for directions.
+     */
     private void createLabels() {
         String first = Constants.CROSSROAD_NAME_FIRST;
         String second = Constants.CROSSROAD_NAME_SECOND;

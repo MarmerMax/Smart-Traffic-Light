@@ -43,6 +43,9 @@ public class TrafficComputation extends Thread {
     }
 
 
+    /**
+     * This function stops the traffic computation.
+     */
     public void stopTrafficComputation() {
         isStopped = true;
         east_west_executor.stopTrafficExecutor();

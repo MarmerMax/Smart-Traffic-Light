@@ -44,6 +44,14 @@ public class ProgramGUI {
 
 
     public ProgramGUI(Stage stage) {
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            boolean answer = ConfirmBox.display(Constants.exit_window_label, Constants.exit_text_label);
+            if (answer) {
+                System.exit(1);
+            }
+        });
+
         window = stage;
         window.setResizable(false);
         createUI();
@@ -824,13 +832,13 @@ public class ProgramGUI {
 
     private int getRotateByDirection(int direction) {
         switch (direction) {
-            case 0:
+            case Constants.NORTH_DIRECTION:
                 return 180;
-            case 1:
+            case Constants.EAST_DIRECTION:
                 return 270;
-            case 2:
+            case Constants.SOUTH_DIRECTION:
                 return 0;
-            case 3:
+            case Constants.WEST_DIRECTION:
                 return 90;
             default:
                 throw new RuntimeException("Bad direction for car...");

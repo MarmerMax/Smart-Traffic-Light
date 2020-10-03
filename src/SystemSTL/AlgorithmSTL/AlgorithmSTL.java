@@ -91,7 +91,6 @@ public abstract class AlgorithmSTL extends Thread {
             current.setAWT(current_awt);
 
             if (current.getAWT() + 0.1 < target.getAWT()) {
-//            if (current.getPrice() < target.getPrice()) {
                 is_path_exist = true;
                 path = current.getName().substring(2);
                 price = current.getPrice();
