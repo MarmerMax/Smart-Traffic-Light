@@ -38,8 +38,19 @@ To create intersections conditions for the simulation the user can by clicking o
 ![image](https://user-images.githubusercontent.com/44946807/95660679-14ca3a80-0b32-11eb-9d8c-cd088f752ce2.png)
 
 #### Database button
+Another option to enter information is given by clicking on the ```Database``` button. Clicking on it will open the user login window for his relational database (MYSQL).
 
+![image](https://user-images.githubusercontent.com/44946807/95661054-dc782b80-0b34-11eb-970f-54b4c57b1406.png)
 
+* If the user and password are correct and the database also exists, you can click on the ```Connect``` button in order to connect to the database and retrieve simulation
+  information that has already been stored in the system in the past.
+  ![image](https://user-images.githubusercontent.com/44946807/95661180-febe7900-0b35-11eb-9796-25239d1c80e9.png)
+  
+  Then the user can see the **Analytics Results** window(will be expanded later) of chosen simulation and the fields will be filled in according to the data in the database.
+  
+  ![image](https://user-images.githubusercontent.com/44946807/95661367-61644480-0b37-11eb-970a-59d8cf92c742.png)
+
+* If the database does not exist the user can click on the "Create Database" button and create one (empty).
 
 ## Results
 In this project, the results were compared according to two criteria:
