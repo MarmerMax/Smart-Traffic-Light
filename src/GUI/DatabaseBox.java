@@ -117,13 +117,30 @@ public class DatabaseBox {
         buttonCreate.setMaxWidth(500);
         buttonCreate.getStyleClass().add("label-direction");
         buttonCreate.setOnAction(e -> {
+        	
             try {
                 Database database = Database.getInstance();
-                if (database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText())) {
-                    login_state = login_states.login_succeeded;
-                    window.close();
+                boolean is_connect = database.connect(urlField.getText(), userField.getText(), passwordField.getText()); 
+                if(is_connect) {
+                	boolean confirm_message = true;
+                	boolean is_database_exist = database.checkIfDatabaseExist(urlField.getText(), userField.getText(), passwordField.getText()); 
+	                if (is_database_exist) {
+	                	confirm_message = ConfirmBox.display("Attention", "This action may delete your database,\n do you want to continue anyway?");
+	                }
+	                if(confirm_message) {
+		                if (database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText())) {
+		                    login_state = login_states.login_succeeded;
+		                    window.close();
+		                } else {
+		                    logLabel.setText(Constants.create_database_fail);
+		                    login_state = login_states.login_failed;
+		                }
+	                } else {
+	                	logLabel.setText("");
+	                    login_state = login_states.no_state;
+	                }
                 } else {
-                    logLabel.setText(Constants.create_database_fail);
+                	logLabel.setText(Constants.create_database_fail);
                     login_state = login_states.login_failed;
                 }
             } catch (Exception ex) {

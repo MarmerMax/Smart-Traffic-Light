@@ -13,7 +13,8 @@ public class Constants {
     		"    `better_total_time` double,\n" + 
     		"    `distribution_path` varchar(255),\n" + 
     		"    `init_awt` double,\n" + 
-    		"    `better_awt` double,\n" + 
+    		"    `better_awt` double,\n" +
+    		"    `phase_time` double,\n" +
     		"    PRIMARY KEY (`condition_id`)\n" + 
     		")";
     public static final String create_directionsInfo_table_query = "create table if not exists stl.DirectionsInfo (\n" +
@@ -67,9 +68,12 @@ public class Constants {
             "    foreign key(`south_traffic_light_id`) references TrafficLights(`traffic_light_id`),\n" +
             "    foreign key(`west_traffic_light_id`) references TrafficLights(`traffic_light_id`)\n" +
             ")";
+    
+    //Drops
+    public static final String drop_database_query = "drop database if exists stl";
 
     //Saves
-    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name,init_total_time,better_total_time,distribution_path,init_awt,better_awt) values(?,?,?,?,?,?)";
+    public static final String insert_conditions_statment = "insert into stl.Conditions(condition_name,init_total_time,better_total_time,distribution_path,init_awt,better_awt,phase_time) values(?,?,?,?,?,?,?)";
     public static final String insert_directionsInfo_statment = "insert into "
             + "stl.DirectionsInfo(cars_amount, average_speed, limit_speed, type)"
             + " values(?,?,?,?)";
@@ -82,6 +86,7 @@ public class Constants {
     public static final String insert_traffic_light = "insert into stl.trafficlights(actual_state) values(?)";
 
     //Selects
+    public static final String select_0_condition_query = "select * from stl.conditions limit 0";
     public static final String select_conditions_dates_query = "select Date from stl.conditions";
     public static final String conditions_dates = "Date";
     public static final String select_condition_by_date_query = "select * from stl.conditions where date =?";

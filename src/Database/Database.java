@@ -68,6 +68,33 @@ public class Database {
     }
 
     /**
+     * This method check if database exist.
+     * Return true if exist and false otherwise.
+     * 
+     * @param url
+     * @param user
+     * @param password
+     * @return - boolean 
+     */
+    public boolean checkIfDatabaseExist(String url, String user, String password) {
+    	try {
+    		String new_url = extractHostAndPort(url);
+            connect(new_url, user, password);
+            
+            System.out.println("Checking if database is exist: ");
+
+            PreparedStatement check_if_database_exist_query = con.prepareStatement(Constants.select_0_condition_query);
+            check_if_database_exist_query.execute();
+            System.out.println("Database exist!");
+            return true;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+    }
+    
+    /**
      * This function creates the entire database by executing SQL commands.
      *
      * @param url
@@ -77,6 +104,16 @@ public class Database {
      */
     public boolean createLocalDatabase(String url, String user, String password) {
         try {
+        	boolean is_exist_database = checkIfDatabaseExist(url, user, password);
+
+        	// If database is exist then drop it down 
+        	if(is_exist_database) {
+        		System.out.println("Droping database: ");
+                PreparedStatement drop_database_query= con.prepareStatement(Constants.drop_database_query);
+                drop_database_query.execute();
+                System.out.println("droping database success!");
+        	}
+        	
             String new_url = extractHostAndPort(url);
             connect(new_url, user, password);
 
@@ -274,15 +311,6 @@ public class Database {
     }
 
 
-    private String extractHostAndPort(String url) {
-        String pattern = "mysql://(\\w)*:(\\d)*/?";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(url);
-        if (m.find()) {
-            return m.group(0);
-        }
-        return null;
-    }
 
 
     /**
@@ -300,6 +328,7 @@ public class Database {
             pstmt.setNString(4, conditions.getBetterDistributionString());
             pstmt.setDouble(5, conditions.getInitialAWT());
             pstmt.setDouble(6, conditions.getAlgorithmAWT());
+            pstmt.setDouble(7, conditions.getPhaseTime());
             pstmt.executeUpdate();
 
             //Extract conditions_id from ResultSet
@@ -461,6 +490,7 @@ public class Database {
         return null;
     }
 
+    
     private int getId(PreparedStatement pstmt, int index) {
         //Extract id from ResultSet
         try {
@@ -476,6 +506,16 @@ public class Database {
         return -1;
     }
 
+    private String extractHostAndPort(String url) {
+    	String pattern = "mysql://(\\w)*:(\\d)*/?";
+    	Pattern r = Pattern.compile(pattern);
+    	Matcher m = r.matcher(url);
+    	if (m.find()) {
+    		return m.group(0);
+    	}
+    	return null;
+    }
+    
     private String createQuery(String... query_part) {
         String full_query = "";
         for (String query : query_part) {
