@@ -10,6 +10,8 @@ This project shows how the graph search algorithm can solve this problem and sig
 ## External libraries and programs
 * [MySQL workbrench](https://dev.mysql.com/downloads/workbench/)
 * [JavaFX](https://openjfx.io/)
+* [Junit](https://junit.org/junit5/)
+* [Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
 
 ## Getting Started
 
