@@ -79,6 +79,7 @@ public class TimeDistribution {
     public void setPhaseTime(double time) {
         phase_time = time;
         setDefaultDistribution();
+        min_time = (int) Math.ceil(phase_time / 2 / 2);
     }
 
 

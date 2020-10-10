@@ -89,7 +89,14 @@ public class LaneComputation extends Thread {
                         if (lane_name.contains("first") && lane_name.contains("west") || lane_name.contains("second") && lane_name.contains("east")) {
                             CarInfo front_car = next_lane_info.getLastCar();
                             CarInfo current_car = lane_info.getCarsInLane().get(i);
-                            double dist = (current_car.getDistanceFromCrossroad() + 35) - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+
+                            double dist;
+
+                            if (front_car == null) {
+                                dist = (double) Integer.MAX_VALUE;
+                            } else {
+                                dist = (current_car.getDistanceFromCrossroad() + 35) - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
+                            }
 
                             dist = Math.abs(dist);
                             if (Utils.isCarCanGo(current_car.getCurrentSpeed(), current_car.getCar().getDeceleration(), dist)) {

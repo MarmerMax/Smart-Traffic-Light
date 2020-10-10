@@ -415,6 +415,8 @@ public class ProgramGUI {
                                 db_condition.getSpeedLimitSecondCrossroad(),
                                 db_condition.getActualSpeedSecondCrossroad());
 
+                        phaseTime.getValueFactory().setValue((int) db_condition.getPhaseTime());
+
                         ResultsBox.display(db_condition);
 
                     } else {

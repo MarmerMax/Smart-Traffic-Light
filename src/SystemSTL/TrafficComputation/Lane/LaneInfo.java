@@ -93,6 +93,9 @@ public class LaneInfo {
     }
 
     public CarInfo getLastCar() {
+        if (cars_in_lane.size() == 0) {
+            return null;
+        }
         return cars_in_lane.get(cars_in_lane.size() - 1);
     }
 

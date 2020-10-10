@@ -90,7 +90,7 @@ public abstract class AlgorithmSTL extends Thread {
             double current_awt = Utils.calculateAWTForDistributionString(conditions, current.getName().substring(2));
             current.setAWT(current_awt);
 
-            if (current.getAWT() + 0.1 < target.getAWT()) {
+            if (current.getAWT() + 0.02 < target.getAWT()) {
                 is_path_exist = true;
                 path = current.getName().substring(2);
                 price = current.getPrice();

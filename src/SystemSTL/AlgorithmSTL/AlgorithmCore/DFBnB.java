@@ -92,7 +92,7 @@ public class DFBnB extends AlgorithmSTL {
 
                     } else if (isGoal(neighbour, goal)) {
                         result = true;
-                        threshold = (int)neighbour_total_price;
+                        threshold = (int) neighbour_total_price;
                         neighbours.clear();
                     }
 
