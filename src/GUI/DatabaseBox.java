@@ -123,9 +123,9 @@ public class DatabaseBox {
             	boolean confirm_message = true;
             	boolean is_database_exist = database.checkIfDatabaseExist(urlField.getText(), userField.getText(), passwordField.getText()); 
                 if (is_database_exist) {
-                	confirm_message = ConfirmBox.display("Attention", "This action may delete your database,\n do you want to continue anyway?");
+                	confirm_message = ConfirmBox.display("Attention", "This action may delete your existing database,\n do you want to continue anyway?");
                 } else {
-                	confirm_message = ConfirmBox.display("Attention", "This action will create new database,\n do you want to continue anyway?");
+                	confirm_message = ConfirmBox.display("Attention", "This action will create new database,\n do you want to continue?");
                 }
                 if(confirm_message) {
 	                if (database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText(), is_database_exist)) {
