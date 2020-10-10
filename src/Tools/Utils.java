@@ -958,6 +958,8 @@ public class Utils {
 
         double init_aws = conditions.getInitialAWT();
         double alg_aws = conditions.getAlgorithmAWT();
+        
+        double phase_time = conditions.getPhaseTime();
 
         String better_distribution = conditions.getBetterDistributionString();
 
@@ -973,6 +975,7 @@ public class Utils {
                 sim_time,
                 init_aws,
                 alg_aws,
+                phase_time,
                 better_distribution
         );
 

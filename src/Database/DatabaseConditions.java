@@ -19,6 +19,8 @@ public class DatabaseConditions {
 
     private double initial_aws;
     private double better_aws;
+    
+    private double phase_time;
 
     private String better_distribution; // "15:5->10:10..."
 
@@ -33,6 +35,7 @@ public class DatabaseConditions {
                               double simulation_time,
                               double initial_aws,
                               double better_aws,
+                              double phase_time,
                               String better_distribution) {
 
         this.cars_first_crossroad = cars_first_crossroad;
@@ -50,6 +53,8 @@ public class DatabaseConditions {
 
         this.initial_aws = initial_aws;
         this.better_aws = better_aws;
+        
+        this.phase_time = phase_time;
 
         this.better_distribution = better_distribution;
     }
@@ -95,6 +100,10 @@ public class DatabaseConditions {
         return better_aws;
     }
 
+    public double getPhaseTime() {
+    	return phase_time;
+    }
+    
     public String toString() {
     	String res = "";
     	res += "First crossroad: \n"

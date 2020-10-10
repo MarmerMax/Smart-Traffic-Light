@@ -188,7 +188,7 @@ public class Database {
     }
 
     /**
-     * return DatabaseConditions object by reriveting data from database.
+     * Return DatabaseConditions object by reriveting data from database.
      *
      * @param date - date of saving file
      * @return DatabaseConditions
@@ -204,6 +204,7 @@ public class Database {
             double simulation_time = 0;
             double initial_awt = 0;
             double better_awt = 0;
+            double phase_time = 0;
 
             String better_distribtuion = "";
             while (rs.next()) {
@@ -213,6 +214,7 @@ public class Database {
                 better_distribtuion = rs.getString(6);
                 initial_awt = rs.getDouble(7);
                 better_awt = rs.getDouble(8);
+                phase_time = rs.getDouble(9);
             }
 
             pstmt = con.prepareStatement(Constants.select_crossroadsInfo_ids_query);
@@ -297,6 +299,7 @@ public class Database {
                     simulation_time,
                     initial_awt,
                     better_awt,
+                    phase_time,
                     better_distribtuion);
 
 //            System.out.println(dc.toString());
