@@ -399,14 +399,16 @@ public class ProgramGUI {
                     DatabaseConditions db_condition = db.getDatabaseConditions(condition_date);
                     if (db_condition != null) {
                         //1
-                        Utils.setDatabaseConditionsInSpinner(cars_spinners_1,
+                        Utils.setDatabaseConditionsInSpinner(
+                                cars_spinners_1,
                                 limit_spinners_1,
                                 actual_spinners_1,
                                 db_condition.getCarsFirstCrossroad(),
                                 db_condition.getSpeedLimitFirstCrossroad(),
                                 db_condition.getActualSpeedFirstCrossroad());
                         //2
-                        Utils.setDatabaseConditionsInSpinner(cars_spinners_2,
+                        Utils.setDatabaseConditionsInSpinner(
+                                cars_spinners_2,
                                 limit_spinners_2,
                                 actual_spinners_2,
                                 db_condition.getCarsSecondCrossroad(),

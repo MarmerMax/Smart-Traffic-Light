@@ -97,9 +97,7 @@ public abstract class AlgorithmSTL extends Thread {
 
                 printFoundPath(path);
 
-//                if (is_path_exist) {
                 traffic_rules.setBetterDistribution(path);
-//                }
 
                 return true;
             }

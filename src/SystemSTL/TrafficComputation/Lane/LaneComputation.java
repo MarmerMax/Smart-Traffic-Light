@@ -2,7 +2,6 @@ package SystemSTL.TrafficComputation.Lane;
 
 import SystemSTL.TrafficComputation.Car.CarComputation;
 import SystemSTL.TrafficComputation.Car.CarInfo;
-import Tools.Constants;
 import Tools.Utils;
 
 import java.time.Duration;
@@ -87,30 +86,18 @@ public class LaneComputation extends Thread {
                     //if this is first car in lane
                     if (i == 0) {
 
-                        //TODO: check distance between cars in another lanes
-                        if (lane_name.contains("first") && lane_name.contains("west")) {
+                        if (lane_name.contains("first") && lane_name.contains("west") || lane_name.contains("second") && lane_name.contains("east")) {
                             CarInfo front_car = next_lane_info.getLastCar();
                             CarInfo current_car = lane_info.getCarsInLane().get(i);
                             double dist = (current_car.getDistanceFromCrossroad() + 35) - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
 
                             dist = Math.abs(dist);
-                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
+                            if (Utils.isCarCanGo(current_car.getCurrentSpeed(), current_car.getCar().getDeceleration(), dist)) {
                                 car_computation.movingMode(add, lane_info.getSpeedLimit());
                             } else {
                                 car_computation.stoppingMode(add);
                             }
-//
-                        } else if (lane_name.contains("second") && lane_name.contains("east")) {
-                            CarInfo front_car = next_lane_info.getLastCar();
-                            CarInfo current_car = lane_info.getCarsInLane().get(i);
-                            double dist = (current_car.getDistanceFromCrossroad() + 35) - (front_car.getDistanceFromCrossroad() + front_car.getCar().getLength());
 
-                            dist = Math.abs(dist);
-                            if (dist > Constants.SAFETY_DISTANCE_TO_START) {
-                                car_computation.movingMode(add, lane_info.getSpeedLimit());
-                            } else {
-                                car_computation.stoppingMode(add);
-                            }
                         } else {
                             car_computation.movingMode(add, lane_info.getSpeedLimit());
                         }
@@ -124,13 +111,6 @@ public class LaneComputation extends Thread {
 
                         dist = Math.abs(dist);
 
-//                        if (dist > Constants.SAFETY_DISTANCE_TO_START) {
-//                            car_computation.movingMode(add, lane_info.getSpeedLimit());
-//                        } else {
-//                            car_computation.stoppingMode(add);
-//                        }
-
-                        //TODO: QA tests
                         if (Utils.isCarCanGo(current_car.getCurrentSpeed(), current_car.getCar().getDeceleration(), dist)) {
                             car_computation.movingMode(add, lane_info.getSpeedLimit());
                         } else {
@@ -140,6 +120,7 @@ public class LaneComputation extends Thread {
 
                     //traffic light state is not green
                 } else {
+
 
                     //if the traffic light state is not green but the vehicle passed the intersection line
                     //then continue computation

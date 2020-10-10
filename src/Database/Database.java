@@ -13,6 +13,7 @@ import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("Duplicates")
 public class Database {
 
     private static String url = "jdbc:mysql://localhost:3306/stl";
@@ -211,8 +212,8 @@ public class Database {
                 ResultSet rs1 = pstmt.executeQuery();
                 while (rs1.next()) {
                     cars_first_crossroad[index] = rs1.getInt(1);
-                    speed_limit_first_crossroad[index] = rs1.getInt(2);
-                    actual_speed_first_crossroad[index] = rs1.getInt(3);
+                    speed_limit_first_crossroad[index] = rs1.getInt(3);
+                    actual_speed_first_crossroad[index] = rs1.getInt(2);
                 }
                 index++;
             }
@@ -241,8 +242,8 @@ public class Database {
                 ResultSet rs1 = pstmt.executeQuery();
                 while (rs1.next()) {
                     cars_second_crossroad[index] = rs1.getInt(1);
-                    speed_limit_second_crossroad[index] = rs1.getInt(2);
-                    actual_speed_second_crossroad[index] = rs1.getInt(3);
+                    speed_limit_second_crossroad[index] = rs1.getInt(3);
+                    actual_speed_second_crossroad[index] = rs1.getInt(2);
                 }
                 index++;
             }
