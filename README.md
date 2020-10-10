@@ -13,6 +13,12 @@ This project shows how the graph search algorithm can solve this problem and sig
 * [Junit](https://junit.org/junit5/)
 * [Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
 
+## Results
+In this project, the results were compared according to two criteria:
+
+* Time - total time for all cars to pass the intersection
+* AWS - average waiting time for a driver
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
