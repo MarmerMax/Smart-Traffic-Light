@@ -79,15 +79,16 @@ public class Database {
     public boolean checkIfDatabaseExist(String url, String user, String password) {
     	try {
     		String new_url = extractHostAndPort(url);
-            connect(new_url, user, password);
-            
-            System.out.println("Checking if database is exist: ");
-
-            PreparedStatement check_if_database_exist_query = con.prepareStatement(Constants.select_0_condition_query);
-            check_if_database_exist_query.execute();
-            System.out.println("Database exist!");
-            return true;
-
+            boolean is_connect = connect(new_url, user, password);
+            if(is_connect) {	
+	            System.out.println("Checking if database is exist: ");
+	
+	            PreparedStatement check_if_database_exist_query = con.prepareStatement(Constants.select_0_condition_query);
+	            check_if_database_exist_query.execute();
+	            System.out.println("Database exist!");
+	            return true;
+            }
+            return false;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return false;
@@ -96,22 +97,22 @@ public class Database {
     
     /**
      * This function creates the entire database by executing SQL commands.
+     * If database is exist then first drop it and create new one.
      *
      * @param url
      * @param user
      * @param password
+     * @param is_database_exist
      * @return true - if all executes success, otherwise return false.
      */
-    public boolean createLocalDatabase(String url, String user, String password) {
+    public boolean createLocalDatabase(String url, String user, String password, boolean is_database_exist) {
         try {
-        	boolean is_exist_database = checkIfDatabaseExist(url, user, password);
-
-        	// If database is exist then drop it down 
-        	if(is_exist_database) {
+        	// If database is exist then drop it 
+        	if(is_database_exist) {
         		System.out.println("Droping database: ");
                 PreparedStatement drop_database_query= con.prepareStatement(Constants.drop_database_query);
                 drop_database_query.execute();
-                System.out.println("droping database success!");
+                System.out.println("Droping database success!");
         	}
         	
             String new_url = extractHostAndPort(url);

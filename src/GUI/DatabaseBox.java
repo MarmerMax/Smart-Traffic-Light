@@ -120,30 +120,29 @@ public class DatabaseBox {
         	
             try {
                 Database database = Database.getInstance();
-                boolean is_connect = database.connect(urlField.getText(), userField.getText(), passwordField.getText()); 
-                if(is_connect) {
-                	boolean confirm_message = true;
-                	boolean is_database_exist = database.checkIfDatabaseExist(urlField.getText(), userField.getText(), passwordField.getText()); 
-	                if (is_database_exist) {
-	                	confirm_message = ConfirmBox.display("Attention", "This action may delete your database,\n do you want to continue anyway?");
-	                }
-	                if(confirm_message) {
-		                if (database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText())) {
-		                    login_state = login_states.login_succeeded;
-		                    window.close();
-		                } else {
-		                    logLabel.setText(Constants.create_database_fail);
-		                    login_state = login_states.login_failed;
-		                }
-	                } else {
+            	boolean confirm_message = true;
+            	boolean is_database_exist = database.checkIfDatabaseExist(urlField.getText(), userField.getText(), passwordField.getText()); 
+                if (is_database_exist) {
+                	confirm_message = ConfirmBox.display("Attention", "This action may delete your database,\n do you want to continue anyway?");
+                } else {
+                	confirm_message = ConfirmBox.display("Attention", "This action will create new database,\n do you want to continue anyway?");
+                }
+                if(confirm_message) {
+	                if (database.createLocalDatabase(urlField.getText(), userField.getText(), passwordField.getText(), is_database_exist)) {
 	                	logLabel.setText("");
-	                    login_state = login_states.no_state;
+	                	login_state = login_states.login_succeeded;
+	                    window.close();
+	                } else {
+	                    logLabel.setText(Constants.create_database_fail);
+	                    login_state = login_states.login_failed;
 	                }
                 } else {
-                	logLabel.setText(Constants.create_database_fail);
-                    login_state = login_states.login_failed;
+                	logLabel.setText("");
+                    login_state = login_states.no_state;
                 }
             } catch (Exception ex) {
+            	login_state = login_states.login_failed;
+            	logLabel.setText(Constants.create_database_fail);
                 System.err.println("ERROR: Failed to create database...");
             }
         });
