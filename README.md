@@ -2,7 +2,7 @@
 
 Final academic project at Ariel University 2020.
 
-The purpose of the system is to reduce the waiting time for drivers at traffic lights. 
+The purpose of the system is to reduce the waiting time for drivers at traffic lights base on **DFBnB Algorithem**. 
 This process is possible if you find a profitable traffic distribution and change the work of traffic lights.
 
 This project shows how the graph search algorithm can solve this problem and significantly reduce the waiting time.
