@@ -304,8 +304,8 @@ public class ProgramGUI {
         Utils.createActualSpeedListeners(actual_spinners_1, limit_spinners_1);
         Utils.createActualSpeedListeners(actual_spinners_2, limit_spinners_2);
 
-        Utils.creatSpeedLimitListeners(actual_spinners_1, limit_spinners_1);
-        Utils.creatSpeedLimitListeners(actual_spinners_2, limit_spinners_2);
+        Utils.createSpeedLimitListeners(actual_spinners_1, limit_spinners_1);
+        Utils.createSpeedLimitListeners(actual_spinners_2, limit_spinners_2);
 
         actualSpeed2.getChildren().addAll(actualSpeedLabel2, actual_spinners_2.get(0), actual_spinners_2.get(1), actual_spinners_2.get(2), actual_spinners_2.get(3));
         crossroad_fields_2.getChildren().addAll(boxLabel2, route2, cars2, speedLimit2, actualSpeed2);

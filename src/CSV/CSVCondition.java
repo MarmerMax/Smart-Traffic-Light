@@ -1,5 +1,8 @@
 package CSV;
 
+/**
+ * This class represents the conditions to be taken from the csv file.
+ */
 public class CSVCondition {
 
     private int[] cars_first_crossroad;
@@ -48,16 +51,13 @@ public class CSVCondition {
         return speed_limit_first_crossroad;
     }
 
-
     public int[] getSpeedLimitSecondCrossroad() {
         return speed_limit_second_crossroad;
     }
 
-
     public int[] getActualSpeedFirstCrossroad() {
         return actual_speed_first_crossroad;
     }
-
 
     public int[] getActualSpeedSecondCrossroad() {
         return actual_speed_second_crossroad;

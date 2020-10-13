@@ -23,6 +23,11 @@ import java.util.*;
 @SuppressWarnings("Duplicates")
 public class Utils {
 
+    /**
+     * This function creates random car type in traffic.
+     *
+     * @return car type
+     */
     public static CarTypes createRandomCarType() {
         CarTypes type;
         double random = Math.random();
@@ -42,6 +47,14 @@ public class Utils {
         return type;
     }
 
+
+    /**
+     * This function round the double value to chosen number of digits after dot.
+     *
+     * @param value  - value to round
+     * @param digits - number of digits after dot
+     * @return - rounded value
+     */
     public static double round(double value, int digits) {
         int places = digits;
         if (places < 0) throw new IllegalArgumentException();
@@ -52,11 +65,25 @@ public class Utils {
         return (double) tmp / factor;
     }
 
-
+    /**
+     * This functions finds ratio between two numbers.
+     *
+     * @param small_value - first value
+     * @param big_value   - second value
+     * @return - ratio
+     */
     public static double findRatio(double small_value, double big_value) {
         return round(big_value / small_value, 0);
     }
 
+
+    /**
+     * This function create random number in chosen range.
+     *
+     * @param min - min number
+     * @param max - max number
+     * @return - random value
+     */
     public static double createRandomInRange(double min, double max) {
         Random r = new Random();
         double randomValue = min + (max - min) * r.nextDouble();
@@ -64,6 +91,12 @@ public class Utils {
         return round(randomValue, 2);
     }
 
+    /**
+     * ----------------Temporarily not used--------------------
+     * This function creates random start condition to execute.
+     *
+     * @return conditions
+     */
     public static Conditions createStartConditions() {
         Crossroad crossroad_1 = new Crossroad(RoadCreator.createRoads(54, 1));
         Crossroad crossroad_2 = new Crossroad(RoadCreator.createRoads(433, 1));
@@ -83,6 +116,14 @@ public class Utils {
         return conditions;
     }
 
+    /**
+     * This function generates random values in the spinners, which will then be converted to road conditions.
+     *
+     * @param cars_spinners   - spinners that are responsible for cars
+     * @param limit_spinners  -  spinners that are responsible for speed limit
+     * @param actual_spinners - spinners that are responsible for actual speed
+     * @param exception_road  - road type (north/east/south/west)
+     */
     //random conditions for crossroad
     public static void createRandomConditions(ArrayList<Spinner<Integer>> cars_spinners,
                                               ArrayList<Spinner<Integer>> limit_spinners,
@@ -100,6 +141,12 @@ public class Utils {
         createRandomActualSpeed(actual_spinners, limits);
     }
 
+    /**
+     * This function generates random numbers in the cars count spinners.
+     *
+     * @param spinners       - spinners that are responsible for cars
+     * @param exception_road - road type (north/east/south/west)
+     */
     private static void createRandomCarsCount(ArrayList<Spinner<Integer>> spinners, int exception_road) {
         for (int i = 0; i < spinners.size(); i++) {
             int min = Constants.CARS_COUNT_MIN;
@@ -117,6 +164,11 @@ public class Utils {
         }
     }
 
+    /**
+     * This function generates random numbers in the speed limit spinners.
+     *
+     * @param spinners - spinners that are responsible for speed limit
+     */
     private static void createRandomSpeedLimit(ArrayList<Spinner<Integer>> spinners) {
         for (int i = 0; i < 4; i++) {
             int speed_limit = (int) createRandomInRange(Constants.SPEED_LIMIT_MIN, Constants.SPEED_LIMIT_MAX);
@@ -125,6 +177,13 @@ public class Utils {
         }
     }
 
+    /**
+     * This function generates random number in the actual speed spinners.
+     * Actual speed can not be greater than speed limit.
+     *
+     * @param spinners - spinners that are responsible for actual speed
+     * @param limits   - actual speed limit
+     */
     private static void createRandomActualSpeed(ArrayList<Spinner<Integer>> spinners, int[] limits) {
         for (int i = 0; i < 4; i++) {
             int actual_speed = (int) createRandomInRange(Constants.ACTUAL_LIMIT_MIN, limits[i]);
@@ -269,6 +328,13 @@ public class Utils {
      * //////////////////////////////////////////////////////////////////////////
      **/
 
+    /**
+     * This function checks if two nodes are equals.
+     *
+     * @param first  - first node
+     * @param second - second node
+     * @return - boolean
+     */
     //start isEqualsNodes
     public static boolean isEqualsNodes(Node first, Node second) {
         return isEqualCarsCountOnCrossroad(first.getConditions().getLanesInfoFirstCrossroad(),
@@ -278,6 +344,13 @@ public class Utils {
                         second.getConditions().getLanesInfoSecondCrossroad());
     }
 
+    /**
+     * This function checks if the number of cars on two nodes is equal.
+     *
+     * @param first
+     * @param second
+     * @return
+     */
     private static boolean isEqualCarsCountOnCrossroad(ArrayList<AlgorithmLaneInfo> first, ArrayList<AlgorithmLaneInfo> second) {
         for (int i = 0; i < 4; i++) {
             if (!isEqualCarsCountOnDirection(first.get(i), second.get(i))) {
@@ -287,12 +360,26 @@ public class Utils {
         return true;
     }
 
+    /**
+     * This function checks if the number of cars on two directions is equal.
+     *
+     * @param first
+     * @param second
+     * @return
+     */
     private static boolean isEqualCarsCountOnDirection(AlgorithmLaneInfo first, AlgorithmLaneInfo second) {
         return first.getCarsCount() == second.getCarsCount();
     }
     //end isEqualsNodes
 
 
+    /**
+     * This function checks if the node exists already in the set.
+     *
+     * @param node - node
+     * @param set  - set of nodes
+     * @return boolean
+     */
     public static boolean checkIfNodeExistsInList(Node node, Set<Node> set) {
         for (Node temp : set) {
             if (isEqualsNodes(node, temp)) {
@@ -302,6 +389,13 @@ public class Utils {
         return false;
     }
 
+    /**
+     * This function returns the same node from the set.
+     *
+     * @param node - node
+     * @param set  - set of nodes
+     * @return
+     */
     public static Node getSameNode(Node node, Set<Node> set) {
         for (Node temp : set) {
             if (isEqualsNodes(node, temp)) {
@@ -312,6 +406,14 @@ public class Utils {
     }
 
 
+    /**
+     * ----------------Temporarily not used--------------------
+     * This function changes between two nodes in the given queue.
+     *
+     * @param queue
+     * @param open_list
+     * @param node
+     */
     //Check if the queue contains the same node with the higher price then change it by cheaper node
     public static void changeBetweenNodesInQueue(Queue<Node> queue, Set<Node> open_list, Node node) {
         for (Node temp : queue) {
@@ -330,6 +432,13 @@ public class Utils {
     }
 
 
+    /**
+     * This function updates cars count on roads after given time.
+     *
+     * @param conditions - traffic conditions
+     * @param ns_time    - time in north-south direction
+     * @param ew_time    - time in east-west direction
+     */
     //start updatePassedCars
     //a function that calculates how many cars have passed the intersections
     public static void updatePassedCars(AlgorithmConditions conditions, double ns_time, double ew_time) {
@@ -343,6 +452,13 @@ public class Utils {
 
     }
 
+    /**
+     * This function updates lanes information of the given crossroad.
+     *
+     * @param cars_info      - cars information
+     * @param is_north_south - flag of direction type
+     * @param time           - time to calculate
+     */
     //a function that update how many cars have passed a given intersection in a given time and in a given direction
     private static void updateLanesInfoForCrossroad(ArrayList<AlgorithmLaneInfo> cars_info, boolean is_north_south, double time) {
         if (is_north_south) {
@@ -354,6 +470,12 @@ public class Utils {
         }
     }
 
+    /**
+     * This function updates lanes information of the given direction.
+     *
+     * @param lane_info - lane information
+     * @param time      - time to calculate
+     */
     private static void updateLanesInfoByDirection(AlgorithmLaneInfo lane_info, double time) {
         int passed_cars = calculatePassedCarsByDirection(lane_info, time);
 
@@ -367,7 +489,13 @@ public class Utils {
         lane_info.setDistanceFromCrossroad(new_distance);
     }
 
-
+    /**
+     * This function calculates the number of cars that can pass the crossroad in a given time.
+     *
+     * @param lane_info - lane information
+     * @param time      - time to calculate
+     * @return count of cars
+     */
     private static int calculatePassedCarsByDirection(AlgorithmLaneInfo lane_info, double time) {
 
         if (lane_info.getCarsCount() == 0) {
@@ -406,6 +534,15 @@ public class Utils {
         return count + 1;
     }
 
+    /**
+     * This function calculates passed distance by given time.
+     *
+     * @param time           - time
+     * @param acc            - acceleration of car
+     * @param start_velocity - start speed
+     * @param speed_limit    - speed limit of road
+     * @return - distance
+     */
     private static double calculatePassedDistance(double time, double acc, double start_velocity, double speed_limit) {
 
         double result;
@@ -419,6 +556,15 @@ public class Utils {
         return result;
     }
 
+    /**
+     * This function calculates distance from acceleration, time, starting speed and allowed maximum speed.
+     *
+     * @param time           - time
+     * @param acc            - acceleration
+     * @param start_velocity - start velocity
+     * @param max_speed      - max speed
+     * @return distance
+     */
     private static double calculateDistanceByAccTimeMaxSpeed(double time, double acc, double start_velocity, double max_speed) {
         double dist = 0;
         double act_speed = start_velocity;
@@ -434,7 +580,11 @@ public class Utils {
     }
     //end updatePassedCars
 
-
+    /**
+     * This function creates the target conditions for the algorithm.
+     *
+     * @return target conditions
+     */
     //start createGoalAlgorithmConditions
     public static AlgorithmConditions createGoalAlgorithmConditions() {
         ArrayList<AlgorithmLaneInfo> first = createGoalAlgorithmCrossroad();
@@ -442,6 +592,11 @@ public class Utils {
         return new AlgorithmConditions(first, second);
     }
 
+    /**
+     * This function creates the target conditions for the crossroad.
+     *
+     * @return conditions
+     */
     private static ArrayList<AlgorithmLaneInfo> createGoalAlgorithmCrossroad() {
         ArrayList<AlgorithmLaneInfo> crossroad = new ArrayList<>();
         AlgorithmLaneInfo empty_lane_info_1 = createGoalAlgorithmLaneInfo();
@@ -456,12 +611,70 @@ public class Utils {
         return crossroad;
     }
 
+    /**
+     * This function creates the target lane information conditions.
+     *
+     * @return
+     */
     private static AlgorithmLaneInfo createGoalAlgorithmLaneInfo() {
         return new AlgorithmLaneInfo(0);
     }
     //end createGoalAlgorithmConditions
 
+    /**
+     * ----------------Temporarily not used--------------------
+     * This function find the maximum speed of chosen direction.
+     *
+     * @param conditions   - traffic conditions
+     * @param isSouthNorth - flag of direction
+     * @return speed
+     */
+    private static double getMaxSpeed(AlgorithmConditions conditions, boolean isSouthNorth) {
+        double max = 0;
+        if (isSouthNorth) {
+            for (int i = 0; i < conditions.getLanesInfoSecondCrossroad().size(); i++) {
+                if (i == Constants.NORTH_DIRECTION || i == Constants.SOUTH_DIRECTION) {
+                    if (conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit() > max) {
+                        max = conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit();
+                    }
+                }
+            }
 
+            for (int i = 0; i < conditions.getLanesInfoSecondCrossroad().size(); i++) {
+                if (i == Constants.NORTH_DIRECTION || i == Constants.SOUTH_DIRECTION) {
+                    if (conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit() > max) {
+                        max = conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit();
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < conditions.getLanesInfoSecondCrossroad().size(); i++) {
+                if (i == Constants.EAST_DIRECTION || i == Constants.WEST_DIRECTION) {
+                    if (conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit() > max) {
+                        max = conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit();
+                    }
+                }
+            }
+
+            for (int i = 0; i < conditions.getLanesInfoSecondCrossroad().size(); i++) {
+                if (i == Constants.EAST_DIRECTION || i == Constants.WEST_DIRECTION) {
+                    if (conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit() > max) {
+                        max = conditions.getLanesInfoSecondCrossroad().get(i).getSpeedLimit();
+                    }
+                }
+            }
+        }
+        return max;
+    }
+
+
+    /**
+     * This function calculates heuristic price of the conditions by the given time distribution.
+     *
+     * @param conditions
+     * @param times
+     * @return
+     */
     //start heuristicFunction
     //heuristic function must be admissible and consistent
     //admissible proof: our function admissible because we used the maximum speed limit for each road,
@@ -489,6 +702,13 @@ public class Utils {
         return time;
     }
 
+    /**
+     * This function returns maximum distance to move of the all directions by flag.
+     *
+     * @param conditions     - conditions
+     * @param is_north_south - flag of direction
+     * @return
+     */
     private static double findMaxDistance(AlgorithmConditions conditions, boolean is_north_south) {
         double max;
         if (is_north_south) {
@@ -504,6 +724,14 @@ public class Utils {
 
     }
 
+    /**
+     * This functions returns max distance between two directions on crossroad.
+     *
+     * @param crossroad
+     * @param first
+     * @param second
+     * @return
+     */
     private static double findMaxDistanceBetweenDirections(ArrayList<AlgorithmLaneInfo> crossroad, int first, int second) {
         return Math.max(crossroad.get(first).getDistanceFromCrossroad(), crossroad.get(second).getDistanceFromCrossroad());
     }
@@ -629,7 +857,12 @@ public class Utils {
 
     }
 
-
+    /**
+     * This function calculates initial duration to pass the crossroad by all cars.
+     *
+     * @param conditions
+     * @return
+     */
     public static double calculateInitialDuration(Conditions conditions) {
         double time = conditions.getPhaseTime() / 2;
 
@@ -648,7 +881,13 @@ public class Utils {
         return worst_time;
     }
 
-
+    /**
+     * This function calculates phase count to pass the crossroad by the given phase time.
+     *
+     * @param crossroad
+     * @param time
+     * @return
+     */
     private static double calculatePhasesCount(ArrayList<LaneInfo> crossroad, double time) {
         double worst_phases_count = -1;
 
@@ -662,7 +901,13 @@ public class Utils {
         return worst_phases_count;
     }
 
-
+    /**
+     * This function calculates duration to pass the crossroad by the given phase count.
+     *
+     * @param phases     - count of phase
+     * @param phase_time - time of single phase
+     * @return duraiton
+     */
     public static double calculateDurationByPhasesCount(double phases, double phase_time) {
         double changing_lights_time = Constants.TRAFFIC_LIGHT_CHANGING_TIME * 3 * 2;
         double phase_work_time = phase_time + changing_lights_time;
@@ -672,7 +917,13 @@ public class Utils {
         return better_duration;
     }
 
-
+    /**
+     * This function calculates phase count of given direction by the allowed phase time.
+     *
+     * @param lane_info - lane information
+     * @param time      - phase time
+     * @return
+     */
     private static double calculatePhasesCountForDirection(LaneInfo lane_info, double time) {
         AlgorithmLaneInfo algorithm_lane_info = new AlgorithmLaneInfo(lane_info);
 
@@ -699,7 +950,7 @@ public class Utils {
 
 
     /**
-     * This function create separation string for console.
+     * This function creates separation string for console.
      *
      * @param str
      * @return
@@ -714,7 +965,7 @@ public class Utils {
 
 
     /**
-     * This function create string from array
+     * This function creates string from array
      *
      * @param arr
      * @return
@@ -811,7 +1062,12 @@ public class Utils {
         return result_awt;
     }
 
-
+    /**
+     * This function calculates the AWT for a given distribution string.
+     *
+     * @param conditions - actual conditions.
+     * @return - AWT amount
+     */
     public static double calculateAWTForDistributionString(Conditions conditions, String distribution) {
 
         int phases_passed = 0;
@@ -958,7 +1214,7 @@ public class Utils {
 
         double init_aws = conditions.getInitialAWT();
         double alg_aws = conditions.getAlgorithmAWT();
-        
+
         double phase_time = conditions.getPhaseTime();
 
         String better_distribution = conditions.getBetterDistributionString();
@@ -982,6 +1238,16 @@ public class Utils {
         return database_conditions;
     }
 
+    /**
+     * This function sets the database conditions in GUI spinners.
+     *
+     * @param cars_spinners
+     * @param limit_spinners
+     * @param actual_spinners
+     * @param car_amounts
+     * @param speed_limits
+     * @param actual_speeds
+     */
     public static void setDatabaseConditionsInSpinner(ArrayList<Spinner<Integer>> cars_spinners,
                                                       ArrayList<Spinner<Integer>> limit_spinners,
                                                       ArrayList<Spinner<Integer>> actual_spinners,
@@ -1067,7 +1333,12 @@ public class Utils {
         return false;
     }
 
-
+    /**
+     * This function reads and creates the traffic conditions from the chosen csv file.
+     *
+     * @param path - path to csv file
+     * @return traffic conditions in CSV format
+     */
     public static CSVCondition createConditionsFromCSV(String path) {
         Path currentRelativePath = Paths.get("");
         String project_dir = currentRelativePath.toAbsolutePath().toString();
@@ -1134,6 +1405,14 @@ public class Utils {
     }
 
 
+    /**
+     * This function sets the traffic conditions in all spinners.
+     *
+     * @param cars_spinners
+     * @param limit_spinners
+     * @param actual_spinners
+     * @param data
+     */
     public static void setCSVConditionsInSpinner(ArrayList<Spinner<Integer>> cars_spinners,
                                                  ArrayList<Spinner<Integer>> limit_spinners,
                                                  ArrayList<Spinner<Integer>> actual_spinners,
@@ -1145,6 +1424,12 @@ public class Utils {
 
     }
 
+    /**
+     * This function sets the traffic conditions in all spinners.
+     *
+     * @param spinners
+     * @param data
+     */
     private static void setDataInSpinner(ArrayList<Spinner<Integer>> spinners, int[] data) {
         spinners.get(Constants.NORTH_DIRECTION).getValueFactory().setValue(data[Constants.NORTH_DIRECTION]);
         spinners.get(Constants.EAST_DIRECTION).getValueFactory().setValue(data[Constants.EAST_DIRECTION]);
@@ -1152,8 +1437,13 @@ public class Utils {
         spinners.get(Constants.WEST_DIRECTION).getValueFactory().setValue(data[Constants.WEST_DIRECTION]);
     }
 
-
-    public static void creatSpeedLimitListeners(ArrayList<Spinner<Integer>> actual_spinners, ArrayList<Spinner<Integer>> limit_spinners) {
+    /**
+     * This feature creates speed limit listeners for proper selection of speeds on roads of use.
+     *
+     * @param actual_spinners
+     * @param limit_spinners
+     */
+    public static void createSpeedLimitListeners(ArrayList<Spinner<Integer>> actual_spinners, ArrayList<Spinner<Integer>> limit_spinners) {
         if (actual_spinners.size() != limit_spinners.size()) {
             throw new RuntimeException("Fail! Wrong program parameters...");
         }

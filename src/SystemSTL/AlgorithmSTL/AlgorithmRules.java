@@ -2,11 +2,8 @@ package SystemSTL.AlgorithmSTL;
 
 import Objects.Conditions.Conditions;
 import Tools.Utils;
-import com.sun.webkit.network.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * This class represents the rules for the algorithm.
@@ -43,6 +40,14 @@ public class AlgorithmRules {
         max_time = conditions.getFirstCrossroadInfo().getCrossroad().getTimeDistribution().getMaxTime();
     }
 
+    /**
+     * This function creates all neighbours of the given node in tree.
+     *
+     * @param current  - node
+     * @param max_time - max time
+     * @param min_time - min time
+     * @return list of all neighbours
+     */
     public static ArrayList<Node> createNeighboursOfNode(Node current, double max_time, double min_time) {
         ArrayList<Node> neighbours = new ArrayList<>();
 
